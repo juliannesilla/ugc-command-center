@@ -1,0 +1,73 @@
+name: refresh-data
+
+# Cron every 15 min. Today: just rebuilds + redeploys (mock-only).
+# Future: rsync from UGC workspace, then rebuild + redeploy.
+#
+# ⚠️ DATA ISOLATION GUARDRAIL
+# This workflow MUST NEVER sync from:
+#   - OneDrive/Desktop/julz-vault/
+#   - juliannesilla.github.io/julz-command-center/
+#   - any *financial*, *household*, *identity-theft*, *post-hdmz*, *RJ* paths
+# Allowed source: OneDrive/Desktop/UGC/** only.
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      # TODO(D-5 live swap): once UGC tokens exist, uncomment rsync step.
+      # - name: Mirror UGC workspace (allowed paths only)
+      #   run: |
+      #     mkdir -p data/ugc-mirror
+      #     rsync -av --delete \
+      #       --include='**/*.md' --include='**/*.json' \
+      #       --exclude='*financial*' --exclude='*household*' \
+      #       --exclude='*identity-theft*' --exclude='*post-hdmz*' \
+      #       --exclude='*RJ*' --exclude='julz-vault/' \
+      #       "${{ secrets.UGC_SOURCE }}/" data/ugc-mirror/
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        env:
+          NEXT_PUBLIC_UGC_PASSWORD_HASH: ${{ secrets.UGC_PASSWORD_HASH }}
+          UGC_PASSWORD_HASH: ${{ secrets.UGC_PASSWORD_HASH }}
+        run: pnpm build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
