@@ -180,9 +180,9 @@ export default function OverviewPage() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
           <div className="space-y-8 min-w-0">
         {/* ============ YOUR NEXT MOVE ============ */}
-        <section className="rise rise-2 relative overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-cloud-200">
-          <div className="absolute inset-0 bg-cloud-soft opacity-70" aria-hidden />
-          <div className="absolute -top-16 -right-16 h-64 w-64 rounded-full bg-cloud-sunset opacity-30 blur-3xl" aria-hidden />
+        <section className="rise rise-2 relative overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-iris-100">
+          <div className="absolute inset-0 bg-iris-soft opacity-80" aria-hidden />
+          <div className="absolute -top-16 -right-16 h-64 w-64 rounded-full bg-cloud-sunset opacity-25 blur-3xl" aria-hidden />
           <div className="relative p-7 md:p-9 flex flex-col md:flex-row md:items-center gap-6">
             <div className="flex-1">
               <p className="text-[11px] uppercase tracking-[0.28em] text-cloud-700 font-semibold">

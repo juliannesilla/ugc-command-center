@@ -63,6 +63,7 @@ const config: Config = {
       backgroundImage: {
         'cloud-sunset': 'linear-gradient(120deg, #FFB6D5 0%, #FFA3C7 22%, #C8A4FF 55%, #9D6BFF 100%)',
         'cloud-soft':   'linear-gradient(135deg, #FFE5F0 0%, #F5F0FF 60%, #EADCFF 100%)',
+        'iris-soft':    'linear-gradient(135deg, #F5F0FF 0%, #EADCFF 55%, #D4B8FF 100%)',
         'grain': "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
       },
       borderRadius: {

@@ -9,13 +9,21 @@ name: refresh-data
 #   - juliannesilla.github.io/julz-command-center/
 #   - any *financial*, *household*, *identity-theft*, *post-hdmz*, *RJ* paths
 # Allowed source: OneDrive/Desktop/UGC/** only.
+#
+# ⚠️ DISABLED 2026-05-20 (Phase A.14c) — manual trigger only.
+# Root cause of prior failures (per C3 diagnosis):
+#   1. Uses pnpm + frozen-lockfile, but repo has package-lock.json (npm)
+#   2. Uses actions/deploy-pages@v4 (requires Pages build_type=workflow),
+#      but Pages is configured with build_type=legacy + source=gh-pages
+#      to match deploy.yml's peaceiris/actions-gh-pages strategy.
+# Re-enable by uncommenting schedule + push triggers ONLY AFTER:
+#   (a) generating pnpm-lock.yaml OR rewriting to npm install
+#   (b) deciding pnpm-lock.yaml strategy: ship lockfile or switch to npm install
+#   (c) reconciling Pages build strategy with deploy.yml
+# OR replace this workflow with rsync step + deploy.yml trigger (cleaner).
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
   workflow_dispatch:
-  push:
-    branches: [ main ]
 
 permissions:
   contents: write
