@@ -11,7 +11,6 @@ import {
   FolderOpen,
   PlusCircle,
 } from 'lucide-react';
-import { Sidebar } from '@/components/ui/sidebar';
 import { StatusChip } from '@/components/ui/status-chip';
 import { ReadOnlyMirrorBadge } from '@/components/ui/read-only-mirror-badge';
 import { MantraQuote } from '@/components/ui/mantra-quote';
@@ -91,12 +90,9 @@ const statIconTones: Record<string, string> = {
 
 export default function AssetsPage() {
   return (
-    <div className="flex min-h-screen bg-cloud-soft">
-      <Sidebar />
-
-      <div className="flex-1 min-w-0">
-        {/* Header */}
-        <header className="header-cloud px-6 md:px-8 py-6">
+    <>
+      {/* Header */}
+      <header className="header-cloud px-6 md:px-8 py-6">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="text-[11px] uppercase tracking-[0.22em] text-white/80 mb-2">
@@ -305,7 +301,6 @@ export default function AssetsPage() {
             </aside>
           </div>
         </main>
-      </div>
-    </div>
+    </>
   );
 }

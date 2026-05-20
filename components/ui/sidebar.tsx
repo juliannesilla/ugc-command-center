@@ -31,7 +31,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Campaign Pipeline', href: '/pipeline/board',   icon: Kanban },
   { label: 'Content Hub',       href: '/content-hub',      icon: Sparkles },
   { label: 'Brand Responses',   href: '/brand-responses',  icon: Inbox },
-  { label: 'Calendar',          href: '/scheduling',       icon: CalendarDays },
+  { label: 'Scheduling',        href: '/scheduling',       icon: CalendarDays },
   { label: 'Analytics',         href: '/analytics',        icon: BarChart3 },
   { label: 'Payments',          href: '/payments',         icon: Wallet },
   { label: 'Templates',         href: '/templates',        icon: FileText },

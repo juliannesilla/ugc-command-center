@@ -69,7 +69,11 @@ const responseTone: Record<ResponseStatus, 'green'|'yellow'|'orange'|'pink'|'iri
   'Closed':    'pink',
 };
 
-const STAGE_OPTIONS: (PipelineStage | 'ALL')[] = [
+// 16-stage filter list matches BOARD_STAGES (Phase A.13 spec). INVOICED is a
+// board-only stage (not in PipelineStage union); ARCHIVED is the terminal
+// PipelineStage. Both surface here so the database filter parity-matches the
+// Kanban board.
+const STAGE_OPTIONS: (PipelineStage | 'ALL' | 'INVOICED')[] = [
   'ALL',
   'NEW LEAD',
   'RESPONDED',
@@ -84,12 +88,14 @@ const STAGE_OPTIONS: (PipelineStage | 'ALL')[] = [
   'SUBMITTED',
   'ACCEPTED',
   'POSTED',
+  'INVOICED',
   'PAID',
+  'ARCHIVED',
 ];
 
 export default function PipelineDatabasePage() {
   const [query, setQuery] = useState('');
-  const [stageFilter, setStageFilter] = useState<PipelineStage | 'ALL'>('ALL');
+  const [stageFilter, setStageFilter] = useState<PipelineStage | 'ALL' | 'INVOICED'>('ALL');
   const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => {
@@ -151,7 +157,7 @@ export default function PipelineDatabasePage() {
             <Filter className="h-4 w-4 text-ink-400" />
             <select
               value={stageFilter}
-              onChange={e => { setStageFilter(e.target.value as PipelineStage | 'ALL'); setPage(1); }}
+              onChange={e => { setStageFilter(e.target.value as PipelineStage | 'ALL' | 'INVOICED'); setPage(1); }}
               className="rounded-2xl bg-cloud-soft px-3 py-2 text-[13px] font-medium text-ink-700 ring-1 ring-cloud-100 focus:ring-cloud-300 focus:outline-none transition"
             >
               {STAGE_OPTIONS.map(s => (
