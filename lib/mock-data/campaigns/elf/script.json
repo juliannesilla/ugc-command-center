@@ -1,0 +1,35 @@
+{
+  "hooks": [
+    "Another lip oil. Sure. Let's see if e.l.f. earned my $14.",
+    "The TikTok algorithm fed me this. I had to test it.",
+    "POV: you don't trust lip-oil reviews. Same.",
+    "Three lip oils deep this month. Here's the one that survived.",
+    "If your lips are dry but you hate gloss, watch this."
+  ],
+  "coreAngle": "Honest skeptic flips on the product mid-review. Tension → release. The mirror-test does the selling, not the script.",
+  "scriptDraft": [
+    { "ts": "00:00", "section": "HOOK", "line": "Another lip oil. Sure. Let's see if e.l.f. earned my $14." },
+    { "ts": "00:03", "section": "INTRO", "line": "I have a drawer of these. Most are sticky, smell like dessert, or do nothing. This is the e.l.f. Glow Reviver in 'Pink Quartz.'" },
+    { "ts": "00:10", "section": "BODY", "line": "First — the doe-foot. It's actually shaped right. Picks up enough product without flooding. [Close-up on applicator.]" },
+    { "ts": "00:18", "section": "BODY", "line": "Bare lips. [B-roll cut to bare-lip mirror.] Now one swipe. [Cut back, applied.] It's not glittery. It's not sticky. It's just… hydrated." },
+    { "ts": "00:28", "section": "BODY", "line": "The 'Glow Reviver' name is doing a lot of work, but my lips genuinely look revived. I'm annoyed it's working." },
+    { "ts": "00:36", "section": "CTA", "line": "Verdict: $14, keeps it. I'm putting it in the rotation. Link in bio if you want the shade." }
+  ],
+  "ctas": {
+    "primary": "Link in bio for the shade.",
+    "secondary": "Save this if you've been burned by lip oils before.",
+    "tertiary": "Comment your most hated 'sticky' offender."
+  },
+  "notes": [
+    "Lock the mirror-test transition before filming — that's the proof moment.",
+    "Keep the dry-funny opener under 2 seconds. Hard cut.",
+    "Don't say 'plumping' — not on approved messaging list.",
+    "Whitelisting note: e.l.f. owns paid usage 90 days post-post."
+  ],
+  "assets": [
+    { "name": "Script v1.0.docx", "type": "doc", "updated": "2026-05-17" },
+    { "name": "e.l.f. Brand Guidelines.pdf", "type": "pdf", "updated": "2026-05-10" },
+    { "name": "Thumbnail Ideas.png", "type": "image", "updated": "2026-05-17" },
+    { "name": "Shade Reference — Pink Quartz.jpg", "type": "image", "updated": "2026-05-15" }
+  ]
+}

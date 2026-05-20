@@ -1,0 +1,34 @@
+{
+  "hooks": [
+    "One linen piece. Two outfits. Zero effort.",
+    "The drape is doing all of the work and I am letting it.",
+    "I bought this thinking it was nothing. It's quietly everything.",
+    "Soft-girl wardrobe shouldn't require thinking. This piece confirms.",
+    "Pinned to my closet door for the rest of the season."
+  ],
+  "coreAngle": "Quiet-luxury editorial: one Lotus Shop piece, single shoe-swap, day→night. Drape and fabric are the story. No 'dupe' framing, no influencer voice.",
+  "scriptDraft": [
+    { "ts": "00:00", "section": "HOOK", "line": "One linen piece. Two outfits. Zero effort." },
+    { "ts": "00:03", "section": "INTRO", "line": "This is from Lotus Shop. Linen-blend, weighty drape, soft cream tone." },
+    { "ts": "00:08", "section": "BODY", "line": "Day version: flat sandals, denim layer, casual mirror twirl. [Cut to twirl B-roll.]" },
+    { "ts": "00:16", "section": "BODY", "line": "Night version: same piece. Heel swap. Half-tuck. That's the whole transformation. [Cut to night styling.]" },
+    { "ts": "00:23", "section": "CTA", "line": "Tagged. #lotusgirl if you want the shade." }
+  ],
+  "ctas": {
+    "primary": "Tagged — link in bio.",
+    "secondary": "Save this for the next 'nothing to wear' Tuesday.",
+    "tertiary": "Comment your softest-girl outfit recipe."
+  },
+  "notes": [
+    "Pacing slow — average shot 4-5s. No frantic cuts.",
+    "DO NOT use 'dupe', 'looks like [brand]', or competitor names.",
+    "Caption pre-approval REQUIRED before posting.",
+    "Tone: Julz Tier-1 only. UGC dry-funny overlay OFF for this one."
+  ],
+  "assets": [
+    { "name": "Lotus Shop Brand Guide.pdf", "type": "pdf", "updated": "2026-05-14" },
+    { "name": "Garment ref — linen cream wrap.jpg", "type": "image", "updated": "2026-05-16" },
+    { "name": "Script v0.1.docx", "type": "doc", "updated": "2026-05-19" },
+    { "name": "Caption pre-approval pending.txt", "type": "doc", "updated": "2026-05-19" }
+  ]
+}

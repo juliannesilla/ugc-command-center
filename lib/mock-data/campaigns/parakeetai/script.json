@@ -1,0 +1,35 @@
+{
+  "hooks": [
+    "When your interview brain deletes your entire career.",
+    "POV: you know the work. The interview decides otherwise.",
+    "I have years of AI workflow experience and zero ability to explain it on a Zoom call.",
+    "The job is one thing. Explaining the job in an interview is a separate sport.",
+    "My resume can talk. My mouth in a live interview cannot."
+  ],
+  "coreAngle": "Marketing/AI operator who can DO the work but freezes when asked to package it in a live interview. ParakeetAI = the live-answer layer that closes the gap between knowing it and saying it cleanly.",
+  "scriptDraft": [
+    { "ts": "00:00", "section": "HOOK", "line": "When your interview brain deletes your entire career — yeah, this happens." },
+    { "ts": "00:04", "section": "INTRO", "line": "I work in marketing-ops and AI workflows. I can ship a campaign, wire a workflow, ship a deliverable. Ask me to explain it under pressure on Zoom? Brain offline." },
+    { "ts": "00:14", "section": "BODY", "line": "Interviews aren't really about whether you can do the job. They're about whether you can package the job into a clean two-minute answer while five people stare at you." },
+    { "ts": "00:24", "section": "BODY", "line": "So I've been using ParakeetAI — a real-time AI interview assistant. It listens to the question and feeds me a resume-tailored answer outline live, in the call. [Screen-overlay: Parakeet panel surfacing a STAR-format answer.]" },
+    { "ts": "00:38", "section": "BODY", "line": "Not 'cheat the interview'. More like: I already know the work. Parakeet just keeps me from rambling when the cortisol kicks in." },
+    { "ts": "00:48", "section": "CTA", "line": "Link in bio if you're in the interview cycle and you've also had the moment where your résumé could talk and you couldn't." }
+  ],
+  "ctas": {
+    "primary": "Link in bio — ParakeetAI.",
+    "secondary": "Save this if you've also blanked mid-answer.",
+    "tertiary": "Comment your most cursed interview moment."
+  },
+  "notes": [
+    "DO NOT frame as 'cheating' — Parakeet positions as a live-answer support layer.",
+    "Marketing-ops background = credibility, not the lead. Story leads.",
+    "Tag @parakeetai. Caption pre-approval needed.",
+    "Hardship reveal (laid-off twice) STAYS OFF-CAMERA."
+  ],
+  "assets": [
+    { "name": "ParakeetAI Brief.pdf", "type": "pdf", "updated": "2026-05-13" },
+    { "name": "Script v0.2.docx", "type": "doc", "updated": "2026-05-18" },
+    { "name": "Inspiration Reel — IG DQkJnaakuse.mp4", "type": "video", "updated": "2026-05-13" },
+    { "name": "Parakeet panel screenshot.png", "type": "image", "updated": "2026-05-17" }
+  ]
+}

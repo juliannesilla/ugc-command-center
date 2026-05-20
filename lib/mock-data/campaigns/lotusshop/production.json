@@ -1,0 +1,40 @@
+{
+  "productionStage": 1,
+  "shotMap": [
+    { "scene": 1, "visual": "Full-length mirror twirl, soft daylight, day-outfit version", "duration": "0:00–0:05", "status": "Planned" },
+    { "scene": 2, "visual": "Macro: fabric drape, hand sweeping across linen-blend", "duration": "0:05–0:10", "status": "Planned" },
+    { "scene": 3, "visual": "Casual outfit details — flat sandals, denim layer", "duration": "0:10–0:16", "status": "Planned" },
+    { "scene": 4, "visual": "Shoe-swap match-cut: sandals → heels", "duration": "0:16–0:19", "status": "Planned" },
+    { "scene": 5, "visual": "Night version mirror twirl + half-tuck reveal", "duration": "0:19–0:25", "status": "Planned" },
+    { "scene": 6, "visual": "CTA close — garment on hanger, tag visible", "duration": "0:25–0:28", "status": "Planned" }
+  ],
+  "brollChecklist": [
+    { "id": "br-1", "label": "Full-length mirror twirl, day version", "done": false },
+    { "id": "br-2", "label": "Full-length mirror twirl, night version", "done": false },
+    { "id": "br-3", "label": "Fabric-drape macro hand-sweep", "done": false },
+    { "id": "br-4", "label": "Sandal close-up", "done": false },
+    { "id": "br-5", "label": "Heel close-up", "done": false },
+    { "id": "br-6", "label": "Hanger + tag close-up", "done": false },
+    { "id": "br-7", "label": "Window-light wide", "done": false }
+  ],
+  "talkingHeadChecklist": [
+    { "id": "th-1", "label": "Hook line delivered with quiet confidence", "done": false },
+    { "id": "th-2", "label": "Lotus Shop name-drop, single-pass, mid-body", "done": false },
+    { "id": "th-3", "label": "Day vs night transition narration", "done": false },
+    { "id": "th-4", "label": "Closing CTA — soft, no hard-sell", "done": false }
+  ],
+  "editChecklist": [
+    { "id": "ed-1", "label": "Shoe-swap match-cut frame-perfect", "done": false },
+    { "id": "ed-2", "label": "Captions hand-styled (serif accent, no auto-Cap)", "done": false },
+    { "id": "ed-3", "label": "Color: warm cream, low-contrast, soft film grain", "done": false },
+    { "id": "ed-4", "label": "Audio: ambient room tone + soft music bed", "done": false },
+    { "id": "ed-5", "label": "Pacing: 4-5s average shot, no frantic cuts", "done": false },
+    { "id": "ed-6", "label": "Caption pre-approval received from Lotus", "done": false },
+    { "id": "ed-7", "label": "Export H.264 1080×1920 30fps", "done": false }
+  ],
+  "filmingStatus": {
+    "status": "Pre-production",
+    "scheduledAt": "2026-05-22T11:00:00-07:00",
+    "location": "Home — bedroom mirror + window-light corner"
+  }
+}

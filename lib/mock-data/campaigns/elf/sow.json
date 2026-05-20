@@ -1,0 +1,149 @@
+{
+  "requirements": [
+    {
+      "key": "deliverables",
+      "label": "Deliverables",
+      "detail": "1 vertical UGC video, 30–60 sec",
+      "means": "One TikTok-native vertical, 45 sec sweet spot. No carousel, no static.",
+      "status": "complete",
+      "source": "SOW §1.1"
+    },
+    {
+      "key": "length",
+      "label": "Required Length",
+      "detail": "30–60 seconds",
+      "means": "Target 45s. Hook in first 2s. CTA in last 5s.",
+      "status": "complete",
+      "source": "SOW §1.2"
+    },
+    {
+      "key": "format",
+      "label": "Format",
+      "detail": "9:16 vertical, 1080×1920, MP4",
+      "means": "Phone-shot, talking-head primary. No landscape reframe.",
+      "status": "complete",
+      "source": "SOW §2.1"
+    },
+    {
+      "key": "theme",
+      "label": "Theme",
+      "detail": "Real glow, real review, real reaction",
+      "means": "Lead with the mirror-test moment. Show texture on lips. Compare against bare-lip B-roll.",
+      "status": "complete",
+      "source": "SOW §3.1"
+    },
+    {
+      "key": "tone",
+      "label": "Tone",
+      "detail": "Honest, dry-funny, anti-influencer",
+      "means": "Julz Tier-2 voice on. No 'Hi guys'. Skeptical opener, earned payoff.",
+      "status": "complete",
+      "source": "SOW §3.2"
+    },
+    {
+      "key": "messaging",
+      "label": "Required Messaging",
+      "detail": "Must mention 'Glow Reviver' + 'hydrating'",
+      "means": "Hit product name + 'hydrating' in body. Avoid 'plumping' (not approved).",
+      "status": "complete",
+      "source": "SOW §4.1"
+    },
+    {
+      "key": "demo",
+      "label": "Product Mention/Demo",
+      "detail": "On-camera application, doe-foot visible",
+      "means": "Close-up of applicator. Smack lips. Mirror reaction shot.",
+      "status": "incomplete",
+      "source": "SOW §4.2"
+    },
+    {
+      "key": "posting",
+      "label": "Posting Requirements",
+      "detail": "Post to @geezjulz TikTok + tag @elfcosmetics, #elfpartner",
+      "means": "Schedule for Friday 6pm PT. Caption pre-approved.",
+      "status": "incomplete",
+      "source": "SOW §5.1"
+    },
+    {
+      "key": "usage",
+      "label": "Usage Rights",
+      "detail": "90-day organic + paid whitelisting",
+      "means": "e.l.f. can boost on their handles 90 days. No retainer extension.",
+      "status": "incomplete",
+      "source": "SOW §6.1"
+    },
+    {
+      "key": "payment",
+      "label": "Payment",
+      "detail": "$450 base, NET-30",
+      "means": "Invoice on approval. Track in tax-ledger.",
+      "status": "incomplete",
+      "source": "SOW §7.1"
+    },
+    {
+      "key": "bonus",
+      "label": "Bonus",
+      "detail": "$200 if video hits 50k organic views in 14 days",
+      "means": "Performance-tier. Optimize hook + thumbnail. CTA drives saves.",
+      "status": "incomplete",
+      "source": "SOW §7.2"
+    },
+    {
+      "key": "deadline",
+      "label": "Deadline",
+      "detail": "First draft May 20, final May 24",
+      "means": "Film by May 18. Edit window May 19–20. Buffer 4 days for revisions.",
+      "status": "complete",
+      "source": "SOW §8.1"
+    },
+    {
+      "key": "revision",
+      "label": "Revision Policy",
+      "detail": "2 rounds included, $75/round after",
+      "means": "Lock concept BEFORE filming. Single re-film = $0 if same day.",
+      "status": "incomplete",
+      "source": "SOW §8.2"
+    },
+    {
+      "key": "restrictions",
+      "label": "Do-Not-Do",
+      "detail": "No competitor mention, no medical claims, no minors",
+      "means": "Avoid 'better than [brand]'. No 'cures' or 'heals'. Solo shot.",
+      "status": "incomplete",
+      "source": "SOW §9.1"
+    }
+  ],
+  "missingInfo": [
+    {
+      "priority": "P0",
+      "question": "Is the $200 bonus tracked at 14 days post-original-post or post-approval?",
+      "askBefore": 7
+    },
+    {
+      "priority": "P1",
+      "question": "Can I show the product at a kitchen counter or must it be a bathroom mirror?",
+      "askBefore": 8
+    },
+    {
+      "priority": "P2",
+      "question": "Does whitelisting include Instagram or TikTok only?",
+      "askBefore": 11
+    }
+  ],
+  "meansSummary": {
+    "goal": "Make a 45-sec honest-glow review that reads as a real reaction, not a paid placement. Earn the $200 bonus by hooking saves.",
+    "audience": "Late-20s women who already own 3 lip glosses and are skeptical of TikTok-ad gloss reviews.",
+    "keyFocus": "The mirror-test moment. Texture proof. A dry-funny final verdict.",
+    "dos": [
+      "Lead with the skeptical opener ('Another lip oil. Sure.')",
+      "Show doe-foot applicator close-up",
+      "Compare bare-lip B-roll → applied B-roll within 5 seconds",
+      "End on a definitive verdict (yes or no, no fence)"
+    ],
+    "donts": [
+      "No 'Hi guys' or generic influencer voice",
+      "No competitor brand name-drop",
+      "No 'plumping' language (not on approved list)"
+    ]
+  }
+}

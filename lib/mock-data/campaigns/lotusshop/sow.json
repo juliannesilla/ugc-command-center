@@ -1,0 +1,149 @@
+{
+  "requirements": [
+    {
+      "key": "deliverables",
+      "label": "Deliverables",
+      "detail": "2 vertical UGC videos, 20–40 sec each",
+      "means": "Two short, punchy cuts — one 'unboxing-tease', one 'styled-in-the-wild'. Same garment, different POV.",
+      "status": "complete",
+      "source": "SOW §1.1"
+    },
+    {
+      "key": "length",
+      "label": "Required Length",
+      "detail": "20–40 seconds each",
+      "means": "Target 28s + 32s. TikTok-native, fast in, fast out.",
+      "status": "complete",
+      "source": "SOW §1.2"
+    },
+    {
+      "key": "format",
+      "label": "Format",
+      "detail": "9:16 vertical, 1080×1920, MP4, captions burned-in",
+      "means": "Phone-shot. Captions hand-styled, no auto-Cap.",
+      "status": "complete",
+      "source": "SOW §2.1"
+    },
+    {
+      "key": "theme",
+      "label": "Theme",
+      "detail": "Soft-girl daily-wear; 'one item, three ways' editorial",
+      "means": "Highlight the linen-blend drape. Style with a single shoe-swap to flip casual → night.",
+      "status": "complete",
+      "source": "SOW §3.1"
+    },
+    {
+      "key": "tone",
+      "label": "Tone",
+      "detail": "Warm, quiet-luxury, slow-paced",
+      "means": "Julz Tier-1 + UGC overlay OFF (no dry-funny). Lean editorial-pretty. Soft VO optional.",
+      "status": "complete",
+      "source": "SOW §3.2"
+    },
+    {
+      "key": "messaging",
+      "label": "Required Messaging",
+      "detail": "Must say 'Lotus Shop' once + '#lotusgirl' in caption",
+      "means": "Spoken brand mention in mid-body. Caption pre-approved by Lotus.",
+      "status": "incomplete",
+      "source": "SOW §4.1"
+    },
+    {
+      "key": "demo",
+      "label": "Product Mention/Demo",
+      "detail": "Garment styled on-body, full 360 turn",
+      "means": "Mirror twirl + close-up on fabric. Show drape, not just the shape.",
+      "status": "incomplete",
+      "source": "SOW §4.2"
+    },
+    {
+      "key": "posting",
+      "label": "Posting Requirements",
+      "detail": "TikTok + Instagram Reels; tag @lotusshop, #lotusgirl",
+      "means": "Stagger posts 48 hrs apart. Peak window: Wed 7pm PT / Sat 11am PT.",
+      "status": "incomplete",
+      "source": "SOW §5.1"
+    },
+    {
+      "key": "usage",
+      "label": "Usage Rights",
+      "detail": "60-day organic + paid whitelisting on Lotus handles",
+      "means": "Lotus can boost on @lotusshop for 60 days. No extension without retainer.",
+      "status": "incomplete",
+      "source": "SOW §6.1"
+    },
+    {
+      "key": "payment",
+      "label": "Payment",
+      "detail": "$525 total ($250 base + $275 on-approval)",
+      "means": "Two-tier. Half paid on contract, half on final-approval. NET-15.",
+      "status": "complete",
+      "source": "SOW §7.1"
+    },
+    {
+      "key": "bonus",
+      "label": "Bonus",
+      "detail": "$125 if combined views ≥ 75K in 21 days",
+      "means": "Optimize for shareability. Caption + thumbnail are the lever.",
+      "status": "complete",
+      "source": "SOW §7.2"
+    },
+    {
+      "key": "deadline",
+      "label": "Deadline",
+      "detail": "First drafts May 25, finals May 30",
+      "means": "Film May 22–23. Edit window May 24–25. Buffer 5 days.",
+      "status": "complete",
+      "source": "SOW §8.1"
+    },
+    {
+      "key": "revision",
+      "label": "Revision Policy",
+      "detail": "1 round included, $60/round after",
+      "means": "Send rough cut for sanity-check before final color/captions to avoid round 2.",
+      "status": "incomplete",
+      "source": "SOW §8.2"
+    },
+    {
+      "key": "restrictions",
+      "label": "Do-Not-Do",
+      "detail": "No fast-fashion comparisons, no 'dupe' language, no minors visible",
+      "means": "No 'looks like [brand]'. Solo shot. No 'dupe' word in voice or caption.",
+      "status": "incomplete",
+      "source": "SOW §9.1"
+    }
+  ],
+  "missingInfo": [
+    {
+      "priority": "P0",
+      "question": "Does whitelisting include Instagram Reels or only TikTok?",
+      "askBefore": 7
+    },
+    {
+      "priority": "P1",
+      "question": "Is the second video required to feature a different garment, or same garment / different styling?",
+      "askBefore": 8
+    },
+    {
+      "priority": "P2",
+      "question": "Bonus tracked combined-views or per-video views?",
+      "askBefore": 11
+    }
+  ],
+  "meansSummary": {
+    "goal": "Make two editorial-soft 28-32 sec cuts that read as a real wardrobe moment, not a sales placement. Hit the $125 bonus by optimizing share-rate.",
+    "audience": "Mid-20s to mid-30s women who shop slow-fashion, value drape over branding, hate 'dupe' content.",
+    "keyFocus": "The fabric-drape moment. Single-shoe-swap day→night reveal. Quiet, intentional pacing.",
+    "dos": [
+      "Open on the mirror twirl, not a brand logo",
+      "Show fabric texture in close-up by second 10",
+      "Caption pre-approved by Lotus before posting",
+      "Stagger TikTok + Reels 48 hours apart"
+    ],
+    "donts": [
+      "No 'dupe' or fast-fashion comparison language",
+      "No competitor name-drop",
+      "No frantic cuts — keep pacing slow and intentional"
+    ]
+  }
+}

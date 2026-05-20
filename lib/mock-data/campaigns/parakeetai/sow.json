@@ -1,0 +1,149 @@
+{
+  "requirements": [
+    {
+      "key": "deliverables",
+      "label": "Deliverables",
+      "detail": "1 talking-head vertical, 30–90 sec",
+      "means": "Target 50–60 sec sweet spot. One creative cut, no carousel.",
+      "status": "complete",
+      "source": "SOW §1.1 / SideShift brief"
+    },
+    {
+      "key": "length",
+      "label": "Required Length",
+      "detail": "30–90 seconds",
+      "means": "Hard target 55s. Hook by 0:02. CTA by 0:50.",
+      "status": "complete",
+      "source": "SOW §1.2"
+    },
+    {
+      "key": "format",
+      "label": "Format",
+      "detail": "Vertical talking-head, 1080×1920",
+      "means": "Phone vertical. Talking-head primary, light B-roll + screen demo overlay.",
+      "status": "complete",
+      "source": "SOW §2.1"
+    },
+    {
+      "key": "theme",
+      "label": "Theme",
+      "detail": "Coding / software / technical-interview themed",
+      "means": "Story = interview-brain freeze. Tie marketing-ops background as credibility, not lead.",
+      "status": "complete",
+      "source": "SOW §3.1 / Creator intro pg"
+    },
+    {
+      "key": "tone",
+      "label": "Tone",
+      "detail": "Casual, charismatic, no influencer voice",
+      "means": "Julz Tier-2 ON. 'Smart friend' energy. Dry humor. No 'Hi guys'.",
+      "status": "complete",
+      "source": "SOW §3.2"
+    },
+    {
+      "key": "messaging",
+      "label": "Required Messaging",
+      "detail": "Natural mention of ParakeetAI as real-time AI interview assistant",
+      "means": "Name the product once mid-body. Demo or screen-show during B-roll. No 'cheating' framing.",
+      "status": "complete",
+      "source": "SOW §4.1"
+    },
+    {
+      "key": "demo",
+      "label": "Product Mention/Demo",
+      "detail": "Screen demo or mention of live AI answers during interview",
+      "means": "Cut to brief phone-screen overlay (Parakeet panel during a mock interview).",
+      "status": "incomplete",
+      "source": "SOW §4.2"
+    },
+    {
+      "key": "posting",
+      "label": "Posting Requirements",
+      "detail": "Likely TikTok / Reels / Shorts — creator handle",
+      "means": "Post on @geezjulz TikTok primary. Cross-post Reels. Tag @parakeetai.",
+      "status": "incomplete",
+      "source": "SOW §5.1"
+    },
+    {
+      "key": "usage",
+      "label": "Usage Rights",
+      "detail": "Paid usage rights — uncapped bonus tier",
+      "means": "ParakeetAI can repurpose for paid ads. Track via Content Rights Ledger.",
+      "status": "complete",
+      "source": "SOW §6.1"
+    },
+    {
+      "key": "payment",
+      "label": "Payment",
+      "detail": "$25 base per video + up to $100/100K views bonus",
+      "means": "Low base, high upside. Optimize for save-rate + watch-time.",
+      "status": "complete",
+      "source": "SOW §7.1"
+    },
+    {
+      "key": "bonus",
+      "label": "Bonus",
+      "detail": "Optional $300 add-on for 5 short paid-ad cuts in week 1",
+      "means": "Decline add-on for this batch — focus quality on hero video first.",
+      "status": "complete",
+      "source": "SOW §7.2"
+    },
+    {
+      "key": "deadline",
+      "label": "Deadline",
+      "detail": "First draft May 22, final May 26",
+      "means": "Film May 20. Edit May 21–22. Buffer 4 days for revisions.",
+      "status": "complete",
+      "source": "SOW §8.1"
+    },
+    {
+      "key": "revision",
+      "label": "Revision Policy",
+      "detail": "Creative freedom — minimal revision expected",
+      "means": "Lock concept BEFORE filming. Send rough cut for sanity check before final color.",
+      "status": "incomplete",
+      "source": "SOW §8.2"
+    },
+    {
+      "key": "restrictions",
+      "label": "Do-Not-Do",
+      "detail": "No 'cheating' framing, no 'guaranteed offer' claims, no influencer voice",
+      "means": "Position as 'live answer support', not 'fake your way in'. No hardship reveal.",
+      "status": "incomplete",
+      "source": "SOW §9.1"
+    }
+  ],
+  "missingInfo": [
+    {
+      "priority": "P0",
+      "question": "Does 'uncapped bonus' track per-platform views or aggregate across TikTok+Reels+Shorts?",
+      "askBefore": 7
+    },
+    {
+      "priority": "P1",
+      "question": "Is a screen recording of the actual Parakeet panel required, or is verbal mention enough?",
+      "askBefore": 8
+    },
+    {
+      "priority": "P2",
+      "question": "Can I cross-post to LinkedIn for the tech-interview audience, or is TikTok/Reels/Shorts exclusive?",
+      "askBefore": 12
+    }
+  ],
+  "meansSummary": {
+    "goal": "Make a 55-sec talking-head that sells the interview-brain-freeze pain point — and lands ParakeetAI as the natural fix without sounding like an ad.",
+    "audience": "Software engineers, AI/ML candidates, and adjacent operators actively interviewing — skeptical of obvious AI-promo content.",
+    "keyFocus": "The 'my brain deletes my career' moment. Marketing-ops credibility layer beneath a software/interview story.",
+    "dos": [
+      "Open on the interview-blank moment, not on the product",
+      "Use marketing-ops background as credibility, not lead-with",
+      "Show brief screen of Parakeet panel during a mock answer",
+      "End with a single clean CTA — link in bio, no hard-sell"
+    ],
+    "donts": [
+      "No 'cheating the interview' or 'guaranteed offer' framing",
+      "No pretending to be a full-stack engineer",
+      "No hardship-reveal (laid-off detail stays off-camera)"
+    ]
+  }
+}
