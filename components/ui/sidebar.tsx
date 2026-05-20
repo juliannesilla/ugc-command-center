@@ -41,7 +41,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Assets',             href: '/assets',              icon: Folder },
   { label: 'Notes',              href: '/campaigns/notes',     icon: StickyNote },
   { label: 'Analytics',          href: '/analytics',           icon: BarChart3 },
-  { label: 'Brand Dump',         href: '/brain-dump',          icon: Brain },
+  { label: 'Brain Dump',         href: '/brain-dump',          icon: Brain },
   { label: 'Settings',           href: '/settings',            icon: Settings },
 ];
 

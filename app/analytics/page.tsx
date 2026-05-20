@@ -12,7 +12,7 @@ import { DateRangePicker } from '@/components/analytics/DateRangePicker';
 import { TOP_STAT_CARDS } from '@/lib/mock-data/analytics';
 
 export const metadata = {
-  title: 'Analytics · UGC Command Center',
+  title: "Analytics · Julianne's UGC Campaign HQ",
   description: 'Performance, bonuses, and hook-pattern analytics across TikTok, Reels and Shorts.',
 };
 
