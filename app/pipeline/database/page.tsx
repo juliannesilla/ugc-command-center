@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Search, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight, Filter, Plus } from 'lucide-react';
 import { Header } from '@/components/ui/header';
 import { StatCard } from '@/components/ui/stat-card';
 import { StatusChip } from '@/components/ui/status-chip';
@@ -17,6 +17,30 @@ import type { PipelineStage } from '@/lib/mock-data/pipeline';
 const PAGE_SIZE = 10;
 
 const STAT_ACCENTS = ['pink','pink','iris','iris','orange','orange','green','green'] as const;
+
+function brandInitials(name: string) {
+  return name
+    .split(/[\s/-]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map(w => w[0]?.toUpperCase() ?? '')
+    .join('');
+}
+
+// Stable gradient per brand based on first char.
+function brandGradient(name: string): string {
+  const palettes = [
+    'from-peach-300 to-rose-400',
+    'from-iris-300 to-cloud-500',
+    'from-cloud-300 to-iris-400',
+    'from-rose-300 to-peach-400',
+    'from-orange-300 to-rose-400',
+    'from-emerald-300 to-cloud-400',
+    'from-amber-300 to-orange-400',
+  ];
+  const code = name.charCodeAt(0) || 0;
+  return palettes[code % palettes.length];
+}
 
 const stageTone = (s: PipelineStage) => {
   if (s.startsWith('NEW') || s.startsWith('RESPOND') || s.startsWith('WAITING')) return 'pink';
@@ -139,6 +163,13 @@ export default function PipelineDatabasePage() {
             <span className="font-display text-base text-ink-900 mr-1">{filtered.length}</span>
             of {DATABASE_ROWS.length} campaigns
           </p>
+          <button
+            type="button"
+            className="inline-flex items-center gap-1.5 rounded-full bg-cloud-sunset px-4 py-2 text-[12px] font-semibold text-white shadow-soft hover:shadow-glow transition"
+          >
+            <Plus className="h-3.5 w-3.5" />
+            Add Campaign
+          </button>
         </div>
 
         {/* ============ TABLE ============ */}
@@ -147,6 +178,7 @@ export default function PipelineDatabasePage() {
             <table className="w-full text-[12.5px]">
               <thead className="bg-cloud-soft text-left">
                 <tr className="text-[10px] uppercase tracking-[0.16em] text-ink-500">
+                  <th className="px-3 py-3 font-semibold w-[44px]"></th>
                   <th className="px-4 py-3 font-semibold">Brand</th>
                   <th className="px-4 py-3 font-semibold">Campaign</th>
                   <th className="px-4 py-3 font-semibold">Stage</th>
@@ -162,6 +194,17 @@ export default function PipelineDatabasePage() {
               <tbody className="divide-y divide-cloud-50">
                 {pageRows.map(row => (
                   <tr key={row.id} className="hover:bg-cloud-50/60 transition">
+                    <td className="px-3 py-3">
+                      <span
+                        title={row.brand}
+                        className={cn(
+                          'grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br text-white font-display font-semibold text-[11px] shadow-card ring-2 ring-white',
+                          brandGradient(row.brand),
+                        )}
+                      >
+                        {brandInitials(row.brand)}
+                      </span>
+                    </td>
                     <td className="px-4 py-3 font-semibold text-ink-900 whitespace-nowrap">{row.brand}</td>
                     <td className="px-4 py-3 text-ink-700 max-w-[200px] truncate" title={row.campaign}>{row.campaign}</td>
                     <td className="px-4 py-3"><StatusChip tone={stageTone(row.stage) as any}>{row.stage}</StatusChip></td>
@@ -183,7 +226,7 @@ export default function PipelineDatabasePage() {
                 ))}
                 {pageRows.length === 0 && (
                   <tr>
-                    <td colSpan={10} className="px-4 py-12 text-center text-ink-400 text-[13px]">
+                    <td colSpan={11} className="px-4 py-12 text-center text-ink-400 text-[13px]">
                       No campaigns match your filters.
                     </td>
                   </tr>

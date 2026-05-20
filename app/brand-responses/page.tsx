@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Search,
   SlidersHorizontal,
@@ -12,6 +13,8 @@ import {
   Clock,
   PhoneCall,
   Sparkles,
+  PanelRightClose,
+  PanelRightOpen,
 } from "lucide-react";
 import {
   STAT_CARDS,
@@ -19,6 +22,7 @@ import {
   type TabKey,
 } from "@/lib/mock-data/brand-responses";
 import { MessageQueue } from "@/components/brand-responses/MessageQueue";
+import { BrandResponseDetailPanel } from "@/components/brand-responses/BrandResponseDetailPanel";
 import { ReadOnlyMirrorBadge } from "@/components/ui/read-only-mirror-badge";
 
 const STAT_ICON: Record<string, React.ReactNode> = {
@@ -37,9 +41,18 @@ const ACCENT_BG: Record<string, string> = {
   ink: "bg-ink-300/40 text-ink-700",
 };
 
-export default function BrandResponsesPage() {
+/**
+ * Inner client component that reads `?id=` from the URL. Wrapped in
+ * <Suspense> by the parent so static export + Next 15 can prerender the
+ * shell without bailing out of SSG.
+ */
+function BrandResponsesInner() {
   const [tab, setTab] = useState<TabKey>("all");
   const [search, setSearch] = useState("");
+  const [compact, setCompact] = useState(false);
+
+  const searchParams = useSearchParams();
+  const selectedId = searchParams.get("id");
 
   return (
     <>
@@ -152,6 +165,20 @@ export default function BrandResponsesPage() {
           <div className="flex items-center gap-2">
             <button
               type="button"
+              onClick={() => setCompact((v) => !v)}
+              aria-pressed={compact}
+              title={compact ? "Show detail pane" : "Hide detail pane"}
+              className="flex items-center gap-1.5 rounded-2xl bg-white/85 backdrop-blur px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.14em] text-ink-700 ring-1 ring-cloud-100 hover:bg-cloud-50 transition"
+            >
+              {compact ? (
+                <PanelRightOpen className="h-3.5 w-3.5" />
+              ) : (
+                <PanelRightClose className="h-3.5 w-3.5" />
+              )}
+              {compact ? "Expand" : "Compact"}
+            </button>
+            <button
+              type="button"
               className="flex items-center gap-1.5 rounded-2xl bg-white/85 backdrop-blur px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.14em] text-ink-700 ring-1 ring-cloud-100 hover:bg-cloud-50 transition"
             >
               <SlidersHorizontal className="h-3.5 w-3.5" />
@@ -170,10 +197,34 @@ export default function BrandResponsesPage() {
           </div>
         </div>
 
-        <div className="rise rise-4">
-          <MessageQueue tab={tab} search={search} />
+        {/* Split pane: queue LEFT (60%) + detail RIGHT (40%) */}
+        <div
+          className={`rise rise-4 grid gap-5 ${
+            compact ? "grid-cols-1" : "grid-cols-1 xl:grid-cols-[3fr_2fr]"
+          }`}
+        >
+          <div className="min-w-0">
+            <MessageQueue tab={tab} search={search} selectedId={selectedId} />
+          </div>
+          {!compact && (
+            <div className="min-w-0 xl:sticky xl:top-6 xl:max-h-[calc(100vh-3rem)] xl:overflow-y-auto">
+              <BrandResponseDetailPanel id={selectedId} variant="panel" />
+            </div>
+          )}
         </div>
       </section>
     </>
+  );
+}
+
+export default function BrandResponsesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="px-8 py-16 text-ink-500 text-sm">Loading inbox…</div>
+      }
+    >
+      <BrandResponsesInner />
+    </Suspense>
   );
 }

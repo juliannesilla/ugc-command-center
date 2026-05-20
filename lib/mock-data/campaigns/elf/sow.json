@@ -74,19 +74,11 @@
     },
     {
       "key": "payment",
-      "label": "Payment",
-      "detail": "$450 base, NET-30",
-      "means": "Invoice on approval. Track in tax-ledger.",
-      "status": "incomplete",
-      "source": "SOW §7.1"
-    },
-    {
-      "key": "bonus",
-      "label": "Bonus",
-      "detail": "$200 if video hits 50k organic views in 14 days",
-      "means": "Performance-tier. Optimize hook + thumbnail. CTA drives saves.",
-      "status": "incomplete",
-      "source": "SOW §7.2"
+      "label": "Payment & Bonus",
+      "detail": "$450 base, NET-30 + $200 if 50k views/14 days",
+      "means": "Invoice on approval. Optimize hook + thumbnail to earn the $200 tier.",
+      "status": "complete",
+      "source": "SOW §7.1–7.2"
     },
     {
       "key": "deadline",
@@ -95,14 +87,6 @@
       "means": "Film by May 18. Edit window May 19–20. Buffer 4 days for revisions.",
       "status": "complete",
       "source": "SOW §8.1"
-    },
-    {
-      "key": "revision",
-      "label": "Revision Policy",
-      "detail": "2 rounds included, $75/round after",
-      "means": "Lock concept BEFORE filming. Single re-film = $0 if same day.",
-      "status": "incomplete",
-      "source": "SOW §8.2"
     },
     {
       "key": "restrictions",

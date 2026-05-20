@@ -183,6 +183,7 @@ export const MOCK_RECENT_ASSETS: Asset[] = [
 // Aggregate counts used by stat cards + donut. Reflects a 1,248-asset library.
 export const AGGREGATE = {
   total: 1248,
+  brandFolders: 73,
   recentUploads7d: 23,
   missing: 17,
   readyToSend: 38,

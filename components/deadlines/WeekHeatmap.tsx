@@ -1,49 +1,78 @@
 import { cn } from '@/lib/utils';
 import { HEATMAP_DAYS } from '@/lib/mock-data/deadlines';
 
-function intensity(count: number): string {
-  if (count === 0) return 'bg-white border-cloud-100 text-ink-400';
-  if (count <= 1)  return 'bg-cloud-100 border-cloud-200 text-cloud-700';
-  if (count <= 2)  return 'bg-cloud-200 border-cloud-300 text-cloud-700';
-  if (count <= 3)  return 'bg-iris-200  border-iris-300  text-iris-600';
-  if (count <= 4)  return 'bg-iris-300  border-iris-400  text-white';
-  return 'bg-cloud-sunset border-iris-400 text-white shadow-glow';
-}
-
+/**
+ * Horizontal 10-day calendar strip — replaces the original heatmap to match
+ * mockup 40AAE272 (Pipeline Deadlines View). Each cell shows day label, date
+ * number, and a deliverable count badge.
+ */
 export function WeekHeatmap() {
   return (
     <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-4 shadow-card">
       <div className="flex items-baseline justify-between mb-3">
-        <h3 className="font-display text-[14px] text-ink-900">Week at a Glance</h3>
+        <h3 className="font-display text-[14px] text-ink-900">May 2026</h3>
         <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-400">
-          May 10 – 19
+          10-day strip
         </span>
       </div>
-      <div className="grid grid-cols-10 gap-1.5">
-        {HEATMAP_DAYS.map(d => (
-          <div
-            key={d.dateISO}
-            className={cn(
-              'group relative flex flex-col items-center justify-center rounded-xl border aspect-square transition hover:scale-105',
-              intensity(d.count),
-              d.isToday && 'ring-2 ring-offset-2 ring-cloud-500 ring-offset-white',
-            )}
-            title={`${d.dayLabel} ${d.dayNum} · ${d.count} deliverable${d.count !== 1 ? 's' : ''}`}
-          >
-            <span className="text-[9px] uppercase tracking-[0.12em] opacity-70 leading-none">
-              {d.dayLabel}
-            </span>
-            <span className="font-display text-[16px] leading-none mt-0.5">
-              {d.dayNum}
-            </span>
-            <div className="mt-1 flex gap-0.5">
-              {Array.from({ length: Math.min(d.count, 5) }).map((_, i) => (
-                <span key={i} className="h-1 w-1 rounded-full bg-current opacity-80" />
-              ))}
+      <div className="grid grid-cols-10 gap-2">
+        {HEATMAP_DAYS.map(d => {
+          const isHot = d.count >= 3;
+          const isEmpty = d.count === 0;
+          return (
+            <div
+              key={d.dateISO}
+              className={cn(
+                'group relative flex flex-col items-center rounded-xl border px-1.5 py-2.5 transition hover:-translate-y-0.5 hover:shadow-card',
+                d.isToday
+                  ? 'border-iris-300 bg-cloud-sunset text-white shadow-glow'
+                  : isHot
+                  ? 'border-iris-200 bg-iris-50 text-ink-900'
+                  : isEmpty
+                  ? 'border-cloud-100 bg-white text-ink-400'
+                  : 'border-cloud-100 bg-cloud-soft text-ink-700',
+              )}
+              title={`${d.dayLabel} ${d.dayNum} · ${d.count} deliverable${d.count !== 1 ? 's' : ''}`}
+            >
+              <span className={cn(
+                'text-[9px] uppercase tracking-[0.14em] font-semibold leading-none',
+                d.isToday ? 'opacity-90' : 'opacity-60',
+              )}>
+                {d.dayLabel}
+              </span>
+              <span className="font-display text-[20px] leading-none mt-1">
+                {d.dayNum}
+              </span>
+              <span
+                className={cn(
+                  'mt-2 inline-flex items-center justify-center min-w-[20px] h-[18px] px-1.5 rounded-full text-[10px] font-semibold leading-none',
+                  d.isToday
+                    ? 'bg-white/25 text-white ring-1 ring-white/40'
+                    : isEmpty
+                    ? 'bg-cloud-50 text-ink-300 ring-1 ring-cloud-100'
+                    : 'bg-white text-cloud-700 ring-1 ring-cloud-200',
+                )}
+              >
+                {d.count}
+              </span>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+      <p className="mt-3 text-[10.5px] text-ink-500 flex items-center gap-3">
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-cloud-sunset" />
+          Today
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-iris-200 ring-1 ring-iris-300" />
+          3+ deliverables
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-cloud-soft ring-1 ring-cloud-200" />
+          1–2 deliverables
+        </span>
+      </p>
     </section>
   );
 }

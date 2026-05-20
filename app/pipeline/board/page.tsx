@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react';
 import { Header } from '@/components/ui/header';
 import { PipelineCard } from '@/components/ui/pipeline-card';
 import { DonutChart } from '@/components/ui/donut-chart';
@@ -33,14 +34,23 @@ export default function PipelineBoardPage() {
       <div className="flex-1 flex flex-col lg:flex-row gap-0 min-h-0">
         {/* ============ KANBAN COLUMNS ============ */}
         <div className="flex-1 min-w-0 overflow-x-auto pb-6">
-          <div className="px-6 md:px-10 pt-2 pb-2 flex items-center justify-between">
+          <div className="px-6 md:px-10 pt-2 pb-2 flex items-center justify-between gap-3">
             <p className="text-[12px] text-ink-500">
               <span className="font-display text-lg text-ink-900 mr-2">{BOARD_STAGES.length}</span>
               stages · drag &amp; drop ready (D-4)
             </p>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
-              Refreshed 4 min ago
-            </p>
+            <div className="flex items-center gap-3">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
+                Refreshed 4 min ago
+              </p>
+              <button
+                type="button"
+                className="inline-flex items-center gap-1.5 rounded-full bg-cloud-sunset px-4 py-2 text-[12px] font-semibold text-white shadow-soft hover:shadow-glow transition"
+              >
+                <Plus className="h-3.5 w-3.5" />
+                Add new opportunity
+              </button>
+            </div>
           </div>
 
           <div className="px-6 md:px-10 flex gap-4 items-start min-w-max">

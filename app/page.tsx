@@ -19,12 +19,19 @@ import {
   StickyNote,
   Camera,
   Library,
+  TrendingUp,
+  Inbox,
+  PlayCircle,
+  Check,
+  Target,
+  Phone,
+  Zap,
 } from 'lucide-react';
 import { Header } from '@/components/ui/header';
 import { StatCard } from '@/components/ui/stat-card';
 import { DonutChart } from '@/components/ui/donut-chart';
 import { StatusChip } from '@/components/ui/status-chip';
-import { formatMoney } from '@/lib/utils';
+import { formatMoney, cn } from '@/lib/utils';
 import { MOCK_PIPELINE, totalPipelineValue } from '@/lib/mock-data/pipeline';
 import { FOCUS_THIS_WEEK, RECENT_ACTIVITY } from '@/lib/mock-data/campaigns';
 
@@ -132,6 +139,46 @@ export default function OverviewPage() {
       />
 
       <div className="px-6 md:px-10 -mt-6 pb-16 space-y-8">
+        {/* ============ HERO STAT STRIP (5-card) ============ */}
+        <section className="rise rise-1 grid grid-cols-2 md:grid-cols-5 gap-3">
+          {[
+            { label: 'Total Active',       value: 18,        sub: 'campaigns',     accent: 'iris',   Icon: TrendingUp },
+            { label: 'Pipeline Value',     value: '$15,420', sub: 'potential',     accent: 'pink',   Icon: Wallet },
+            { label: 'Awaiting Response',  value: 7,         sub: 'inbound',       accent: 'orange', Icon: Inbox },
+            { label: 'In Production',      value: 5,         sub: 'filming/edit',  accent: 'peach',  Icon: PlayCircle },
+            { label: 'Completed',          value: 5,         sub: 'this month',    accent: 'green',  Icon: Check },
+          ].map(t => {
+            const Icon = t.Icon;
+            const accentBg: Record<string, string> = {
+              iris:   'bg-iris-50 text-iris-600 ring-iris-100',
+              pink:   'bg-pink-50 text-pink-600 ring-pink-100',
+              orange: 'bg-orange-50 text-orange-600 ring-orange-100',
+              peach:  'bg-amber-50 text-amber-600 ring-amber-100',
+              green:  'bg-emerald-50 text-emerald-600 ring-emerald-100',
+            };
+            return (
+              <div
+                key={t.label}
+                className="group rounded-2xl bg-white p-4 shadow-card ring-1 ring-cloud-100 hover:-translate-y-0.5 hover:ring-cloud-300 transition"
+              >
+                <div className="flex items-start justify-between">
+                  <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold leading-tight">
+                    {t.label}
+                  </p>
+                  <span className={cn('grid h-7 w-7 place-items-center rounded-lg ring-1', accentBg[t.accent] ?? accentBg.iris)}>
+                    <Icon className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+                <p className="mt-2 font-display text-3xl text-ink-900 leading-none">{t.value}</p>
+                <p className="text-[11px] text-ink-500 mt-1">{t.sub}</p>
+              </div>
+            );
+          })}
+        </section>
+
+        {/* ============ MAIN + RIGHT RAIL ============ */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+          <div className="space-y-8 min-w-0">
         {/* ============ YOUR NEXT MOVE ============ */}
         <section className="rise rise-2 relative overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-cloud-200">
           <div className="absolute inset-0 bg-cloud-soft opacity-70" aria-hidden />
@@ -360,6 +407,105 @@ export default function OverviewPage() {
             </table>
           </div>
         </section>
+          </div>
+
+          {/* ============ RIGHT RAIL ============ */}
+          <aside className="space-y-5">
+            {/* Quick Synth — daily intelligence */}
+            <div className="rise rise-2 relative overflow-hidden rounded-3xl bg-gradient-to-br from-iris-50 via-white to-pink-50 p-5 shadow-card ring-1 ring-iris-100">
+              <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-cloud-sunset opacity-20 blur-3xl" aria-hidden />
+              <div className="relative">
+                <div className="flex items-center gap-2">
+                  <span className="grid h-7 w-7 place-items-center rounded-lg bg-white text-iris-600 ring-1 ring-iris-100 shadow-soft">
+                    <Zap className="h-3.5 w-3.5" />
+                  </span>
+                  <p className="text-[10.5px] uppercase tracking-[0.22em] text-iris-700 font-semibold">
+                    Quick Synth
+                  </p>
+                </div>
+                <p className="mt-3 text-[13px] text-ink-700 leading-relaxed">
+                  Today the pipeline is heavy on <span className="font-semibold text-ink-900">SOW reviews</span> — 3 brands waiting, $4.2k unlocked by clearing ParakeetAI. Glossier IG cut v3 ships at 5pm. <span className="font-semibold text-ink-900">7 inbound</span> need a yes/no by EOD or they cool off.
+                </p>
+                <p className="mt-3 text-[10.5px] uppercase tracking-[0.16em] text-ink-500">
+                  Synced 4 min ago · Wed 9:02am
+                </p>
+              </div>
+            </div>
+
+            {/* Today's Focus */}
+            <div className="rounded-3xl bg-white p-5 shadow-card ring-1 ring-cloud-100">
+              <div className="flex items-center gap-2">
+                <Target className="h-4 w-4 text-cloud-600" />
+                <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+                  Today&rsquo;s focus
+                </p>
+              </div>
+              <ul className="mt-3 space-y-2.5 text-[13px] text-ink-700">
+                <li className="flex gap-2 leading-snug">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-cloud-sunset shrink-0" />
+                  <span>Redline ParakeetAI SOW usage clause</span>
+                </li>
+                <li className="flex gap-2 leading-snug">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-iris-400 shrink-0" />
+                  <span>Submit Glossier IG cut v3 by 5pm PT</span>
+                </li>
+                <li className="flex gap-2 leading-snug">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                  <span>Film Ouai hair-care 3-pack — golden hour</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="rounded-3xl bg-white p-5 shadow-card ring-1 ring-cloud-100">
+              <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+                Quick stats
+              </p>
+              <dl className="mt-3 space-y-2.5 text-[13px]">
+                <div className="flex items-baseline justify-between">
+                  <dt className="text-ink-600">Response rate</dt>
+                  <dd className="font-display text-lg text-ink-900">64%</dd>
+                </div>
+                <div className="flex items-baseline justify-between">
+                  <dt className="text-ink-600">Avg. deal size</dt>
+                  <dd className="font-display text-lg text-ink-900">$1.4k</dd>
+                </div>
+                <div className="flex items-baseline justify-between">
+                  <dt className="text-ink-600">On-time delivery</dt>
+                  <dd className="font-display text-lg text-ink-900">94%</dd>
+                </div>
+                <div className="flex items-baseline justify-between">
+                  <dt className="text-ink-600">Net-30 outstanding</dt>
+                  <dd className="font-display text-lg text-cloud-700">$6,250</dd>
+                </div>
+              </dl>
+            </div>
+
+            {/* Upcoming Calls */}
+            <div className="rounded-3xl bg-white p-5 shadow-card ring-1 ring-cloud-100">
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-cloud-600" />
+                <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+                  Upcoming calls
+                </p>
+              </div>
+              <ul className="mt-3 divide-y divide-cloud-50">
+                <li className="py-2.5 first:pt-0">
+                  <p className="text-[13.5px] font-medium text-ink-900 leading-snug">Hunch — discovery call</p>
+                  <p className="text-[11px] text-ink-500 mt-0.5">Wed · 2:00pm PT · Zoom</p>
+                </li>
+                <li className="py-2.5">
+                  <p className="text-[13.5px] font-medium text-ink-900 leading-snug">Caraway — brief review</p>
+                  <p className="text-[11px] text-ink-500 mt-0.5">Thu · 11:30am PT</p>
+                </li>
+                <li className="py-2.5 last:pb-0">
+                  <p className="text-[13.5px] font-medium text-ink-900 leading-snug">Liquid Death — kickoff</p>
+                  <p className="text-[11px] text-ink-500 mt-0.5">Fri · 10:00am PT</p>
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
       </div>
     </>
   );

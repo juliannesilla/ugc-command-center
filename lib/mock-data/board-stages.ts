@@ -5,7 +5,7 @@
 import type { PipelineStage } from './pipeline';
 
 export interface BoardStageDef {
-  stage: PipelineStage | 'NEW LEAD';
+  stage: PipelineStage | 'NEW LEAD' | 'INVOICED';
   /** Snapshot total count for the column header. */
   count: number;
   /** Snapshot total $ value for the column header (USD). */
@@ -21,9 +21,9 @@ export interface BoardStageDef {
     | 'ink';
 }
 
-// 15 stages from the type union + ARCHIVED. (The brief lists 16 columns but
-// "WAITING ON BRAND" and the rest of pipeline.ts already gives us all 15 — we
-// include ARCHIVED last per spec.)
+// 16 stages per Phase A.13 spec: NEW LEAD → RESPONDED → WAITING ON BRAND →
+// SOW RECEIVED → SOW REVIEWED → STRATEGY READY → SCRIPT READY → FILMING →
+// EDITING → QA → SUBMITTED → ACCEPTED → POSTED → INVOICED → PAID → ARCHIVED.
 export const BOARD_STAGES: BoardStageDef[] = [
   { stage: 'NEW LEAD',         count: 12, value: 18020, accent: 'pink'   },
   { stage: 'RESPONDED',        count: 8,  value: 16300, accent: 'pink'   },
@@ -38,6 +38,7 @@ export const BOARD_STAGES: BoardStageDef[] = [
   { stage: 'SUBMITTED',        count: 3,  value: 8100,  accent: 'yellow' },
   { stage: 'ACCEPTED',         count: 3,  value: 9300,  accent: 'green'  },
   { stage: 'POSTED',           count: 4,  value: 13400, accent: 'green'  },
+  { stage: 'INVOICED',         count: 2,  value: 7200,  accent: 'green'  },
   { stage: 'PAID',             count: 3,  value: 9800,  accent: 'green'  },
   { stage: 'ARCHIVED',         count: 7,  value: 0,     accent: 'ink'    },
 ];

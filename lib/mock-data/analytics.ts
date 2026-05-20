@@ -33,23 +33,23 @@ export interface TopStatCard {
 export const TOP_STAT_CARDS: TopStatCard[] = [
   {
     id: 'posted',
-    label: 'TOTAL POSTED VIDEOS',
-    value: '86',
-    delta: '+18',
+    label: 'TOTAL POSTS',
+    value: '66',
+    delta: '+14',
     deltaTone: 'positive',
     sublabel: 'vs last 30d',
   },
   {
     id: 'views',
     label: 'TOTAL VIEWS',
-    value: '1.24M',
+    value: '1.2M',
     delta: '+28.4%',
     deltaTone: 'positive',
     sublabel: 'vs last 30d',
   },
   {
     id: 'bonus',
-    label: 'TOTAL BONUS EARNINGS',
+    label: 'TOTAL EARNED',
     value: '$2,845.60',
     delta: '+22.7%',
     deltaTone: 'positive',
@@ -57,7 +57,7 @@ export const TOP_STAT_CARDS: TopStatCard[] = [
   },
   {
     id: 'conv',
-    label: 'CONVERSION + ACCEPTANCE RATE',
+    label: 'AVG ENGAGEMENT',
     value: '42.6%',
     delta: '+6.3pp',
     deltaTone: 'positive',

@@ -71,7 +71,16 @@ export function PipelineCard({ card }: { card: PipelineCardType }) {
           <Sparkles className="h-2.5 w-2.5" />
           {card.platform}
         </span>
-        <span className="text-ink-400">{card.daysInStage}d in stage</span>
+        <div className="flex items-center gap-2">
+          <span className="text-ink-400">{card.daysInStage}d</span>
+          {/* Creator avatar — Julianne */}
+          <span
+            title="Julianne Silla"
+            className="grid h-5 w-5 place-items-center rounded-full bg-gradient-to-br from-peach-300 via-rose-300 to-iris-400 text-white font-display font-semibold text-[9px] ring-2 ring-white shadow-card"
+          >
+            J
+          </span>
+        </div>
       </div>
     </article>
   );

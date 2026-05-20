@@ -5,13 +5,16 @@ import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
   Kanban,
-  FileText,
+  Sparkles,
   Inbox,
-  CalendarClock,
   CalendarDays,
-  Folder,
   BarChart3,
+  Wallet,
+  FileText,
+  Users,
+  FolderOpen,
   Brain,
+  Settings,
   ChevronLeft,
   ChevronDown,
 } from 'lucide-react';
@@ -24,15 +27,18 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Overview',           href: '/',                    icon: LayoutDashboard },
-  { label: 'Campaign Pipeline',  href: '/pipeline/board',      icon: Kanban },
-  { label: 'SOW Breakdown',      href: '/pipeline/database',   icon: FileText },
-  { label: 'Pipeline Deadlines', href: '/pipeline/deadlines',  icon: CalendarClock },
-  { label: 'Brand Responses',    href: '/brand-responses',     icon: Inbox },
-  { label: 'Calendar',           href: '/scheduling',          icon: CalendarDays },
-  { label: 'Assets',             href: '/assets',              icon: Folder },
-  { label: 'Analytics',          href: '/analytics',           icon: BarChart3 },
-  { label: 'Brain Dump',         href: '/brain-dump',          icon: Brain },
+  { label: 'Overview',          href: '/',                 icon: LayoutDashboard },
+  { label: 'Campaign Pipeline', href: '/pipeline/board',   icon: Kanban },
+  { label: 'Content Hub',       href: '/content-hub',      icon: Sparkles },
+  { label: 'Brand Responses',   href: '/brand-responses',  icon: Inbox },
+  { label: 'Calendar',          href: '/scheduling',       icon: CalendarDays },
+  { label: 'Analytics',         href: '/analytics',        icon: BarChart3 },
+  { label: 'Payments',          href: '/payments',         icon: Wallet },
+  { label: 'Templates',         href: '/templates',        icon: FileText },
+  { label: 'Contacts',          href: '/contacts',         icon: Users },
+  { label: 'Documents',         href: '/documents',        icon: FolderOpen },
+  { label: 'Brain Dump',        href: '/brain-dump',       icon: Brain },
+  { label: 'Settings',          href: '/settings',         icon: Settings },
 ];
 
 export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
@@ -44,14 +50,14 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
       <div className="px-5 pt-5 pb-4">
         <Link href="/" className="flex items-center gap-2 group">
           <span className="grid h-9 w-9 place-items-center rounded-2xl bg-cloud-sunset shadow-soft text-white font-display text-lg leading-none">
-            J
+            U
           </span>
           <span className="flex flex-col leading-tight">
             <span className="font-display text-[15px] text-ink-900 tracking-tight">
-              Julianne&rsquo;s UGC
+              UGC <span className="text-ink-400 font-normal">|</span> Campaign HQ
             </span>
             <span className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500">
-              Campaign HQ
+              Read-only mirror
             </span>
           </span>
         </Link>

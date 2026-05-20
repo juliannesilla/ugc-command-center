@@ -86,7 +86,7 @@ export default function LoginPage() {
               <Cloud className="h-7 w-7 text-white drop-shadow" />
             </div>
             <h1 className="mt-4 font-display text-[28px] leading-tight text-white drop-shadow-sm tracking-tight">
-              Julianne&rsquo;s UGC<br />
+              UGC <span className="text-white/60 font-normal">|</span><br />
               <span className="italic text-white/90">Campaign HQ</span>
             </h1>
             <p className="mt-2 text-[11px] uppercase tracking-[0.22em] text-white/80">

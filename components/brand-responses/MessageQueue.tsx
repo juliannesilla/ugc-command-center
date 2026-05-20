@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { StickyNote, ArrowUpRight } from "lucide-react";
 import {
   BRAND_CONVERSATIONS,
@@ -15,6 +15,12 @@ import { StatusChip } from "@/components/ui/status-chip";
 type Props = {
   tab: TabKey;
   search: string;
+  /** Currently selected conversation id (from `?id=` search param). */
+  selectedId?: string | null;
+  /** Optional override for row-click: when provided, replaces the default
+   * "push ?id=X to current URL" behavior — used by callers that want to
+   * react to selection without route changes. */
+  onSelect?: (id: string) => void;
 };
 
 const STATUS_TONE: Record<
@@ -49,8 +55,16 @@ function avatarBg(seed: string) {
   return palettes[seed.toLowerCase().charCodeAt(0) % palettes.length];
 }
 
-export function MessageQueue({ tab, search }: Props) {
-  const [activeRow, setActiveRow] = useState<string | null>(null);
+export function MessageQueue({ tab, search, selectedId, onSelect }: Props) {
+  const router = useRouter();
+
+  const handleSelect = (id: string) => {
+    if (onSelect) {
+      onSelect(id);
+    } else {
+      router.push(`/brand-responses?id=${id}`, { scroll: false });
+    }
+  };
 
   const rows = BRAND_CONVERSATIONS.filter((c) => filterByTab(c, tab)).filter(
     (c) => {
@@ -90,16 +104,17 @@ export function MessageQueue({ tab, search }: Props) {
               </tr>
             )}
             {rows.map((c) => {
-              const isActive = activeRow === c.id;
+              const isActive = selectedId === c.id;
               const followUp = new Date(c.receivedAt);
               followUp.setDate(followUp.getDate() + 3);
               return (
                 <tr
                   key={c.id}
-                  onClick={() => setActiveRow(c.id)}
+                  onClick={() => handleSelect(c.id)}
+                  aria-selected={isActive}
                   className={`group border-t border-cloud-100 transition cursor-pointer ${
                     isActive
-                      ? "bg-cloud-50"
+                      ? "bg-cloud-50 ring-2 ring-inset ring-cloud-300"
                       : c.unread
                       ? "bg-white hover:bg-cloud-50/50"
                       : "bg-white/60 hover:bg-cloud-50/40"

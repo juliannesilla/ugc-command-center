@@ -1,4 +1,4 @@
-# Julianne's UGC Campaign HQ
+# UGC | Campaign HQ
 
 Read-only mirror dashboard for the 13-stage UGC Campaign Operating System.
 Live at: https://juliannesilla.github.io/ugc-command-center/

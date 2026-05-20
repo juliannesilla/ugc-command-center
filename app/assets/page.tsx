@@ -7,7 +7,6 @@ import {
   ArrowUpRight,
   AlertTriangle,
   CheckCircle2,
-  Upload as UploadIcon,
   HardDrive,
   FolderOpen,
   PlusCircle,
@@ -34,7 +33,7 @@ import {
 } from '@/lib/mock-data/assets';
 import { cn } from '@/lib/utils';
 
-export const metadata = { title: 'Asset Vault · Julianne UGC' };
+export const metadata = { title: 'Asset Vault · UGC | Campaign HQ' };
 
 const STAT_CARDS = [
   {
@@ -45,21 +44,21 @@ const STAT_CARDS = [
     Icon: FolderOpen,
   },
   {
-    label: 'Recent Uploads',
-    value: AGGREGATE.recentUploads7d,
-    sub: 'Last 7 days',
+    label: 'Brand Folders',
+    value: AGGREGATE.brandFolders,
+    sub: 'Active campaigns',
     tone: 'iris',
-    Icon: UploadIcon,
+    Icon: FolderOpen,
   },
   {
-    label: 'Missing Assets',
+    label: 'Priority — Needs Attention',
     value: AGGREGATE.missing,
     sub: 'Require attention',
     tone: 'orange',
     Icon: AlertTriangle,
   },
   {
-    label: 'Ready-to-Send',
+    label: 'Ready to Send',
     value: AGGREGATE.readyToSend,
     sub: 'Cleared for brands',
     tone: 'green',
@@ -104,11 +103,10 @@ export default function AssetsPage() {
                 Asset Vault
               </p>
               <h1 className="font-display text-white text-3xl md:text-4xl leading-tight drop-shadow-sm">
-                Every file. Every brand. <em className="not-italic text-white/90">In one place.</em>
+                Asset Vault
               </h1>
               <p className="mt-2 text-[13px] text-white/85 max-w-xl">
-                The single source of truth for briefs, scripts, exports, screenshots, and invoices
-                — searchable, organized, ready to ship.
+                Store and organize every file for your UGC campaigns.
               </p>
             </div>
             <div className="flex flex-col items-end gap-3">

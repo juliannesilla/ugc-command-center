@@ -12,7 +12,7 @@ import { BRAIN_STATS } from '@/lib/mock-data/brain-dump';
 import { Dices, Lightbulb } from 'lucide-react';
 
 export const metadata = {
-  title: "Brain Dump · Julianne's UGC Campaign HQ",
+  title: "Brain Dump · UGC | Campaign HQ",
   description: 'Capture hooks, angles, and reusable patterns before they slip away.',
 };
 

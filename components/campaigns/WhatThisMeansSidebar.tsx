@@ -1,4 +1,20 @@
-import { Target, Users, Compass, Check, X, Lightbulb, BookmarkCheck, PenLine } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import {
+  Target,
+  Users,
+  Compass,
+  Check,
+  X,
+  Lightbulb,
+  BookmarkCheck,
+  PenLine,
+  Download,
+  Share2,
+  CheckCircle2,
+  Zap,
+} from "lucide-react";
 
 type MeansSummary = {
   goal: string;
@@ -9,6 +25,8 @@ type MeansSummary = {
 };
 
 export function WhatThisMeansSidebar({ summary }: { summary: MeansSummary }) {
+  const [completed, setCompleted] = useState(false);
+
   return (
     <aside className="space-y-3">
       <header className="rounded-2xl bg-cloud-sunset p-[1px] shadow-soft">
@@ -86,6 +104,48 @@ export function WhatThisMeansSidebar({ summary }: { summary: MeansSummary }) {
           </span>
           <span className="text-ink-400 transition group-hover:translate-x-0.5">→</span>
         </button>
+      </section>
+
+      <section className="rounded-2xl border border-ink-200/70 bg-white/95 p-4 shadow-card">
+        <h3 className="mb-2.5 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-ink-700">
+          <Zap className="h-3.5 w-3.5 text-cloud-600" strokeWidth={2.5} /> Quick Actions
+        </h3>
+        <div className="space-y-1.5">
+          <button
+            type="button"
+            onClick={() => console.log("Download SOW")}
+            className="group flex w-full items-center gap-2 rounded-xl border border-ink-200 bg-white px-3 py-2 text-left text-[12.5px] font-semibold text-ink-800 transition hover:border-cloud-400 hover:bg-cloud-50/60"
+          >
+            <Download className="h-3.5 w-3.5 text-ink-500 transition group-hover:text-cloud-600" />
+            Download SOW
+          </button>
+          <button
+            type="button"
+            onClick={() => console.log("Share Campaign")}
+            className="group flex w-full items-center gap-2 rounded-xl border border-ink-200 bg-white px-3 py-2 text-left text-[12.5px] font-semibold text-ink-800 transition hover:border-iris-300 hover:bg-iris-50/60"
+          >
+            <Share2 className="h-3.5 w-3.5 text-ink-500 transition group-hover:text-iris-600" />
+            Share Campaign
+          </button>
+          <button
+            type="button"
+            onClick={() => setCompleted((v) => !v)}
+            aria-pressed={completed}
+            className={`group flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-[12.5px] font-semibold transition ${
+              completed
+                ? "border border-emerald-300 bg-emerald-50 text-emerald-800 shadow-glow"
+                : "border border-ink-200 bg-white text-ink-800 hover:border-emerald-300 hover:bg-emerald-50/60"
+            }`}
+          >
+            <CheckCircle2
+              className={`h-3.5 w-3.5 transition ${
+                completed ? "text-emerald-600" : "text-ink-500 group-hover:text-emerald-600"
+              }`}
+              strokeWidth={completed ? 3 : 2}
+            />
+            {completed ? "Completed" : "Mark Complete"}
+          </button>
+        </div>
       </section>
     </aside>
   );

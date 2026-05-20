@@ -11,8 +11,8 @@ export function SidebarCollapsed({ onExpand }: { onExpand?: () => void }) {
 
   return (
     <aside className="hidden md:flex w-16 shrink-0 flex-col items-center bg-white/85 backdrop-blur-xl border-r border-cloud-100 h-[calc(100vh-0px)] sticky top-0 py-4">
-      <Link href="/" className="grid h-10 w-10 place-items-center rounded-2xl bg-cloud-sunset shadow-soft text-white font-display text-lg">
-        J
+      <Link href="/" className="grid h-10 w-10 place-items-center rounded-2xl bg-cloud-sunset shadow-soft text-white font-display text-lg" title="UGC | Campaign HQ">
+        U
       </Link>
       <nav className="mt-6 flex-1 w-full overflow-y-auto">
         <ul className="space-y-1 px-2">

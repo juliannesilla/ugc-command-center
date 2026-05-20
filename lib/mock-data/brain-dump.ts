@@ -58,10 +58,10 @@ export interface BoardColumn {
 
 export const BOARD_COLUMNS: BoardColumn[] = [
   { id: 'hooks',    label: 'Hook Ideas',         emoji: '🎣', count: 12 },
-  { id: 'angles',   label: 'Personal Angles',    emoji: '🎤', count: 8  },
+  { id: 'angles',   label: 'Personal Stories',   emoji: '🎤', count: 8  },
   { id: 'phrases',  label: 'Reusable Phrases',   emoji: '💬', count: 10 },
-  { id: 'broll',    label: 'B-Roll Concepts',    emoji: '🎬', count: 9  },
-  { id: 'prompts',  label: 'Story Prompts',      emoji: '📝', count: 7  },
+  { id: 'broll',    label: 'B-Roll Ideas',       emoji: '🎬', count: 9  },
+  { id: 'prompts',  label: 'Story Patterns',     emoji: '📝', count: 7  },
   { id: 'patterns', label: 'Winning Patterns',   emoji: '🏆', count: 6  },
 ];
 

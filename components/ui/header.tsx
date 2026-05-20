@@ -16,7 +16,7 @@ export function Header({
         <div className="flex items-center gap-3">
           <ReadOnlyMirrorBadge />
           <span className="hidden sm:inline-flex font-display italic text-white/90 text-sm tracking-tight drop-shadow-sm">
-            Julianne&rsquo;s UGC Campaign HQ
+            UGC | Campaign HQ
           </span>
         </div>
         <div className="flex items-center gap-4">

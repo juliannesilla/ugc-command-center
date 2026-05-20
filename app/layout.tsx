@@ -16,7 +16,7 @@ const body = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Julianne's UGC Campaign HQ",
+  title: "UGC | Campaign HQ",
   description:
     "Read-only mirror of Julianne Silla's UGC campaign operating system — pipeline, SOWs, scripts, production, payments.",
 };

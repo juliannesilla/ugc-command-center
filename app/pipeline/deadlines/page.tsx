@@ -21,7 +21,7 @@ import { WhatsNextTimeline } from '@/components/deadlines/WhatsNextTimeline';
 import { DEADLINE_STATS } from '@/lib/mock-data/deadlines';
 import { cn } from '@/lib/utils';
 
-export const metadata = { title: 'Deadlines · Julianne UGC' };
+export const metadata = { title: 'Deadlines · UGC | Campaign HQ' };
 
 const TABS = [
   { label: 'Deadlines', icon: ListIcon, active: true },
