@@ -143,7 +143,7 @@ const NOTES = [
   'Spec ad — paid placement after',
 ];
 
-function pick<T>(arr: T[], seed: number): T {
+function pick<T>(arr: readonly T[], seed: number): T {
   return arr[seed % arr.length];
 }
 

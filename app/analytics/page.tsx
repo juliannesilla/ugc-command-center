@@ -2,7 +2,8 @@ import { StatCardWithDelta } from '@/components/analytics/StatCardWithDelta';
 import { SmartPanel } from '@/components/analytics/SmartPanel';
 import { TopCampaignsCard } from '@/components/analytics/TopCampaignsCard';
 import { PortfolioWorthyGrid } from '@/components/analytics/PortfolioWorthyGrid';
-import { BonusThresholdsCard, BonusTrackerByCampaign } from '@/components/analytics/BonusTracker';
+import { BonusTrackerByCampaign } from '@/components/analytics/BonusTracker';
+import { UpcomingBonusThresholds } from '@/components/analytics/UpcomingBonusThresholds';
 import { ViewsOverTimeChart } from '@/components/analytics/ViewsOverTimeChart';
 import { HookPerformanceBars } from '@/components/analytics/HookPerformanceBars';
 import { PostedLinksTable } from '@/components/analytics/PostedLinksTable';
@@ -59,8 +60,10 @@ export default function AnalyticsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rise rise-2">
           <div className="lg:col-span-2 flex flex-col gap-6">
             <TopCampaignsCard />
-            <PortfolioWorthyGrid />
-            <BonusThresholdsCard />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <PortfolioWorthyGrid />
+              <UpcomingBonusThresholds />
+            </div>
           </div>
           <div>
             <SmartPanel />

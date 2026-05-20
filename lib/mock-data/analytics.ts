@@ -128,6 +128,22 @@ export const BONUS_THRESHOLDS: BonusThreshold[] = [
   { id: 'b4', brand: 'Nushape',            earned: 310, target: 500 },
 ];
 
+// Used by UpcomingBonusThresholds.tsx (mockup #11 upper-right "Upcoming Bonus
+// Thresholds" card — 4 progress bars). Mirrors the 4 leading campaigns.
+export interface UpcomingBonusThreshold {
+  id: string;
+  brand: string;
+  earned: number;
+  target: number;
+}
+
+export const UPCOMING_BONUS_THRESHOLDS: UpcomingBonusThreshold[] = [
+  { id: 'ub1', brand: 'Vitality Collagen', earned: 685, target: 1000 },
+  { id: 'ub2', brand: 'CleanGlow',         earned: 480, target: 750 },
+  { id: 'ub3', brand: 'Oh Snap!',          earned: 375, target: 500 },
+  { id: 'ub4', brand: 'Nushape',           earned: 310, target: 500 },
+];
+
 export interface ViewsOverTimePoint {
   date: string;   // 'Apr 06'
   current: number;

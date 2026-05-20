@@ -13,6 +13,7 @@ import { BrandContactCard } from "@/components/brand-responses/BrandContactCard"
 import { NextActionCard } from "@/components/brand-responses/NextActionCard";
 import { CallScheduler } from "@/components/brand-responses/CallScheduler";
 import { FollowUpReminderCard } from "@/components/brand-responses/FollowUpReminderCard";
+import { NotesCard } from "@/components/brand-responses/NotesCard";
 import { ReplyComposer } from "@/components/brand-responses/ReplyComposer";
 import { ResponseDeadlineTicker } from "@/components/brand-responses/ResponseDeadlineTicker";
 
@@ -20,12 +21,13 @@ export function generateStaticParams() {
   return BRAND_CONVERSATIONS.map((c) => ({ id: c.id }));
 }
 
-export default function BrandResponseDetail({
+export default async function BrandResponseDetail({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const conv = BRAND_CONVERSATIONS.find((c) => c.id === params.id);
+  const { id } = await params;
+  const conv = BRAND_CONVERSATIONS.find((c) => c.id === id);
   if (!conv) return notFound();
 
   const progressPct = conv.status === "archived"
@@ -187,6 +189,7 @@ export default function BrandResponseDetail({
               <CallScheduler proposedSlots={conv.callSlots} />
             )}
             <FollowUpReminderCard conv={conv} />
+            <NotesCard conv={conv} />
           </aside>
         </div>
       </section>
