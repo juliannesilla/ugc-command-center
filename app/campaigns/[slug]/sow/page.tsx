@@ -4,10 +4,10 @@ import { SOWRequirementsGrid } from "@/components/campaigns/SOWRequirementsGrid"
 import { MissingInfoCard } from "@/components/campaigns/MissingInfoCard";
 import { ClarifyingQuestionsCard } from "@/components/campaigns/ClarifyingQuestionsCard";
 import { WhatThisMeansSidebar } from "@/components/campaigns/WhatThisMeansSidebar";
-import { getCampaign, sowData, CampaignSlug } from "@/lib/mock-data/campaigns";
+import { getCampaign, sowData, campaigns } from "@/lib/mock-data/campaigns";
 
 export function generateStaticParams() {
-  return (["elf", "parakeetai", "lotusshop"] as CampaignSlug[]).map((slug) => ({ slug }));
+  return Object.keys(campaigns).map((slug) => ({ slug }));
 }
 
 export default async function SOWPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -1,22 +1,34 @@
+// Phase A.14e Wave 4 (E9) — Brand Relationships / CRM page.
+// Source spec: UGC/_meta/dashboard-spec/02-campaign-pipeline-views-architecture.md
+// section #9 (L678–L753).
+//
+// Route note: spec calls this "Brand Relationships / CRM". We kept the
+// existing `/contacts` route (no rename) — the sidebar label updates to
+// "Brand Relationships" (see components/ui/sidebar.tsx). This avoids
+// breaking any cross-link or bookmark while still surfacing the right
+// concept in the nav.
+
 import { Header } from '@/components/ui/header';
-import { Users } from 'lucide-react';
+import { CrmTable } from '@/components/brand-relationships/crm-table';
+import { MOCK_CAMPAIGNS } from '@/lib/mock-data/campaigns';
 
-export const metadata = { title: 'Contacts · UGC | Campaign HQ' };
+export const metadata = {
+  title: 'Brand Relationships · UGC | Campaign HQ',
+};
 
-export default function ContactsPage() {
+export default function BrandRelationshipsPage() {
+  // Spec L688: "CRM table or card view." Default to the table; mobile +
+  // compact-list view is owned by E11 (Today Mode toggle on /).
+  const rows = MOCK_CAMPAIGNS;
+
   return (
     <>
-      <Header pageEyebrow="Contacts" pageTitle="Your brand roster." />
+      <Header
+        pageEyebrow="Brand Relationships"
+        pageTitle="Build the warm bench."
+      />
       <div className="px-6 md:px-10 -mt-6 pb-16">
-        <div className="rise rise-2 rounded-3xl bg-white p-10 shadow-card ring-1 ring-cloud-100 max-w-3xl">
-          <span className="grid h-12 w-12 place-items-center rounded-2xl bg-cloud-soft text-cloud-700 ring-1 ring-cloud-100">
-            <Users className="h-5 w-5" />
-          </span>
-          <h2 className="mt-4 font-display text-2xl text-ink-900">Coming soon</h2>
-          <p className="mt-2 text-[14px] text-ink-600 max-w-xl">
-            Brand reps, agency producers, repeat clients — with last-touch history and warm-intro paths.
-          </p>
-        </div>
+        <CrmTable rows={rows} />
       </div>
     </>
   );

@@ -1,0 +1,15 @@
+{
+  "productionStage": 1,
+  "shotMap": [],
+  "brollChecklist": [
+    { "id": "br-1", "label": "VILO interface screen-recording (clean)", "done": false },
+    { "id": "br-2", "label": "Side-by-side hook-testing workflow comparison", "done": false }
+  ],
+  "talkingHeadChecklist": [],
+  "editChecklist": [],
+  "filmingStatus": {
+    "status": "Pre-production",
+    "blockReason": "SOW extraction in progress — awaiting deliverable count + payment confirmation.",
+    "scheduledDate": null
+  }
+}

@@ -8,11 +8,11 @@ import { CTACard } from "@/components/campaigns/CTACard";
 import { ShotMapTable } from "@/components/campaigns/ShotMapTable";
 import { ChecklistCard } from "@/components/campaigns/ChecklistCard";
 import { FilmingStatusCard } from "@/components/campaigns/FilmingStatusCard";
-import { getCampaign, scriptData, productionData, CampaignSlug } from "@/lib/mock-data/campaigns";
+import { getCampaign, scriptData, productionData, campaigns } from "@/lib/mock-data/campaigns";
 import { Video, Mic, Scissors, FileText, Paperclip } from "lucide-react";
 
 export function generateStaticParams() {
-  return (["elf", "parakeetai", "lotusshop"] as CampaignSlug[]).map((slug) => ({ slug }));
+  return Object.keys(campaigns).map((slug) => ({ slug }));
 }
 
 export default async function ProductionPage({ params }: { params: Promise<{ slug: string }> }) {

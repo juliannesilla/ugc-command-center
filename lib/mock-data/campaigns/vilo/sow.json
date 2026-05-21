@@ -1,0 +1,99 @@
+{
+  "requirements": [
+    {
+      "key": "deliverables",
+      "label": "Deliverables",
+      "detail": "VILO creator program — deliverable count + cadence in brief",
+      "means": "Brief received per Template 7. Extract exact count next, then lock SOW.",
+      "status": "incomplete",
+      "source": "Outreach Template 7 — VILO / madduck (Interested + Request Brief)"
+    },
+    {
+      "key": "length",
+      "label": "Required Length",
+      "detail": "Short-form vertical, exact length per brief",
+      "means": "Creator-tools category usually wants 30–60sec talking-head + screen demo.",
+      "status": "incomplete",
+      "source": "Pending VILO brief extraction"
+    },
+    {
+      "key": "format",
+      "label": "Format",
+      "detail": "Vertical video — TikTok/Reels/Shorts",
+      "means": "Phone-shot, talking-head primary with screen-demo overlay.",
+      "status": "complete",
+      "source": "VILO brief"
+    },
+    {
+      "key": "theme",
+      "label": "Theme",
+      "detail": "Creator workflows, filming hacks, strong hooks, storytelling, tools for short-form content",
+      "means": "Per Julz's Template 7 reply — themes already aligned with Julz's content pillars.",
+      "status": "complete",
+      "source": "Outreach Template 7"
+    },
+    {
+      "key": "tone",
+      "label": "Tone",
+      "detail": "Native creator-to-creator, not influencer-promo",
+      "means": "Julz Tier-2 voice ON — dry-funny, anti-influencer. Strong existing alignment.",
+      "status": "complete",
+      "source": "VILO creator program guidelines"
+    },
+    {
+      "key": "messaging",
+      "label": "Required Messaging",
+      "detail": "Must mention VILO product name + creator-tool positioning",
+      "means": "Brand mention + tag @vilo. Specific phrasing in brief.",
+      "status": "incomplete",
+      "source": "Pending VILO brief extraction"
+    },
+    {
+      "key": "payment",
+      "label": "Payment",
+      "detail": "Creator-program rate — base + posting bonus, exact figures in brief",
+      "means": "Creator-tools rates trend $150-$400 base. Confirm bonus structure.",
+      "status": "incomplete",
+      "source": "Pending VILO brief"
+    },
+    {
+      "key": "deadline",
+      "label": "Deadline",
+      "detail": "Submission window per brief — likely 2-week turnaround",
+      "means": "Confirm exact dates after extracting SOW.",
+      "status": "incomplete",
+      "source": "Pending VILO brief extraction"
+    }
+  ],
+  "missingInfo": [
+    {
+      "priority": "P0",
+      "question": "Exact deliverable count + posting cadence?",
+      "askBefore": 2
+    },
+    {
+      "priority": "P0",
+      "question": "Base pay + bonus structure?",
+      "askBefore": 2
+    },
+    {
+      "priority": "P1",
+      "question": "Usage rights scope — organic-only or paid-whitelisting?",
+      "askBefore": 3
+    }
+  ],
+  "meansSummary": {
+    "goal": "Extract SOW from VILO brief before scripting. High alignment with Julz's existing creator-workflow content makes this a strong-fit campaign once scope is locked.",
+    "audience": "Other creators evaluating short-form tooling — VILO's existing audience overlaps Julz's @geezjulz pillars.",
+    "keyFocus": "Lean into Julz's creator-tool credibility (this is Tier-1 brand fit territory).",
+    "dos": [
+      "Extract full SOW from brief before scripting",
+      "Reference Julz's existing creator-workflow content as audience proof",
+      "Position as creator-to-creator, not influencer-promo"
+    ],
+    "donts": [
+      "Don't draft script before SOW extracted (HR-4)",
+      "Don't lock in pricing below creator-tools rate floor"
+    ]
+  }
+}

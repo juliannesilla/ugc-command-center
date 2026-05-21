@@ -1,10 +1,27 @@
+// Pipeline Board — Kanban view.
+//
+// Source: `02-campaign-pipeline-views-architecture.md` view #2
+// "Pipeline Board / Kanban View" (L94–L177):
+//   - 18 stages per L108-L126 (workflow extends to 19 incl. INVOICED kept
+//     from existing board-stages.ts per HR-2 PRESERVE INTENT)
+//   - Card fields per L128-L143 (handled by PipelineCardCampaign)
+//   - Default filter "Status is not Archived" per L146-L148
+//   - "Blocked? indicator" per L164-L173 (handled by PipelineCardCampaign)
+//
+// Phase A.14e Wave 2 (E2):
+//   - Sources from MOCK_CAMPAIGNS (canonical Campaign rows) instead of
+//     legacy MOCK_PIPELINE — per E-DATA handoff.
+//   - Stage order from CAMPAIGN_STAGES (19 stages, single source of truth).
+//   - Empty-column state per spec "Keep it clean."
+//   - Mock-only snapshot counts/values still pulled from BOARD_STAGES.
+
 import { Plus } from 'lucide-react';
 import { Header } from '@/components/ui/header';
-import { PipelineCard } from '@/components/ui/pipeline-card';
+import { PipelineCardCampaign } from '@/components/ui/pipeline-card-campaign';
 import { DonutChart } from '@/components/ui/donut-chart';
 import { StatusChip } from '@/components/ui/status-chip';
 import { cn, formatMoney } from '@/lib/utils';
-import { MOCK_PIPELINE } from '@/lib/mock-data/pipeline';
+import { MOCK_CAMPAIGNS } from '@/lib/mock-data/campaigns';
 import {
   BOARD_STAGES,
   BOARD_TOTAL_VALUE,
@@ -12,6 +29,7 @@ import {
   BOARD_UPCOMING_DEADLINES,
   BOARD_TOP_BRANDS,
 } from '@/lib/mock-data/board-stages';
+import type { Campaign } from '@/lib/types/campaign';
 
 const accentBar = {
   pink:   'bg-cloud-sunset',
@@ -23,7 +41,29 @@ const accentBar = {
   ink:    'bg-gradient-to-r from-ink-500 to-ink-700',
 } as const;
 
+/** Sort inside a stage column per spec L158-L162:
+ *  due date soonest → highest priority → highest value. */
+function sortCampaignsForColumn(cards: Campaign[]): Campaign[] {
+  const priorityRank: Record<Campaign['priority'], number> = { high: 0, medium: 1, low: 2 };
+  return [...cards].sort((a, b) => {
+    // due date soonest first; campaigns without due_date drift to end
+    const aDue = a.due_date ? new Date(a.due_date).getTime() : Number.POSITIVE_INFINITY;
+    const bDue = b.due_date ? new Date(b.due_date).getTime() : Number.POSITIVE_INFINITY;
+    if (aDue !== bDue) return aDue - bDue;
+    // priority high first
+    const pr = priorityRank[a.priority] - priorityRank[b.priority];
+    if (pr !== 0) return pr;
+    // value desc
+    const av = a.total_potential_value ?? a.base_pay ?? 0;
+    const bv = b.total_potential_value ?? b.base_pay ?? 0;
+    return bv - av;
+  });
+}
+
 export default function PipelineBoardPage() {
+  // Default filter per spec L146-L148: "Status is not Archived".
+  const visibleCampaigns = MOCK_CAMPAIGNS.filter(c => c.status !== 'archived');
+
   return (
     <>
       <Header
@@ -37,7 +77,7 @@ export default function PipelineBoardPage() {
           <div className="px-6 md:px-10 pt-2 pb-2 flex items-center justify-between gap-3">
             <p className="text-[12px] text-ink-500">
               <span className="font-display text-lg text-ink-900 mr-2">{BOARD_STAGES.length}</span>
-              stages · drag &amp; drop ready (D-4)
+              stages · status ≠ Archived · drag &amp; drop ready
             </p>
             <div className="flex items-center gap-3">
               <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
@@ -55,9 +95,18 @@ export default function PipelineBoardPage() {
 
           <div className="px-6 md:px-10 flex gap-4 items-start min-w-max">
             {BOARD_STAGES.map(stageDef => {
-              const cards = MOCK_PIPELINE
-                .filter(c => c.stage === stageDef.stage)
-                .slice(0, 5);
+              const cards = sortCampaignsForColumn(
+                visibleCampaigns.filter(c => c.current_stage === stageDef.stage),
+              );
+              const liveCount = cards.length;
+              const liveValue = cards.reduce(
+                (sum, c) => sum + (c.total_potential_value ?? c.base_pay ?? 0),
+                0,
+              );
+              // Show live values if column has campaigns; else fall back to the
+              // static board-stages snapshot for visual continuity.
+              const displayCount = liveCount > 0 ? liveCount : stageDef.count;
+              const displayValue = liveValue > 0 ? liveValue : stageDef.value;
 
               return (
                 <section
@@ -72,21 +121,23 @@ export default function PipelineBoardPage() {
                         {stageDef.stage}
                       </h3>
                       <span className="text-[10px] uppercase tracking-[0.14em] text-ink-400">
-                        {stageDef.count}
+                        {displayCount}
                       </span>
                     </div>
                     <p className="mt-1 font-display text-lg text-cloud-700 leading-none">
-                      {stageDef.value > 0 ? formatMoney(stageDef.value) : '—'}
+                      {displayValue > 0 ? formatMoney(displayValue) : '—'}
                     </p>
                   </header>
 
                   {/* cards */}
                   <div className="flex-1 overflow-y-auto p-3 space-y-2.5">
                     {cards.length > 0 ? (
-                      cards.map(card => <PipelineCard key={card.id} card={card} />)
+                      cards.map(card => (
+                        <PipelineCardCampaign key={card.campaign_id} card={card} />
+                      ))
                     ) : (
                       <div className="rounded-2xl border border-dashed border-cloud-200 p-4 text-center text-[11.5px] text-ink-400">
-                        Empty — pull from upstream
+                        No campaigns in this stage yet
                       </div>
                     )}
                   </div>

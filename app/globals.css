@@ -64,3 +64,20 @@ body {
 
 /* Selection */
 ::selection { background: #FFC9DF; color: #1A1224; }
+
+/* ─── Today Mode (spec § 9 L806-L813) ─────────────────────────────────────
+   Toggle in components/ui/today-mode-toggle.tsx sets data-today-mode="on"
+   on <html>. Sections in app/page.tsx tag themselves either:
+     data-today-hide   → hidden when Today Mode is ON
+     data-today-keep   → always visible (today-relevant urgency)
+   No tag = visible in both modes (neutral header / hero stat strip).
+*/
+html[data-today-mode="on"] [data-today-hide] {
+  display: none !important;
+}
+html[data-today-mode="on"] [data-today-only-label] {
+  display: inline-block;
+}
+[data-today-only-label] {
+  display: none;
+}

@@ -1,11 +1,17 @@
-// Board-view stage configuration matching D-1 mockup #4 + #14 spec.
+// Board-view stage configuration.
+// Source: dashboard-spec `01-initial-dashboard-prompt.md` "Campaign Pipeline →
+// Stages" (L326-L344) — 18-stage workflow (added APPLIED, BRAND REPLIED,
+// CALL SCHEDULED in Phase A.14e Wave 1 per Julz's verbatim list).
+// INVOICED is kept as an interstitial between POSTED and PAID even though
+// the prompt skips it, because the existing dashboard tiles already track
+// invoicing — non-destructive extension per HR-2 PRESERVE INTENT.
 // Counts/values are the static snapshot displayed in the Kanban columns.
 // Real card-level data per stage is drawn from MOCK_PIPELINE in pipeline.ts.
 
-import type { PipelineStage } from './pipeline';
+import type { CampaignStage } from '@/lib/types/campaign';
 
 export interface BoardStageDef {
-  stage: PipelineStage | 'NEW LEAD' | 'INVOICED';
+  stage: CampaignStage;
   /** Snapshot total count for the column header. */
   count: number;
   /** Snapshot total $ value for the column header (USD). */
@@ -21,13 +27,17 @@ export interface BoardStageDef {
     | 'ink';
 }
 
-// 16 stages per Phase A.13 spec: NEW LEAD → RESPONDED → WAITING ON BRAND →
-// SOW RECEIVED → SOW REVIEWED → STRATEGY READY → SCRIPT READY → FILMING →
-// EDITING → QA → SUBMITTED → ACCEPTED → POSTED → INVOICED → PAID → ARCHIVED.
+// 19 stages: NEW LEAD → APPLIED → BRAND REPLIED → RESPONDED →
+// WAITING ON BRAND → CALL SCHEDULED → SOW RECEIVED → SOW REVIEWED →
+// STRATEGY READY → SCRIPT READY → FILMING → EDITING → QA → SUBMITTED →
+// ACCEPTED → POSTED → INVOICED → PAID → ARCHIVED.
 export const BOARD_STAGES: BoardStageDef[] = [
   { stage: 'NEW LEAD',         count: 12, value: 18020, accent: 'pink'   },
+  { stage: 'APPLIED',          count: 5,  value: 9200,  accent: 'pink'   },
+  { stage: 'BRAND REPLIED',    count: 4,  value: 8400,  accent: 'pink'   },
   { stage: 'RESPONDED',        count: 8,  value: 16300, accent: 'pink'   },
   { stage: 'WAITING ON BRAND', count: 6,  value: 14750, accent: 'yellow' },
+  { stage: 'CALL SCHEDULED',   count: 3,  value: 7600,  accent: 'yellow' },
   { stage: 'SOW RECEIVED',     count: 5,  value: 22600, accent: 'iris'   },
   { stage: 'SOW REVIEWED',     count: 4,  value: 17800, accent: 'iris'   },
   { stage: 'STRATEGY READY',   count: 4,  value: 14200, accent: 'iris'   },

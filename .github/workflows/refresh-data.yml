@@ -1,7 +1,8 @@
 name: refresh-data
 
-# Cron every 15 min. Today: just rebuilds + redeploys (mock-only).
-# Future: rsync from UGC workspace, then rebuild + redeploy.
+# Cron every 15 min: rebuild + redeploy. Today this is redundant with deploy.yml
+# (mock-data only). When D-5 live tokens land, uncomment the rsync step below
+# to mirror UGC workspace BEFORE rebuild — that's when this becomes useful.
 #
 # ⚠️ DATA ISOLATION GUARDRAIL
 # This workflow MUST NEVER sync from:
@@ -10,25 +11,24 @@ name: refresh-data
 #   - any *financial*, *household*, *identity-theft*, *post-hdmz*, *RJ* paths
 # Allowed source: OneDrive/Desktop/UGC/** only.
 #
-# ⚠️ DISABLED 2026-05-20 (Phase A.14c) — manual trigger only.
-# Root cause of prior failures (per C3 diagnosis):
-#   1. Uses pnpm + frozen-lockfile, but repo has package-lock.json (npm)
-#   2. Uses actions/deploy-pages@v4 (requires Pages build_type=workflow),
-#      but Pages is configured with build_type=legacy + source=gh-pages
-#      to match deploy.yml's peaceiris/actions-gh-pages strategy.
-# Re-enable by uncommenting schedule + push triggers ONLY AFTER:
-#   (a) generating pnpm-lock.yaml OR rewriting to npm install
-#   (b) deciding pnpm-lock.yaml strategy: ship lockfile or switch to npm install
-#   (c) reconciling Pages build strategy with deploy.yml
-# OR replace this workflow with rsync step + deploy.yml trigger (cleaner).
+# ⚠️ DISABLED 2026-05-20 (Phase A.14c), rewritten 2026-05-21 (Phase A.14e Wave 8 prep)
+# Strategy: npm + peaceiris/actions-gh-pages → gh-pages branch (matches deploy.yml)
+# Re-enable checklist:
+#   (1) Set GitHub Actions secrets: LINEAR_API_TOKEN + N8N_API_TOKEN + UGC_SOURCE
+#   (2) Uncomment the "Mirror UGC workspace" rsync step below
+#   (3) Uncomment the schedule + push triggers below
+#   (4) Optionally add UGC_PASSWORD_HASH secret if password gate is reactivated
 
 on:
   workflow_dispatch:
+  # ── Re-enable when D-5 live data is wired (see checklist above) ──
+  # schedule:
+  #   - cron: '*/15 * * * *'
+  # push:
+  #   branches: [main]
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages-deploy
@@ -41,18 +41,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: npm
 
-      # TODO(D-5 live swap): once UGC tokens exist, uncomment rsync step.
+      # TODO(D-5 live swap): once UGC tokens exist, uncomment rsync step + add
+      # env block above with LINEAR_API_TOKEN / N8N_API_TOKEN / UGC_SOURCE.
       # - name: Mirror UGC workspace (allowed paths only)
       #   run: |
       #     mkdir -p data/ugc-mirror
@@ -63,19 +59,26 @@ jobs:
       #       --exclude='*RJ*' --exclude='julz-vault/' \
       #       "${{ secrets.UGC_SOURCE }}/" data/ugc-mirror/
 
-      - name: Install deps
-        run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps --no-audit --no-fund
 
-      - name: Build
+      - name: Build (static export)
+        run: npm run build
         env:
-          NEXT_PUBLIC_UGC_PASSWORD_HASH: ${{ secrets.UGC_PASSWORD_HASH }}
-          UGC_PASSWORD_HASH: ${{ secrets.UGC_PASSWORD_HASH }}
-        run: pnpm build
+          NODE_ENV: production
+          # NEXT_PUBLIC_UGC_PASSWORD_HASH: ${{ secrets.UGC_PASSWORD_HASH }}
+          # UGC_PASSWORD_HASH: ${{ secrets.UGC_PASSWORD_HASH }}
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Add .nojekyll
+        run: touch out/.nojekyll
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: out
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'refresh-data: ${{ github.sha }}'

@@ -1,0 +1,83 @@
+{
+  "requirements": [
+    {
+      "key": "deliverables",
+      "label": "Deliverables",
+      "detail": "3–5 posts/week on personal page, posting cadence TBD",
+      "means": "Per Julz's Template 1 reply — confirmed openness to 3–5/wk pending campaign scope. Hold final count until written brief lands.",
+      "status": "incomplete",
+      "source": "Outreach Template 1 — Goodie AI (Initial Response)"
+    },
+    {
+      "key": "length",
+      "label": "Required Length",
+      "detail": "Not yet specified",
+      "means": "Likely TikTok-native vertical. Confirm in written brief.",
+      "status": "incomplete",
+      "source": "Pending Goodie AI brief"
+    },
+    {
+      "key": "format",
+      "label": "Format",
+      "detail": "Vertical video assumed, awaiting confirmation",
+      "means": "Phone-shot, talking-head primary based on Goodie AI's existing creator content.",
+      "status": "incomplete",
+      "source": "Pending Goodie AI brief"
+    },
+    {
+      "key": "messaging",
+      "label": "Required Messaging",
+      "detail": "Not yet specified — awaiting written campaign brief",
+      "means": "Hold script work until brief lands.",
+      "status": "incomplete",
+      "source": "Pending Goodie AI brief"
+    },
+    {
+      "key": "payment",
+      "label": "Payment",
+      "detail": "Not yet specified — payment structure pending",
+      "means": "Per Template 2 — request payment structure before call.",
+      "status": "incomplete",
+      "source": "Outreach Template 2 — Goodie AI (Follow-Up Call)"
+    },
+    {
+      "key": "deadline",
+      "label": "Deadline",
+      "detail": "ASAP per Julz response — start date pending alignment",
+      "means": "Julz confirmed availability ASAP. Brand timing TBD.",
+      "status": "incomplete",
+      "source": "Outreach Template 1"
+    }
+  ],
+  "missingInfo": [
+    {
+      "priority": "P0",
+      "question": "What does the campaign brief look like — deliverables, posting expectations, payment structure?",
+      "askBefore": 1
+    },
+    {
+      "priority": "P0",
+      "question": "What's the per-post payment structure or retainer for 3–5 posts/week?",
+      "askBefore": 1
+    },
+    {
+      "priority": "P1",
+      "question": "What's the timeline — is this a one-month engagement, ongoing, or campaign-specific?",
+      "askBefore": 2
+    }
+  ],
+  "meansSummary": {
+    "goal": "Get a complete written brief BEFORE the call so the call is a scope-and-fit conversation, not a brief-extraction conversation.",
+    "audience": "TBD — Goodie AI's audience targeting not yet confirmed.",
+    "keyFocus": "Lock the brief, lock the payment structure, then schedule the call.",
+    "dos": [
+      "Request written brief before call (per Template 2)",
+      "Confirm posting cadence within Julz's 3–5 posts/week ceiling",
+      "Wait on script work until brief lands"
+    ],
+    "donts": [
+      "No script drafts before brief lands",
+      "No call without written context (per HR-4 smallest interpretation)"
+    ]
+  }
+}

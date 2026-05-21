@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CampaignHeader, CampaignTabs } from "@/components/campaigns/CampaignHeader";
-import { getCampaign, scriptData, CampaignSlug } from "@/lib/mock-data/campaigns";
+import { getCampaign, scriptData, campaigns } from "@/lib/mock-data/campaigns";
 import { FileText, Image as ImageIcon, Film, FileQuestion, ExternalLink } from "lucide-react";
 
 export function generateStaticParams() {
-  return (["elf", "parakeetai", "lotusshop"] as CampaignSlug[]).map((slug) => ({ slug }));
+  return Object.keys(campaigns).map((slug) => ({ slug }));
 }
 
 const TYPE_ICON: Record<string, React.ReactNode> = {
