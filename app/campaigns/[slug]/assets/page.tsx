@@ -131,12 +131,12 @@ export default async function AssetsPage({
   const needsAttention = Math.max(0, allAssets.length - ready - 2);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
+    <div className="mx-auto max-w-7xl px-7 py-12 md:px-12 lg:py-16">
       <CampaignHeader campaign={campaign} />
       <CampaignTabs slug={campaign.slug} active="assets" />
 
       {/* Header: page title + "Open Asset Vault" link */}
-      <section className="rise rise-1 mt-6 flex flex-wrap items-end justify-between gap-3">
+      <section className="rise rise-1 mt-8 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 className="font-display text-xl font-bold text-ink-900">
             Campaign Assets
@@ -161,7 +161,7 @@ export default async function AssetsPage({
       </section>
 
       {/* KPI strip — campaign-scoped */}
-      <section className="rise rise-2 mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+      <section className="rise rise-2 mt-5 grid grid-cols-2 gap-4 md:grid-cols-4 lg:gap-5">
         <KpiCard
           tone="cloud"
           icon={<FolderOpen className="h-3.5 w-3.5" />}
@@ -253,8 +253,8 @@ export default async function AssetsPage({
       </section>
 
       {/* Two-column body — grid + sidebar */}
-      <div className="mt-6 grid grid-cols-12 gap-6">
-        <div className="col-span-12 space-y-6 xl:col-span-8">
+      <div className="mt-8 grid grid-cols-12 gap-6 lg:gap-8">
+        <div className="col-span-12 space-y-8 xl:col-span-8">
           {/* Script + Brief Files */}
           {scriptAssets.length > 0 && (
             <section className="rise rise-4">
@@ -264,7 +264,7 @@ export default async function AssetsPage({
                 </h3>
                 <StatusChip tone="iris">{scriptAssets.length} files</StatusChip>
               </header>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
                 {scriptAssets.map((a, i) => (
                   <AssetThumbCard
                     key={`script-${i}`}
@@ -285,7 +285,7 @@ export default async function AssetsPage({
                 </h3>
                 <StatusChip tone="pink">{shotAssets.length} scenes</StatusChip>
               </header>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
                 {shotAssets.map((a, i) => (
                   <AssetThumbCard
                     key={`shot-${i}`}
@@ -311,8 +311,8 @@ export default async function AssetsPage({
         </div>
 
         {/* Right sidebar — quick actions + status */}
-        <aside className="col-span-12 space-y-4 rise rise-5 xl:col-span-4">
-          <article className="glass-card rounded-2xl p-4 shadow-card">
+        <aside className="col-span-12 space-y-5 rise rise-5 xl:col-span-4">
+          <article className="glass-card rounded-2xl p-6 shadow-card">
             <header className="mb-3 flex items-center gap-2">
               <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-cloud-100 text-cloud-700">
                 <Sparkles className="h-3.5 w-3.5" strokeWidth={2.4} />
@@ -334,7 +334,7 @@ export default async function AssetsPage({
             </div>
           </article>
 
-          <article className="glass-card rounded-2xl p-4 shadow-card">
+          <article className="glass-card rounded-2xl p-6 shadow-card">
             <header className="mb-3 flex items-center gap-2">
               <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-iris-100 text-iris-600">
                 <CheckCircle2 className="h-3.5 w-3.5" strokeWidth={2.4} />
@@ -352,7 +352,7 @@ export default async function AssetsPage({
             </ul>
           </article>
 
-          <article className="glass-card rounded-2xl p-4 shadow-card">
+          <article className="glass-card rounded-2xl p-6 shadow-card">
             <header className="mb-2 flex items-center gap-2">
               <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-peach-100 text-peach-500">
                 <Sparkles className="h-3.5 w-3.5" strokeWidth={2.4} />
@@ -468,7 +468,7 @@ function KpiCard({
   return (
     <div
       className={cn(
-        "rounded-2xl bg-gradient-to-br p-4 shadow-card ring-1",
+        "rounded-2xl bg-gradient-to-br p-5 shadow-card ring-1",
         toneRing[tone],
       )}
     >

@@ -14,7 +14,7 @@ export function ToolsConnected() {
           {TOOLS_CONNECTED.length} sources
         </p>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
         {TOOLS_CONNECTED.map((tool) => {
           const Icon = tool.icon;
           return (

@@ -8,7 +8,7 @@ type Question = {
 
 export function ClarifyingQuestionsCard({ questions }: { questions: Question[] }) {
   return (
-    <section className="rounded-2xl border border-iris-200 bg-iris-50/50 p-4 shadow-card">
+    <section className="rounded-2xl border border-iris-200 bg-iris-50/50 p-5 shadow-card">
       <header className="mb-3 flex items-center gap-2">
         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-iris-200 text-iris-600">
           <HelpCircle className="h-4 w-4" strokeWidth={2.4} />

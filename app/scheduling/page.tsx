@@ -72,7 +72,7 @@ export default function SchedulingPage() {
   return (
     <>
       {/* Header */}
-      <section className="header-cloud px-8 pt-10 pb-12 text-white">
+      <section className="header-cloud px-7 md:px-12 pt-10 pb-12 text-white">
         <div className="flex items-start justify-between gap-6">
           <div className="rise rise-1">
             <p className="text-[11px] uppercase tracking-[0.22em] font-semibold opacity-90">
@@ -92,7 +92,7 @@ export default function SchedulingPage() {
         </div>
       </section>
 
-      <section className="-mt-6 px-8 pb-16">
+      <section className="-mt-6 px-7 md:px-12 pb-16">
         {/* Toolbar */}
         <div className="rise rise-2 mb-4 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
@@ -217,7 +217,7 @@ export default function SchedulingPage() {
 
           {/* Time slot picker sidebar */}
           <aside className="rise rise-4 flex flex-col gap-5">
-            <section className="rounded-3xl bg-white/85 backdrop-blur p-5 shadow-card ring-1 ring-cloud-100">
+            <section className="rounded-3xl bg-white/85 backdrop-blur p-6 shadow-card ring-1 ring-cloud-100">
               <h3 className="text-[11px] uppercase tracking-[0.16em] font-semibold text-ink-700">
                 Quick Slots
               </h3>
@@ -251,7 +251,7 @@ export default function SchedulingPage() {
               </button>
             </section>
 
-            <section className="rounded-3xl bg-iris-50 p-5 ring-1 ring-iris-100">
+            <section className="rounded-3xl bg-iris-50 p-6 ring-1 ring-iris-100">
               <h3 className="text-[11px] uppercase tracking-[0.16em] font-semibold text-iris-500">
                 Synced with
               </h3>

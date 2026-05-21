@@ -18,7 +18,7 @@ function fmtDate(iso: string) {
 
 export function UpcomingDeliverablesList() {
   return (
-    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-5 shadow-card">
+    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
       <div className="flex items-baseline justify-between">
         <h3 className="font-display text-[16px] text-ink-900">Upcoming Deliverables</h3>
         <a href="#" className="inline-flex items-center gap-1 text-[11px] font-semibold text-cloud-700 hover:text-cloud-600">

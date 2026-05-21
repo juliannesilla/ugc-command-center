@@ -21,6 +21,7 @@ import {
   Lightbulb,
   ShieldCheck,
   TrendingUp,
+  Workflow,
   ChevronLeft,
   ChevronDown,
 } from 'lucide-react';
@@ -38,6 +39,8 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Needs Attention',    href: '/pipeline/needs-attention',  icon: AlertTriangle },
   { label: 'Ready to Execute',   href: '/pipeline/ready-to-execute', icon: PlayCircle },
   { label: 'Production Queue',   href: '/pipeline/production-queue', icon: Clapperboard },
+  { label: 'SOW Breakdown',      href: '/sow-breakdown',             icon: Workflow },
+  { label: 'Script Production',  href: '/script-production',         icon: FileText },
   { label: 'Content Hub',        href: '/content-hub',               icon: Sparkles },
   { label: 'Brand Responses',   href: '/brand-responses',  icon: Inbox },
   { label: 'Scheduling',        href: '/scheduling',       icon: CalendarDays },

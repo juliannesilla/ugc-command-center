@@ -148,7 +148,7 @@ export default function PipelineBoardPage() {
         </div>
 
         {/* ============ RIGHT SIDEBAR — Pipeline Overview ============ */}
-        <aside className="lg:w-[340px] shrink-0 border-l border-cloud-100 bg-white/85 backdrop-blur-xl px-5 py-6 space-y-6 overflow-y-auto max-h-[calc(100vh-160px)]">
+        <aside className="lg:w-[340px] shrink-0 border-l border-cloud-100 bg-white/85 backdrop-blur-xl px-6 py-8 space-y-8 overflow-y-auto max-h-[calc(100vh-160px)]">
           {/* total */}
           <div>
             <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
@@ -161,7 +161,7 @@ export default function PipelineBoardPage() {
           </div>
 
           {/* donut */}
-          <div className="rounded-3xl bg-cloud-soft p-5 ring-1 ring-cloud-100">
+          <div className="rounded-3xl bg-cloud-soft p-6 ring-1 ring-cloud-100">
             <div className="flex items-center gap-4">
               <DonutChart
                 data={BOARD_DONUT_SEGMENTS}

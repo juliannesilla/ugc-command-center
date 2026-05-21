@@ -25,7 +25,7 @@ export function FilterBar({
   chipCounts: Record<FilterChipKey, number>;
 }) {
   return (
-    <section className="rise rise-2 rounded-3xl bg-white/75 backdrop-blur-sm ring-1 ring-cloud-100 shadow-card p-4 md:p-5 space-y-4">
+    <section className="rise rise-2 rounded-3xl bg-white/75 backdrop-blur-sm ring-1 ring-cloud-100 shadow-card p-5 md:p-6 space-y-4">
       {/* Top row: default filter + sort + result count */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">

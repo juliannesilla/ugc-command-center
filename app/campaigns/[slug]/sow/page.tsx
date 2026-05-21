@@ -17,12 +17,12 @@ export default async function SOWPage({ params }: { params: Promise<{ slug: stri
   const sow: any = sowData[campaign.slug];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
+    <div className="mx-auto max-w-7xl px-7 py-12 md:px-12 lg:py-16">
       <CampaignHeader campaign={campaign} />
       <CampaignTabs slug={campaign.slug} active="sow" />
 
-      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px]">
-        <section className="space-y-5">
+      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px] lg:gap-8">
+        <section className="space-y-6">
           <header className="rise rise-1">
             <h2 className="font-display text-xl font-bold text-ink-900">SOW Breakdown</h2>
             <p className="mt-0.5 text-[12.5px] text-ink-500">
@@ -33,7 +33,7 @@ export default async function SOWPage({ params }: { params: Promise<{ slug: stri
 
           <SOWRequirementsGrid requirements={sow.requirements} />
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             <MissingInfoCard items={sow.missingInfo} />
             <ClarifyingQuestionsCard questions={sow.missingInfo} />
           </div>

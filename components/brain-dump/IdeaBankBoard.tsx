@@ -93,7 +93,7 @@ export function IdeaBankBoard() {
   const activeCard = cards.find((c) => c.id === activeId) ?? null;
 
   return (
-    <div className="glass-card rounded-2xl p-5 shadow-card">
+    <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="font-display text-lg font-semibold text-ink-900">
@@ -116,7 +116,7 @@ export function IdeaBankBoard() {
       </div>
 
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-5">
           {BOARD_COLUMNS.map((col) => (
             <Column
               key={col.id}

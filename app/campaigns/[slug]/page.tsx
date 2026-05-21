@@ -63,12 +63,12 @@ export default async function CampaignOverviewPage({
   const editTotal = (production?.editChecklist ?? []).length;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
+    <div className="mx-auto max-w-7xl px-7 py-12 md:px-12 lg:py-16">
       <CampaignHeader campaign={campaign} />
       <CampaignTabs slug={campaign.slug} active="overview" />
 
       {/* Row 1 — three focal cards: SOW, Script & Production, Assets */}
-      <section className="rise rise-2 mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+      <section className="rise rise-2 mt-8 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
         <OverviewCard
           icon={<FileText className="h-4 w-4" />}
           tone="cloud"
@@ -131,7 +131,7 @@ export default async function CampaignOverviewPage({
       </section>
 
       {/* Row 2 — Brief + Means + Payment */}
-      <section className="rise rise-3 mt-6 grid grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
+      <section className="rise rise-3 mt-8 grid grid-cols-1 gap-5 lg:grid-cols-[2fr_1fr] lg:gap-6">
         <article className="glass-card rounded-2xl p-5 shadow-card">
           <header className="mb-3 flex items-center gap-2">
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-cloud-100 text-cloud-700">
@@ -202,7 +202,7 @@ export default async function CampaignOverviewPage({
       </section>
 
       {/* Row 3 — Quick-jump tab links */}
-      <section className="rise rise-4 mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
+      <section className="rise rise-4 mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
         <QuickJump
           href={`/campaigns/${campaign.slug}/sow`}
           icon={<FileText className="h-3.5 w-3.5" />}
@@ -258,7 +258,7 @@ function OverviewCard({
   return (
     <Link
       href={href}
-      className="group glass-card flex flex-col gap-3 rounded-2xl p-5 shadow-card transition hover:-translate-y-[1px] hover:shadow-soft"
+      className="group glass-card flex flex-col gap-3 rounded-2xl p-6 shadow-card transition hover:-translate-y-[1px] hover:shadow-soft"
     >
       <header className="flex items-center justify-between">
         <span

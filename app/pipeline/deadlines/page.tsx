@@ -20,7 +20,7 @@ export default function DeadlinesPage() {
   return (
     <>
       {/* Header */}
-      <header className="header-cloud px-6 md:px-8 py-6">
+      <header className="header-cloud px-7 md:px-12 py-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-[11px] uppercase tracking-[0.22em] text-white/80 mb-2">
@@ -41,7 +41,7 @@ export default function DeadlinesPage() {
         </div>
       </header>
 
-      <main className="px-6 md:px-8 py-6 space-y-6">
+      <main className="px-7 md:px-12 py-6 space-y-8">
         {/* Quick actions row */}
         <section className="flex flex-wrap items-center justify-end gap-2 rise rise-1">
           <button className="inline-flex items-center gap-1.5 rounded-2xl border border-cloud-200 bg-white/85 px-3 py-2 text-[12.5px] font-semibold text-ink-700 hover:bg-cloud-50">
@@ -63,7 +63,7 @@ export default function DeadlinesPage() {
         </section>
 
         {/* Heatmap + stat cards */}
-        <section className="grid grid-cols-12 gap-4 rise rise-2">
+        <section className="grid grid-cols-12 gap-5 rise rise-2">
           <div className="col-span-12 xl:col-span-7">
             <WeekHeatmap />
           </div>
@@ -73,7 +73,7 @@ export default function DeadlinesPage() {
           </div>
         </section>
 
-        <section className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-4 rise rise-3">
+        <section className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-5 rise rise-3">
           <DeadlineStatCard label="Due This Week"     value={DEADLINE_STATS.dueThisWeek}      tone="iris"  sub="May 13 – 19" />
           <DeadlineStatCard label="Due Next Week"     value={DEADLINE_STATS.dueNextWeek}      tone="cloud" sub="May 20 – 26" />
           <DeadlineStatCard label="Completed This Week" value={DEADLINE_STATS.completedThisWeek} tone="green" sub="Already shipped" />

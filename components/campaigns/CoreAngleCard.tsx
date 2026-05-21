@@ -22,7 +22,7 @@ export function CoreAngleCard({ coreAngle }: { coreAngle: CoreAngle }) {
     : coreAngle.emotionalDriver ?? coreAngle.emotional_driver ?? null;
 
   return (
-    <section className="glass-card flex h-full flex-col rounded-2xl p-4 shadow-card">
+    <section className="glass-card flex h-full flex-col rounded-2xl p-5 shadow-card">
       <header className="mb-3 flex items-center gap-2">
         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-iris-100 text-iris-600">
           <Compass className="h-3.5 w-3.5" strokeWidth={2.4} />

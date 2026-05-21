@@ -86,7 +86,7 @@ export function BrandResponseDetailPanel({ id, variant = "panel" }: Props) {
   return (
     <>
       {isPage && (
-        <section className="header-cloud px-8 pt-8 pb-10 text-white">
+        <section className="header-cloud px-7 md:px-12 pt-8 pb-10 text-white">
           <Link
             href="/brand-responses"
             className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.16em] text-white/90 hover:text-white transition"
@@ -114,7 +114,7 @@ export function BrandResponseDetailPanel({ id, variant = "panel" }: Props) {
       <section
         className={
           isPage
-            ? "-mt-6 px-8 pb-16"
+            ? "-mt-6 px-7 md:px-12 pb-16"
             : "px-0 pb-0"
         }
       >

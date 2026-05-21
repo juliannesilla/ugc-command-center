@@ -3,7 +3,7 @@ import { REUSABLE_PHRASES } from '@/lib/mock-data/brain-dump';
 
 export function ReusablePhrasesVault() {
   return (
-    <div className="glass-card rounded-2xl p-5 shadow-card">
+    <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="flex items-center gap-1.5 mb-3">
         <Quote className="h-4 w-4 text-iris-400" />
         <h4 className="text-sm font-semibold text-ink-900">Reusable Phrases Vault</h4>

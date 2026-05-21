@@ -3,7 +3,7 @@ import { WHATS_WINNING, NEEDS_ATTENTION } from '@/lib/mock-data/analytics';
 
 export function SmartPanel() {
   return (
-    <aside className="glass-card rounded-2xl p-5 shadow-card flex flex-col gap-5">
+    <aside className="glass-card rounded-2xl p-6 shadow-card flex flex-col gap-5">
       <div className="flex items-center gap-2">
         <Sparkles className="h-4 w-4 text-iris-400" />
         <h3 className="font-display text-lg font-semibold text-ink-900">

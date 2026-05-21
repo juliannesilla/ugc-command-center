@@ -3,14 +3,14 @@ import { cn } from '@/lib/utils';
 
 export function PlatformPerformanceCard() {
   return (
-    <div className="glass-card rounded-2xl p-5 shadow-card">
+    <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-4">
         <h3 className="font-display text-lg font-semibold text-ink-900">
           Platform Performance
         </h3>
         <p className="text-xs text-ink-500">Views · engagement · net followers</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {PLATFORM_PERFORMANCE.map((p) => (
           <div
             key={p.id}

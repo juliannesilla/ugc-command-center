@@ -87,8 +87,8 @@ export function DeadlinesViewSwitcher() {
         {view === "calendar" && <DeadlineCalendarView events={filtered} />}
         {view === "timeline" && <DeadlineTimelineView events={filtered} />}
         {view === "list" && (
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12 xl:col-span-8 space-y-6">
+          <div className="grid grid-cols-12 gap-6 lg:gap-8">
+            <div className="col-span-12 xl:col-span-8 space-y-8">
               <UpcomingDeliverablesList />
               <BrandFollowupsList />
               <UpcomingFilmingDates />

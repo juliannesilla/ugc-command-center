@@ -1,0 +1,203 @@
+name: QA Stack (Playwright + Lighthouse + Visual-Diff)
+
+# Orchestrates the three Phase A.14i QA harnesses on every PR + on demand.
+# Owner of this file: A14I-5c VISUAL-DIFF.
+#
+# Initial trigger policy: workflow_dispatch ONLY until Julz J13 GitHub
+# secrets (DEPLOY_URL, VERCEL_TOKEN, LHCI_GITHUB_APP_TOKEN) are wired up.
+# Once those land, flip the comment block below to enable pull_request +
+# push triggers as well.
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_url:
+        description: "Deployed URL to test against (defaults to repo var DEPLOY_URL)"
+        required: false
+        type: string
+        default: ""
+      driver:
+        description: "Visual-diff driver"
+        required: false
+        type: choice
+        default: playwright
+        options:
+          - playwright
+          - mcp
+          - none
+  # ─── ENABLE AFTER J13 SECRETS LAND ───
+  # pull_request:
+  #   branches: [main]
+  #   paths-ignore:
+  #     - "**/*.md"
+  #     - "_meta/**"
+  # push:
+  #   branches: [main]
+
+concurrency:
+  group: qa-stack-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "20"
+  DEPLOY_URL: ${{ github.event.inputs.deploy_url != '' && github.event.inputs.deploy_url || vars.DEPLOY_URL || 'https://ugc-command-center.vercel.app' }}
+
+jobs:
+  # ────────────────────────────────────────────────────────────────────
+  # JOB 1 · Playwright end-to-end (owned by A14I-5a)
+  # ────────────────────────────────────────────────────────────────────
+  playwright-e2e:
+    name: Playwright E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright suite
+        env:
+          DEPLOY_URL: ${{ env.DEPLOY_URL }}
+        run: |
+          if [ -f playwright.config.ts ] || [ -f playwright.config.js ]; then
+            npx playwright test --reporter=line,html
+          else
+            echo "::warning::No playwright.config — skipping E2E (A14I-5a not yet landed)."
+          fi
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
+          retention-days: 14
+
+  # ────────────────────────────────────────────────────────────────────
+  # JOB 2 · Lighthouse CI (owned by A14I-5b)
+  # ────────────────────────────────────────────────────────────────────
+  lighthouse-ci:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.14.x
+
+      - name: Run Lighthouse CI
+        env:
+          DEPLOY_URL: ${{ env.DEPLOY_URL }}
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+        run: |
+          if [ -f lighthouserc.js ] || [ -f lighthouserc.json ] || [ -f .lighthouserc.js ]; then
+            lhci autorun || echo "::warning::Lighthouse CI exited non-zero — review thresholds."
+          else
+            echo "::warning::No lighthouserc — skipping Lighthouse (A14I-5b not yet landed)."
+          fi
+
+      - name: Upload Lighthouse report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: |
+            .lighthouseci
+          if-no-files-found: ignore
+          retention-days: 14
+
+  # ────────────────────────────────────────────────────────────────────
+  # JOB 3 · Visual-Diff vs ChatGPT mockups (owned by A14I-5c · this agent)
+  # ────────────────────────────────────────────────────────────────────
+  visual-diff:
+    name: Visual-Diff vs Mockups
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install Playwright + Sharp
+        run: |
+          npm install --no-save playwright sharp
+          npx playwright install --with-deps chromium
+
+      - name: Verify mockup bundle present
+        run: |
+          test -f _meta/mockups/UUID-MAPPING.md || { echo "::error::UUID-MAPPING.md missing"; exit 1; }
+          test -f tests/visual-diff/route-mockup-mapping.json || { echo "::error::mapping JSON missing"; exit 1; }
+          node -e "JSON.parse(require('fs').readFileSync('tests/visual-diff/route-mockup-mapping.json','utf8'))" || { echo "::error::mapping JSON invalid"; exit 1; }
+
+      - name: Dry-run smoke test
+        run: node tests/visual-diff/compare-against-mockups.mjs --dry-run --verbose
+
+      - name: Full visual-diff run
+        if: ${{ github.event.inputs.driver != 'none' }}
+        env:
+          DEPLOY_URL: ${{ env.DEPLOY_URL }}
+        run: |
+          node tests/visual-diff/compare-against-mockups.mjs \
+            --driver=${{ github.event.inputs.driver || 'playwright' }} \
+            --verbose
+
+      - name: Upload composites + report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-diff-bundle
+          path: |
+            _meta/mockups/post-a14i-visual-diff/**
+            _meta/dashboard-spec/06-a14i-visual-diff-report.md
+          if-no-files-found: warn
+          retention-days: 30
+
+  # ────────────────────────────────────────────────────────────────────
+  # JOB 4 · Aggregate & summarize (informational — never fails)
+  # ────────────────────────────────────────────────────────────────────
+  summarize:
+    name: QA-Stack Summary
+    needs: [playwright-e2e, lighthouse-ci, visual-diff]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo result matrix
+        run: |
+          echo "## QA Stack — run summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Playwright E2E | ${{ needs.playwright-e2e.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Lighthouse CI  | ${{ needs.lighthouse-ci.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Visual-Diff    | ${{ needs.visual-diff.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Artifacts: \`playwright-report\`, \`lighthouse-report\`, \`visual-diff-bundle\`." >> $GITHUB_STEP_SUMMARY

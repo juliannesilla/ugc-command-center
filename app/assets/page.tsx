@@ -92,7 +92,7 @@ export default function AssetsPage() {
   return (
     <>
       {/* Header */}
-      <header className="header-cloud px-6 md:px-8 py-6">
+      <header className="header-cloud px-7 md:px-12 py-6">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="text-[11px] uppercase tracking-[0.22em] text-white/80 mb-2">
@@ -112,9 +112,9 @@ export default function AssetsPage() {
           </div>
         </header>
 
-        <main className="px-6 md:px-8 py-6 space-y-6">
+        <main className="px-7 md:px-12 py-6 space-y-6 lg:space-y-8">
           {/* Stat cards */}
-          <section className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 rise rise-1">
+          <section className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 rise rise-1">
             {STAT_CARDS.map(({ label, value, sub, tone, Icon }) => (
               <div
                 key={label}
@@ -140,7 +140,7 @@ export default function AssetsPage() {
           </section>
 
           {/* Your Next Move */}
-          <section className="rounded-3xl bg-gradient-to-br from-white via-cloud-50 to-iris-50 p-5 ring-1 ring-cloud-200 shadow-card rise rise-2">
+          <section className="rounded-3xl bg-gradient-to-br from-white via-cloud-50 to-iris-50 p-6 ring-1 ring-cloud-200 shadow-card rise rise-2">
             <div className="flex items-baseline justify-between">
               <div>
                 <p className="text-[11px] uppercase tracking-[0.18em] text-cloud-700 font-bold">
@@ -270,7 +270,7 @@ export default function AssetsPage() {
               {/* Campaign Folders */}
               <section>
                 <h2 className="font-display text-[18px] text-ink-900 mb-3">Campaign Folders</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5 gap-5">
                   {MOCK_CAMPAIGN_FOLDERS.map(f => (
                     <CampaignFolderCard key={f.id} folder={f} />
                   ))}
@@ -284,7 +284,7 @@ export default function AssetsPage() {
                   <h2 className="font-display text-[18px] text-ink-900">Recently Added Assets</h2>
                   <StatusChip tone="iris">{MOCK_RECENT_ASSETS.length} files</StatusChip>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {MOCK_RECENT_ASSETS.map(a => (
                     <AssetCard key={a.id} asset={a} />
                   ))}

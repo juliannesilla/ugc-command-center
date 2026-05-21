@@ -61,7 +61,7 @@ export function ExecutionGroupSection({
         </span>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
         {sorted.map((c) => (
           <ExecutionCard key={c.campaign_id} campaign={c} />
         ))}

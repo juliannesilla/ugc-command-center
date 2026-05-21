@@ -3,7 +3,7 @@ import { Play } from 'lucide-react';
 
 export function PortfolioWorthyGrid() {
   return (
-    <div className="glass-card rounded-2xl p-5 shadow-card">
+    <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="font-display text-lg font-semibold text-ink-900">
@@ -18,7 +18,7 @@ export function PortfolioWorthyGrid() {
           View All →
         </button>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
         {PORTFOLIO_POSTS.map((post) => (
           <article
             key={post.id}

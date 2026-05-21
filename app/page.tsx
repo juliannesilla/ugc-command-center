@@ -87,7 +87,7 @@ export default function OverviewPage() {
         pageTitle="Good morning, Julianne."
       />
 
-      <div className="px-7 md:px-12 -mt-8 pb-20 space-y-8">
+      <div className="px-7 md:px-12 -mt-8 pb-20 space-y-10 lg:space-y-12">
         {/* Today Mode toggle bar — spec § 9 L806-L813. Client island; state in localStorage. */}
         <div className="rise rise-1 flex items-center justify-between gap-3 flex-wrap">
           <p className="text-[12px] text-ink-500 leading-snug max-w-md">
@@ -100,7 +100,7 @@ export default function OverviewPage() {
         </div>
 
         {/* HERO STAT STRIP — A.14c lock, preserved per HR-2. */}
-        <section className="rise rise-1 grid grid-cols-2 md:grid-cols-5 gap-4">
+        <section className="rise rise-1 grid grid-cols-2 md:grid-cols-5 gap-5">
           {heroTiles.map((t) => {
             const Icon = t.Icon;
             return (
@@ -131,9 +131,9 @@ export default function OverviewPage() {
         </section>
 
         {/* MAIN COLUMN + RIGHT RAIL (A.14c lock preserved). */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 lg:gap-8">
           {/* MAIN COLUMN — sections 2-6 + layout rows 9-13. */}
-          <div className="space-y-8 min-w-0">
+          <div className="space-y-10 lg:space-y-12 min-w-0">
             {/* Implements: spec § 2 "Your Next Move" — wired to getNextMove(). */}
             <YourNextMove />
 
@@ -217,8 +217,8 @@ export default function OverviewPage() {
 
           {/* RIGHT RAIL — Quick Synth, Today's Focus, Quick Stats, Upcoming Calls
               (preserved from A.14c lock per HR-2; minor wording updates only). */}
-          <aside className="space-y-5">
-            <div className="rise rise-2 relative overflow-hidden rounded-3xl bg-gradient-to-br from-iris-50 via-white to-pink-50 p-5 shadow-card ring-1 ring-iris-100" data-today-hide>
+          <aside className="space-y-6">
+            <div className="rise rise-2 relative overflow-hidden rounded-3xl bg-gradient-to-br from-iris-50 via-white to-pink-50 p-6 shadow-card ring-1 ring-iris-100" data-today-hide>
               <div
                 className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-cloud-sunset opacity-20 blur-3xl"
                 aria-hidden
@@ -247,7 +247,7 @@ export default function OverviewPage() {
               </div>
             </div>
 
-            <div className="rounded-3xl bg-white p-5 shadow-card ring-1 ring-cloud-100">
+            <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-cloud-100">
               <div className="flex items-center gap-2">
                 <Target className="h-4 w-4 text-cloud-600" />
                 <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
@@ -270,7 +270,7 @@ export default function OverviewPage() {
               </ul>
             </div>
 
-            <div className="rounded-3xl bg-white p-5 shadow-card ring-1 ring-cloud-100" data-today-hide>
+            <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-cloud-100" data-today-hide>
               <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
                 Quick stats
               </p>
@@ -294,7 +294,7 @@ export default function OverviewPage() {
               </dl>
             </div>
 
-            <div className="rounded-3xl bg-white p-5 shadow-card ring-1 ring-cloud-100" data-today-hide>
+            <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-cloud-100" data-today-hide>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-cloud-600" />
                 <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">

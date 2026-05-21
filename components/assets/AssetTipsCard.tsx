@@ -3,7 +3,7 @@ import { Lightbulb, ArrowUpRight } from 'lucide-react';
 export function AssetTipsCard() {
   return (
     <section className="rounded-2xl bg-gradient-to-br from-cloud-100 via-peach-100 to-iris-100 p-[1px] shadow-card">
-      <div className="rounded-2xl bg-white/85 backdrop-blur p-5">
+      <div className="rounded-2xl bg-white/85 backdrop-blur p-6">
         <div className="flex items-start gap-3">
           <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-cloud-sunset text-white shadow-glow">
             <Lightbulb className="h-4 w-4" />

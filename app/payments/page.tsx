@@ -225,13 +225,13 @@ export default function PaymentsPage() {
     <>
       <Header pageEyebrow="Payments + Bonuses" pageTitle="Cash in motion." />
 
-      <div className="px-7 md:px-12 -mt-8 pb-20 space-y-6">
+      <div className="px-7 md:px-12 -mt-8 pb-20 space-y-6 lg:space-y-8">
         {hasNoPayments ? (
           <EmptyState />
         ) : (
           <>
             {/* ============ 8 TOP METRIC CARDS ============ */}
-            <section className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+            <section className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-5">
               {cards.map((c) => (
                 <StatCard
                   key={c.label}

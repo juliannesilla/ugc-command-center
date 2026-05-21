@@ -25,7 +25,7 @@ export function BrandContactCard({ conv }: { conv: BrandConversation }) {
     .toUpperCase();
 
   return (
-    <section className="glass-card rounded-3xl p-5 shadow-card">
+    <section className="glass-card rounded-3xl p-6 shadow-card">
       <div className="flex items-start gap-4">
         <div
           className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br ${avatarBg(

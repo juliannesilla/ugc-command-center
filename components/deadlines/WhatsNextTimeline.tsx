@@ -5,7 +5,7 @@ export function WhatsNextTimeline() {
   const maxCount = Math.max(...WHATS_NEXT_TIMELINE.map(d => d.count));
 
   return (
-    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-5 shadow-card">
+    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
       <h3 className="font-display text-[15px] text-ink-900">What&rsquo;s Next at a Glance</h3>
 
       <div className="mt-4 grid grid-cols-5 gap-2">

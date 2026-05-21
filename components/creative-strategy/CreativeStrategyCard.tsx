@@ -57,7 +57,7 @@ export function CreativeStrategyCard({
   const approved = APPROVED_STAGES.has(campaign.current_stage);
 
   return (
-    <article className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-5 md:p-6 flex flex-col gap-4">
+    <article className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-6 flex flex-col gap-4">
       <header className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-iris-500">

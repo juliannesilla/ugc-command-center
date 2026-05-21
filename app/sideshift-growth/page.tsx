@@ -76,7 +76,7 @@ export default function SideShiftGrowthPage() {
         pageTitle="SideShift Growth"
       />
 
-      <main className="flex-1 px-7 md:px-12 py-6 space-y-6">
+      <main className="flex-1 px-7 md:px-12 py-6 space-y-6 lg:space-y-8">
         {/* Breadcrumb */}
         <div className="flex items-center gap-3 text-[12px] text-ink-500">
           <Link
@@ -125,7 +125,7 @@ export default function SideShiftGrowthPage() {
             {/* Field checklist */}
             <section
               aria-label="Profile field checklist"
-              className="grid gap-3 md:grid-cols-2 xl:grid-cols-3"
+              className="grid gap-5 md:grid-cols-2 xl:grid-cols-3"
             >
               {filtered.length === 0 ? (
                 <div className="md:col-span-2 xl:col-span-3 rounded-3xl bg-white/70 backdrop-blur ring-1 ring-cloud-100 px-6 py-10 text-center">

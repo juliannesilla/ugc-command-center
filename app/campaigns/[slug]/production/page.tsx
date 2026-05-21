@@ -23,15 +23,15 @@ export default async function ProductionPage({ params }: { params: Promise<{ slu
   const prod: any = productionData[campaign.slug];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
+    <div className="mx-auto max-w-7xl px-7 py-12 md:px-12 lg:py-16">
       <CampaignHeader campaign={campaign} />
       <CampaignTabs slug={campaign.slug} active="production" />
 
-      <div className="mt-6 space-y-5">
+      <div className="mt-8 space-y-6 lg:space-y-8">
         <ProductionTracker currentStep={prod.productionStage ?? 3} />
 
         {/* Row 1: Hook / Core Angle / Script / CTA */}
-        <section className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+        <section className="grid grid-cols-1 gap-5 lg:grid-cols-4 lg:gap-6">
           <HookOptionsCard hooks={script.hooks} />
           <CoreAngleCard coreAngle={script.coreAngle} />
           <div className="lg:col-span-1">
@@ -41,7 +41,7 @@ export default async function ProductionPage({ params }: { params: Promise<{ slu
         </section>
 
         {/* Row 2: Shot Map · 3 Checklists */}
-        <section className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+        <section className="grid grid-cols-1 gap-5 lg:grid-cols-4 lg:gap-6">
           <div className="lg:col-span-1">
             <ShotMapTable shots={prod.shotMap} />
           </div>
@@ -66,8 +66,8 @@ export default async function ProductionPage({ params }: { params: Promise<{ slu
         </section>
 
         {/* Row 3: Notes / Assets / Filming Status */}
-        <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <article className="glass-card rounded-2xl p-4 shadow-card">
+        <section className="grid grid-cols-1 gap-5 lg:grid-cols-3 lg:gap-6">
+          <article className="glass-card rounded-2xl p-6 shadow-card">
             <header className="mb-3 flex items-center gap-2">
               <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-100 text-amber-700">
                 <FileText className="h-3.5 w-3.5" strokeWidth={2.4} />
@@ -86,7 +86,7 @@ export default async function ProductionPage({ params }: { params: Promise<{ slu
             </ul>
           </article>
 
-          <article className="glass-card rounded-2xl p-4 shadow-card">
+          <article className="glass-card rounded-2xl p-6 shadow-card">
             <header className="mb-3 flex items-center gap-2">
               <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-iris-100 text-iris-600">
                 <Paperclip className="h-3.5 w-3.5" strokeWidth={2.4} />

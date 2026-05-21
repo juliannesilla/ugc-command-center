@@ -41,9 +41,9 @@ export default function AnalyticsPage() {
       </section>
 
       {/* Body */}
-      <section className="max-w-7xl mx-auto px-7 md:px-12 -mt-8 pb-20 flex flex-col gap-6">
+      <section className="max-w-7xl mx-auto px-7 md:px-12 -mt-8 pb-20 flex flex-col gap-6 lg:gap-8">
         {/* Top stat cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 rise rise-1">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 rise rise-1">
           {TOP_STAT_CARDS.map((s) => (
             <StatCardWithDelta
               key={s.id}

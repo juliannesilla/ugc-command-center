@@ -76,7 +76,7 @@ export default function ReadyToExecutePage() {
         pageTitle="Ready to execute"
       />
 
-      <main className="px-7 md:px-12 py-6 space-y-6">
+      <main className="px-7 md:px-12 py-6 space-y-8">
         {/* Batch Mode panel — only renders if ≥1 N≥2 pattern exists */}
         <BatchModeSuggestions suggestions={batchSuggestions} />
 
@@ -104,7 +104,7 @@ export default function ReadyToExecutePage() {
             </p>
           </section>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-8">
             {byGroup.map(({ group, campaigns }, i) => (
               <ExecutionGroupSection
                 key={group}

@@ -2,7 +2,7 @@ import { TOP_CAMPAIGNS } from '@/lib/mock-data/analytics';
 
 export function TopCampaignsCard() {
   return (
-    <div className="glass-card rounded-2xl p-5 shadow-card">
+    <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-3">
         <h3 className="font-display text-lg font-semibold text-ink-900">
           Top Performing Campaigns

@@ -30,7 +30,7 @@ const STATUS_TONE: Record<string, string> = {
 export function FilmingStatusCard({ status }: { status: FilmingStatus }) {
   const tone = STATUS_TONE[status.status] ?? "bg-ink-100 text-ink-700 ring-ink-300";
   return (
-    <section className="glass-card flex h-full flex-col rounded-2xl p-4 shadow-card">
+    <section className="glass-card flex h-full flex-col rounded-2xl p-5 shadow-card">
       <header className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-ink-900 text-cloud-200">

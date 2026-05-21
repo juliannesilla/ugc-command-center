@@ -11,7 +11,7 @@ const dot: Record<DeadlinePriority, string> = {
 
 export function PrioritizedToDo() {
   return (
-    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-5 shadow-card">
+    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
       <h3 className="font-display text-[15px] text-ink-900">Prioritized To-Do</h3>
       <ul className="mt-3 space-y-2.5">
         {MOCK_TODOS.map(t => (

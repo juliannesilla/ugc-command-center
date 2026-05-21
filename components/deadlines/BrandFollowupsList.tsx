@@ -14,7 +14,7 @@ function fmtDate(iso: string) {
 
 export function BrandFollowupsList() {
   return (
-    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-5 shadow-card">
+    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
       <h3 className="font-display text-[16px] text-ink-900">Brand Follow-Ups</h3>
       <ul className="mt-3 divide-y divide-cloud-100">
         {MOCK_BRAND_FOLLOWUPS.map(f => (

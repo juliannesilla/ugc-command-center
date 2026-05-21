@@ -5,7 +5,7 @@ import type { BrandConversation } from "@/lib/mock-data/brand-responses";
 
 export function NextActionCard({ conv }: { conv: BrandConversation }) {
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-cloud-sunset p-5 text-white shadow-soft">
+    <section className="relative overflow-hidden rounded-3xl bg-cloud-sunset p-6 text-white shadow-soft">
       {/* grain overlay */}
       <div
         aria-hidden

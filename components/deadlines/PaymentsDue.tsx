@@ -8,7 +8,7 @@ function fmtDate(iso: string) {
 export function PaymentsDue() {
   const total = MOCK_PAYMENTS_DUE.reduce((s, p) => s + p.amount, 0);
   return (
-    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-5 shadow-card">
+    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
       <div className="flex items-baseline justify-between">
         <h3 className="font-display text-[15px] text-ink-900">Payments Due</h3>
         <span className="font-display text-[15px] text-cloud-700 tabular-nums">

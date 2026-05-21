@@ -10,7 +10,7 @@ export function BatchModeSuggestions({ suggestions }: { suggestions: BatchSugges
   if (suggestions.length === 0) return null;
 
   return (
-    <section className="rise rise-1 rounded-3xl bg-gradient-to-br from-iris-50 via-white to-cloud-50 ring-1 ring-iris-100 shadow-card p-5 md:p-6">
+    <section className="rise rise-1 rounded-3xl bg-gradient-to-br from-iris-50 via-white to-cloud-50 ring-1 ring-iris-100 shadow-card p-6">
       <div className="flex items-start justify-between gap-4 mb-4">
         <div className="flex items-center gap-3">
           <span className="grid h-10 w-10 place-items-center rounded-2xl bg-iris-100 text-iris-600 shadow-soft">
@@ -31,7 +31,7 @@ export function BatchModeSuggestions({ suggestions }: { suggestions: BatchSugges
         </span>
       </div>
 
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {suggestions.map((s) => (
           <li
             key={s.id}

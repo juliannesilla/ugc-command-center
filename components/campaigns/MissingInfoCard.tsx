@@ -14,7 +14,7 @@ const prioTone: Record<MissingInfoItem["priority"], string> = {
 
 export function MissingInfoCard({ items }: { items: MissingInfoItem[] }) {
   return (
-    <section className="rounded-2xl border border-orange-200 bg-orange-50/70 p-4 shadow-card">
+    <section className="rounded-2xl border border-orange-200 bg-orange-50/70 p-5 shadow-card">
       <header className="mb-3 flex items-center gap-2">
         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-200 text-orange-700">
           <AlertCircle className="h-4 w-4" strokeWidth={2.4} />

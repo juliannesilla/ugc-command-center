@@ -3,7 +3,7 @@ import { IDEA_TO_SCRIPT_STEPS } from '@/lib/mock-data/brain-dump';
 
 export function IdeaToScriptConverter() {
   return (
-    <div className="glass-card rounded-2xl p-5 shadow-card flex flex-col gap-3">
+    <div className="glass-card rounded-2xl p-6 shadow-card flex flex-col gap-3">
       <div className="flex items-center gap-1.5">
         <Wand2 className="h-4 w-4 text-iris-400" />
         <h4 className="text-sm font-semibold text-ink-900">Idea → Script Conversion</h4>

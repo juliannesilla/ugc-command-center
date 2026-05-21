@@ -14,7 +14,7 @@ export function FollowUpReminderCard({ conv }: { conv: BrandConversation }) {
   });
 
   return (
-    <section className="rounded-3xl bg-white/85 backdrop-blur p-5 shadow-card ring-1 ring-cloud-100">
+    <section className="rounded-3xl bg-white/85 backdrop-blur p-6 shadow-card ring-1 ring-cloud-100">
       <header className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="grid h-7 w-7 place-items-center rounded-xl bg-iris-100 text-iris-500">

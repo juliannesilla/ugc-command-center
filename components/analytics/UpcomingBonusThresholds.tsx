@@ -67,7 +67,7 @@ export function UpcomingBonusThresholds() {
         aria-hidden
         className="pointer-events-none absolute -top-12 -right-12 h-32 w-32 rounded-full bg-gradient-to-br from-peach-300/50 to-cloud-300/30 blur-2xl"
       />
-      <div className="relative p-5">
+      <div className="relative p-6">
         <header className="mb-4 flex items-start justify-between">
           <div className="flex items-center gap-2">
             <span className="grid h-7 w-7 place-items-center rounded-xl bg-peach-100 text-peach-500">

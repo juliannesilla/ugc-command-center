@@ -14,7 +14,7 @@ export function CTACard({ ctas }: { ctas: CTAs }) {
   ].filter((c) => Boolean(c.value));
 
   return (
-    <section className="glass-card flex h-full flex-col rounded-2xl p-4 shadow-card">
+    <section className="glass-card flex h-full flex-col rounded-2xl p-5 shadow-card">
       <header className="mb-3 flex items-center gap-2">
         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
           <Megaphone className="h-3.5 w-3.5" strokeWidth={2.4} />

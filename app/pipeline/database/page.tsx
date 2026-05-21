@@ -165,9 +165,9 @@ export default function PipelineDatabasePage() {
     <>
       <Header pageEyebrow="Campaign Pipeline" pageTitle="Database view" />
 
-      <div className="px-7 md:px-12 -mt-8 pb-20 space-y-6">
+      <div className="px-7 md:px-12 -mt-8 pb-20 space-y-8">
         {/* ============ TOP STAT CARDS ============ */}
-        <section className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+        <section className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-5">
           {DATABASE_STAT_COLUMNS.map((s, i) => (
             <StatCard
               key={s.label}

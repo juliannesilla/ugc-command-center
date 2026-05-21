@@ -40,7 +40,7 @@ export function IssueGroup({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-cloud-50/60 transition"
+        className="w-full flex items-center gap-3 px-6 py-5 text-left hover:bg-cloud-50/60 transition"
       >
         <span
           aria-hidden
@@ -72,7 +72,7 @@ export function IssueGroup({
       </button>
 
       {open && (
-        <div className="px-5 pb-5 pt-1 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <div className="px-6 pb-6 pt-1 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {items.map((issue) => (
             <IssueCard key={issue.id} issue={issue} />
           ))}

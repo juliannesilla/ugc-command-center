@@ -30,7 +30,7 @@ export function ProgressHero({
   return (
     <section
       aria-labelledby="profile-progress-heading"
-      className="relative overflow-hidden rounded-3xl bg-white/85 backdrop-blur ring-1 ring-cloud-100 shadow-card px-6 md:px-8 py-6"
+      className="relative overflow-hidden rounded-3xl bg-white/85 backdrop-blur ring-1 ring-cloud-100 shadow-card px-7 md:px-12 py-6"
     >
       {/* atmospheric blur orbs */}
       <span

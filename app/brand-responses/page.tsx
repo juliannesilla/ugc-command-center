@@ -57,7 +57,7 @@ function BrandResponsesInner() {
   return (
     <>
       {/* Header */}
-      <section className="header-cloud px-8 pt-10 pb-12 text-white">
+      <section className="header-cloud px-7 md:px-12 pt-10 pb-12 text-white">
         <div className="flex items-start justify-between gap-6">
           <div className="rise rise-1">
             <p className="text-[11px] uppercase tracking-[0.22em] font-semibold opacity-90">
@@ -124,7 +124,7 @@ function BrandResponsesInner() {
       </section>
 
       {/* Body */}
-      <section className="-mt-6 px-8 pb-16">
+      <section className="-mt-6 px-7 md:px-12 pb-16">
         {/* Tabs + search */}
         <div className="rise rise-3 mb-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <nav
@@ -221,7 +221,7 @@ export default function BrandResponsesPage() {
   return (
     <Suspense
       fallback={
-        <div className="px-8 py-16 text-ink-500 text-sm">Loading inbox…</div>
+        <div className="px-7 md:px-12 py-16 text-ink-500 text-sm">Loading inbox…</div>
       }
     >
       <BrandResponsesInner />

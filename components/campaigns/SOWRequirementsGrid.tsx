@@ -12,12 +12,12 @@ type Requirement = {
 
 export function SOWRequirementsGrid({ requirements }: { requirements: Requirement[] }) {
   return (
-    <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
       {requirements.map((req, i) => (
         <article
           key={req.key}
           className={cn(
-            "glass-card rise rounded-2xl p-4 shadow-card transition hover:shadow-soft",
+            "glass-card rise rounded-2xl p-5 shadow-card transition hover:shadow-soft",
             `rise-${Math.min(4, Math.floor(i / 4) + 1)}`,
           )}
         >

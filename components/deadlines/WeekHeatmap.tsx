@@ -8,7 +8,7 @@ import { HEATMAP_DAYS } from '@/lib/mock-data/deadlines';
  */
 export function WeekHeatmap() {
   return (
-    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-4 shadow-card">
+    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
       <div className="flex items-baseline justify-between mb-3">
         <h3 className="font-display text-[14px] text-ink-900">May 2026</h3>
         <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-400">

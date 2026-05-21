@@ -20,13 +20,13 @@ export function FocusThisWeek() {
           May 19 – May 25
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
         {groups.map((group) => {
           const Icon = ICON_MAP[group.iconKey];
           return (
             <div
               key={group.title}
-              className="rounded-3xl bg-white p-5 shadow-card ring-1 ring-cloud-100"
+              className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-cloud-100"
             >
               <div className="flex items-center gap-2">
                 <span className="grid h-7 w-7 place-items-center rounded-lg bg-cloud-50 text-cloud-600 ring-1 ring-cloud-100">

@@ -1,0 +1,163 @@
+{
+  "_meta": {
+    "source": "_meta/mockups/UUID-MAPPING.md — 'Mockup → Route Mapping' table",
+    "extracted_by": "A14I-5c VISUAL-DIFF agent",
+    "extracted_at": "2026-05-21",
+    "viewport_width": 1440,
+    "viewport_height": 900,
+    "mockups_root": "_meta/mockups",
+    "mockups_root_external_default": "C:/Users/julia/OneDrive/Desktop/UGC/_meta/mockups",
+    "mockups_root_env": "MOCKUPS_ROOT",
+    "mockups_root_note": "Mockup PNGs live in the UGC OneDrive workspace, not this repo. Set MOCKUPS_ROOT env var or fall back to the external default above. CI copies them into the workspace at the start of the visual-diff job.",
+    "output_root": "_meta/mockups/post-a14i-visual-diff",
+    "report_path": "_meta/dashboard-spec/06-a14i-visual-diff-report.md",
+    "deployed_base_url_env": "DEPLOY_URL",
+    "deployed_base_url_default": "https://ugc-command-center.vercel.app"
+  },
+  "routes": [
+    {
+      "route": "/",
+      "label": "Overview",
+      "mockups": [
+        "01-overview-julz-rj-ready-to-make.png",
+        "02-overview-command-center-julianne.png",
+        "05-overview-good-morning-julianne.png",
+        "07-pipeline-overview-funnel.png",
+        "10-overview-sideshift.png",
+        "12-creator-command-center-full.png"
+      ],
+      "owner": "A14I-1 OVERVIEW + A14I SPACING-FINALIZE",
+      "status": "ship-in-flight",
+      "grade_floor": "P1"
+    },
+    {
+      "route": "/pipeline/production-queue",
+      "label": "Production Queue",
+      "mockups": ["03-production-queue.png"],
+      "owner": "A14I PRODUCTION-QUEUE-AUDIT-FIX",
+      "status": "ship-in-flight",
+      "grade_floor": "P1"
+    },
+    {
+      "route": "/analytics",
+      "label": "Analytics / Performance",
+      "mockups": ["04-analytics-performance.png"],
+      "owner": "shipped A.10 D-4",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/payments",
+      "label": "Payments & Performance",
+      "mockups": ["06-payments-performance.png", "08-payments-get-paid.png"],
+      "owner": "shipped A.14e E8",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/contacts",
+      "label": "Brand CRM",
+      "mockups": ["09-brand-crm.png"],
+      "owner": "shipped A.14e E9",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/pipeline/database",
+      "label": "Pipeline — Database View",
+      "mockups": ["11-pipeline-database.png"],
+      "owner": "shipped A.10 + A.14b STAGE_OPTIONS",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/sow-breakdown",
+      "label": "SOW Breakdown (NEW)",
+      "mockups": ["13-sow-breakdown-elf.png", "21-sow-breakdown-summer-glow.png"],
+      "owner": "A14I SOW-BREAKDOWN-XCAMPAIGN",
+      "status": "ship-in-flight",
+      "grade_floor": "P1"
+    },
+    {
+      "route": "/pipeline/board",
+      "label": "Pipeline — Kanban Board",
+      "mockups": ["14-pipeline-kanban.png", "23-pipeline-kanban-creator-dense.png"],
+      "owner": "shipped A.10 + A.14e E2",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/assets",
+      "label": "Asset Vault",
+      "mockups": ["15-asset-vault.png"],
+      "owner": "shipped A.10 D-5",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/?mobile=1",
+      "label": "Mobile / Compact View (responsive audit)",
+      "mockups": ["16-mobile-compact-view.png"],
+      "owner": "shipped A.14e E11",
+      "status": "shipped",
+      "grade_floor": "P2",
+      "viewport_width_override": 390
+    },
+    {
+      "route": "/script-production",
+      "label": "Script & Production (NEW)",
+      "mockups": ["17-script-production.png"],
+      "owner": "A14I SCRIPT-PRODUCTION-XCAMPAIGN",
+      "status": "ship-in-flight",
+      "grade_floor": "P1"
+    },
+    {
+      "route": "/brand-responses",
+      "label": "Brand Responses (index)",
+      "mockups": ["18-brand-responses-summer-fridays.png", "25-brand-responses-glow-em-go.png"],
+      "owner": "shipped A.13 + A.14g BRAND-RESPONSES",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/brand-responses/summer-fridays",
+      "label": "Brand Responses — detail view",
+      "mockups": ["18-brand-responses-summer-fridays.png"],
+      "owner": "shipped A.13",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/pipeline/deadlines",
+      "label": "Pipeline — Deadlines (Calendar)",
+      "mockups": ["19-pipeline-deadlines-calendar.png"],
+      "owner": "shipped A.14e E7",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/sideshift-growth",
+      "label": "SideShift Growth",
+      "mockups": ["20-sideshift-growth.png"],
+      "owner": "shipped A.14e E10",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/brain-dump",
+      "label": "Brain Dump / Hook Bank",
+      "mockups": ["22-brain-dump-hook-bank.png"],
+      "owner": "shipped A.10 D-4",
+      "status": "shipped",
+      "grade_floor": "P2"
+    },
+    {
+      "route": "/pipeline/needs-attention",
+      "label": "Fix First / Needs Attention",
+      "mockups": ["24-fix-first-needs-attention.png"],
+      "owner": "shipped A.14e E4",
+      "status": "shipped",
+      "grade_floor": "P2"
+    }
+  ]
+}

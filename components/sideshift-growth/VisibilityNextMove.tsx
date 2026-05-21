@@ -12,7 +12,7 @@ export function VisibilityNextMove({ moves }: { moves: ProfileField[] }) {
   return (
     <section
       aria-labelledby="visibility-next-move-heading"
-      className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-iris-50 via-white to-peach-50 ring-1 ring-iris-200 shadow-card px-6 md:px-8 py-6"
+      className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-iris-50 via-white to-peach-50 ring-1 ring-iris-200 shadow-card px-7 md:px-12 py-6"
     >
       <span
         aria-hidden
