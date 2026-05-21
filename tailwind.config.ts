@@ -73,6 +73,10 @@ const config: Config = {
         soft: '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(255,107,157,0.10)',
         card: '0 4px 16px -4px rgba(157,107,255,0.10)',
         glow: '0 0 32px rgba(255,107,157,0.35)',
+        // A14L L3-G additive — larger card elevation for hover-lift / modal-like surfaces.
+        'card-lg': '0 12px 32px -8px rgba(157,107,255,0.18), 0 4px 12px -4px rgba(255,107,157,0.12)',
+        // A14L L3-G additive — soft inset glow for active nav-item / focus rings.
+        'ring-soft': '0 0 0 3px rgba(255,201,223,0.55)',
       },
       backgroundImage: {
         'cloud-sunset': 'linear-gradient(120deg, #FFB6D5 0%, #FFA3C7 22%, #C8A4FF 55%, #9D6BFF 100%)',

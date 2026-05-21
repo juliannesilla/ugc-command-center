@@ -18,15 +18,21 @@ export function IdeaCard({ card }: { card: IdeaCardType }) {
       style={{
         transform: CSS.Translate.toString(transform),
         opacity: isDragging ? 0.4 : 1,
+        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
       }}
-      className="group rounded-xl bg-white ring-1 ring-cloud-100 p-3 shadow-card hover:shadow-soft transition-shadow"
+      className={cn(
+        'group rounded-xl bg-white ring-1 ring-cloud-100 p-3 shadow-card transition-all duration-200 ease-out will-change-transform',
+        'hover:shadow-soft hover:-translate-y-0.5 hover:ring-iris-200',
+        isDragging && 'shadow-soft ring-iris-300 rotate-[1.5deg] scale-[1.03]',
+        'motion-reduce:transition-none motion-reduce:hover:transform-none',
+      )}
     >
       <div className="flex items-start gap-2">
         <button
           {...attributes}
           {...listeners}
           aria-label="Drag idea"
-          className="text-ink-300 hover:text-ink-600 cursor-grab active:cursor-grabbing pt-0.5"
+          className="text-ink-300 hover:text-ink-600 cursor-grab active:cursor-grabbing pt-0.5 transition-colors duration-150 group-hover:text-ink-500"
         >
           <GripVertical className="h-3.5 w-3.5" />
         </button>

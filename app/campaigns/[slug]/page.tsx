@@ -124,7 +124,10 @@ export default async function CampaignOverviewPage({
               </li>
             ))}
             {(script?.assets ?? []).length === 0 && (
-              <li className="text-ink-400">No assets attached yet</li>
+              <li className="flex items-center gap-1.5 text-ink-400">
+                <Boxes className="h-3 w-3 shrink-0 opacity-60" aria-hidden />
+                <span>Drop the first asset to kick off production</span>
+              </li>
             )}
           </ul>
         </OverviewCard>
@@ -258,7 +261,7 @@ function OverviewCard({
   return (
     <Link
       href={href}
-      className="group glass-card flex flex-col gap-3 rounded-2xl p-6 shadow-card transition hover:-translate-y-[1px] hover:shadow-soft"
+      className="group glass-card flex flex-col gap-3 rounded-2xl p-6 shadow-card transition duration-200 ease-out hover:-translate-y-[1px] hover:shadow-soft active:scale-[0.99] will-change-transform"
     >
       <header className="flex items-center justify-between">
         <span
@@ -326,7 +329,7 @@ function QuickJump({
   return (
     <Link
       href={href}
-      className="group flex items-center justify-between rounded-2xl border border-cloud-100 bg-white/85 p-3.5 shadow-card transition hover:-translate-y-[1px] hover:border-cloud-300 hover:shadow-soft"
+      className="group flex items-center justify-between rounded-2xl border border-cloud-100 bg-white/85 p-3.5 shadow-card transition duration-200 ease-out hover:-translate-y-[1px] hover:border-cloud-300 hover:shadow-soft active:scale-[0.99] will-change-transform"
     >
       <div className="flex items-center gap-3">
         <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-cloud-100 text-cloud-700">

@@ -98,7 +98,7 @@ export default function SchedulingPage() {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              className="grid h-9 w-9 place-items-center rounded-xl bg-white/85 ring-1 ring-cloud-100 hover:bg-cloud-50 transition"
+              className="grid h-9 w-9 place-items-center rounded-xl bg-white/85 ring-1 ring-cloud-100 transition-all duration-150 ease-out hover:bg-cloud-50 hover:ring-cloud-200 hover:shadow-card active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cloud-300"
               aria-label="Previous week"
             >
               <ChevronLeft className="h-4 w-4 text-ink-700" />
@@ -111,7 +111,7 @@ export default function SchedulingPage() {
             </button>
             <button
               type="button"
-              className="grid h-9 w-9 place-items-center rounded-xl bg-white/85 ring-1 ring-cloud-100 hover:bg-cloud-50 transition"
+              className="grid h-9 w-9 place-items-center rounded-xl bg-white/85 ring-1 ring-cloud-100 transition-all duration-150 ease-out hover:bg-cloud-50 hover:ring-cloud-200 hover:shadow-card active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cloud-300"
               aria-label="Next week"
             >
               <ChevronRight className="h-4 w-4 text-ink-700" />
@@ -184,16 +184,17 @@ export default function SchedulingPage() {
                         type="button"
                         key={slotKey}
                         onClick={() => setSelectedSlot(slotKey)}
-                        className={`relative h-16 border-l border-cloud-100 text-left transition ${
+                        aria-pressed={isSelected}
+                        className={`group/slot relative h-16 border-l border-cloud-100 text-left transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cloud-300 ${
                           isSelected
-                            ? "bg-cloud-50"
+                            ? "bg-cloud-50 ring-1 ring-inset ring-cloud-200"
                             : "hover:bg-cloud-50/60"
                         }`}
                       >
                         {slotEvents.map((ev) => (
                           <span
                             key={ev.id}
-                            className={`absolute inset-1 flex flex-col gap-0.5 rounded-xl px-2 py-1.5 shadow-card ${colorMap[ev.color]}`}
+                            className={`absolute inset-1 flex flex-col gap-0.5 rounded-xl px-2 py-1.5 shadow-card transition-all duration-150 ease-out group-hover/slot:shadow-soft group-hover/slot:-translate-y-px ${colorMap[ev.color]}`}
                           >
                             <span className="flex items-center gap-1 text-[9.5px] uppercase tracking-[0.12em] opacity-90">
                               {typeIcon[ev.type]}
@@ -235,10 +236,10 @@ export default function SchedulingPage() {
                   <li key={slot}>
                     <button
                       type="button"
-                      className="group w-full flex items-center justify-between rounded-2xl bg-cloud-50/60 px-3.5 py-2.5 text-[12.5px] hover:bg-cloud-100 transition"
+                      className="group w-full flex items-center justify-between rounded-2xl bg-cloud-50/60 px-3.5 py-2.5 text-[12.5px] ring-1 ring-transparent transition-all duration-150 ease-out hover:bg-cloud-100 hover:ring-cloud-200 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cloud-300"
                     >
                       <span className="font-mono text-ink-900">{slot}</span>
-                      <Plus className="h-3.5 w-3.5 text-ink-400 group-hover:text-cloud-600" />
+                      <Plus className="h-3.5 w-3.5 text-ink-400 transition-transform duration-150 ease-out group-hover:text-cloud-600 group-hover:rotate-90" />
                     </button>
                   </li>
                 ))}

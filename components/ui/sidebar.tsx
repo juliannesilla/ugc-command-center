@@ -69,14 +69,17 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
 
   return (
     <aside className="hidden md:flex w-64 shrink-0 flex-col bg-white/85 backdrop-blur-xl border-r border-cloud-100 h-[calc(100vh-0px)] sticky top-0">
-      {/* Brand mark */}
+      {/* Brand mark — A14L L3-G polish: subtle hover scale on logo + ink shift on wordmark (microinteractions skill) */}
       <div className="px-5 pt-5 pb-4">
-        <Link href="/" className="flex items-center gap-2 group">
-          <span className="grid h-9 w-9 place-items-center rounded-2xl bg-cloud-sunset shadow-soft text-white font-display text-lg leading-none">
+        <Link
+          href="/"
+          className="flex items-center gap-2 group rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+        >
+          <span className="grid h-9 w-9 place-items-center rounded-2xl bg-cloud-sunset shadow-soft text-white font-display text-lg leading-none transition-transform duration-200 ease-out group-hover:scale-[1.04] group-active:scale-[0.98]">
             U
           </span>
           <span className="flex flex-col leading-tight">
-            <span className="font-display text-[15px] text-ink-900 tracking-tight">
+            <span className="font-display text-[15px] text-ink-900 tracking-tight transition-colors duration-200 group-hover:text-cloud-700">
               UGC <span className="text-ink-400 font-normal">|</span> Campaign HQ
             </span>
             <span className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500">
@@ -99,19 +102,24 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  aria-current={active ? 'page' : undefined}
                   className={cn(
-                    'group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition',
+                    // A14L L3-G polish: 200ms ease-out (HIG), focus-visible ring, subtle translate-x on hover (microinteractions skill).
+                    'group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
                     active
-                      ? 'bg-cloud-100 text-cloud-700 shadow-card'
-                      : 'text-ink-600 hover:bg-cloud-50 hover:text-ink-900',
+                      ? 'bg-cloud-100 text-cloud-700 shadow-card ring-1 ring-cloud-200/60'
+                      : 'text-ink-600 hover:bg-cloud-50 hover:text-ink-900 hover:translate-x-[1px]',
                   )}
                 >
                   {active && (
-                    <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-cloud-sunset" />
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-cloud-sunset shadow-[0_0_8px_rgba(255,107,157,0.45)]"
+                    />
                   )}
                   <Icon
                     className={cn(
-                      'h-4 w-4 shrink-0',
+                      'h-4 w-4 shrink-0 transition-colors duration-200 ease-out',
                       active ? 'text-cloud-600' : 'text-ink-400 group-hover:text-cloud-500',
                     )}
                   />
@@ -131,13 +139,13 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
         </ul>
       </nav>
 
-      {/* User + collapse */}
+      {/* User + collapse — A14L L3-G polish: focus rings + chevron slide on collapse hover */}
       <div className="border-t border-cloud-100 px-3 py-3 space-y-2">
         <button
           type="button"
-          className="w-full flex items-center gap-3 rounded-xl px-2 py-2 hover:bg-cloud-50 transition text-left"
+          className="group w-full flex items-center gap-3 rounded-xl px-2 py-2 hover:bg-cloud-50 transition-colors duration-200 ease-out text-left outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white"
         >
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-cloud-soft text-cloud-700 font-display font-semibold">
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-cloud-soft text-cloud-700 font-display font-semibold transition-transform duration-200 ease-out group-hover:scale-[1.04]">
             J
           </span>
           <span className="flex-1 min-w-0">
@@ -148,14 +156,15 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
               Solo Creator
             </span>
           </span>
-          <ChevronDown className="h-3.5 w-3.5 text-ink-400" />
+          <ChevronDown className="h-3.5 w-3.5 text-ink-400 transition-transform duration-200 ease-out group-hover:translate-y-[1px]" />
         </button>
         <button
           type="button"
           onClick={onCollapse}
-          className="w-full flex items-center justify-center gap-1.5 rounded-xl px-2 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-ink-500 hover:text-ink-900 hover:bg-cloud-50 transition"
+          aria-label="Collapse sidebar"
+          className="group w-full flex items-center justify-center gap-1.5 rounded-xl px-2 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-ink-500 hover:text-ink-900 hover:bg-cloud-50 transition-colors duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white"
         >
-          <ChevronLeft className="h-3 w-3" />
+          <ChevronLeft className="h-3 w-3 transition-transform duration-200 ease-out group-hover:-translate-x-0.5" />
           Collapse
         </button>
       </div>

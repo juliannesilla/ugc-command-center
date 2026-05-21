@@ -204,10 +204,10 @@ export default function PipelineDatabasePage() {
                   onClick={() => toggleFilter(f.key)}
                   aria-pressed={active}
                   className={cn(
-                    'inline-flex items-center rounded-full px-3 py-1.5 text-[11.5px] font-medium ring-1 transition',
+                    'inline-flex items-center rounded-full px-3 py-1.5 text-[11.5px] font-medium ring-1 transition-[transform,box-shadow,background-color,color] duration-200 ease-out active:scale-95',
                     active
-                      ? 'bg-cloud-sunset text-white ring-cloud-sunset shadow-card'
-                      : 'bg-cloud-soft text-ink-700 ring-cloud-100 hover:bg-cloud-50',
+                      ? 'bg-cloud-sunset text-white ring-cloud-sunset shadow-card motion-safe:hover:shadow-glow'
+                      : 'bg-cloud-soft text-ink-700 ring-cloud-100 hover:bg-cloud-50 hover:ring-cloud-200',
                   )}
                 >
                   {f.label}
@@ -230,12 +230,12 @@ export default function PipelineDatabasePage() {
             />
           </div>
 
-          <div className="flex items-center gap-2">
-            <ArrowUpDown className="h-4 w-4 text-ink-400" />
+          <div className="group flex items-center gap-2">
+            <ArrowUpDown className="h-4 w-4 text-ink-400 group-hover:text-ink-600 transition-colors duration-150" />
             <select
               value={sortKey}
               onChange={e => setSortKey(e.target.value as SortPresetKey)}
-              className="rounded-2xl bg-cloud-soft px-3 py-2 text-[13px] font-medium text-ink-700 ring-1 ring-cloud-100 focus:ring-cloud-300 focus:outline-none transition"
+              className="rounded-2xl bg-cloud-soft px-3 py-2 text-[13px] font-medium text-ink-700 ring-1 ring-cloud-100 hover:ring-cloud-200 focus:ring-cloud-300 focus:outline-none transition-[box-shadow,border-color,background-color] duration-200 ease-out cursor-pointer"
             >
               {SORT_PRESETS.map(p => (
                 <option key={p.key} value={p.key}>{p.label}</option>
@@ -247,7 +247,8 @@ export default function PipelineDatabasePage() {
             <button
               type="button"
               onClick={() => setColsOpen(o => !o)}
-              className="inline-flex items-center gap-1.5 rounded-2xl bg-cloud-soft px-3 py-2 text-[13px] font-medium text-ink-700 ring-1 ring-cloud-100 hover:bg-cloud-50 transition"
+              aria-expanded={colsOpen}
+              className="inline-flex items-center gap-1.5 rounded-2xl bg-cloud-soft px-3 py-2 text-[13px] font-medium text-ink-700 ring-1 ring-cloud-100 hover:bg-cloud-50 hover:ring-cloud-200 transition-[box-shadow,background-color] duration-200 ease-out"
             >
               <Columns3 className="h-4 w-4 text-ink-400" />
               Columns
@@ -292,7 +293,7 @@ export default function PipelineDatabasePage() {
           </p>
           <button
             type="button"
-            className="inline-flex items-center gap-1.5 rounded-full bg-cloud-sunset px-4 py-2 text-[12px] font-semibold text-white shadow-soft hover:shadow-glow transition"
+            className="inline-flex items-center gap-1.5 rounded-full bg-cloud-sunset px-4 py-2 text-[12px] font-semibold text-white shadow-soft hover:shadow-glow transition-[box-shadow,transform] duration-200 ease-out motion-safe:hover:-translate-y-px active:scale-95"
           >
             <Plus className="h-3.5 w-3.5" />
             Add Campaign
@@ -310,7 +311,7 @@ export default function PipelineDatabasePage() {
                     <th
                       key={col.key}
                       className={cn(
-                        'h-12 lg:h-14 px-4 py-3 font-medium whitespace-nowrap border-b border-cloud-100',
+                        'h-12 lg:h-14 px-4 py-3 font-medium whitespace-nowrap border-b border-cloud-100 hover:bg-cloud-50/60 transition-colors duration-150 cursor-default select-none',
                         col.align === 'right' && 'text-right',
                         col.align === 'center' && 'text-center',
                         col.key === 'brand' && 'sticky left-0 z-10 bg-cloud-soft',
@@ -325,12 +326,12 @@ export default function PipelineDatabasePage() {
               </thead>
               <tbody>
                 {pageRows.map((row) => (
-                  <tr key={row.campaign_id} className="group even:bg-cloud-50/40">
+                  <tr key={row.campaign_id} className="group even:bg-cloud-50/40 transition-colors duration-150">
                     {visibleColumns.map(col => (
                       <td
                         key={col.key}
                         className={cn(
-                          'h-12 lg:h-14 px-4 py-3 border-b border-cloud-50 align-middle group-hover:bg-cloud-50/50 transition-colors',
+                          'h-12 lg:h-14 px-4 py-3 border-b border-cloud-50 align-middle group-hover:bg-cloud-50/60 transition-colors duration-150 ease-out',
                           col.align === 'right' && 'text-right',
                           col.align === 'center' && 'text-center',
                           col.key === 'brand' && 'sticky left-0 z-[1] bg-white group-even:bg-cloud-50/40 group-hover:bg-cloud-50',

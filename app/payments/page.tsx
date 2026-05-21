@@ -376,16 +376,39 @@ export default function PaymentsPage() {
                     {filtered.map((r) => {
                       const expanded = expandedNotes.has(r.id);
                       const rowOverdue = isOverdue(r);
+                      const isPaid = r.payment_status === 'paid';
+                      const isPending = r.payment_status === 'pending' || r.payment_status === 'invoiced';
+                      // Visual rhythm: paid (emerald), pending (amber), overdue (rose) left-border accent
+                      const rowAccent = rowOverdue
+                        ? 'before:bg-rose-400'
+                        : isPaid
+                          ? 'before:bg-emerald-400'
+                          : isPending
+                            ? 'before:bg-amber-400'
+                            : 'before:bg-transparent';
                       return (
                         <>
-                          <tr key={r.id} className="group">
+                          <tr
+                            key={r.id}
+                            className={cn(
+                              'group transition-colors duration-150',
+                              rowOverdue && 'bg-rose-50/30',
+                            )}
+                          >
                             {/* Sticky brand */}
-                            <td className="sticky left-0 z-[1] bg-white group-hover:bg-cloud-50 px-4 py-3 border-b border-cloud-50 align-middle">
+                            <td
+                              className={cn(
+                                'sticky left-0 z-[1] bg-white group-hover:bg-cloud-50 px-4 py-3 border-b border-cloud-50 align-middle transition-colors duration-150',
+                                'relative before:absolute before:left-0 before:top-1.5 before:bottom-1.5 before:w-[3px] before:rounded-r-full before:transition-opacity before:duration-200',
+                                rowAccent,
+                                rowOverdue && 'bg-rose-50/40 group-hover:bg-rose-50/60',
+                              )}
+                            >
                               <div className="flex items-center gap-2 min-w-0">
                                 <span
                                   title={r.brand}
                                   className={cn(
-                                    'grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gradient-to-br text-white font-display font-semibold text-[10px] shadow-card ring-2 ring-white',
+                                    'grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gradient-to-br text-white font-display font-semibold text-[10px] shadow-card ring-2 ring-white transition-transform duration-200 ease-out group-hover:scale-105',
                                     brandGradient(r.brand),
                                   )}
                                 >
@@ -551,7 +574,7 @@ function FollowUpButton({
         type="button"
         onClick={() => setOpen((o) => !o)}
         className={cn(
-          'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.08em] ring-1 transition',
+          'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.08em] ring-1 transition-all duration-200 ease-out will-change-transform hover:scale-105 active:scale-95 motion-reduce:transform-none motion-reduce:transition-none',
           needs
             ? 'bg-cloud-sunset text-white ring-cloud-sunset hover:shadow-glow'
             : 'bg-cloud-soft text-ink-500 ring-cloud-100 hover:bg-cloud-50',

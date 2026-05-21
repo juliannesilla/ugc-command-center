@@ -55,7 +55,7 @@ export function IssueCard({ issue }: { issue: TriageIssue }) {
     <article
       className={cn(
         'group relative flex gap-3 rounded-3xl bg-white/95 backdrop-blur-sm shadow-card ring-1 ring-cloud-100/70 overflow-hidden',
-        'hover:-translate-y-0.5 hover:shadow-soft transition',
+        'motion-safe:hover:-translate-y-0.5 hover:shadow-soft hover:ring-cloud-200 transition-[transform,box-shadow,border-color] duration-200 ease-out',
       )}
     >
       {/* Severity rail */}
@@ -123,7 +123,7 @@ export function IssueCard({ issue }: { issue: TriageIssue }) {
           <button
             type="button"
             onClick={() => handleGenerateFix(c.brand, categoryMeta?.label ?? issue.category)}
-            className="inline-flex items-center gap-1.5 rounded-full bg-cloud-sunset px-3.5 py-1.5 text-[11px] font-semibold text-white shadow-soft hover:shadow-glow transition"
+            className="inline-flex items-center gap-1.5 rounded-full bg-cloud-sunset px-3.5 py-1.5 text-[11px] font-semibold text-white shadow-soft hover:shadow-glow transition-[box-shadow,transform] duration-200 ease-out motion-safe:hover:-translate-y-px active:scale-95"
           >
             <Sparkles className="h-3 w-3" />
             Generate Fix

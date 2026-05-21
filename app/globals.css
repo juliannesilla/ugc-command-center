@@ -55,6 +55,25 @@ body {
 .rise-3 { animation-delay: 0.20s; }
 .rise-4 { animation-delay: 0.30s; }
 
+/* Phase A.14l W1 · L3-F login polish — brand mark breathing pulse */
+@keyframes brandPulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50%      { opacity: 0.85; transform: scale(1.06); }
+}
+
+/* Phase A.14l W1 · L3-F login polish — error shake (microinteractions) */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-3px); }
+  40%      { transform: translateX(3px); }
+  60%      { transform: translateX(-2px); }
+  80%      { transform: translateX(2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none !important; }
+}
+
 /* Card glass */
 .glass-card {
   background: rgba(255, 255, 255, 0.72);
@@ -108,5 +127,22 @@ html[data-today-mode="on"] [data-today-only-label] {
   }
   .stat-number {
     @apply font-display text-display-md lg:text-display-lg font-medium tabular-nums leading-none text-ink-900;
+  }
+}
+
+/* ─── A.14l L3-G: Shared-chrome polish utilities (ADDITIVE) ───────────────
+   Optional helpers for nav-item states + soft focus rings. Existing
+   A.14j tokens above stay untouched. Use sparingly — Tailwind utilities
+   inline are still the default.
+*/
+@layer components {
+  .nav-item-hover {
+    @apply hover:bg-cloud-50 hover:text-ink-900 hover:translate-x-[1px] transition-all duration-200 ease-out;
+  }
+  .nav-item-active {
+    @apply bg-cloud-100 text-cloud-700 shadow-card ring-1 ring-cloud-200/60;
+  }
+  .focus-ring-soft {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white;
   }
 }

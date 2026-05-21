@@ -38,14 +38,14 @@ export function CampaignHeader({ campaign }: { campaign: CampaignMeta }) {
             {campaign.logoMark}
           </span>
           <div>
-            <div className="flex flex-wrap items-center gap-1.5">
+            <div className="flex flex-wrap items-center gap-2">
               <StatusChip tone={statusTone(campaign.status)}>{campaign.status}</StatusChip>
               <StatusChip tone="pink">{campaign.category}</StatusChip>
             </div>
-            <h1 className="mt-1 font-display text-2xl font-bold leading-tight text-ink-900">
+            <h1 className="mt-1.5 font-display text-2xl font-bold leading-tight text-ink-900">
               {campaign.brand}
             </h1>
-            <p className="text-[13px] text-ink-600">{campaign.product}</p>
+            <p className="mt-0.5 text-[13px] text-ink-600">{campaign.product}</p>
           </div>
         </div>
 
@@ -111,7 +111,8 @@ export function CampaignTabs({ slug, active }: { slug: string; active: "overview
           <Link
             key={t.id}
             href={t.href}
-            className={`flex-1 rounded-full px-4 py-2 text-center text-[12.5px] font-semibold transition ${
+            aria-current={isActive ? "page" : undefined}
+            className={`flex-1 rounded-full px-4 py-2 text-center text-[12.5px] font-semibold transition duration-200 ease-out active:scale-[0.97] ${
               isActive
                 ? "bg-cloud-sunset text-white shadow-card"
                 : "text-ink-600 hover:bg-cloud-50 hover:text-ink-900"

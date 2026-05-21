@@ -25,9 +25,21 @@ export function DeadlineStatCard({
   viewHref?: string;
 }) {
   const t = tones[tone];
+  // UX Heuristic #1 (visibility of system status): pulse the accent rail on
+  // "red" (overdue) tone so eye is drawn to highest-urgency stat. Respects
+  // prefers-reduced-motion via motion-safe variant.
+  const overduePulse = tone === 'red';
   return (
-    <div className={cn('relative rounded-2xl border border-white/60 backdrop-blur p-4 ring-1 shadow-card overflow-hidden', t.ring, t.bg)}>
-      <span className={cn('absolute top-0 left-0 h-full w-1', t.accent)} />
+    <div className={cn(
+      'group relative rounded-2xl border border-white/60 backdrop-blur p-4 ring-1 shadow-card overflow-hidden',
+      'motion-safe:hover:-translate-y-0.5 hover:shadow-soft transition-[transform,box-shadow] duration-200 ease-out',
+      t.ring, t.bg,
+    )}>
+      <span className={cn(
+        'absolute top-0 left-0 h-full w-1',
+        overduePulse && 'motion-safe:animate-pulse',
+        t.accent,
+      )} />
       <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold">
         {label}
       </p>
@@ -37,10 +49,13 @@ export function DeadlineStatCard({
       {sub && <p className="mt-1 text-[11px] text-ink-500">{sub}</p>}
       <a
         href={viewHref}
-        className={cn('mt-2 inline-flex items-center gap-1 text-[11px] font-semibold hover:opacity-80 transition', t.text)}
+        className={cn(
+          'mt-2 inline-flex items-center gap-1 text-[11px] font-semibold hover:opacity-80 transition-opacity duration-150',
+          t.text,
+        )}
       >
         View
-        <ArrowUpRight className="h-3 w-3" />
+        <ArrowUpRight className="h-3 w-3 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </a>
     </div>
   );

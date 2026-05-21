@@ -68,11 +68,17 @@ export function HookOptionsList({ hooks, toneHint, className }: HookOptionsListP
                 type="button"
                 data-hook-copy={hook}
                 aria-label={`Copy hook ${i + 1}: ${hook}`}
-                className="group w-full text-left flex items-start gap-2.5 px-3 py-2.5 rounded-xl bg-white ring-1 ring-cloud-100 hover:ring-iris-200 hover:bg-iris-50/40 transition cursor-pointer"
+                // Polish: top-design + microinteractions. Hover state stacks
+                // (a) ring color → iris, (b) bg → soft iris wash,
+                // (c) subtle 1px translate-y for "lift" affordance,
+                // (d) shadow-card on hover, (e) numbered chip rotates the bg
+                // color to deeper iris to signal interactivity. Apple HIG:
+                // focus-visible has its own ring distinct from hover.
+                className="group w-full text-left flex items-start gap-2.5 px-3 py-2.5 rounded-xl bg-white ring-1 ring-cloud-100 hover:ring-iris-200 hover:bg-iris-50/50 hover:shadow-card active:bg-iris-50/80 hover:-translate-y-px transition-all duration-200 ease-out cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cloud-50 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
               >
                 <span
                   aria-hidden="true"
-                  className="shrink-0 inline-flex items-center justify-center h-5 w-5 rounded-full bg-iris-100 text-iris-600 text-[10px] font-bold tabular-nums leading-none"
+                  className="shrink-0 inline-flex items-center justify-center h-5 w-5 rounded-full bg-iris-100 text-iris-600 group-hover:bg-iris-200 group-hover:text-iris-700 text-[10px] font-bold tabular-nums leading-none transition-colors duration-200 ease-out motion-reduce:transition-none"
                 >
                   {i + 1}
                 </span>
@@ -80,7 +86,7 @@ export function HookOptionsList({ hooks, toneHint, className }: HookOptionsListP
                   {hook}
                 </span>
                 <Copy
-                  className="h-3 w-3 text-ink-300 mt-1 shrink-0 opacity-0 group-hover:opacity-100 transition"
+                  className="h-3 w-3 text-ink-300 group-hover:text-iris-500 mt-1 shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 ease-out motion-reduce:transition-none"
                   aria-hidden="true"
                 />
               </button>

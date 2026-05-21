@@ -65,7 +65,7 @@ export function ExecutionCard({ campaign: c }: { campaign: Campaign }) {
   const value = c.total_potential_value ?? c.base_pay ?? 0;
 
   return (
-    <article className="group relative rounded-3xl bg-white/85 backdrop-blur-sm ring-1 ring-cloud-100 shadow-card hover:shadow-soft hover:ring-iris-100 transition overflow-hidden">
+    <article className="group relative rounded-3xl bg-white/85 backdrop-blur-sm ring-1 ring-cloud-100 shadow-card hover:shadow-soft hover:ring-iris-100 motion-safe:hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 ease-out overflow-hidden">
       {/* top accent stripe based on due urgency */}
       <span
         className={cn(

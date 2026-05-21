@@ -27,13 +27,14 @@ export function Header({
         <div className="flex items-center gap-4">
           {/* Mantra positioned absolute top-6 right-8 per plan §1 */}
           <MantraQuote />
+          {/* A14L L3-G polish: focus-visible ring + 200ms HIG ease + subtle hover scale on notif chip (microinteractions/HIG). */}
           <button
             type="button"
             aria-label="Notifications"
-            className="relative grid h-9 w-9 place-items-center rounded-full bg-white/85 backdrop-blur ring-1 ring-cloud-200 shadow-card hover:bg-white transition"
+            className="group relative grid h-9 w-9 place-items-center rounded-full bg-white/85 backdrop-blur ring-1 ring-cloud-200 shadow-card hover:bg-white transition-all duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-cloud-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent hover:scale-[1.04] active:scale-[0.97]"
           >
-            <Bell className="h-4 w-4 text-cloud-700" />
-            <span className="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-cloud-sunset ring-2 ring-white" />
+            <Bell className="h-4 w-4 text-cloud-700 transition-transform duration-200 ease-out group-hover:rotate-[8deg]" />
+            <span aria-hidden="true" className="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-cloud-sunset ring-2 ring-white" />
           </button>
           <div
             className="hidden sm:grid h-9 w-9 place-items-center rounded-full bg-white/85 backdrop-blur ring-1 ring-cloud-200 text-cloud-700 font-display font-semibold shadow-card"

@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Search,
   SlidersHorizontal,
@@ -23,7 +23,13 @@ import {
 } from "@/lib/mock-data/brand-responses";
 import { MessageQueue } from "@/components/brand-responses/MessageQueue";
 import { BrandResponseDetailPanel } from "@/components/brand-responses/BrandResponseDetailPanel";
+import {
+  SideShiftMessageQueue,
+  SideShiftDetailPanel,
+} from "@/components/brand-responses/SideShiftMessageQueue";
 import { ReadOnlyMirrorBadge } from "@/components/ui/read-only-mirror-badge";
+
+type SourceKey = "gmail" | "sideshift";
 
 const STAT_ICON: Record<string, React.ReactNode> = {
   "NEW MESSAGES": <Mail className="h-3.5 w-3.5" />,
@@ -51,8 +57,25 @@ function BrandResponsesInner() {
   const [search, setSearch] = useState("");
   const [compact, setCompact] = useState(false);
 
+  const router = useRouter();
   const searchParams = useSearchParams();
   const selectedId = searchParams.get("id");
+  // Source sub-tab: ?source=sideshift switches to the SideShift inbox.
+  // Default (no param, or any other value) = Gmail, preserving the existing
+  // /brand-responses?id=X deep-link behavior unchanged.
+  const source: SourceKey =
+    searchParams.get("source") === "sideshift" ? "sideshift" : "gmail";
+
+  const setSource = (next: SourceKey) => {
+    // Switching source clears any selected id — the id namespaces differ
+    // between Gmail conv IDs and SideShift message IDs, and keeping one
+    // selected while flipping context confuses the detail pane.
+    if (next === "sideshift") {
+      router.push(`/brand-responses?source=sideshift`, { scroll: false });
+    } else {
+      router.push(`/brand-responses`, { scroll: false });
+    }
+  };
 
   return (
     <>
@@ -125,7 +148,47 @@ function BrandResponsesInner() {
 
       {/* Body */}
       <section className="-mt-6 px-7 md:px-12 pb-16">
-        {/* Tabs + search */}
+        {/* Source sub-tab row: Gmail | SideShift */}
+        <div
+          className="rise rise-3 mb-3"
+          role="tablist"
+          aria-label="Inbox source"
+        >
+          <div className="inline-flex items-center gap-1 rounded-2xl bg-white/85 backdrop-blur p-1 shadow-card ring-1 ring-cloud-100">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={source === "gmail"}
+              onClick={() => setSource("gmail")}
+              className={`flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.14em] transition ${
+                source === "gmail"
+                  ? "bg-cloud-sunset text-white shadow-card"
+                  : "text-ink-600 hover:text-ink-900 hover:bg-cloud-50"
+              }`}
+            >
+              <Mail className="h-3.5 w-3.5" />
+              Gmail
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={source === "sideshift"}
+              onClick={() => setSource("sideshift")}
+              className={`flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.14em] transition ${
+                source === "sideshift"
+                  ? "bg-cloud-sunset text-white shadow-card"
+                  : "text-ink-600 hover:text-ink-900 hover:bg-cloud-50"
+              }`}
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              SideShift
+            </button>
+          </div>
+        </div>
+
+        {/* Tabs + search (Gmail only — SideShift has its own status semantics
+            on each row, no global filter tabs needed in Wave 1) */}
+        {source === "gmail" && (
         <div className="rise rise-3 mb-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <nav
             role="tablist"
@@ -196,19 +259,58 @@ function BrandResponsesInner() {
             </div>
           </div>
         </div>
+        )}
 
-        {/* Split pane: queue LEFT (60%) + detail RIGHT (40%) */}
+        {/* SideShift controls row — slimmer than Gmail's (no status tabs) */}
+        {source === "sideshift" && (
+          <div className="rise rise-3 mb-4 flex flex-wrap items-center justify-end gap-2">
+            <button
+              type="button"
+              onClick={() => setCompact((v) => !v)}
+              aria-pressed={compact}
+              title={compact ? "Show detail pane" : "Hide detail pane"}
+              className="flex items-center gap-1.5 rounded-2xl bg-white/85 backdrop-blur px-3.5 py-2 text-[11.5px] font-semibold uppercase tracking-[0.14em] text-ink-700 ring-1 ring-cloud-100 hover:bg-cloud-50 transition"
+            >
+              {compact ? (
+                <PanelRightOpen className="h-3.5 w-3.5" />
+              ) : (
+                <PanelRightClose className="h-3.5 w-3.5" />
+              )}
+              {compact ? "Expand" : "Compact"}
+            </button>
+            <div className="relative">
+              <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink-400" />
+              <input
+                type="search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search brand, campaign, message…"
+                className="w-[280px] rounded-2xl bg-white/85 backdrop-blur pl-9 pr-3 py-2 text-[12.5px] text-ink-900 placeholder:text-ink-400 ring-1 ring-cloud-100 focus:outline-none focus:ring-2 focus:ring-cloud-300"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Split pane: queue LEFT (60%) + detail RIGHT (40%) — branches on source */}
         <div
           className={`rise rise-4 grid gap-5 ${
             compact ? "grid-cols-1" : "grid-cols-1 xl:grid-cols-[3fr_2fr]"
           }`}
         >
           <div className="min-w-0">
-            <MessageQueue tab={tab} search={search} selectedId={selectedId} />
+            {source === "gmail" ? (
+              <MessageQueue tab={tab} search={search} selectedId={selectedId} />
+            ) : (
+              <SideShiftMessageQueue search={search} selectedId={selectedId} />
+            )}
           </div>
           {!compact && (
             <div className="min-w-0 xl:sticky xl:top-6 xl:max-h-[calc(100vh-3rem)] xl:overflow-y-auto">
-              <BrandResponseDetailPanel id={selectedId} variant="panel" />
+              {source === "gmail" ? (
+                <BrandResponseDetailPanel id={selectedId} variant="panel" />
+              ) : (
+                <SideShiftDetailPanel id={selectedId} />
+              )}
             </div>
           )}
         </div>

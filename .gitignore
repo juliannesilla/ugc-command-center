@@ -8,3 +8,10 @@ out/
 .idea/
 *.tsbuildinfo
 .eslintcache
+
+# Phase A.14l Wave 3: artifacts that shouldn't be tracked
+scripts/sideshift-output/*.jsonl
+scripts/sideshift-output/*.log
+scripts/cron-output/*.jsonl
+scripts/cron-output/*.log
+playwright-report/

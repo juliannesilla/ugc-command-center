@@ -140,8 +140,14 @@ export function QAMatrix({ campaigns }: { campaigns: Campaign[] }) {
                 ? Math.round((passCount / activeCount) * 100)
                 : 0;
               return (
-                <tr key={campaign.campaign_id} className="hover:bg-iris-50/30">
-                  <td className="sticky left-0 z-10 bg-white px-4 py-3 align-top">
+                <tr
+                  key={campaign.campaign_id}
+                  // Polish: row hover with deeper iris wash. Sticky left
+                  // column also inherits the hover bg so it doesn't visually
+                  // detach from the row. Transition only on color.
+                  className="group/qa-row transition-colors duration-200 ease-out hover:bg-iris-50/50 motion-reduce:transition-none"
+                >
+                  <td className="sticky left-0 z-10 bg-white group-hover/qa-row:bg-iris-50/80 px-4 py-3 align-top transition-colors duration-200 ease-out motion-reduce:transition-none">
                     <div className="font-semibold text-ink-900">{campaign.brand}</div>
                     <div className="text-[10px] text-ink-500 mt-0.5 truncate max-w-[160px]">
                       {campaign.product}
@@ -154,10 +160,23 @@ export function QAMatrix({ campaigns }: { campaigns: Campaign[] }) {
                     const status = qa[c.key];
                     const tone = STATUS_TONE[status];
                     const Icon = tone.icon;
+                    // Choreograph the pass/fail color reveal. On row hover,
+                    // pass cells subtly bloom (ring tightens), fail cells
+                    // pulse a brighter rose, pending cells warm to amber.
+                    // emil-design-eng: transition only ring/shadow/scale —
+                    // never width/height. microinteractions: 200ms ease-out.
+                    const hoverBloom =
+                      status === "pass"
+                        ? "group-hover/qa-row:ring-emerald-300 group-hover/qa-row:shadow-[0_0_0_3px_rgba(16,185,129,0.10)]"
+                        : status === "fail"
+                          ? "group-hover/qa-row:ring-rose-300 group-hover/qa-row:shadow-[0_0_0_3px_rgba(244,63,94,0.12)]"
+                          : status === "pending"
+                            ? "group-hover/qa-row:ring-amber-300 group-hover/qa-row:shadow-[0_0_0_3px_rgba(245,158,11,0.10)]"
+                            : "group-hover/qa-row:ring-cloud-300";
                     return (
                       <td key={c.key} className="px-2 py-3 align-top text-center">
                         <span
-                          className={`inline-flex items-center justify-center w-8 h-8 rounded-full ring-1 ${tone.bg}`}
+                          className={`inline-flex items-center justify-center w-8 h-8 rounded-full ring-1 transition-[box-shadow,--tw-ring-color] duration-200 ease-out motion-reduce:transition-none ${tone.bg} ${hoverBloom}`}
                           title={`${c.label}: ${status}`}
                         >
                           <Icon className={`h-4 w-4 ${tone.text}`} />
@@ -167,7 +186,7 @@ export function QAMatrix({ campaigns }: { campaigns: Campaign[] }) {
                   })}
                   <td className="px-3 py-3 text-center align-top">
                     <span
-                      className={`font-display text-base font-semibold ${
+                      className={`font-display text-base font-semibold tabular-nums ${
                         passRate >= 80
                           ? "text-emerald-700"
                           : passRate >= 50

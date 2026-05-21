@@ -1,8 +1,13 @@
 'use client';
 
+// Phase A.14l Wave 1 · A14L-L3-F /login polish
+// Additive: password reveal toggle, brand-mark subtle pulse, input focus glow.
+// HR-21 CITE = INVOKE: refactoring-ui, microinteractions, ios-hig-design,
+// top-design, frontend-design, superpowers:verification-before-completion.
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Lock, ArrowRight, Cloud } from 'lucide-react';
+import { Lock, ArrowRight, Cloud, Eye, EyeOff } from 'lucide-react';
 
 // ⚠️ STATIC-EXPORT NOTE: GitHub Pages cannot run /api/auth/login.
 // Client-side check uses NEXT_PUBLIC_UGC_PASSWORD_HASH (sha256 of plaintext).
@@ -24,6 +29,8 @@ export default function LoginPage() {
   const [pw, setPw] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [showPw, setShowPw] = useState(false);
+  const [focused, setFocused] = useState(false);
 
   // Auto-redirect if already authenticated
   useEffect(() => {
@@ -80,10 +87,14 @@ export default function LoginPage() {
 
       <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
         <div className="w-full max-w-md rise">
-          {/* Brand mark */}
+          {/* Brand mark — subtle breathing pulse on the glow ring */}
           <div className="mb-6 flex flex-col items-center text-center">
-            <div className="grid h-14 w-14 place-items-center rounded-3xl bg-white/30 backdrop-blur-md ring-1 ring-white/40 shadow-glow">
-              <Cloud className="h-7 w-7 text-white drop-shadow" />
+            <div className="group relative grid h-14 w-14 place-items-center rounded-3xl bg-white/30 backdrop-blur-md ring-1 ring-white/40 shadow-glow transition-transform duration-700 ease-out hover:scale-105">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/30 animate-[brandPulse_3.6s_ease-in-out_infinite]"
+              />
+              <Cloud className="h-7 w-7 text-white drop-shadow transition-transform duration-500 group-hover:rotate-[-4deg]" />
             </div>
             <h1 className="mt-4 font-display text-[28px] leading-tight text-white drop-shadow-sm tracking-tight">
               UGC <span className="text-white/60 font-normal">|</span><br />
@@ -105,30 +116,59 @@ export default function LoginPage() {
             >
               Password
             </label>
-            <div className="relative">
-              <Lock className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-400" />
+            <div
+              className={`relative rounded-2xl transition-shadow duration-300 ${
+                focused ? 'shadow-[0_0_0_4px_rgba(212,184,255,0.25)]' : ''
+              }`}
+            >
+              <Lock
+                className={`pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 transition-colors duration-200 ${
+                  focused ? 'text-cloud-600' : 'text-ink-400'
+                }`}
+              />
               <input
                 id="pw"
-                type="password"
+                type={showPw ? 'text' : 'password'}
                 value={pw}
                 onChange={e => setPw(e.target.value)}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
                 autoFocus
                 placeholder="Enter password"
-                className="w-full rounded-2xl border border-cloud-200 bg-white/85 pl-10 pr-4 py-3 text-[15px] text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-cloud-300 focus:border-cloud-300 transition"
+                aria-describedby={error ? 'pw-error' : undefined}
+                className="w-full rounded-2xl border border-cloud-200 bg-white/85 pl-10 pr-11 py-3 text-[15px] text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-cloud-300 focus:border-cloud-300 transition-all duration-200"
               />
+              <button
+                type="button"
+                onClick={() => setShowPw(v => !v)}
+                aria-label={showPw ? 'Hide password' : 'Show password'}
+                aria-pressed={showPw}
+                tabIndex={pw.length > 0 ? 0 : -1}
+                className={`absolute right-2 top-1/2 -translate-y-1/2 grid h-8 w-8 place-items-center rounded-xl text-ink-400 hover:text-ink-700 hover:bg-cloud-50 active:scale-95 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-cloud-300 ${
+                  pw.length === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                }`}
+              >
+                {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
             </div>
 
             {error && (
-              <p className="mt-3 text-[12px] text-rose-600 font-medium">{error}</p>
+              <p
+                id="pw-error"
+                role="alert"
+                className="mt-3 text-[12px] text-rose-600 font-medium animate-[shake_0.4s_ease-in-out]"
+              >
+                {error}
+              </p>
             )}
 
             <button
               type="submit"
               disabled={submitting || !pw}
-              className="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-cloud-sunset px-4 py-3 text-[14px] font-semibold text-white shadow-soft hover:shadow-glow transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group mt-5 w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-cloud-sunset px-4 py-3 text-[14px] font-semibold text-white shadow-soft hover:shadow-glow active:scale-[0.99] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100"
             >
               {submitting ? 'Unlocking…' : 'Enter HQ'}
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-disabled:translate-x-0" />
             </button>
 
             <p className="mt-4 text-center text-[11px] text-ink-500 leading-relaxed">

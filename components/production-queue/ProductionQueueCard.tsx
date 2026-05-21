@@ -46,11 +46,11 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
       aria-label={`Open ${campaign.brand} production view`}
       className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-300 rounded-3xl"
     >
-    <article className="group relative rounded-3xl bg-white/85 backdrop-blur-sm ring-1 ring-cloud-100/70 shadow-card hover:shadow-soft hover:ring-iris-200 transition overflow-hidden cursor-grab active:cursor-grabbing">
-      {/* drag-handle affordance — DnD-ready visual cue */}
+    <article className="group relative rounded-3xl bg-white/85 backdrop-blur-sm ring-1 ring-cloud-100/70 shadow-card hover:shadow-soft hover:ring-iris-200 motion-safe:hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 ease-out overflow-hidden cursor-grab active:cursor-grabbing active:scale-[0.99]">
+      {/* drag-handle affordance — DnD-ready visual cue (microinteractions) */}
       <span
         aria-hidden="true"
-        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-ink-300"
+        className="absolute top-2 right-2 opacity-0 group-hover:opacity-80 text-ink-400 group-hover:text-iris-500 transition-[opacity,color] duration-200 ease-out"
       >
         <GripVertical className="h-3 w-3" />
       </span>

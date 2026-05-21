@@ -39,10 +39,11 @@ function Column({
     <div
       ref={setNodeRef}
       className={cn(
-        'flex flex-col gap-2 rounded-2xl p-3 ring-1 transition-colors min-h-[420px]',
+        'flex flex-col gap-2 rounded-2xl p-3 ring-1 transition-all duration-200 ease-out min-h-[420px]',
         isOver
-          ? 'bg-iris-50/70 ring-iris-200'
+          ? 'bg-iris-50/80 ring-iris-300 shadow-soft scale-[1.005]'
           : 'bg-white/50 ring-cloud-100',
+        'motion-reduce:transition-none motion-reduce:scale-100',
       )}
     >
       <div className="flex items-center justify-between px-1">

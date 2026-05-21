@@ -43,10 +43,10 @@ export function YourNextMove() {
     : 0;
 
   return (
-    <section className="rise rise-2 relative overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-iris-100">
-      <div className="absolute inset-0 bg-iris-soft opacity-80" aria-hidden />
+    <section className="group/next rise rise-2 relative overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-iris-100 transition duration-300 ease-out hover:ring-peach-200 hover:shadow-glow">
+      <div className="absolute inset-0 bg-iris-soft opacity-80 transition-opacity duration-300 group-hover/next:opacity-90" aria-hidden />
       <div
-        className="absolute -top-16 -right-16 h-64 w-64 rounded-full bg-cloud-sunset opacity-25 blur-3xl"
+        className="absolute -top-16 -right-16 h-64 w-64 rounded-full bg-cloud-sunset opacity-25 blur-3xl transition-opacity duration-500 ease-out group-hover/next:opacity-40"
         aria-hidden
       />
       <div className="relative p-7 md:p-9 flex flex-col md:flex-row md:items-center gap-6">
@@ -66,15 +66,15 @@ export function YourNextMove() {
           <div className="mt-5 flex flex-wrap gap-3">
             <button
               type="button"
-              className="inline-flex items-center gap-2 rounded-full bg-cloud-sunset px-5 py-2.5 text-sm font-semibold text-white shadow-soft hover:shadow-glow transition"
+              className="group/cta inline-flex items-center gap-2 rounded-full bg-cloud-sunset px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition duration-200 ease-out hover:shadow-glow active:scale-[0.97]"
             >
               Open {top.brand}{" "}
               {top.sow_link ? "SOW" : top.script_link ? "script" : "brief"}
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 ease-out group-hover/cta:translate-x-0.5" />
             </button>
             <button
               type="button"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink-700 ring-1 ring-cloud-200 hover:ring-cloud-300 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink-700 ring-1 ring-cloud-200 transition duration-200 ease-out hover:ring-cloud-300 hover:bg-cloud-50/60 active:scale-[0.97]"
             >
               Open script draft
             </button>

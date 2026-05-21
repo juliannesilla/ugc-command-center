@@ -12,7 +12,7 @@
 // HR-2 PRESERVE INTENT: the legacy `PipelineCard` (PipelineCardType prop) is
 // untouched; this is a parallel component that consumes `Campaign`.
 
-import { AlertTriangle, Calendar, FileText, Info } from 'lucide-react';
+import { AlertTriangle, Calendar, FileText, GripVertical, Info } from 'lucide-react';
 import { cn, formatMoney } from '@/lib/utils';
 import { StatusChip, type ChipTone } from '@/components/ui/status-chip';
 import { getBlockers, getMissingInfo } from '@/lib/scoring';
@@ -92,9 +92,16 @@ export function PipelineCardCampaign({ card }: { card: Campaign }) {
 
   return (
     <article
-      className="group relative rounded-2xl bg-white p-3 shadow-card ring-1 ring-cloud-100 hover:ring-cloud-300 hover:shadow-soft hover:-translate-y-0.5 transition cursor-grab"
+      className="group relative rounded-2xl bg-white p-3 shadow-card ring-1 ring-cloud-100 hover:ring-cloud-300 hover:shadow-soft motion-safe:hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 ease-out cursor-grab active:cursor-grabbing active:scale-[0.99]"
       title={hoverDetail || undefined}
     >
+      {/* Drag handle affordance — surfaces on hover for DnD discoverability (microinteractions / Apple HIG) */}
+      <span
+        aria-hidden="true"
+        className="absolute top-1.5 right-1.5 text-ink-300 opacity-0 group-hover:opacity-70 transition-opacity duration-150"
+      >
+        <GripVertical className="h-3 w-3" />
+      </span>
       {/* TOP: brand initials + brand/product + priority dot + blocked/missing indicators */}
       <div className="flex items-start gap-2.5">
         <div

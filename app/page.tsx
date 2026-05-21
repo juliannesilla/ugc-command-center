@@ -107,7 +107,7 @@ export default function OverviewPage() {
             return (
               <div
                 key={t.label}
-                className="group rounded-3xl bg-white p-5 lg:p-6 shadow-card ring-1 ring-cloud-100/70 hover:-translate-y-0.5 hover:ring-cloud-300 transition"
+                className="group rounded-3xl bg-white p-5 lg:p-6 shadow-card ring-1 ring-cloud-100/70 hover:-translate-y-0.5 hover:shadow-soft hover:ring-cloud-300 transition duration-200 ease-out will-change-transform"
               >
                 <div className="flex items-start justify-between">
                   <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-600 font-medium leading-tight">
@@ -115,7 +115,7 @@ export default function OverviewPage() {
                   </p>
                   <span
                     className={cn(
-                      "grid h-8 w-8 place-items-center rounded-xl ring-1",
+                      "grid h-8 w-8 place-items-center rounded-xl ring-1 transition duration-200 ease-out group-hover:scale-105 group-hover:ring-2",
                       accentBg[t.accent] ?? accentBg.iris,
                     )}
                   >

@@ -85,7 +85,7 @@ export default function PipelineBoardPage() {
               </p>
               <button
                 type="button"
-                className="inline-flex items-center gap-1.5 rounded-full bg-cloud-sunset px-4 py-2 text-[12px] font-semibold text-white shadow-soft hover:shadow-glow transition"
+                className="inline-flex items-center gap-1.5 rounded-full bg-cloud-sunset px-4 py-2 text-[12px] font-semibold text-white shadow-soft hover:shadow-glow transition-[box-shadow,transform] duration-200 ease-out motion-safe:hover:-translate-y-px active:scale-95"
               >
                 <Plus className="h-3.5 w-3.5" />
                 Add new opportunity
@@ -111,7 +111,7 @@ export default function PipelineBoardPage() {
               return (
                 <section
                   key={stageDef.stage}
-                  className="w-72 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 flex flex-col max-h-[78vh]"
+                  className="group/col w-72 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 hover:ring-cloud-200 hover:bg-white/85 transition-[box-shadow,background-color,border-color] duration-200 ease-out flex flex-col max-h-[78vh]"
                 >
                   {/* column header */}
                   <header className="relative px-3.5 pt-4 pb-3 border-b border-cloud-50">

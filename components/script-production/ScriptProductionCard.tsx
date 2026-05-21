@@ -266,7 +266,12 @@ export function ScriptProductionCard({
             scriptText ||
             "Script not drafted yet — pull from script.json once SOW is locked."
           }
-          className="w-full min-h-[120px] resize-y rounded-xl bg-cloud-50/70 ring-1 ring-cloud-100 p-3 text-[12px] leading-relaxed font-mono text-ink-800 focus:outline-none focus:ring-2 focus:ring-iris-300"
+          // Polish: refactoring-ui — focus state stacks (a) outline removal,
+          // (b) 2-stop ring (iris-300 base + iris-100 halo) for soft glow,
+          // (c) hover lift via slightly brighter ring, (d) caret-iris-500 so
+          // the cursor matches accent. emil-design-eng: transition only on
+          // box-shadow + ring, never on layout properties.
+          className="w-full min-h-[120px] resize-y rounded-xl bg-cloud-50/70 ring-1 ring-cloud-100 p-3 text-[12px] leading-relaxed font-mono text-ink-800 caret-iris-500 transition-[box-shadow,background-color] duration-200 ease-out hover:bg-cloud-50 hover:ring-cloud-200 focus:outline-none focus:bg-white focus:ring-2 focus:ring-iris-300 focus:shadow-[0_0_0_4px_rgba(157,107,255,0.10)] motion-reduce:transition-none"
         />
       </section>
 

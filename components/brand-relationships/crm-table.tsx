@@ -84,7 +84,7 @@ function BrandFitBar({ score }: { score?: number }) {
       <div className="relative h-1.5 w-16 overflow-hidden rounded-full bg-cloud-100">
         <div
           className={cn(
-            'absolute inset-y-0 left-0 rounded-full',
+            'absolute inset-y-0 left-0 rounded-full transition-[width] duration-500 ease-out',
             score >= 80 ? 'bg-emerald-500'
               : score >= 60 ? 'bg-amber-500'
               : 'bg-rose-400',
@@ -220,10 +220,10 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
               type="button"
               onClick={() => setActiveFilter(f.key)}
               className={cn(
-                'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11.5px] font-medium ring-1 transition',
+                'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11.5px] font-medium ring-1 transition-all duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1',
                 active
                   ? 'bg-cloud-100 text-cloud-700 ring-cloud-200 shadow-card'
-                  : 'bg-white text-ink-600 ring-cloud-100 hover:bg-cloud-50 hover:text-ink-900',
+                  : 'bg-white text-ink-600 ring-cloud-100 hover:bg-cloud-50 hover:text-ink-900 hover:ring-cloud-200 hover:-translate-y-px',
               )}
             >
               {f.label}
@@ -314,7 +314,7 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
                 return (
                   <tr
                     key={c.campaign_id}
-                    className="align-top even:bg-cloud-50/40 hover:bg-cloud-50/50 transition"
+                    className="group/row align-top even:bg-cloud-50/40 hover:bg-cloud-50/70 transition-colors duration-150"
                   >
                     {/* 1. Brand */}
                     <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">
@@ -367,9 +367,11 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
                         <span className="text-ink-400 text-[11px]">—</span>
                       )}
                     </td>
-                    {/* 9. Relationship status (stage pill) */}
+                    {/* 9. Relationship status (stage pill) — hover lifts chip (hooked-ux: trigger→action loop) */}
                     <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">
-                      <StatusChip tone={STAGE_TONE[stage]}>{stage}</StatusChip>
+                      <span className="inline-block transition-transform duration-150 ease-out group-hover/row:-translate-y-px group-hover/row:[filter:drop-shadow(0_1px_2px_rgba(15,23,42,0.08))]">
+                        <StatusChip tone={STAGE_TONE[stage]}>{stage}</StatusChip>
+                      </span>
                     </td>
                     {/* 10. Repeat potential */}
                     <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">

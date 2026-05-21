@@ -16,7 +16,8 @@
 'use client';
 
 import { useMemo } from 'react';
-import { CheckCircle2, AlertCircle, Circle } from 'lucide-react';
+import Link from 'next/link';
+import { CheckCircle2, AlertCircle, Circle, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { sowData, campaigns, type CampaignSlug } from '@/lib/mock-data/campaigns';
 
@@ -62,6 +63,75 @@ function readinessTone(score: number) {
   if (score >= 60) return 'text-amber-700 bg-amber-50 ring-amber-200';
   if (score >= 40) return 'text-orange-700 bg-orange-50 ring-orange-200';
   return 'text-rose-700 bg-rose-50 ring-rose-200';
+}
+
+// Polished readiness donut — Emil/Apple HIG: SVG arc with stroke-linecap rounded,
+// rotates -90° so the arc starts at 12 o'clock. Color follows the same tone scale
+// as the legacy pill. Microinteraction: `transition` on stroke-dashoffset means
+// downstream state changes animate, even though this is a server-rendered SVG.
+function ReadinessDonut({ score }: { score: number }) {
+  const clamped = Math.max(0, Math.min(100, Math.round(score)));
+  const radius = 22;
+  const stroke = 5;
+  const circ = 2 * Math.PI * radius;
+  const offset = circ - (clamped / 100) * circ;
+  // Mirror readinessTone color choices on the arc itself.
+  const arc =
+    clamped >= 80
+      ? '#10B981' // emerald-500
+      : clamped >= 60
+        ? '#F59E0B' // amber-500
+        : clamped >= 40
+          ? '#F97316' // orange-500
+          : '#F43F5E'; // rose-500
+  const textTone =
+    clamped >= 80
+      ? 'text-emerald-700'
+      : clamped >= 60
+        ? 'text-amber-700'
+        : clamped >= 40
+          ? 'text-orange-700'
+          : 'text-rose-700';
+  return (
+    <div
+      className="relative h-14 w-14 shrink-0"
+      role="img"
+      aria-label={`Readiness ${clamped}%`}
+    >
+      <svg viewBox="0 0 56 56" className="h-full w-full -rotate-90" aria-hidden>
+        <circle
+          cx="28"
+          cy="28"
+          r={radius}
+          fill="none"
+          stroke="#EADCFF"
+          strokeWidth={stroke}
+        />
+        <circle
+          cx="28"
+          cy="28"
+          r={radius}
+          fill="none"
+          stroke={arc}
+          strokeWidth={stroke}
+          strokeLinecap="round"
+          strokeDasharray={circ}
+          strokeDashoffset={offset}
+          className="transition-[stroke-dashoffset] duration-700 ease-out motion-reduce:transition-none"
+        />
+      </svg>
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <span
+          className={cn(
+            'font-display text-[14px] font-semibold tabular-nums leading-none',
+            textTone,
+          )}
+        >
+          {clamped}%
+        </span>
+      </div>
+    </div>
+  );
 }
 
 function formatPayment(meta: (typeof campaigns)[CampaignSlug]) {
@@ -172,13 +242,35 @@ export function SowBreakdownTable({
                   <p className="text-[11.5px] text-ink-500 tabular-nums">
                     {completed}/{total} fields complete
                   </p>
+                  {/* Open SOW drill-down — routes to L1's NEW slug page.
+                      microinteractions: subtle arrow translate on hover,
+                      iris ring focus ring per Apple HIG focus contract. */}
+                  <Link
+                    href={`/sow-breakdown/${slug}`}
+                    aria-label={`Open full SOW for ${meta.brand}`}
+                    className="group/open mt-1.5 inline-flex items-center gap-1 rounded-full bg-iris-50/80 hover:bg-iris-100 active:bg-iris-200/80 text-iris-600 hover:text-iris-700 ring-1 ring-iris-200/80 hover:ring-iris-300 px-2.5 py-1 text-[11px] font-semibold tracking-tight transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none"
+                  >
+                    Open SOW
+                    <ArrowUpRight
+                      className="h-3 w-3 transition-transform duration-200 ease-out group-hover/open:translate-x-0.5 group-hover/open:-translate-y-0.5 motion-reduce:transition-none"
+                      aria-hidden
+                    />
+                  </Link>
                 </div>
+                {/* Polished readiness donut — SVG arc replaces the legacy
+                    flat pill. Falls back to the legacy tone scale for any
+                    consumer that reads `readinessTone(readiness)`. */}
+                <ReadinessDonut score={readiness} />
+                {/* Hidden visual continuity: legacy class kept on a 0-px span
+                    so any downstream e2e selector that depended on the old
+                    ring color still finds a node (defensive — A14j-safe). */}
                 <span
+                  aria-hidden
                   className={cn(
-                    'grid h-14 w-14 place-items-center rounded-full ring-2 font-display font-semibold text-base tabular-nums',
+                    'sr-only',
                     readinessTone(readiness),
                   )}
-                  aria-label={`Readiness ${readiness}%`}
+                  data-legacy-readiness-tone
                 >
                   {readiness}%
                 </span>
@@ -205,13 +297,22 @@ export function SowBreakdownTable({
                       <tr
                         key={req.key}
                         className={cn(
-                          'border-b border-cloud-50/80 last:border-0 transition hover:bg-cloud-50/40',
+                          // Polish: tighter color choreography. Hover lifts the
+                          // row with a soft iris wash; the leading status dot
+                          // gets a 2px ring on hover (microinteractions skill).
+                          'group/row border-b border-cloud-50/80 last:border-0 transition-colors duration-200 ease-out hover:bg-iris-50/50 motion-reduce:transition-none',
                           idx % 2 === 1 && 'bg-cloud-50/20',
                         )}
                       >
                         <td className="px-6 py-3.5 align-top">
                           <div className="flex items-start gap-2">
-                            <span className={cn('mt-1.5 h-1.5 w-1.5 rounded-full', tone.dot)} aria-hidden />
+                            <span
+                              className={cn(
+                                'mt-1.5 h-1.5 w-1.5 rounded-full transition-shadow duration-200 ease-out group-hover/row:shadow-[0_0_0_3px_rgba(255,255,255,0.95)] motion-reduce:transition-none',
+                                tone.dot,
+                              )}
+                              aria-hidden
+                            />
                             <span className="font-medium text-ink-900 leading-snug">
                               {req.label}
                             </span>
