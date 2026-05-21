@@ -96,9 +96,20 @@ export function CommentPopover({ clientX, clientY, target, onClose }: CommentPop
 
     const optimistic = addOptimistic(draft);
 
+    // Phase A.14k: GH Pages static export has no /api/comments Edge fn.
+    // localStorage-only mode → skip POST, keep optimistic row, close popover.
+    // When Vercel migration completes (J23/J24), NEXT_PUBLIC_DEPLOY_TARGET
+    // flips to 'vercel' and POST resumes.
+    const deployTarget = process.env.NEXT_PUBLIC_DEPLOY_TARGET ?? 'gh-pages';
+    if (deployTarget === 'gh-pages') {
+      // localStorage-only mode — show ephemeral success in console for debug
+      // and close. Comment stays in optimistic state visible in /inbox.
+      onClose();
+      setSubmitting(false);
+      return;
+    }
+
     try {
-      // TODO(C2): the /api/comments POST contract belongs to C2. If route
-      // is missing in this build the catch path keeps the optimistic row.
       const res = await fetch('/api/comments', {
         method: 'POST',
         headers: {
@@ -139,7 +150,7 @@ export function CommentPopover({ clientX, clientY, target, onClose }: CommentPop
       >
         <div className="flex items-center justify-between">
           <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-medium">
-            New comment · {pathname}
+            Leave feedback · {pathname}
           </span>
           <span className="text-[10px] text-ink-400 tabular-nums">
             {x_pct.toFixed(0)}%, {y_pct.toFixed(0)}%
