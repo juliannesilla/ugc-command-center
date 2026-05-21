@@ -76,7 +76,7 @@ export default function SideShiftGrowthPage() {
         pageTitle="SideShift Growth"
       />
 
-      <main className="flex-1 px-6 md:px-10 py-6 space-y-6">
+      <main className="flex-1 px-7 md:px-12 py-6 space-y-6">
         {/* Breadcrumb */}
         <div className="flex items-center gap-3 text-[12px] text-ink-500">
           <Link

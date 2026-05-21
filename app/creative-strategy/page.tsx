@@ -40,7 +40,7 @@ export default function CreativeStrategyPage() {
         pageTitle="Positioning · concept · hooks · brand fit"
       />
 
-      <section className="px-6 md:px-10 -mt-6 pb-16 max-w-7xl mx-auto">
+      <section className="px-7 md:px-12 -mt-8 pb-20 max-w-7xl mx-auto">
         {sorted.length === 0 ? (
           <div className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-10 text-center">
             <Lightbulb className="h-10 w-10 text-iris-300 mx-auto mb-3" />

@@ -88,7 +88,7 @@ export default function ProductionQueuePage() {
         pageTitle="Production queue"
       />
 
-      <main className="px-6 md:px-10 py-6 space-y-6 flex flex-col flex-1 min-h-0">
+      <main className="px-7 md:px-12 py-6 space-y-6 flex flex-col flex-1 min-h-0">
         {/* Filter + sort + chips */}
         <FilterBar
           totalCount={allDeliverables.length}

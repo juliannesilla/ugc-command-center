@@ -74,7 +74,7 @@ export default function PipelineBoardPage() {
       <div className="flex-1 flex flex-col lg:flex-row gap-0 min-h-0">
         {/* ============ KANBAN COLUMNS ============ */}
         <div className="flex-1 min-w-0 overflow-x-auto pb-6">
-          <div className="px-6 md:px-10 pt-2 pb-2 flex items-center justify-between gap-3">
+          <div className="px-7 md:px-12 pt-2 pb-2 flex items-center justify-between gap-3">
             <p className="text-[12px] text-ink-500">
               <span className="font-display text-lg text-ink-900 mr-2">{BOARD_STAGES.length}</span>
               stages · status ≠ Archived · drag &amp; drop ready
@@ -93,7 +93,7 @@ export default function PipelineBoardPage() {
             </div>
           </div>
 
-          <div className="px-6 md:px-10 flex gap-4 items-start min-w-max">
+          <div className="px-7 md:px-12 flex gap-4 items-start min-w-max">
             {BOARD_STAGES.map(stageDef => {
               const cards = sortCampaignsForColumn(
                 visibleCampaigns.filter(c => c.current_stage === stageDef.stage),

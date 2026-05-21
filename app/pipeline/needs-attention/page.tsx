@@ -60,7 +60,7 @@ export default function NeedsAttentionPage() {
     <>
       <Header pageEyebrow="Campaign Pipeline" pageTitle="Needs Attention" />
 
-      <main className="flex-1 px-6 md:px-10 py-6 space-y-6">
+      <main className="flex-1 px-7 md:px-12 py-6 space-y-6">
         {/* Breadcrumb back */}
         <div className="flex items-center gap-3 text-[12px] text-ink-500">
           <Link
@@ -78,7 +78,7 @@ export default function NeedsAttentionPage() {
         </div>
 
         {/* Stat strip */}
-        <section className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <StatCard
             label="Total issues"
             value={allIssues.length}

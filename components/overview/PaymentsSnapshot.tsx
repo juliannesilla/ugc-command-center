@@ -73,7 +73,7 @@ export function PaymentsSnapshot() {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {tiles.map((t) => {
           const styles = toneStyles[t.tone];
           const Icon = t.Icon;

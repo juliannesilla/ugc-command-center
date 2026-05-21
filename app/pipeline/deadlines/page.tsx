@@ -73,7 +73,7 @@ export default function DeadlinesPage() {
           </div>
         </section>
 
-        <section className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-3 rise rise-3">
+        <section className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-4 rise rise-3">
           <DeadlineStatCard label="Due This Week"     value={DEADLINE_STATS.dueThisWeek}      tone="iris"  sub="May 13 – 19" />
           <DeadlineStatCard label="Due Next Week"     value={DEADLINE_STATS.dueNextWeek}      tone="cloud" sub="May 20 – 26" />
           <DeadlineStatCard label="Completed This Week" value={DEADLINE_STATS.completedThisWeek} tone="green" sub="Already shipped" />

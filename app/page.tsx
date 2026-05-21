@@ -87,7 +87,7 @@ export default function OverviewPage() {
         pageTitle="Good morning, Julianne."
       />
 
-      <div className="px-6 md:px-10 -mt-6 pb-16 space-y-8">
+      <div className="px-7 md:px-12 -mt-8 pb-20 space-y-8">
         {/* Today Mode toggle bar — spec § 9 L806-L813. Client island; state in localStorage. */}
         <div className="rise rise-1 flex items-center justify-between gap-3 flex-wrap">
           <p className="text-[12px] text-ink-500 leading-snug max-w-md">
@@ -100,7 +100,7 @@ export default function OverviewPage() {
         </div>
 
         {/* HERO STAT STRIP — A.14c lock, preserved per HR-2. */}
-        <section className="rise rise-1 grid grid-cols-2 md:grid-cols-5 gap-3">
+        <section className="rise rise-1 grid grid-cols-2 md:grid-cols-5 gap-4">
           {heroTiles.map((t) => {
             const Icon = t.Icon;
             return (

@@ -25,7 +25,7 @@ export default function QAPage() {
         pageTitle="Quality checkpoints across every deliverable"
       />
 
-      <section className="px-6 md:px-10 -mt-6 pb-16 max-w-7xl mx-auto">
+      <section className="px-7 md:px-12 -mt-8 pb-20 max-w-7xl mx-auto">
         <div className="mb-4 flex items-center gap-2 text-xs text-ink-600">
           <ShieldCheck className="h-4 w-4 text-iris-500" />
           <span>

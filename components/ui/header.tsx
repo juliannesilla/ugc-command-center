@@ -12,7 +12,7 @@ export function Header({
   return (
     <header className="header-cloud relative overflow-hidden">
       {/* Top row */}
-      <div className="relative z-10 flex items-start justify-between gap-6 px-6 md:px-10 pt-6 pb-4">
+      <div className="relative z-10 flex items-start justify-between gap-6 px-7 md:px-12 pt-6 pb-4">
         <div className="flex items-center gap-3">
           <ReadOnlyMirrorBadge />
           <span className="hidden sm:inline-flex font-display italic text-white/90 text-sm tracking-tight drop-shadow-sm">
@@ -40,7 +40,7 @@ export function Header({
 
       {/* Title row */}
       {(pageTitle || pageEyebrow) && (
-        <div className="relative z-10 px-6 md:px-10 pb-8 pt-2">
+        <div className="relative z-10 px-7 md:px-12 pb-8 pt-2">
           {pageEyebrow && (
             <p className="rise text-[11px] uppercase tracking-[0.28em] text-white/80 font-semibold">
               {pageEyebrow}

@@ -76,7 +76,7 @@ export default function ReadyToExecutePage() {
         pageTitle="Ready to execute"
       />
 
-      <main className="px-6 md:px-10 py-6 space-y-6">
+      <main className="px-7 md:px-12 py-6 space-y-6">
         {/* Batch Mode panel — only renders if ≥1 N≥2 pattern exists */}
         <BatchModeSuggestions suggestions={batchSuggestions} />
 

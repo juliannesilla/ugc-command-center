@@ -77,7 +77,7 @@ function BrandResponsesInner() {
         </div>
 
         {/* Stat cards */}
-        <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
+        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-6">
           {STAT_CARDS.map((s, idx) => {
             const up = s.delta >= 0;
             return (

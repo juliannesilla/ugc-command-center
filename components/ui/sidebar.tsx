@@ -89,7 +89,7 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
                 <Link
                   href={item.href}
                   className={cn(
-                    'group relative flex items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium transition',
+                    'group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition',
                     active
                       ? 'bg-cloud-100 text-cloud-700 shadow-card'
                       : 'text-ink-600 hover:bg-cloud-50 hover:text-ink-900',

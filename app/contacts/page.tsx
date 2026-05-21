@@ -27,7 +27,7 @@ export default function BrandRelationshipsPage() {
         pageEyebrow="Brand Relationships"
         pageTitle="Build the warm bench."
       />
-      <div className="px-6 md:px-10 -mt-6 pb-16">
+      <div className="px-7 md:px-12 -mt-8 pb-20">
         <CrmTable rows={rows} />
       </div>
     </>

@@ -29,12 +29,12 @@ export function StatCard({
   return (
     <div
       className={cn(
-        'group relative rounded-2xl bg-white px-4 py-4 shadow-card ring-1 transition hover:-translate-y-0.5 hover:shadow-soft overflow-hidden',
+        'group relative rounded-3xl bg-white px-5 py-5 shadow-card ring-1 transition hover:-translate-y-0.5 hover:shadow-soft overflow-hidden',
         a.ring,
         className,
       )}
     >
-      <span className={cn('absolute inset-x-0 top-0 h-1 rounded-t-2xl', a.bar)} />
+      <span className={cn('absolute inset-x-0 top-0 h-1 rounded-t-3xl', a.bar)} />
       <div className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold">
         {label}
       </div>
