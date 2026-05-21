@@ -6,12 +6,15 @@
 //   Submission Status · Due Date · Notes
 // PLUS the 6-checklist production-readiness score (L586-L594).
 
+import Link from 'next/link';
 import {
   Sparkles,
   Clock,
   CheckCircle2,
   Circle,
   StickyNote,
+  GripVertical,
+  ArrowUpRight,
 } from 'lucide-react';
 import { StatusChip } from '@/components/ui/status-chip';
 import { cn } from '@/lib/utils';
@@ -31,10 +34,26 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
   const dueTone = getDueTone(deliverable.dueDate);
   const dueLabel = formatDueLabel(deliverable.dueDate);
   const checklist = getProductionReadinessChecklist(campaign, production);
-  const readinessPct = getProductionReadinessPct(campaign, production);
+  const derivedPct = getProductionReadinessPct(campaign, production);
+  // A.14g Wave 2: synthetic cards pre-compute readiness pct (no productionData).
+  const readinessPct = deliverable.readinessOverridePct ?? derivedPct;
+  // A.14g Wave 2 — audit L148: deep-link cards to per-campaign production view.
+  const productionHref = `/campaigns/${campaign.campaign_id}/production`;
 
   return (
-    <article className="group relative rounded-2xl bg-white/85 backdrop-blur-sm ring-1 ring-cloud-100 shadow-card hover:shadow-soft hover:ring-iris-100 transition overflow-hidden">
+    <Link
+      href={productionHref}
+      aria-label={`Open ${campaign.brand} production view`}
+      className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-300 rounded-2xl"
+    >
+    <article className="group relative rounded-2xl bg-white/85 backdrop-blur-sm ring-1 ring-cloud-100 shadow-card hover:shadow-soft hover:ring-iris-200 transition overflow-hidden cursor-grab active:cursor-grabbing">
+      {/* drag-handle affordance — DnD-ready visual cue */}
+      <span
+        aria-hidden="true"
+        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition text-ink-300"
+      >
+        <GripVertical className="h-3 w-3" />
+      </span>
       {/* due-urgency accent stripe */}
       <span
         className={cn(
@@ -60,10 +79,17 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
           </div>
           <p className="text-[11.5px] text-ink-500 truncate">{campaign.product}</p>
           <p className="text-[10.5px] text-ink-400 truncate">
-            {deliverable.total > 1
-              ? `Deliverable ${deliverable.index} of ${deliverable.total}`
-              : 'Single deliverable'}
+            {deliverable.isSynthetic
+              ? deliverable.deliverableName.split(' · ').slice(1).join(' · ') ||
+                'Production cut'
+              : deliverable.total > 1
+                ? `Deliverable ${deliverable.index} of ${deliverable.total}`
+                : 'Single deliverable'}
             {deliverable.length ? ` · ${deliverable.length}` : ''}
+          </p>
+          <p className="inline-flex items-center gap-1 text-[10px] text-iris-600 font-semibold opacity-0 group-hover:opacity-100 transition">
+            Open production view
+            <ArrowUpRight className="h-2.5 w-2.5" />
           </p>
         </header>
 
@@ -147,6 +173,7 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
         )}
       </div>
     </article>
+    </Link>
   );
 }
 

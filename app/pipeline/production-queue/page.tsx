@@ -30,6 +30,7 @@ import { FilterBar } from '@/components/production-queue/FilterBar';
 import { ProductionQueueColumn } from '@/components/production-queue/ProductionQueueColumn';
 import {
   buildDeliverableCards,
+  buildExtraInFlightCards,
   isDefaultVisible,
   sortDeliverables,
   getChipCount,
@@ -49,13 +50,20 @@ export default function ProductionQueuePage() {
   // 1. Materialize per-deliverable cards from canonical campaign rows.
   //    Cards are per-deliverable, not per-campaign, so a 3-deliverable
   //    contract emits 3 cards across the queue.
-  const allDeliverables = buildDeliverableCards(MOCK_CAMPAIGNS, {
+  const realDeliverables = buildDeliverableCards(MOCK_CAMPAIGNS, {
     productionData: productionData as unknown as Record<string, ProductionPayload>,
     scriptData: scriptData as unknown as Record<
       string,
       { hooks?: string[]; coreAngle?: string }
     >,
   });
+  // A.14g Wave 2 — audit L148 PRODUCTION-QUEUE-FINALIZE: augment with synthetic
+  // in-flight cards so every production stage has ≥1 card without distorting
+  // MOCK_CAMPAIGNS (relied on by 6+ other routes).
+  const allDeliverables = [
+    ...realDeliverables,
+    ...buildExtraInFlightCards(MOCK_CAMPAIGNS),
+  ];
 
   // 2. Default filter per spec L566-L568.
   const visibleDeliverables = allDeliverables

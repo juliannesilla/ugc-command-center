@@ -164,6 +164,10 @@ export interface DeliverableCard {
   notes?: string;
   /** Optional payload — null if campaign has no per-stage JSON for this deliverable. */
   production?: ProductionPayload;
+  /** A.14g Wave 2: synthetic cards pre-compute readiness pct (no productionData). */
+  readinessOverridePct?: number;
+  /** A.14g Wave 2: marker so UI can render synthetic in-flight cards distinctly. */
+  isSynthetic?: boolean;
 }
 
 // ──────────────────────────────────────────────────────────────────────────
@@ -509,6 +513,305 @@ export function buildDeliverableCards(
 function formatDeliverableFormat(c: Campaign): string {
   const fmt = c.required_format.replace("_", " ");
   return fmt.charAt(0).toUpperCase() + fmt.slice(1);
+}
+
+// ──────────────────────────────────────────────────────────────────────────
+// A.14g Wave 2 — PRODUCTION-QUEUE-FINALIZE: synthetic in-flight deliverables
+//
+// Audit cite: `_meta/mockups/post-a14g-audit/AUDIT-RESULTS.md` route #9 L145+L148:
+//   "Production queue kanban only has 1-2 cards per column — needs seed data
+//    to feel alive" + "seed more campaigns, ensure each campaign shows
+//    checklist progress, link cards to per-campaign production view".
+//
+// Spec cite L518-L520: "film/edit workflow board ... past strategy and into
+// actual content production" — cards = in-flight deliverables.
+//
+// Per-deliverable cards (spec L542-L562) anchored to existing MOCK_CAMPAIGNS
+// for brand + deep-link, with overridden production-status to spread across
+// the 13-stage workflow. MOCK_CAMPAIGNS rows themselves stay untouched (6+
+// other routes depend on them).
+// ──────────────────────────────────────────────────────────────────────────
+
+interface SyntheticDeliverable {
+  campaignId: string;
+  variantSuffix: string;
+  formatLabel?: string;
+  length?: string;
+  productionStatus: ProductionStatus;
+  scriptStatus: string;
+  shotMapStatus: string;
+  brollStatus: string;
+  screenRecordingStatus: string;
+  filmStatus: string;
+  editStatus: string;
+  captionsStatus: string;
+  qaStatus: string;
+  submissionStatus: string;
+  hookSelected: boolean;
+  dueDate?: string;
+  notes?: string;
+  readinessOverridePct?: number;
+}
+
+const SYNTHETIC_DELIVERABLES: SyntheticDeliverable[] = [
+  {
+    campaignId: "vilo",
+    variantSuffix: "Deliverable B · Founder POV",
+    formatLabel: "TikTok",
+    length: "30s",
+    productionStatus: "not_started",
+    scriptStatus: "Not started",
+    shotMapStatus: "Not ready",
+    brollStatus: "Needed",
+    screenRecordingStatus: "N/A",
+    filmStatus: "Not started",
+    editStatus: "Not started",
+    captionsStatus: "Pending",
+    qaStatus: "Pending",
+    submissionStatus: "Not submitted",
+    hookSelected: false,
+    dueDate: "2026-06-12",
+    notes: "Second VILO deliverable — waiting on SOW extract before scripting.",
+    readinessOverridePct: 17,
+  },
+  {
+    campaignId: "lotusshop",
+    variantSuffix: "Deliverable 2 · Styled flatlay",
+    formatLabel: "Reel",
+    length: "20s",
+    productionStatus: "script_ready",
+    scriptStatus: "Ready",
+    shotMapStatus: "Not ready",
+    brollStatus: "Needed",
+    screenRecordingStatus: "N/A",
+    filmStatus: "Not started",
+    editStatus: "Not started",
+    captionsStatus: "Pending",
+    qaStatus: "Pending",
+    submissionStatus: "Not submitted",
+    hookSelected: true,
+    dueDate: "2026-05-30",
+    notes: "Second Lotus deliverable — script locked, shot map next.",
+    readinessOverridePct: 33,
+  },
+  {
+    campaignId: "parakeetai",
+    variantSuffix: "Hook variant B · Interview panic",
+    formatLabel: "TikTok",
+    length: "45s",
+    productionStatus: "shot_map_ready",
+    scriptStatus: "Ready",
+    shotMapStatus: "Ready",
+    brollStatus: "Needed",
+    screenRecordingStatus: "Needed",
+    filmStatus: "Not started",
+    editStatus: "Not started",
+    captionsStatus: "Pending",
+    qaStatus: "Pending",
+    submissionStatus: "Not submitted",
+    hookSelected: true,
+    dueDate: "2026-05-27",
+    notes: "Alternate hook for ParakeetAI — shot map locked, b-roll pending.",
+    readinessOverridePct: 50,
+  },
+  {
+    campaignId: "elf",
+    variantSuffix: "B-roll pack · Doe-foot macro",
+    formatLabel: "Reel",
+    length: "15s",
+    productionStatus: "b_roll_needed",
+    scriptStatus: "Ready",
+    shotMapStatus: "Ready",
+    brollStatus: "Needed",
+    screenRecordingStatus: "N/A",
+    filmStatus: "Scheduled",
+    editStatus: "Not started",
+    captionsStatus: "Pending",
+    qaStatus: "Pending",
+    submissionStatus: "Not submitted",
+    hookSelected: true,
+    dueDate: "2026-05-23",
+    notes: "Macro b-roll for e.l.f. — need ring light + doe-foot close-up.",
+    readinessOverridePct: 67,
+  },
+  {
+    campaignId: "parakeetai",
+    variantSuffix: "Talking head · Main cut",
+    formatLabel: "TikTok",
+    length: "60s",
+    productionStatus: "filming_scheduled",
+    scriptStatus: "Ready",
+    shotMapStatus: "Ready",
+    brollStatus: "In progress",
+    screenRecordingStatus: "Needed",
+    filmStatus: "Scheduled",
+    editStatus: "Not started",
+    captionsStatus: "Pending",
+    qaStatus: "Pending",
+    submissionStatus: "Not submitted",
+    hookSelected: true,
+    dueDate: "2026-05-26",
+    notes: "Filming block locked Wed 4-6pm — Parakeet screen-rec dependency.",
+    readinessOverridePct: 67,
+  },
+  {
+    campaignId: "elf",
+    variantSuffix: "Main review · Raw footage",
+    formatLabel: "Reel",
+    length: "45s",
+    productionStatus: "filmed",
+    scriptStatus: "Ready",
+    shotMapStatus: "Ready",
+    brollStatus: "Filmed",
+    screenRecordingStatus: "N/A",
+    filmStatus: "Filmed",
+    editStatus: "Not started",
+    captionsStatus: "Pending",
+    qaStatus: "Pending",
+    submissionStatus: "Not submitted",
+    hookSelected: true,
+    dueDate: "2026-05-24",
+    notes: "Raw footage backed up to OneDrive. Edit window: Thu morning.",
+    readinessOverridePct: 83,
+  },
+  {
+    campaignId: "elf",
+    variantSuffix: "Glow Reviver cut · Edit V1",
+    formatLabel: "Reel",
+    length: "30s",
+    productionStatus: "editing",
+    scriptStatus: "Ready",
+    shotMapStatus: "Ready",
+    brollStatus: "Filmed",
+    screenRecordingStatus: "N/A",
+    filmStatus: "Filmed",
+    editStatus: "In progress",
+    captionsStatus: "Pending",
+    qaStatus: "Pending",
+    submissionStatus: "Not submitted",
+    hookSelected: true,
+    dueDate: "2026-05-24",
+    notes: "Edit V1 in CapCut — hook trim + b-roll layering left.",
+    readinessOverridePct: 83,
+  },
+  {
+    campaignId: "parakeetai",
+    variantSuffix: "Cut V2 · Pre-caption",
+    formatLabel: "TikTok",
+    length: "40s",
+    productionStatus: "captions_needed",
+    scriptStatus: "Ready",
+    shotMapStatus: "Ready",
+    brollStatus: "Filmed",
+    screenRecordingStatus: "Complete",
+    filmStatus: "Filmed",
+    editStatus: "In progress",
+    captionsStatus: "Needed",
+    qaStatus: "Pending",
+    submissionStatus: "Not submitted",
+    hookSelected: true,
+    dueDate: "2026-05-25",
+    notes: "ParakeetAI cut at 95% — captions + final color pass remaining.",
+    readinessOverridePct: 100,
+  },
+  {
+    campaignId: "vilo",
+    variantSuffix: "Submission cut A · QA pending",
+    formatLabel: "TikTok",
+    length: "45s",
+    productionStatus: "qa_needed",
+    scriptStatus: "Ready",
+    shotMapStatus: "Ready",
+    brollStatus: "Filmed",
+    screenRecordingStatus: "Complete",
+    filmStatus: "Filmed",
+    editStatus: "Done",
+    captionsStatus: "Done",
+    qaStatus: "In QA",
+    submissionStatus: "Not submitted",
+    hookSelected: true,
+    dueDate: "2026-06-05",
+    notes: "VILO submission A — run through QA checklist before export.",
+    readinessOverridePct: 100,
+  },
+  {
+    campaignId: "parakeetai",
+    variantSuffix: "Hero cut · Exported MP4",
+    formatLabel: "TikTok",
+    length: "60s",
+    productionStatus: "exported",
+    scriptStatus: "Ready",
+    shotMapStatus: "Ready",
+    brollStatus: "Filmed",
+    screenRecordingStatus: "Complete",
+    filmStatus: "Filmed",
+    editStatus: "Done",
+    captionsStatus: "Done",
+    qaStatus: "Pass",
+    submissionStatus: "Not submitted",
+    hookSelected: true,
+    dueDate: "2026-05-26",
+    notes: "Exported 1080×1920 H.264 — staged in SideShift drop folder.",
+    readinessOverridePct: 100,
+  },
+  {
+    campaignId: "elf",
+    variantSuffix: "Revision pass · Cut V3",
+    formatLabel: "Reel",
+    length: "30s",
+    productionStatus: "revision_needed",
+    scriptStatus: "Ready",
+    shotMapStatus: "Ready",
+    brollStatus: "Filmed",
+    screenRecordingStatus: "N/A",
+    filmStatus: "Filmed",
+    editStatus: "In progress",
+    captionsStatus: "Done",
+    qaStatus: "Failed",
+    submissionStatus: "Revision needed",
+    hookSelected: true,
+    dueDate: "2026-05-24",
+    notes: "e.l.f. requested 3s tighter hook + brighter LUT. Re-export by Fri.",
+    readinessOverridePct: 100,
+  },
+];
+
+/** Builds the synthetic in-flight deliverable cards (A.14g Wave 2). */
+export function buildExtraInFlightCards(campaigns: Campaign[]): DeliverableCard[] {
+  const byId = new Map(campaigns.map((c) => [c.campaign_id, c] as const));
+  const out: DeliverableCard[] = [];
+  let runningIdx = 100;
+  for (const s of SYNTHETIC_DELIVERABLES) {
+    const campaign = byId.get(s.campaignId);
+    if (!campaign) continue;
+    runningIdx += 1;
+    out.push({
+      key: `${campaign.campaign_id}::synthetic::${runningIdx}`,
+      campaign,
+      index: runningIdx,
+      total: runningIdx,
+      deliverableName: `${campaign.brand} · ${s.variantSuffix}`,
+      format: s.formatLabel ?? campaign.required_format,
+      length: s.length ?? campaign.required_length,
+      hookSelected: s.hookSelected,
+      productionStatus: s.productionStatus,
+      scriptStatus: s.scriptStatus,
+      shotMapStatus: s.shotMapStatus,
+      brollStatus: s.brollStatus,
+      screenRecordingStatus: s.screenRecordingStatus,
+      filmStatus: s.filmStatus,
+      editStatus: s.editStatus,
+      captionsStatus: s.captionsStatus,
+      qaStatus: s.qaStatus,
+      submissionStatus: s.submissionStatus,
+      dueDate: s.dueDate,
+      notes: s.notes,
+      readinessOverridePct: s.readinessOverridePct,
+      production: undefined,
+      isSynthetic: true,
+    });
+  }
+  return out;
 }
 
 // ──────────────────────────────────────────────────────────────────────────
