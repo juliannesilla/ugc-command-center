@@ -1,18 +1,17 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production';
-const repo = 'ugc-command-center';
-
 const nextConfig = {
-  output: 'export',
+  // Vercel handles SSR + static automatically — no `output: 'export'` needed.
   images: { unoptimized: true },
-  basePath: isProd ? `/${repo}` : '',
-  assetPrefix: isProd ? `/${repo}/` : '',
-  trailingSlash: true,
   reactStrictMode: true,
   // Don't block prod builds on ESLint/TS — sister agents' WIP routes may still
   // have lint noise. CI lint runs separately.
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
+  },
 };
 
 module.exports = nextConfig;

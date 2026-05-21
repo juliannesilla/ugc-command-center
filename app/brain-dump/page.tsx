@@ -21,7 +21,7 @@ export default function BrainDumpPage() {
     <main className="min-h-screen bg-cloud-soft">
       {/* Header */}
       <section className="header-cloud px-7 md:px-12 pt-10 pb-12 text-white">
-        <div className="max-w-7xl mx-auto rise rise-1">
+        <div className="rise rise-1">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80">
             Brain Dump
           </p>
@@ -34,7 +34,7 @@ export default function BrainDumpPage() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-7 md:px-12 -mt-8 pb-20 flex flex-col gap-6 lg:gap-8">
+      <section className="px-7 md:px-12 -mt-8 pb-20 flex flex-col gap-6 lg:gap-8">
         {/* Top stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 rise rise-1">
           {BRAIN_STATS.map((s) => (

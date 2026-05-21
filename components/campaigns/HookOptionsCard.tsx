@@ -2,7 +2,7 @@ import { Sparkles, Star } from "lucide-react";
 
 export function HookOptionsCard({ hooks }: { hooks: string[] }) {
   return (
-    <section className="glass-card flex h-full flex-col rounded-2xl p-5 shadow-card">
+    <section className="glass-card flex h-full flex-col rounded-3xl p-5 lg:p-6 shadow-card">
       <header className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-cloud-sunset text-white shadow-glow">

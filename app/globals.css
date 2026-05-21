@@ -33,12 +33,13 @@ body {
   position: relative;
   isolation: isolate;
 }
+/* Implements: Phase A.14j §1 — grain opacity 0.5 → 0.35 for softer hero. */
 .header-cloud::after {
   content: '';
   position: absolute; inset: 0;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .25 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   mix-blend-mode: overlay;
-  opacity: 0.5;
+  opacity: 0.35;
   pointer-events: none;
   z-index: -1;
 }
@@ -80,4 +81,32 @@ html[data-today-mode="on"] [data-today-only-label] {
 }
 [data-today-only-label] {
   display: none;
+}
+
+/* ─── A.14j T5: Semantic card + typography utilities ──────────────────────
+   Used by future Wave 1+ refactors. Do not inline raw padding/radius/ring
+   on cards — use these classes so the design system stays single-source.
+*/
+@layer components {
+  .card-hero {
+    @apply p-6 lg:p-7 rounded-3xl bg-white shadow-card ring-1 ring-cloud-100/70;
+  }
+  .card-secondary {
+    @apply p-5 lg:p-6 rounded-3xl bg-white shadow-card ring-1 ring-cloud-100/70;
+  }
+  .card-stat {
+    @apply p-5 lg:p-6 rounded-3xl bg-white shadow-card ring-1 ring-cloud-100/70 hover:-translate-y-0.5 hover:ring-cloud-300 transition;
+  }
+  .section-title {
+    @apply font-display text-display-sm font-medium tracking-tight text-ink-900;
+  }
+  .section-subtitle {
+    @apply text-[13px] text-ink-600 leading-relaxed;
+  }
+  .stat-label {
+    @apply text-label-xs uppercase tracking-magazine text-ink-600 font-medium;
+  }
+  .stat-number {
+    @apply font-display text-display-md lg:text-display-lg font-medium tabular-nums leading-none text-ink-900;
+  }
 }

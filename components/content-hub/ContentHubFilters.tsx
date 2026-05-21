@@ -28,7 +28,7 @@ export function ContentHubFilters({ value, onChange }: Props) {
   };
 
   return (
-    <div className="rounded-2xl bg-white/80 backdrop-blur ring-1 ring-cloud-100 shadow-card p-4 md:p-5 flex flex-col gap-4">
+    <div className="rounded-3xl bg-white/80 backdrop-blur ring-1 ring-cloud-100/70 shadow-card p-5 lg:p-6 flex flex-col gap-4">
       {/* Search + campaign select */}
       <div className="flex flex-col md:flex-row gap-3">
         <label className="relative flex-1">

@@ -1,8 +1,9 @@
 // Implements: 01-initial-dashboard-prompt.md § "MAIN DASHBOARD OVERVIEW" (all 6 sub-sections)
 //   + § "DESIGN THE LAYOUT" rows 1-13
 //   + § "SMART FEATURES" Smart Next Move Engine (wired via lib/scoring)
+//   + Phase A.14j §1+§2 typography pass — mockups 02+05+12
 // Brand string per HR-27: "UGC | Campaign HQ" (in components/ui/header.tsx).
-// Hero gradient strip locked A.14c (HR-2 preserve intent) — unchanged below.
+// Hero gradient (lavender/iris) locked HR-27 — unchanged below.
 import {
   TrendingUp,
   Wallet,
@@ -87,7 +88,7 @@ export default function OverviewPage() {
         pageTitle="Good morning, Julianne."
       />
 
-      <div className="px-7 md:px-12 -mt-8 pb-20 space-y-10 lg:space-y-12">
+      <div className="px-7 md:px-12 -mt-8 pb-20 space-y-12 lg:space-y-16">
         {/* Today Mode toggle bar — spec § 9 L806-L813. Client island; state in localStorage. */}
         <div className="rise rise-1 flex items-center justify-between gap-3 flex-wrap">
           <p className="text-[12px] text-ink-500 leading-snug max-w-md">
@@ -99,32 +100,32 @@ export default function OverviewPage() {
           <TodayModeToggle />
         </div>
 
-        {/* HERO STAT STRIP — A.14c lock, preserved per HR-2. */}
-        <section className="rise rise-1 grid grid-cols-2 md:grid-cols-5 gap-5">
+        {/* HERO STAT STRIP — Phase A.14j §2 typography + spacing pass. */}
+        <section className="rise rise-1 grid grid-cols-2 md:grid-cols-5 gap-5 lg:gap-6">
           {heroTiles.map((t) => {
             const Icon = t.Icon;
             return (
               <div
                 key={t.label}
-                className="group rounded-2xl bg-white p-4 shadow-card ring-1 ring-cloud-100 hover:-translate-y-0.5 hover:ring-cloud-300 transition"
+                className="group rounded-3xl bg-white p-5 lg:p-6 shadow-card ring-1 ring-cloud-100/70 hover:-translate-y-0.5 hover:ring-cloud-300 transition"
               >
                 <div className="flex items-start justify-between">
-                  <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold leading-tight">
+                  <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-600 font-medium leading-tight">
                     {t.label}
                   </p>
                   <span
                     className={cn(
-                      "grid h-7 w-7 place-items-center rounded-lg ring-1",
+                      "grid h-8 w-8 place-items-center rounded-xl ring-1",
                       accentBg[t.accent] ?? accentBg.iris,
                     )}
                   >
                     <Icon className="h-3.5 w-3.5" />
                   </span>
                 </div>
-                <p className="mt-2 font-display text-3xl text-ink-900 leading-none">
+                <p className="mt-2 font-display text-[32px] lg:text-[36px] font-medium tabular-nums text-ink-900 leading-none">
                   {t.value}
                 </p>
-                <p className="text-[11px] text-ink-500 mt-1">{t.sub}</p>
+                <p className="text-[10.5px] font-normal text-ink-400 mt-1">{t.sub}</p>
               </div>
             );
           })}
@@ -133,7 +134,7 @@ export default function OverviewPage() {
         {/* MAIN COLUMN + RIGHT RAIL (A.14c lock preserved). */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 lg:gap-8">
           {/* MAIN COLUMN — sections 2-6 + layout rows 9-13. */}
-          <div className="space-y-10 lg:space-y-12 min-w-0">
+          <div className="space-y-12 lg:space-y-16 min-w-0">
             {/* Implements: spec § 2 "Your Next Move" — wired to getNextMove(). */}
             <YourNextMove />
 
@@ -172,7 +173,7 @@ export default function OverviewPage() {
             {/* Recent activity table — kept from A.14d baseline (HR-2 preserve). */}
             <section className="space-y-3" data-today-hide>
               <div className="flex items-end justify-between gap-4 flex-wrap">
-                <h3 className="font-display text-2xl text-ink-900">
+                <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
                   Recent campaign activity
                 </h3>
                 <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">

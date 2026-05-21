@@ -28,7 +28,7 @@ export function ProfileCompleteEmptyState() {
         <div className="mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-white/90 shadow-soft ring-1 ring-emerald-200">
           <Trophy className="h-7 w-7 text-emerald-600" />
         </div>
-        <h2 className="mt-5 font-display text-2xl text-ink-900 leading-tight">
+        <h2 className="mt-5 font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight">
           Profile 100% complete.
         </h2>
         <p className="mt-2 text-[14px] text-ink-600 leading-relaxed">

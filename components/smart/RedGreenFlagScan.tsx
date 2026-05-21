@@ -157,7 +157,7 @@ export function RedGreenFlagScan({ campaign }: Props) {
           <p className="text-[10px] uppercase tracking-[0.28em] text-cloud-700 font-semibold">
             Red / Green Flag Scan
           </p>
-          <h2 className="mt-1 font-display text-2xl text-ink-900 leading-tight">
+          <h2 className="mt-1 font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight">
             {campaign.brand} signal check
           </h2>
         </div>

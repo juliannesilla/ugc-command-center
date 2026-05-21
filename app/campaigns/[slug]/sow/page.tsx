@@ -17,15 +17,15 @@ export default async function SOWPage({ params }: { params: Promise<{ slug: stri
   const sow: any = sowData[campaign.slug];
 
   return (
-    <div className="mx-auto max-w-7xl px-7 py-12 md:px-12 lg:py-16">
+    <div className="px-7 py-12 md:px-12 lg:py-16">
       <CampaignHeader campaign={campaign} />
       <CampaignTabs slug={campaign.slug} active="sow" />
 
       <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px] lg:gap-8">
         <section className="space-y-6">
           <header className="rise rise-1">
-            <h2 className="font-display text-xl font-bold text-ink-900">SOW Breakdown</h2>
-            <p className="mt-0.5 text-[12.5px] text-ink-500">
+            <h2 className="font-display text-[22px] font-medium tracking-tight text-ink-900">SOW Breakdown</h2>
+            <p className="mt-0.5 text-[13px] text-ink-600 leading-relaxed">
               Requirement → Detail → What It Means for My Deliverable. Aligned with{" "}
               <span className="font-mono">03-sow-breakdown.md</span> template.
             </p>

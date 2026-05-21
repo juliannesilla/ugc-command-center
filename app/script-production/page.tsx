@@ -94,7 +94,7 @@ export default function ScriptProductionPage() {
         pageTitle="Plan it. Film it. Edit it. Ship it."
       />
 
-      <section className="px-7 md:px-12 -mt-8 pb-20 max-w-7xl mx-auto">
+      <section className="px-7 md:px-12 -mt-8 pb-20">
         <p className="text-sm text-ink-600 mb-6 max-w-2xl">
           One card per campaign in script + production. Hook options, core
           beats, the working script, A-Roll / B-Roll capture, and the
@@ -108,7 +108,7 @@ export default function ScriptProductionPage() {
               className="h-10 w-10 text-iris-300 mx-auto mb-3"
               aria-hidden="true"
             />
-            <h3 className="font-display text-xl font-semibold text-ink-900">
+            <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
               No campaigns in script or production yet.
             </h3>
             <p className="text-sm text-ink-600 mt-2 max-w-md mx-auto">

@@ -196,7 +196,7 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
   if (rows.length === 0) {
     return (
       <div className="rise rise-2 rounded-3xl bg-white p-10 shadow-card ring-1 ring-cloud-100 max-w-3xl">
-        <h2 className="font-display text-2xl text-ink-900">
+        <h2 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
           No active brand relationships yet.
         </h2>
         <p className="mt-2 text-[14px] text-ink-600 max-w-xl">
@@ -266,10 +266,11 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
       </div>
 
       {/* Table */}
+      {/* A.14j Wave 1a T4 tokens: h-12 lg:h-14 rows · px-4 py-3 cells · 11px/0.14em uppercase ink-600 headers · 13.5px/leading-snug body · even:bg-cloud-50/40 zebra */}
       <div className="rise rise-1 overflow-x-auto rounded-3xl bg-white shadow-card ring-1 ring-cloud-100">
         <table className="w-full min-w-[1480px] border-separate border-spacing-0 text-left">
           <thead>
-            <tr className="bg-cloud-50/60 text-[10.5px] uppercase tracking-[0.14em] text-ink-500">
+            <tr className="bg-cloud-50/60 text-[11px] uppercase tracking-[0.14em] text-ink-600">
               {[
                 'Brand', 'Contact', 'Role', 'Channel',
                 'Last msg', 'Summary', 'My reply',
@@ -279,7 +280,7 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
               ].map((h) => (
                 <th
                   key={h}
-                  className="px-3 py-3 font-semibold whitespace-nowrap border-b border-cloud-100"
+                  className="h-12 lg:h-14 px-4 py-3 font-medium whitespace-nowrap border-b border-cloud-100"
                   scope="col"
                 >
                   {h}
@@ -287,7 +288,7 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
               ))}
             </tr>
           </thead>
-          <tbody className="text-[12.5px] text-ink-800">
+          <tbody className="text-[13.5px] leading-snug text-ink-800">
             {visible.length === 0 ? (
               <tr>
                 <td
@@ -313,45 +314,45 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
                 return (
                   <tr
                     key={c.campaign_id}
-                    className="align-top hover:bg-cloud-50/50 transition"
+                    className="align-top even:bg-cloud-50/40 hover:bg-cloud-50/50 transition"
                   >
                     {/* 1. Brand */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 whitespace-nowrap">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">
                       <span className="font-semibold text-ink-900">{c.brand}</span>
                       <span className="block text-[10.5px] text-ink-500 mt-0.5">
                         {c.product}
                       </span>
                     </td>
                     {/* 2. Contact name */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 whitespace-nowrap">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">
                       {c.contact_name}
                     </td>
                     {/* 3. Contact role */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 text-[11.5px] text-ink-600 whitespace-nowrap">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 text-[11.5px] text-ink-600 whitespace-nowrap">
                       {c.contact_role ?? '—'}
                     </td>
                     {/* 4. Contact channel */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70">
                       <ChannelCell value={c.contact_channel} />
                     </td>
                     {/* 5. Last message date */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 font-mono tabular-nums text-[11.5px] text-ink-600 whitespace-nowrap">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 font-mono tabular-nums text-[11.5px] text-ink-600 whitespace-nowrap">
                       {fmtDate(c.last_message_date)}
                     </td>
                     {/* 6. Last message summary */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 max-w-[240px] text-[11.5px] text-ink-700">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 max-w-[240px] text-[11.5px] text-ink-700">
                       <span className="line-clamp-2">
                         {c.last_message_summary ?? '—'}
                       </span>
                     </td>
                     {/* 7. My last response */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 max-w-[200px] text-[11.5px] text-ink-600">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 max-w-[200px] text-[11.5px] text-ink-600">
                       <span className="line-clamp-2 italic">
                         {c.my_last_response ?? '—'}
                       </span>
                     </td>
                     {/* 8. Next follow-up date */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 whitespace-nowrap">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">
                       {c.follow_up_date ? (
                         <span
                           className={cn(
@@ -367,31 +368,31 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
                       )}
                     </td>
                     {/* 9. Relationship status (stage pill) */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 whitespace-nowrap">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">
                       <StatusChip tone={STAGE_TONE[stage]}>{stage}</StatusChip>
                     </td>
                     {/* 10. Repeat potential */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 whitespace-nowrap">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">
                       <RepeatBadge value={c.repeat_potential} />
                     </td>
                     {/* 11. Brand fit score */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70">
                       <BrandFitBar score={c.brand_fit_score} />
                     </td>
                     {/* 12. Payment quality */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 whitespace-nowrap">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">
                       <QualityCell value={c.payment_quality} />
                     </td>
                     {/* 13. Communication quality */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 whitespace-nowrap">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">
                       <QualityCell value={c.communication_quality} goodTone="blue" />
                     </td>
                     {/* 14. Notes */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 max-w-[220px] text-[11.5px] text-ink-600">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 max-w-[220px] text-[11.5px] text-ink-600">
                       <span className="line-clamp-2">{c.notes ?? '—'}</span>
                     </td>
                     {/* 15. Next relationship move */}
-                    <td className="px-3 py-3 border-b border-cloud-100/70 max-w-[240px] text-[11.5px] text-ink-800">
+                    <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 max-w-[240px] text-[11.5px] text-ink-800">
                       <span className="line-clamp-2 font-medium">
                         {c.next_relationship_move ?? '—'}
                       </span>

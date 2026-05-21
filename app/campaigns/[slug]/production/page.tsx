@@ -23,7 +23,7 @@ export default async function ProductionPage({ params }: { params: Promise<{ slu
   const prod: any = productionData[campaign.slug];
 
   return (
-    <div className="mx-auto max-w-7xl px-7 py-12 md:px-12 lg:py-16">
+    <div className="px-7 py-12 md:px-12 lg:py-16">
       <CampaignHeader campaign={campaign} />
       <CampaignTabs slug={campaign.slug} active="production" />
 

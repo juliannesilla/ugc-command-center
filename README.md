@@ -1,9 +1,9 @@
 # UGC | Campaign HQ
 
 Read-only mirror dashboard for the 13-stage UGC Campaign Operating System.
-Live at: https://juliannesilla.github.io/ugc-command-center/
+Live at: https://ugc-command-center.vercel.app (Vercel, auto-deploy from `main`)
 
-Stack: Next.js 15 (App Router, static export) · Tailwind · TypeScript · Recharts · Framer Motion.
+Stack: Next.js 15 (App Router, Vercel SSR) · Tailwind · TypeScript · Recharts · Framer Motion.
 
 ---
 
@@ -136,4 +136,26 @@ The whole `lib/data-sync/` layer ships **mock-only** today (PS-3). To go live, f
 
 ## Deploy
 
-GitHub Pages deploy is automatic on push to `main` + every 15 min via `.github/workflows/refresh-data.yml`. The action builds with `pnpm build`, uploads `out/`, and publishes to Pages.
+Production: https://ugc-command-center.vercel.app (auto-deployed from main branch)
+Previews: every PR gets a unique URL via Vercel GitHub integration
+
+Local dev: `npm run dev`
+Build: `npm run build`
+
+### One-time Vercel handshake (Julz hand-action J23 / J24)
+
+These steps require Julz's browser + interactive paste — Claude cannot run them. Execute in order from the repo root:
+
+```bash
+# J23 — link the repo to Vercel
+npm i -g vercel
+vercel link                          # browser OAuth → pick juliannesilla account → confirm project
+
+# J24 — push secrets to Vercel (production environment)
+vercel env add ANTHROPIC_API_KEY production    # paste key
+vercel env add GITHUB_TOKEN production         # paste PAT (scopes: repo + workflow)
+vercel env add LINEAR_API_TOKEN production     # paste Linear token
+vercel env add N8N_API_TOKEN production        # paste n8n cloud token
+```
+
+After J23 + J24 land, the next push to `main` triggers Vercel's auto-deploy. Verify at https://vercel.com/juliannesilla/ugc-command-center.

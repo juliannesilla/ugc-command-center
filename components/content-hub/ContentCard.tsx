@@ -27,7 +27,7 @@ interface Props {
 export function ContentCard({ item }: Props) {
   const accent = item.campaignAccent ?? '#5B6BFF';
   return (
-    <article className="group relative rounded-2xl bg-white ring-1 ring-cloud-100 shadow-card p-4 flex flex-col gap-3 hover:shadow-soft hover:-translate-y-0.5 transition-all">
+    <article className="group relative rounded-3xl bg-white ring-1 ring-cloud-100/70 shadow-card p-5 flex flex-col gap-3 hover:shadow-soft hover:-translate-y-0.5 transition-all">
       {/* Accent bar */}
       <span
         className="absolute left-0 top-3 bottom-3 w-[3px] rounded-r-full"

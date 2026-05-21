@@ -17,7 +17,7 @@ export function SOWRequirementsGrid({ requirements }: { requirements: Requiremen
         <article
           key={req.key}
           className={cn(
-            "glass-card rise rounded-2xl p-5 shadow-card transition hover:shadow-soft",
+            "glass-card rise rounded-3xl p-5 lg:p-6 shadow-card transition hover:shadow-soft",
             `rise-${Math.min(4, Math.floor(i / 4) + 1)}`,
           )}
         >

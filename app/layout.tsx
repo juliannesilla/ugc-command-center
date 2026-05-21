@@ -1,6 +1,16 @@
+// A14J-C3 atomic edit: wrap children with <CommentModeProvider> and mount
+// the floating <CommentModeToggle> + <ExistingCommentDots> overlay so any
+// route can use the comment system.
+//
+// TODO(C4): when C4's `@/lib/comments/provider` lands, swap the import below
+// from the local stub to the canonical provider.
+
 import type { Metadata } from 'next';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { Sidebar } from '@/components/ui/sidebar';
+import { CommentModeProvider } from '@/components/comments/CommentModeProvider.local';
+import { CommentModeToggle } from '@/components/comments/CommentModeToggle';
+import { ExistingCommentDots } from '@/components/comments/ExistingCommentDots';
 import './globals.css';
 
 const display = Playfair_Display({
@@ -29,12 +39,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body className="font-body bg-cloud-soft min-h-screen text-ink-900">
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <main className="flex-1 min-w-0 flex flex-col">
-            {children}
-          </main>
-        </div>
+        <CommentModeProvider>
+          <div className="flex min-h-screen">
+            <Sidebar />
+            <main className="flex-1 min-w-0 flex flex-col">
+              {children}
+            </main>
+          </div>
+          {/* Global comment-mode overlay — present on every route */}
+          <div data-comment-ui="overlay">
+            <ExistingCommentDots />
+            <CommentModeToggle />
+          </div>
+        </CommentModeProvider>
       </body>
     </html>
   );

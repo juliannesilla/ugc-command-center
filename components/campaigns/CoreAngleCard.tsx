@@ -22,7 +22,7 @@ export function CoreAngleCard({ coreAngle }: { coreAngle: CoreAngle }) {
     : coreAngle.emotionalDriver ?? coreAngle.emotional_driver ?? null;
 
   return (
-    <section className="glass-card flex h-full flex-col rounded-2xl p-5 shadow-card">
+    <section className="glass-card flex h-full flex-col rounded-3xl p-5 lg:p-6 shadow-card">
       <header className="mb-3 flex items-center gap-2">
         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-iris-100 text-iris-600">
           <Compass className="h-3.5 w-3.5" strokeWidth={2.4} />
@@ -54,7 +54,7 @@ export function CoreAngleCard({ coreAngle }: { coreAngle: CoreAngle }) {
         )}
         {!audience && !driver && isString && (
           <p className="text-[11px] italic text-ink-500">
-            Single-line angle — audience benefit / emotional driver not yet split out.
+            Single-line angle â€” audience benefit / emotional driver not yet split out.
           </p>
         )}
       </div>

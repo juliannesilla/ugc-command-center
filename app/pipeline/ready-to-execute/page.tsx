@@ -89,7 +89,7 @@ export default function ReadyToExecutePage() {
             <span className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-iris-50 text-iris-500 ring-1 ring-iris-100">
               <Hammer className="h-6 w-6" />
             </span>
-            <h2 className="font-display text-2xl text-ink-900 leading-tight mb-2">
+            <h2 className="font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight mb-2">
               No campaigns ready to execute right now.
             </h2>
             <p className="text-[13.5px] text-ink-500 max-w-md mx-auto leading-relaxed">

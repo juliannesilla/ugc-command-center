@@ -16,10 +16,10 @@ export function PipelineSnapshot() {
     <section className="rise rise-3 space-y-4">
       <div className="flex items-end justify-between gap-4 flex-wrap">
         <div>
-          <h3 className="font-display text-2xl text-ink-900">
+          <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
             My campaign pipeline snapshot
           </h3>
-          <p className="text-[12.5px] text-ink-500 mt-0.5">
+          <p className="text-[13px] text-ink-600 mt-0.5 leading-relaxed">
             {totalCount} campaigns across 14 stages · refreshed 4 min ago
           </p>
         </div>

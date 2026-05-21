@@ -170,7 +170,7 @@ export function ScriptProductionCard({
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-iris-500">
             Script &amp; Production
           </p>
-          <h3 className="font-display text-xl font-semibold text-ink-900 mt-1 truncate">
+          <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900 mt-1 truncate">
             {campaign.brand}
           </h3>
           <p className="text-sm text-ink-600 mt-0.5 truncate">

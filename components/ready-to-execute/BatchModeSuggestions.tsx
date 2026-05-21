@@ -20,7 +20,7 @@ export function BatchModeSuggestions({ suggestions }: { suggestions: BatchSugges
             <p className="text-[10.5px] uppercase tracking-[0.22em] text-iris-600 font-semibold">
               Batch mode
             </p>
-            <h2 className="font-display text-xl md:text-2xl text-ink-900 leading-tight">
+            <h2 className="font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight">
               Pair these up. Save hours.
             </h2>
           </div>
@@ -35,7 +35,7 @@ export function BatchModeSuggestions({ suggestions }: { suggestions: BatchSugges
         {suggestions.map((s) => (
           <li
             key={s.id}
-            className="group rounded-2xl bg-white/85 backdrop-blur p-4 ring-1 ring-cloud-100 hover:ring-iris-200 hover:shadow-soft transition"
+            className="group rounded-3xl bg-white/85 backdrop-blur p-5 ring-1 ring-cloud-100/70 hover:ring-iris-200 hover:shadow-soft transition"
           >
             <div className="flex items-start justify-between gap-3 mb-2">
               <p className="text-[13.5px] font-semibold text-ink-900 leading-snug">

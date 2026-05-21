@@ -63,7 +63,7 @@ export default async function CampaignOverviewPage({
   const editTotal = (production?.editChecklist ?? []).length;
 
   return (
-    <div className="mx-auto max-w-7xl px-7 py-12 md:px-12 lg:py-16">
+    <div className="px-7 py-12 md:px-12 lg:py-16">
       <CampaignHeader campaign={campaign} />
       <CampaignTabs slug={campaign.slug} active="overview" />
 

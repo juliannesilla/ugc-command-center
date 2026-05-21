@@ -93,7 +93,7 @@ export default function PipelineBoardPage() {
             </div>
           </div>
 
-          <div className="px-7 md:px-12 flex gap-4 items-start min-w-max">
+          <div className="px-7 md:px-12 flex gap-6 lg:gap-8 items-start min-w-max">
             {BOARD_STAGES.map(stageDef => {
               const cards = sortCampaignsForColumn(
                 visibleCampaigns.filter(c => c.current_stage === stageDef.stage),
@@ -111,13 +111,13 @@ export default function PipelineBoardPage() {
               return (
                 <section
                   key={stageDef.stage}
-                  className="w-[268px] shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 flex flex-col max-h-[78vh]"
+                  className="w-72 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 flex flex-col max-h-[78vh]"
                 >
                   {/* column header */}
                   <header className="relative px-3.5 pt-4 pb-3 border-b border-cloud-50">
                     <span className={cn('absolute inset-x-3.5 top-0 h-1 rounded-b-full', accentBar[stageDef.accent])} />
                     <div className="flex items-baseline justify-between gap-2">
-                      <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-700 leading-tight">
+                      <h3 className="text-[11px] font-display font-medium uppercase tracking-tight text-ink-700 leading-tight">
                         {stageDef.stage}
                       </h3>
                       <span className="text-[10px] uppercase tracking-[0.14em] text-ink-400">
@@ -130,7 +130,7 @@ export default function PipelineBoardPage() {
                   </header>
 
                   {/* cards */}
-                  <div className="flex-1 overflow-y-auto p-3 space-y-2.5">
+                  <div className="flex-1 overflow-y-auto p-4 space-y-4">
                     {cards.length > 0 ? (
                       cards.map(card => (
                         <PipelineCardCampaign key={card.campaign_id} card={card} />

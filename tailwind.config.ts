@@ -55,6 +55,20 @@ const config: Config = {
         display: ['var(--font-display)', 'Playfair Display', 'Georgia', 'serif'],
         body: ['var(--font-body)', 'Inter', 'system-ui', 'sans-serif'],
       },
+      fontSize: {
+        'display-xs': ['1.125rem', { lineHeight: '1.3', letterSpacing: '-0.01em' }],   // 18px section subtitle
+        'display-sm': ['1.375rem', { lineHeight: '1.25', letterSpacing: '-0.015em' }], // 22px section title
+        'display-md': ['2rem',     { lineHeight: '1.1',  letterSpacing: '-0.02em' }],  // 32px stat number
+        'display-lg': ['2.25rem',  { lineHeight: '1.05', letterSpacing: '-0.022em' }], // 36px stat number lg
+        'display-xl': ['2.75rem',  { lineHeight: '1.05', letterSpacing: '-0.025em' }], // 44px hero title
+        'label-xs':   ['0.625rem', { lineHeight: '1.2',  letterSpacing: '0.14em' }],   // 10px tiny label
+        'label-sm':   ['0.6875rem',{ lineHeight: '1.2',  letterSpacing: '0.14em' }],   // 11px label
+        'body-sm':    ['0.84375rem', { lineHeight: '1.5' }],                            // 13.5px body
+      },
+      letterSpacing: {
+        'magazine': '0.14em',
+        'hero':     '-0.022em',
+      },
       boxShadow: {
         soft: '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(255,107,157,0.10)',
         card: '0 4px 16px -4px rgba(157,107,255,0.10)',

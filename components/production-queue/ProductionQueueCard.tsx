@@ -44,9 +44,9 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
     <Link
       href={productionHref}
       aria-label={`Open ${campaign.brand} production view`}
-      className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-300 rounded-2xl"
+      className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-300 rounded-3xl"
     >
-    <article className="group relative rounded-2xl bg-white/85 backdrop-blur-sm ring-1 ring-cloud-100 shadow-card hover:shadow-soft hover:ring-iris-200 transition overflow-hidden cursor-grab active:cursor-grabbing">
+    <article className="group relative rounded-3xl bg-white/85 backdrop-blur-sm ring-1 ring-cloud-100/70 shadow-card hover:shadow-soft hover:ring-iris-200 transition overflow-hidden cursor-grab active:cursor-grabbing">
       {/* drag-handle affordance — DnD-ready visual cue */}
       <span
         aria-hidden="true"

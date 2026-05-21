@@ -40,11 +40,11 @@ export default function CreativeStrategyPage() {
         pageTitle="Positioning · concept · hooks · brand fit"
       />
 
-      <section className="px-7 md:px-12 -mt-8 pb-20 max-w-7xl mx-auto">
+      <section className="px-7 md:px-12 -mt-8 pb-20">
         {sorted.length === 0 ? (
           <div className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-10 text-center">
             <Lightbulb className="h-10 w-10 text-iris-300 mx-auto mb-3" />
-            <h3 className="font-display text-xl font-semibold text-ink-900">
+            <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
               No campaigns with strategy work yet.
             </h3>
             <p className="text-sm text-ink-600 mt-2 max-w-md mx-auto">

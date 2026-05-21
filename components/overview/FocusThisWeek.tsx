@@ -15,7 +15,7 @@ export function FocusThisWeek() {
   return (
     <section className="rise rise-4 space-y-3">
       <div className="flex items-end justify-between gap-4 flex-wrap">
-        <h3 className="font-display text-2xl text-ink-900">Focus this week</h3>
+        <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">Focus this week</h3>
         <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
           May 19 – May 25
         </p>

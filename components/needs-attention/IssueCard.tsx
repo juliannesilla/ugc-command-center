@@ -54,7 +54,7 @@ export function IssueCard({ issue }: { issue: TriageIssue }) {
   return (
     <article
       className={cn(
-        'group relative flex gap-3 rounded-2xl bg-white/95 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 overflow-hidden',
+        'group relative flex gap-3 rounded-3xl bg-white/95 backdrop-blur-sm shadow-card ring-1 ring-cloud-100/70 overflow-hidden',
         'hover:-translate-y-0.5 hover:shadow-soft transition',
       )}
     >

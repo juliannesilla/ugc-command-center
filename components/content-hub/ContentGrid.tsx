@@ -44,7 +44,7 @@ export function ContentGrid() {
 
       {/* Grid */}
       {filtered.length === 0 ? (
-        <div className="rounded-2xl bg-white ring-1 ring-cloud-100 shadow-card p-10 text-center">
+        <div className="rounded-3xl bg-white ring-1 ring-cloud-100/70 shadow-card p-10 text-center">
           <p className="text-sm text-ink-600">No content matches that filter combination.</p>
           <p className="mt-1 text-xs text-ink-400">Try clearing the search or switching campaigns.</p>
         </div>

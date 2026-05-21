@@ -11,7 +11,7 @@ const STEPS = [
 
 export function ProductionTracker({ currentStep }: { currentStep: number }) {
   return (
-    <div className="glass-card rounded-2xl p-5 shadow-card">
+    <div className="glass-card rounded-3xl p-5 lg:p-6 shadow-card">
       <div className="mb-4 flex items-baseline justify-between">
         <h2 className="font-display text-base font-semibold text-ink-900">Production Progress</h2>
         <span className="text-[11px] font-medium text-ink-500">

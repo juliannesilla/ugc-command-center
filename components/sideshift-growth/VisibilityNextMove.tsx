@@ -35,7 +35,7 @@ export function VisibilityNextMove({ moves }: { moves: ProfileField[] }) {
 
         <h2
           id="visibility-next-move-heading"
-          className="mt-2 font-display text-2xl text-ink-900 leading-tight"
+          className="mt-2 font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight"
         >
           Do these next.
         </h2>
@@ -51,7 +51,7 @@ export function VisibilityNextMove({ moves }: { moves: ProfileField[] }) {
                 type="button"
                 aria-label={`Action ${idx + 1}: ${move.improveLabel}`}
                 className={cn(
-                  'group w-full text-left rounded-2xl bg-white/90 backdrop-blur ring-1 ring-cloud-100 px-4 py-4 shadow-card transition hover:-translate-y-0.5 hover:shadow-soft hover:ring-iris-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cloud-sunset',
+                  'group w-full text-left rounded-3xl bg-white/90 backdrop-blur ring-1 ring-cloud-100/70 px-5 py-5 shadow-card transition hover:-translate-y-0.5 hover:shadow-soft hover:ring-iris-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cloud-sunset',
                 )}
               >
                 <div className="flex items-center justify-between">

@@ -12,7 +12,7 @@ export default function TemplatesPage() {
           <span className="grid h-12 w-12 place-items-center rounded-2xl bg-cloud-soft text-cloud-700 ring-1 ring-cloud-100">
             <FileText className="h-5 w-5" />
           </span>
-          <h2 className="mt-4 font-display text-2xl text-ink-900">Coming soon</h2>
+          <h2 className="mt-4 font-display text-[22px] font-medium tracking-tight text-ink-900">Coming soon</h2>
           <p className="mt-2 text-[14px] text-ink-600 max-w-xl">
             Outreach replies, SOW pricing tables, script frameworks, and hook patterns — all in one place.
           </p>

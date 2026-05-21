@@ -10,6 +10,7 @@ import {
   Clapperboard,
   Sparkles,
   Inbox,
+  MessageSquare,
   CalendarDays,
   BarChart3,
   Wallet,
@@ -26,6 +27,8 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+// A14J-C3 atomic edit: import comment-mode hook for live badge count.
+import { useCommentMode } from '@/components/comments/CommentModeProvider.local';
 
 export interface NavItem {
   label: string;
@@ -39,6 +42,8 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Needs Attention',    href: '/pipeline/needs-attention',  icon: AlertTriangle },
   { label: 'Ready to Execute',   href: '/pipeline/ready-to-execute', icon: PlayCircle },
   { label: 'Production Queue',   href: '/pipeline/production-queue', icon: Clapperboard },
+  // A14J-C3: /inbox sits right above SOW Breakdown per Wave 1b spec.
+  { label: 'Inbox',              href: '/inbox',                     icon: MessageSquare },
   { label: 'SOW Breakdown',      href: '/sow-breakdown',             icon: Workflow },
   { label: 'Script Production',  href: '/script-production',         icon: FileText },
   { label: 'Content Hub',        href: '/content-hub',               icon: Sparkles },
@@ -58,6 +63,9 @@ export const NAV_ITEMS: NavItem[] = [
 
 export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
   const pathname = usePathname();
+  // A14J-C3: live open-count badge on the Inbox nav item.
+  const { openCount, inProgressCount } = useCommentMode();
+  const inboxBadge = openCount + inProgressCount;
 
   return (
     <aside className="hidden md:flex w-64 shrink-0 flex-col bg-white/85 backdrop-blur-xl border-r border-cloud-100 h-[calc(100vh-0px)] sticky top-0">
@@ -107,7 +115,15 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
                       active ? 'text-cloud-600' : 'text-ink-400 group-hover:text-cloud-500',
                     )}
                   />
-                  <span className="truncate">{item.label}</span>
+                  <span className="truncate flex-1">{item.label}</span>
+                  {item.href === '/inbox' && inboxBadge > 0 && (
+                    <span
+                      aria-label={`${inboxBadge} unresolved`}
+                      className="ml-auto inline-flex min-w-[20px] h-[18px] px-1.5 items-center justify-center rounded-full bg-cloud-sunset text-white text-[10px] font-semibold tabular-nums"
+                    >
+                      {inboxBadge > 99 ? '99+' : inboxBadge}
+                    </span>
+                  )}
                 </Link>
               </li>
             );

@@ -31,7 +31,7 @@ export function ChecklistCard({ title, icon, items: initialItems, tone = "cloud"
   const toneCls = TONES[tone];
 
   return (
-    <section className="glass-card flex h-full flex-col rounded-2xl p-5 shadow-card">
+    <section className="glass-card flex h-full flex-col rounded-3xl p-5 lg:p-6 shadow-card">
       <header className="mb-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

@@ -3,7 +3,7 @@ import { BEST_NEW_IDEA } from '@/lib/mock-data/brain-dump';
 
 export function BestNewIdeaCard() {
   return (
-    <div className="rounded-2xl bg-gradient-to-br from-cloud-200/60 via-iris-100/60 to-peach-100/50 ring-1 ring-cloud-200 p-6 shadow-soft">
+    <div className="rounded-3xl bg-gradient-to-br from-cloud-200/60 via-iris-100/60 to-peach-100/50 ring-1 ring-cloud-200 p-6 lg:p-7 shadow-soft">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-1.5">
           <Sparkles className="h-4 w-4 text-iris-500" />

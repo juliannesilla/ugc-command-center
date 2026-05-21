@@ -7,7 +7,7 @@ export function ToolsConnected() {
   return (
     <section className="space-y-3">
       <div className="flex items-end justify-between gap-4 flex-wrap">
-        <h3 className="font-display text-2xl text-ink-900">
+        <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
           Tools &amp; assets connected
         </h3>
         <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
@@ -20,7 +20,7 @@ export function ToolsConnected() {
           return (
             <div
               key={tool.name}
-              className="group rounded-2xl bg-white px-4 py-3.5 shadow-card ring-1 ring-cloud-100 hover:ring-cloud-300 hover:-translate-y-0.5 transition flex items-center gap-3"
+              className="group rounded-3xl bg-white px-4 py-3.5 shadow-card ring-1 ring-cloud-100/70 hover:ring-cloud-300 hover:-translate-y-0.5 transition flex items-center gap-3"
             >
               <span className="grid h-9 w-9 place-items-center rounded-xl bg-cloud-soft text-cloud-700 ring-1 ring-cloud-100">
                 <Icon className="h-4 w-4" />

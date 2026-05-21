@@ -65,10 +65,10 @@ export function PaymentsSnapshot() {
     <section className="space-y-3">
       <div className="flex items-end justify-between gap-4 flex-wrap">
         <div>
-          <h3 className="font-display text-2xl text-ink-900">
+          <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
             Payments snapshot
           </h3>
-          <p className="text-[12.5px] text-ink-500 mt-0.5">
+          <p className="text-[13px] text-ink-600 mt-0.5 leading-relaxed">
             Bonus potential layered on base: +{formatMoney(bonusPotential)}
           </p>
         </div>
@@ -80,7 +80,7 @@ export function PaymentsSnapshot() {
           return (
             <div
               key={t.label}
-              className={`rounded-2xl bg-white p-4 shadow-card ring-1 ${styles.ring}`}
+              className={`rounded-3xl bg-white p-5 lg:p-6 shadow-card ring-1 ${styles.ring}`}
             >
               <div className="flex items-start justify-between">
                 <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold leading-tight">

@@ -300,16 +300,17 @@ export default function PipelineDatabasePage() {
         </div>
 
         {/* ============ TABLE ============ */}
+        {/* A.14j Wave 1a T4 tokens: h-12 lg:h-14 rows · px-4 py-3 cells · 11px/0.14em uppercase headers · 13.5px/leading-snug body · even:bg-cloud-50/40 zebra */}
         <div className="rounded-3xl bg-white shadow-card ring-1 ring-cloud-100 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-[12.5px] border-separate border-spacing-0">
+            <table className="w-full text-[13.5px] leading-snug border-separate border-spacing-0">
               <thead className="bg-cloud-soft text-left">
-                <tr className="text-[10px] uppercase tracking-[0.16em] text-ink-500">
+                <tr className="text-[11px] uppercase tracking-[0.14em] text-ink-600">
                   {visibleColumns.map((col, idx) => (
                     <th
                       key={col.key}
                       className={cn(
-                        'px-4 py-3 font-semibold whitespace-nowrap border-b border-cloud-100',
+                        'h-12 lg:h-14 px-4 py-3 font-medium whitespace-nowrap border-b border-cloud-100',
                         col.align === 'right' && 'text-right',
                         col.align === 'center' && 'text-center',
                         col.key === 'brand' && 'sticky left-0 z-10 bg-cloud-soft',
@@ -323,16 +324,16 @@ export default function PipelineDatabasePage() {
                 </tr>
               </thead>
               <tbody>
-                {pageRows.map((row, rowIdx) => (
-                  <tr key={row.campaign_id} className="group">
+                {pageRows.map((row) => (
+                  <tr key={row.campaign_id} className="group even:bg-cloud-50/40">
                     {visibleColumns.map(col => (
                       <td
                         key={col.key}
                         className={cn(
-                          'px-4 py-3 border-b border-cloud-50 align-middle group-hover:bg-cloud-50/50 transition-colors',
+                          'h-12 lg:h-14 px-4 py-3 border-b border-cloud-50 align-middle group-hover:bg-cloud-50/50 transition-colors',
                           col.align === 'right' && 'text-right',
                           col.align === 'center' && 'text-center',
-                          col.key === 'brand' && 'sticky left-0 z-[1] bg-white group-hover:bg-cloud-50',
+                          col.key === 'brand' && 'sticky left-0 z-[1] bg-white group-even:bg-cloud-50/40 group-hover:bg-cloud-50',
                         )}
                         style={{ minWidth: col.width }}
                       >

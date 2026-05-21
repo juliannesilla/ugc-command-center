@@ -11,7 +11,7 @@ export function QuickCapture({ onCapture }: { onCapture?: (text: string) => void
     setText('');
   };
   return (
-    <div className="glass-card rounded-2xl p-5 md:p-6 shadow-card flex items-center gap-3">
+    <div className="glass-card rounded-3xl p-5 lg:p-6 shadow-card flex items-center gap-3">
       <Mic className="h-4 w-4 text-iris-400 shrink-0" />
       <input
         value={text}

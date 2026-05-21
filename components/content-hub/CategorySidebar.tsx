@@ -4,7 +4,7 @@ import { Library } from 'lucide-react';
 export function CategorySidebar() {
   const total = CONTENT_HUB_CATEGORIES.reduce((s, c) => s + c.count, 0);
   return (
-    <aside className="rounded-2xl bg-white ring-1 ring-cloud-100 shadow-card p-5 flex flex-col gap-4 lg:sticky lg:top-6 h-fit">
+    <aside className="rounded-3xl bg-white ring-1 ring-cloud-100/70 shadow-card p-5 lg:p-6 flex flex-col gap-4 lg:sticky lg:top-6 h-fit">
       <div className="flex items-center gap-2">
         <span className="grid h-9 w-9 place-items-center rounded-xl bg-cloud-soft text-iris-500 ring-1 ring-cloud-100">
           <Library className="h-4 w-4" />

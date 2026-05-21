@@ -110,7 +110,7 @@ export default function ProductionQueuePage() {
             <span className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-cloud-100 text-cloud-700 ring-1 ring-cloud-200">
               <Clapperboard className="h-6 w-6" />
             </span>
-            <h2 className="font-display text-2xl text-ink-900 leading-tight mb-2">
+            <h2 className="font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight mb-2">
               No deliverables in production right now.
             </h2>
             <p className="text-[13.5px] text-ink-500 max-w-md mx-auto leading-relaxed">

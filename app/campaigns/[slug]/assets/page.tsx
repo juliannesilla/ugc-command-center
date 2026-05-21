@@ -131,14 +131,14 @@ export default async function AssetsPage({
   const needsAttention = Math.max(0, allAssets.length - ready - 2);
 
   return (
-    <div className="mx-auto max-w-7xl px-7 py-12 md:px-12 lg:py-16">
+    <div className="px-7 py-12 md:px-12 lg:py-16">
       <CampaignHeader campaign={campaign} />
       <CampaignTabs slug={campaign.slug} active="assets" />
 
       {/* Header: page title + "Open Asset Vault" link */}
       <section className="rise rise-1 mt-8 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="font-display text-xl font-bold text-ink-900">
+          <h2 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
             Campaign Assets
           </h2>
           <p className="mt-0.5 text-[12.5px] text-ink-500">

@@ -63,7 +63,7 @@ export function SmartNextMove({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-iris-200 bg-gradient-to-br from-iris-50 via-white to-cloud-50 p-5 shadow-sm",
+        "group relative overflow-hidden rounded-3xl border border-iris-200 bg-gradient-to-br from-iris-50 via-white to-cloud-50 p-6 lg:p-7 shadow-sm",
         className,
       )}
     >
