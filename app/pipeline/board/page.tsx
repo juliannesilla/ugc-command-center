@@ -120,7 +120,7 @@ export default function PipelineBoardPage() {
                       <h3 className="text-[11px] font-display font-medium uppercase tracking-tight text-ink-700 leading-tight">
                         {stageDef.stage}
                       </h3>
-                      <span className="text-[10px] uppercase tracking-[0.14em] text-ink-400">
+                      <span className="stat-label text-ink-400">
                         {displayCount}
                       </span>
                     </div>
@@ -151,7 +151,7 @@ export default function PipelineBoardPage() {
         <aside className="lg:w-[340px] shrink-0 border-l border-cloud-100 bg-white/85 backdrop-blur-xl px-6 py-8 space-y-8 overflow-y-auto max-h-[calc(100vh-160px)]">
           {/* total */}
           <div>
-            <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+            <p className="stat-label text-ink-500">
               Pipeline overview
             </p>
             <p className="mt-1 font-display text-3xl text-ink-900 leading-tight">
@@ -184,7 +184,7 @@ export default function PipelineBoardPage() {
 
           {/* deadlines */}
           <div>
-            <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+            <p className="stat-label text-ink-500">
               Upcoming deadlines
             </p>
             <ul className="mt-3 space-y-2.5">
@@ -202,7 +202,7 @@ export default function PipelineBoardPage() {
 
           {/* top brands */}
           <div>
-            <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+            <p className="stat-label text-ink-500">
               Top brands by value
             </p>
             <ul className="mt-3 space-y-2.5">

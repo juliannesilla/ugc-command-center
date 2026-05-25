@@ -43,7 +43,7 @@ export default function InboxPage() {
             <span className="grid h-7 w-7 place-items-center rounded-xl bg-cloud-soft text-cloud-700 ring-1 ring-cloud-100">
               <InboxIcon className="h-3.5 w-3.5" />
             </span>
-            <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-medium inline-flex items-center gap-1.5">
+            <p className="stat-label inline-flex items-center gap-1.5">
               <Sparkles className="h-3 w-3" />
               Every comment, one queue
             </p>

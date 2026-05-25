@@ -25,14 +25,16 @@ export function UpcomingDeadlines() {
   return (
     <section className="space-y-3">
       <div className="flex items-end justify-between gap-4 flex-wrap">
-        <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
+        {/* A.14m T5: section-title */}
+        <h3 className="section-title text-[22px]">
           Upcoming deadlines
         </h3>
         <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
           Next 30 days
         </p>
       </div>
-      <div className="rounded-3xl bg-white shadow-card ring-1 ring-cloud-100 overflow-hidden">
+      {/* A.14m Stream-1 P1 mobile: overflow-x-auto allows horizontal scroll at 375px. */}
+      <div className="rounded-3xl bg-white shadow-card ring-1 ring-cloud-100 overflow-x-auto">
         {items.length === 0 ? (
           <div className="px-5 py-8 text-center">
             <CalendarClock className="h-5 w-5 text-ink-400 mx-auto" />
@@ -41,7 +43,7 @@ export function UpcomingDeadlines() {
             </p>
           </div>
         ) : (
-          <table className="w-full text-[13px]">
+          <table className="w-full text-[13px] min-w-[520px]">
             <thead className="bg-cloud-soft text-left">
               <tr className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500">
                 <th className="px-5 py-3 font-semibold">Due</th>

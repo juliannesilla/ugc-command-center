@@ -30,15 +30,17 @@ export function StatCardWithDelta({
   return (
     <div
       className={cn(
-        'glass-card rounded-2xl p-4 shadow-card flex flex-col gap-2',
+        // T5 ADDITIVE: card-stat semantic utility (A.14m Stream 3, mockup #11).
+        // Keep glass-card + existing classes — additive only.
+        'card-stat glass-card flex flex-col gap-2',
         className,
       )}
     >
-      <span className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-ink-500">
+      <span className="stat-label text-[10.5px] font-semibold uppercase tracking-[0.12em] text-ink-500">
         {label}
       </span>
       <div className="flex items-baseline gap-3">
-        <span className="font-display text-3xl font-semibold text-ink-900 leading-none">
+        <span className="stat-number font-display text-3xl font-semibold text-ink-900 leading-none">
           {value}
         </span>
         {delta && (

@@ -37,11 +37,21 @@ import { z } from 'zod';
 // cannot do. Use 'nodejs' so child_process is available in vercel mode while
 // the gh-pages branch still returns 501 without any spawn attempt.
 export const runtime = 'nodejs';
-// Phase A.14l-Wave3 fix: only mark force-dynamic on Vercel deploys; on gh-pages
-// the deploy.yml mv app/api step excludes this file from static export anyway,
-// but `output: 'export'` + this directive together break local DEPLOY_TARGET=gh-pages
-// builds for dev. Gate the directive so local builds succeed.
-export const dynamic = process.env.NEXT_PUBLIC_DEPLOY_TARGET === 'vercel' ? 'force-dynamic' : 'auto';
+// Phase A.14m fix: Next.js 15's route-segment-config validator REJECTS any
+// non-literal expression for `dynamic` (the A.14l-Wave3 ternary tripped it
+// with "Unsupported node type 'ConditionalExpression' at 'dynamic'"). Use a
+// static literal here. The compat story:
+//   • Vercel deploys: 'force-dynamic' is correct (this handler spawns
+//     child_process per request — must be per-request, not pre-rendered).
+//   • CI gh-pages deploys: deploy.yml's `mv app/api app/_api_excluded_for_static_export`
+//     step strips this entire route directory BEFORE build, so this directive
+//     never runs in that path.
+//   • Local DEPLOY_TARGET=gh-pages dev builds: use `npm run build:gh-pages-local`
+//     (added in A.14m) which performs the same mv-then-restore as deploy.yml.
+//     Running raw `DEPLOY_TARGET=gh-pages npm run build` will still fail
+//     because `output: 'export'` is fundamentally incompatible with any
+//     /api/* route — this is by Next.js design, not a bug we introduced.
+export const dynamic = 'force-dynamic';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Schema

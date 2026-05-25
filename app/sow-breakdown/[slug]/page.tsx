@@ -300,8 +300,10 @@ export default async function SowBreakdownDetailPage({ params }: { params: Promi
           </ol>
         </nav>
 
-        {/* Two-column layout: requirements grid (main) + right rail */}
-        <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_340px] gap-6 items-start">
+        {/* Two-column layout: requirements grid (main) + right rail.
+            A.14m T5 fix-fold (mockup #13): tighten primary column gap on lg+
+            (gap-6 → lg:gap-8) so the rail anchors against the requirements grid. */}
+        <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_340px] gap-6 lg:gap-8 items-start">
           {/* Main column */}
           <div className="min-w-0 space-y-6">
             <SowDetailHero campaign={meta} />
@@ -317,10 +319,13 @@ export default async function SowBreakdownDetailPage({ params }: { params: Promi
               </div>
             )}
 
-            {/* 14-card requirements grid */}
+            {/* 14-card requirements grid.
+                A.14m T5 fix-fold (mockup #13): tighten card grid gap on lg+
+                (gap-4 → lg:gap-5). RequirementCard internal padding preserved
+                per HR-2. .section-title applied to H2. */}
             <section aria-label="SOW requirements">
-              <h2 className="font-display text-[22px] text-ink-900 mb-4">Requirements</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+              <h2 className="section-title mb-4">Requirements</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 lg:gap-5">
                 {cards.map((c, i) => (
                   <RequirementCard
                     key={i}

@@ -4,9 +4,10 @@ export function PostedLinksTable() {
   return (
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-4">
-        <h3 className="font-display text-lg font-semibold text-ink-900">
+        {/* A.14m Stream 3 a11y fix: h3 → h2. T5 ADDITIVE: section-title. */}
+        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
           Posted Links with Metrics
-        </h3>
+        </h2>
         <p className="text-xs text-ink-500">Per-campaign click + conversion performance</p>
       </div>
       <div className="overflow-x-auto -mx-2">

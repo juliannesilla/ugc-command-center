@@ -49,9 +49,11 @@ export default function SowBreakdownPage() {
         pageTitle="SOW Breakdown"
       />
 
-      <main className="px-7 md:px-12 py-6 space-y-6">
-        {/* Hero block — mockup 13 top section */}
-        <section className="rounded-3xl bg-white/85 backdrop-blur-xl ring-1 ring-cloud-100 shadow-card px-7 md:px-10 py-8 md:py-9 relative overflow-hidden">
+      <main className="px-7 md:px-12 py-6 space-y-6 lg:space-y-8">
+        {/* Hero block — mockup 13 top section.
+            A.14m T5: hero keeps custom px/py (brand wash + tagline layout
+            needs specific scale); tighter spacing on lg+ per mockup #13. */}
+        <section className="rounded-3xl bg-white/85 backdrop-blur-xl ring-1 ring-cloud-100 shadow-card px-7 md:px-10 lg:px-11 py-8 md:py-9 lg:py-10 relative overflow-hidden">
           {/* soft sunset wash */}
           <div
             className="absolute inset-0 opacity-60 pointer-events-none"
@@ -92,8 +94,11 @@ export default function SowBreakdownPage() {
           </div>
         </section>
 
-        {/* Two-column: table (main) + meaning rail (placeholder for A14I-1b) */}
-        <section className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_320px] gap-6 items-start">
+        {/* Two-column: table (main) + meaning rail (placeholder for A14I-1b).
+            A.14m T5 fix-fold (mockup #13/#21): tighten column gap on lg+
+            (gap-6 → lg:gap-8) so the rail breathes against the data-dense
+            table. .card-secondary applied to rail cards. */}
+        <section className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_320px] gap-6 lg:gap-8 items-start">
           <div className="min-w-0">
             <SowBreakdownTable readinessByCampaign={readinessByCampaign} />
           </div>
@@ -105,8 +110,8 @@ export default function SowBreakdownPage() {
             data-owner="A14I-1b"
             className="hidden xl:block sticky top-6 space-y-4"
           >
-            <div className="rounded-2xl bg-white/85 backdrop-blur ring-1 ring-cloud-100 shadow-card p-5">
-              <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-medium mb-2">
+            <div className="card-secondary bg-white/85 backdrop-blur ring-cloud-100">
+              <p className="section-subtitle uppercase tracking-[0.18em] text-ink-500 font-medium mb-2">
                 What this means for you
               </p>
               <h2 className="font-display text-lg text-ink-900 leading-tight mb-2">
@@ -118,8 +123,8 @@ export default function SowBreakdownPage() {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-cloud-50/70 ring-1 ring-cloud-100 p-5">
-              <p className="text-[10.5px] uppercase tracking-[0.18em] text-cloud-700 font-medium mb-2">
+            <div className="card-secondary bg-cloud-50/70 ring-cloud-100 shadow-none">
+              <p className="section-subtitle uppercase tracking-[0.18em] text-cloud-700 font-medium mb-2">
                 Quick actions
               </p>
               <ul className="text-[12.5px] text-ink-700 space-y-1.5">

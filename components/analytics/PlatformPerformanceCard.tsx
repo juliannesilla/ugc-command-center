@@ -5,9 +5,10 @@ export function PlatformPerformanceCard() {
   return (
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-4">
-        <h3 className="font-display text-lg font-semibold text-ink-900">
+        {/* A.14m Stream 3 a11y fix: h3 → h2. T5 ADDITIVE: section-title. */}
+        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
           Platform Performance
-        </h3>
+        </h2>
         <p className="text-xs text-ink-500">Views · engagement · net followers</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -22,10 +23,11 @@ export function PlatformPerformanceCard() {
                 p.color,
               )}
             />
-            <p className="text-[10.5px] font-semibold uppercase tracking-[0.1em] text-ink-500">
+            {/* T5 ADDITIVE: stat-label + stat-number on per-platform tiles (mockup #11). */}
+            <p className="stat-label text-[10.5px] font-semibold uppercase tracking-[0.1em] text-ink-500">
               {p.platform}
             </p>
-            <p className="font-display text-2xl font-semibold text-ink-900 mt-1">
+            <p className="stat-number font-display text-2xl font-semibold text-ink-900 mt-1">
               {p.views}
             </p>
             <p className="text-xs text-ink-500">views</p>

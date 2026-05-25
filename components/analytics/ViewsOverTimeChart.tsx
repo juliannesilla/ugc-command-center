@@ -22,9 +22,10 @@ export function ViewsOverTimeChart() {
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="font-display text-lg font-semibold text-ink-900">
+          {/* A.14m Stream 3 a11y fix: h3 → h2 (heading-order, h1 in page → h2 cards). T5 ADDITIVE: section-title. */}
+          <h2 className="section-title font-display text-lg font-semibold text-ink-900">
             Views Over Time
-          </h3>
+          </h2>
           <p className="text-xs text-ink-500">Apr 6 – May 6, 2026</p>
         </div>
         <div className="flex items-center gap-3 text-[11px] text-ink-600">
@@ -53,7 +54,8 @@ export function ViewsOverTimeChart() {
             />
             <YAxis
               tickFormatter={fmt}
-              tick={{ fontSize: 11, fill: '#9E91B0' }}
+              // A.14m Stream 3 a11y fix: #9E91B0 (3.6:1) → #6B5E80 (5.8:1 ✅ WCAG AA).
+              tick={{ fontSize: 11, fill: '#6B5E80' }}
               tickLine={false}
               axisLine={false}
               width={40}

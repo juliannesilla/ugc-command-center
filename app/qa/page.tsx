@@ -26,8 +26,9 @@ export default function QAPage() {
       />
 
       <section className="px-7 md:px-12 -mt-8 pb-20">
-        <div className="mb-4 flex items-center gap-2 text-xs text-ink-600">
-          <ShieldCheck className="h-4 w-4 text-iris-500" />
+        {/* A.14m T5: .section-subtitle on the stage-context line for token alignment. */}
+        <div className="section-subtitle mb-4 flex items-center gap-2">
+          <ShieldCheck className="h-4 w-4 text-iris-500" aria-hidden="true" />
           <span>
             <strong>{active.length}</strong> active campaign{active.length === 1 ? "" : "s"} ·
             mock QA derived from current stage + readiness score

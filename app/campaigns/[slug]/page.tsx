@@ -185,10 +185,11 @@ export default async function CampaignOverviewPage({
           <p className="text-[12.5px] leading-snug text-ink-700">
             {campaign.payment.structure}
           </p>
-          <p className="mt-3 font-display text-3xl font-bold text-ink-900">
+          {/* A.14m T5: stat-number + stat-label */}
+          <p className="stat-number mt-3">
             ${campaign.payment.total.toLocaleString()}
           </p>
-          <p className="text-[10.5px] uppercase tracking-[0.1em] text-ink-500">
+          <p className="stat-label">
             Total potential
           </p>
           {campaign.payment.bonus > 0 && (

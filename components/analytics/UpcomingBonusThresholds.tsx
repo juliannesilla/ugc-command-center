@@ -74,9 +74,10 @@ export function UpcomingBonusThresholds() {
               <Trophy className="h-3.5 w-3.5" />
             </span>
             <div>
-              <h3 className="font-display text-lg font-semibold leading-tight text-ink-900">
+              {/* A.14m Stream 3 a11y fix: h3 → h2. T5 ADDITIVE: section-title. */}
+              <h2 className="section-title font-display text-lg font-semibold leading-tight text-ink-900">
                 Upcoming Bonus Thresholds
-              </h3>
+              </h2>
               <p className="text-[11px] uppercase tracking-[0.14em] text-ink-500">
                 Progress toward next milestone
               </p>

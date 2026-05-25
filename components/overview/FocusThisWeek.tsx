@@ -15,7 +15,8 @@ export function FocusThisWeek() {
   return (
     <section className="rise rise-4 space-y-3">
       <div className="flex items-end justify-between gap-4 flex-wrap">
-        <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">Focus this week</h3>
+        {/* A.14m T5: section-title */}
+        <h3 className="section-title text-[22px]">Focus this week</h3>
         <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
           May 19 – May 25
         </p>
@@ -26,7 +27,7 @@ export function FocusThisWeek() {
           return (
             <div
               key={group.title}
-              className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-cloud-100"
+              className="card-secondary"
             >
               <div className="flex items-center gap-2">
                 <span className="grid h-7 w-7 place-items-center rounded-lg bg-cloud-50 text-cloud-600 ring-1 ring-cloud-100">

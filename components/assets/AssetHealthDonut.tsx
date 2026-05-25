@@ -34,9 +34,9 @@ export function AssetHealthDonut() {
   });
 
   return (
-    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
+    <section className="card-secondary rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
       <div className="flex items-baseline justify-between">
-        <h3 className="font-display text-[15px] text-ink-900">Asset Health</h3>
+        <h3 className="section-title font-display text-[15px] text-ink-900">Asset Health</h3>
         <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-400">
           {total.toLocaleString()} total
         </span>

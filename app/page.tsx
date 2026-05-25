@@ -100,17 +100,18 @@ export default function OverviewPage() {
           <TodayModeToggle />
         </div>
 
-        {/* HERO STAT STRIP — Phase A.14j §2 typography + spacing pass. */}
+        {/* HERO STAT STRIP — Phase A.14j §2 typography + spacing pass.
+            A.14m T5: card-stat + stat-label + stat-number semantic utilities. */}
         <section className="rise rise-1 grid grid-cols-2 md:grid-cols-5 gap-5 lg:gap-6">
           {heroTiles.map((t) => {
             const Icon = t.Icon;
             return (
               <div
                 key={t.label}
-                className="group rounded-3xl bg-white p-5 lg:p-6 shadow-card ring-1 ring-cloud-100/70 hover:-translate-y-0.5 hover:shadow-soft hover:ring-cloud-300 transition duration-200 ease-out will-change-transform"
+                className="card-stat group hover:-translate-y-0.5 hover:shadow-soft transition duration-200 ease-out will-change-transform"
               >
                 <div className="flex items-start justify-between">
-                  <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-600 font-medium leading-tight">
+                  <p className="stat-label leading-tight">
                     {t.label}
                   </p>
                   <span
@@ -122,7 +123,7 @@ export default function OverviewPage() {
                     <Icon className="h-3.5 w-3.5" />
                   </span>
                 </div>
-                <p className="mt-2 font-display text-[32px] lg:text-[36px] font-medium tabular-nums text-ink-900 leading-none">
+                <p className="stat-number mt-2">
                   {t.value}
                 </p>
                 <p className="text-[10.5px] font-normal text-ink-400 mt-1">{t.sub}</p>
@@ -170,10 +171,11 @@ export default function OverviewPage() {
               <PortfolioReadyClips />
             </div>
 
-            {/* Recent activity table — kept from A.14d baseline (HR-2 preserve). */}
+            {/* Recent activity table — kept from A.14d baseline (HR-2 preserve).
+                A.14m T5: section-title for H3. */}
             <section className="space-y-3" data-today-hide>
               <div className="flex items-end justify-between gap-4 flex-wrap">
-                <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
+                <h3 className="section-title text-[22px]">
                   Recent campaign activity
                 </h3>
                 <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
@@ -248,7 +250,7 @@ export default function OverviewPage() {
               </div>
             </div>
 
-            <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-cloud-100">
+            <div className="card-secondary">
               <div className="flex items-center gap-2">
                 <Target className="h-4 w-4 text-cloud-600" />
                 <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
@@ -271,7 +273,7 @@ export default function OverviewPage() {
               </ul>
             </div>
 
-            <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-cloud-100" data-today-hide>
+            <div className="card-secondary" data-today-hide>
               <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
                 Quick stats
               </p>
@@ -295,7 +297,7 @@ export default function OverviewPage() {
               </dl>
             </div>
 
-            <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-cloud-100" data-today-hide>
+            <div className="card-secondary" data-today-hide>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-cloud-600" />
                 <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">

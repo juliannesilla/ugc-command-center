@@ -10,9 +10,10 @@ export function BestVideosCard() {
   return (
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-3">
-        <h3 className="font-display text-lg font-semibold text-ink-900">
+        {/* A.14m Stream 3 a11y fix: h3 → h2. T5 ADDITIVE: section-title. */}
+        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
           Top 5 Best-Performing Videos
-        </h3>
+        </h2>
         <p className="text-xs text-ink-500">Views, avg watch time, engagement rate</p>
       </div>
       <div className="overflow-x-auto -mx-2">

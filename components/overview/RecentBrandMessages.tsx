@@ -10,7 +10,8 @@ export function RecentBrandMessages() {
   return (
     <section className="space-y-3">
       <div className="flex items-end justify-between gap-4 flex-wrap">
-        <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
+        {/* A.14m T5: section-title */}
+        <h3 className="section-title text-[22px]">
           Recent brand messages
         </h3>
         <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">

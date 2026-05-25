@@ -138,7 +138,7 @@ export default function ProductionQueuePage() {
               </p>
             </div>
 
-            <div className="flex gap-3 items-start min-w-max">
+            <div className="flex gap-6 lg:gap-8 items-start min-w-max">
               {byStatus.map(({ status, deliverables }) => (
                 <ProductionQueueColumn
                   key={status}

@@ -3,10 +3,10 @@ import { REUSABLE_PATTERNS } from '@/lib/mock-data/brain-dump';
 
 export function PatternsWorthReusing() {
   return (
-    <div className="glass-card rounded-2xl p-6 shadow-card">
+    <div className="card-secondary glass-card rounded-2xl p-6 shadow-card">
       <div className="flex items-center gap-1.5 mb-3">
         <Repeat2 className="h-4 w-4 text-iris-400" />
-        <h4 className="text-sm font-semibold text-ink-900">Patterns Worth Reusing</h4>
+        <h4 className="section-title text-sm font-semibold text-ink-900">Patterns Worth Reusing</h4>
       </div>
       <ul className="flex flex-col gap-2.5">
         {REUSABLE_PATTERNS.map((p) => (

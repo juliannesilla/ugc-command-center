@@ -16,9 +16,10 @@ export function HookPerformanceBars() {
   return (
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-4">
-        <h3 className="font-display text-lg font-semibold text-ink-900">
+        {/* A.14m Stream 3 a11y fix: h3 → h2 (heading-order). T5 ADDITIVE: section-title. */}
+        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
           Hook Performance Comparison
-        </h3>
+        </h2>
         <p className="text-xs text-ink-500">
           Avg view rate vs. completion rate, by hook style
         </p>
@@ -35,7 +36,8 @@ export function HookPerformanceBars() {
             <XAxis
               type="number"
               tickFormatter={(v) => `${v}%`}
-              tick={{ fontSize: 11, fill: '#9E91B0' }}
+              // A.14m Stream 3 a11y fix: #9E91B0 (3.6:1) → #6B5E80 (5.8:1 ✅ WCAG AA).
+              tick={{ fontSize: 11, fill: '#6B5E80' }}
               tickLine={false}
               axisLine={false}
               domain={[0, 60]}

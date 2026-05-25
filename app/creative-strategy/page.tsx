@@ -42,17 +42,19 @@ export default function CreativeStrategyPage() {
 
       <section className="px-7 md:px-12 -mt-8 pb-20">
         {sorted.length === 0 ? (
-          <div className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-10 text-center">
-            <Lightbulb className="h-10 w-10 text-iris-300 mx-auto mb-3" />
-            <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
+          /* A.14m T5: empty-state uses .card-hero (generous p-10 preserved). */
+          <div className="card-hero !p-10 ring-cloud-200 text-center">
+            <Lightbulb className="h-10 w-10 text-iris-300 mx-auto mb-3" aria-hidden="true" />
+            <h3 className="section-title">
               No campaigns with strategy work yet.
             </h3>
-            <p className="text-sm text-ink-600 mt-2 max-w-md mx-auto">
+            <p className="section-subtitle mt-2 max-w-md mx-auto">
               When a campaign moves past SOW Received, its creative strategy lands here.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          /* A.14m T5 fix-fold: gap-5 → lg:gap-6 to mirror /script-production. */
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
             {sorted.map((campaign) => {
               const script = findScriptForSlug(
                 (campaign.campaign_id || campaign.brand)

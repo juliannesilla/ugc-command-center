@@ -39,14 +39,14 @@ export default function ContentHubPage() {
           <span className="relative grid h-12 w-12 place-items-center rounded-2xl bg-cloud-soft text-cloud-700 ring-1 ring-cloud-100 transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3">
             <Sparkles className="h-5 w-5" />
           </span>
-          <p className="relative mt-4 text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-medium inline-flex items-center gap-1.5">
+          <p className="stat-label relative mt-4 inline-flex items-center gap-1.5">
             <Sparkles className="h-3 w-3" />
             In the works
           </p>
-          <h2 className="relative mt-1 font-display text-[22px] font-medium tracking-tight text-ink-900">
+          <h2 className="section-title relative mt-1">
             Coming soon
           </h2>
-          <p className="relative mt-2 text-[14px] text-ink-600 max-w-xl leading-relaxed">
+          <p className="section-subtitle relative mt-2 max-w-xl">
             Scripts, hooks, b-roll, and final cuts — organized by campaign with cross-referenced reusable assets.
           </p>
         </div>

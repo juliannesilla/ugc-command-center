@@ -9,8 +9,8 @@ export function CampaignHealthSnapshot() {
 
   return (
     <section className="rise rise-3 grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6">
-      {/* Health donut */}
-      <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-cloud-100">
+      {/* Health donut — A.14m T5: card-secondary */}
+      <div className="card-secondary">
         <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
           Campaign health
         </p>

@@ -97,7 +97,7 @@ export function IdeaBankBoard() {
     <div className="glass-card rounded-3xl p-6 lg:p-7 shadow-card">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
+          <h3 className="section-title font-display text-[22px] font-medium tracking-tight text-ink-900">
             Idea Bank Board
           </h3>
           <p className="text-xs text-ink-500">

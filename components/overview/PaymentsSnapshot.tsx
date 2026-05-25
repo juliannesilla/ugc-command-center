@@ -65,15 +65,17 @@ export function PaymentsSnapshot() {
     <section className="space-y-3">
       <div className="flex items-end justify-between gap-4 flex-wrap">
         <div>
-          <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
+          {/* A.14m T5: section-title + section-subtitle */}
+          <h3 className="section-title text-[22px]">
             Payments snapshot
           </h3>
-          <p className="text-[13px] text-ink-600 mt-0.5 leading-relaxed">
+          <p className="section-subtitle mt-0.5">
             Bonus potential layered on base: +{formatMoney(bonusPotential)}
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+      {/* A.14m Stream-1 P1 mobile-stack: 1-col at 375px, 2-col sm, 4-col lg. */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {tiles.map((t) => {
           const styles = toneStyles[t.tone];
           const Icon = t.Icon;

@@ -16,8 +16,8 @@ const toneClass = {
 
 export function QuickActionsCard() {
   return (
-    <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
-      <h3 className="font-display text-[15px] text-ink-900">Quick Actions</h3>
+    <section className="card-secondary rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
+      <h3 className="section-title font-display text-[15px] text-ink-900">Quick Actions</h3>
       <ul className="mt-3 space-y-1.5">
         {ACTIONS.map(({ label, icon: Icon, tone }) => (
           <li key={label}>

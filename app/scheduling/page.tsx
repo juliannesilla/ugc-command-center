@@ -179,12 +179,21 @@ export default function SchedulingPage() {
                     );
                     const slotKey = `${date}-${t}`;
                     const isSelected = selectedSlot === slotKey;
+                    // A.14m Stream 3 M2 Lighthouse a11y fix: button-name × 65
+                    // killed via aria-label on every calendar grid button.
+                    const slotAriaLabel =
+                      slotEvents.length > 0
+                        ? `Slot ${d} ${date}, ${t} — ${slotEvents
+                            .map((e) => `${e.type} with ${e.brand}`)
+                            .join(", ")}`
+                        : `Schedule slot, ${d} ${date}, ${t}`;
                     return (
                       <button
                         type="button"
                         key={slotKey}
                         onClick={() => setSelectedSlot(slotKey)}
                         aria-pressed={isSelected}
+                        aria-label={slotAriaLabel}
                         className={`group/slot relative h-16 border-l border-cloud-100 text-left transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cloud-300 ${
                           isSelected
                             ? "bg-cloud-50 ring-1 ring-inset ring-cloud-200"
@@ -218,11 +227,13 @@ export default function SchedulingPage() {
 
           {/* Time slot picker sidebar */}
           <aside className="rise rise-4 flex flex-col gap-5">
-            <section className="rounded-3xl bg-white/85 backdrop-blur p-6 shadow-card ring-1 ring-cloud-100">
-              <h3 className="text-[11px] uppercase tracking-[0.16em] font-semibold text-ink-700">
+            {/* A.14m Stream 3: T5 card-secondary + stat-label + section-subtitle
+                (ADDITIVE). h3 → h2 (heading-order: page h1 → h2 sidebar). */}
+            <section className="card-secondary bg-white/85 backdrop-blur">
+              <h2 className="stat-label text-[11px] tracking-[0.16em] font-semibold text-ink-700">
                 Quick Slots
-              </h3>
-              <p className="mt-1 text-[12px] text-ink-500">
+              </h2>
+              <p className="section-subtitle mt-1 text-[12px] text-ink-500">
                 Pick 3 to send to a brand
               </p>
               <ul className="mt-4 space-y-2">
@@ -236,6 +247,7 @@ export default function SchedulingPage() {
                   <li key={slot}>
                     <button
                       type="button"
+                      aria-label={`Add quick slot ${slot}`}
                       className="group w-full flex items-center justify-between rounded-2xl bg-cloud-50/60 px-3.5 py-2.5 text-[12.5px] ring-1 ring-transparent transition-all duration-150 ease-out hover:bg-cloud-100 hover:ring-cloud-200 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cloud-300"
                     >
                       <span className="font-mono text-ink-900">{slot}</span>
@@ -253,13 +265,14 @@ export default function SchedulingPage() {
             </section>
 
             <section className="rounded-3xl bg-iris-50 p-6 ring-1 ring-iris-100">
-              <h3 className="text-[11px] uppercase tracking-[0.16em] font-semibold text-iris-500">
+              {/* A.14m Stream 3 a11y: h3 → h2 (heading-order). */}
+              <h2 className="stat-label text-[11px] tracking-[0.16em] font-semibold text-iris-500">
                 Synced with
-              </h3>
+              </h2>
               <p className="mt-2 font-display text-[18px] text-ink-900">
                 Google Calendar
               </p>
-              <p className="mt-1 text-[12px] text-ink-600">
+              <p className="section-subtitle mt-1 text-[12px] text-ink-600">
                 Live two-way sync · MCP-connected
               </p>
             </section>

@@ -3,11 +3,11 @@ import { CONTENT_PATTERN_LIBRARY } from '@/lib/mock-data/brain-dump';
 
 export function ContentPatternLibrary() {
   return (
-    <div className="glass-card rounded-2xl p-6 shadow-card">
+    <div className="card-secondary glass-card rounded-2xl p-6 shadow-card">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-1.5">
           <BookMarked className="h-4 w-4 text-iris-400" />
-          <h4 className="text-sm font-semibold text-ink-900">Content Pattern Library</h4>
+          <h4 className="section-title text-sm font-semibold text-ink-900">Content Pattern Library</h4>
         </div>
         <button className="text-xs font-semibold text-iris-500 hover:text-iris-600">
           View All →

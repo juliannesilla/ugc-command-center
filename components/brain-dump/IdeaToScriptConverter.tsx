@@ -3,10 +3,10 @@ import { IDEA_TO_SCRIPT_STEPS } from '@/lib/mock-data/brain-dump';
 
 export function IdeaToScriptConverter() {
   return (
-    <div className="glass-card rounded-2xl p-6 shadow-card flex flex-col gap-3">
+    <div className="card-secondary glass-card rounded-2xl p-6 shadow-card flex flex-col gap-3">
       <div className="flex items-center gap-1.5">
         <Wand2 className="h-4 w-4 text-iris-400" />
-        <h4 className="text-sm font-semibold text-ink-900">Idea → Script Conversion</h4>
+        <h4 className="section-title text-sm font-semibold text-ink-900">Idea → Script Conversion</h4>
       </div>
       <ol className="flex flex-col gap-2">
         {IDEA_TO_SCRIPT_STEPS.map((step) => (

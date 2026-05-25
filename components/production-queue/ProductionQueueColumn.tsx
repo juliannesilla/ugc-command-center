@@ -41,7 +41,7 @@ export function ProductionQueueColumn({
   const stripeKey = getStripe(status);
 
   return (
-    <section className="w-[280px] shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 flex flex-col max-h-[78vh]">
+    <section className="w-72 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 flex flex-col max-h-[78vh]">
       {/* column header */}
       <header className="relative px-3.5 pt-4 pb-3 border-b border-cloud-50">
         <span className={cn('absolute inset-x-3.5 top-0 h-1 rounded-b-full', accentBar[stripeKey])} />
@@ -49,14 +49,14 @@ export function ProductionQueueColumn({
           <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-700 leading-tight">
             {PRODUCTION_STATUS_LABEL[status]}
           </h3>
-          <span className="text-[10px] uppercase tracking-[0.14em] text-ink-400">
+          <span className="stat-label text-ink-400">
             {deliverables.length}
           </span>
         </div>
       </header>
 
       {/* cards */}
-      <div className="flex-1 overflow-y-auto p-2.5 space-y-2.5">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {deliverables.length > 0 ? (
           deliverables.map((d) => (
             <ProductionQueueCard key={d.key} deliverable={d} />

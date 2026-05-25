@@ -245,9 +245,12 @@ export function SowBreakdownTable({
                   {/* Open SOW drill-down — routes to L1's NEW slug page.
                       microinteractions: subtle arrow translate on hover,
                       iris ring focus ring per Apple HIG focus contract. */}
+                  {/* A.14m M2 a11y fix: label-content-name-mismatch — visible
+                      text "Open SOW" must appear in aria-label so screen
+                      reader users hear what visual users see. */}
                   <Link
                     href={`/sow-breakdown/${slug}`}
-                    aria-label={`Open full SOW for ${meta.brand}`}
+                    aria-label={`Open SOW for ${meta.brand}`}
                     className="group/open mt-1.5 inline-flex items-center gap-1 rounded-full bg-iris-50/80 hover:bg-iris-100 active:bg-iris-200/80 text-iris-600 hover:text-iris-700 ring-1 ring-iris-200/80 hover:ring-iris-300 px-2.5 py-1 text-[11px] font-semibold tracking-tight transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none"
                   >
                     Open SOW

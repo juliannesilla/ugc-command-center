@@ -33,7 +33,7 @@ export function AssetCard({ asset }: { asset: Asset }) {
   return (
     <article
       tabIndex={0}
-      className="group flex flex-col rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-3.5 shadow-card transition-all duration-200 ease-out will-change-transform hover:shadow-soft hover:-translate-y-0.5 hover:scale-[1.02] hover:border-cloud-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-iris-300 focus-visible:ring-offset-2 focus-visible:ring-offset-cloud-soft motion-reduce:transition-none motion-reduce:hover:transform-none"
+      className="card-secondary group flex flex-col rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-3.5 shadow-card transition-all duration-200 ease-out will-change-transform hover:shadow-soft hover:-translate-y-0.5 hover:scale-[1.02] hover:border-cloud-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-iris-300 focus-visible:ring-offset-2 focus-visible:ring-offset-cloud-soft motion-reduce:transition-none motion-reduce:hover:transform-none"
     >
       <div className="flex items-start gap-3">
         <span

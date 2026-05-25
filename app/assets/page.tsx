@@ -124,7 +124,7 @@ export default function AssetsPage() {
                 )}
               >
                 <div className="flex items-center justify-between">
-                  <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold">
+                  <p className="stat-label text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold">
                     {label}
                   </p>
                   <span className={cn('grid h-7 w-7 place-items-center rounded-lg', statIconTones[tone])}>
@@ -269,7 +269,7 @@ export default function AssetsPage() {
 
               {/* Campaign Folders */}
               <section>
-                <h2 className="font-display text-[18px] text-ink-900 mb-3">Campaign Folders</h2>
+                <h2 className="section-title font-display text-[18px] text-ink-900 mb-3">Campaign Folders</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5 gap-5">
                   {MOCK_CAMPAIGN_FOLDERS.map(f => (
                     <CampaignFolderCard key={f.id} folder={f} />
@@ -281,7 +281,7 @@ export default function AssetsPage() {
               {/* Recently Added Assets */}
               <section>
                 <div className="flex items-baseline justify-between mb-3">
-                  <h2 className="font-display text-[18px] text-ink-900">Recently Added Assets</h2>
+                  <h2 className="section-title font-display text-[18px] text-ink-900">Recently Added Assets</h2>
                   <StatusChip tone="iris">{MOCK_RECENT_ASSETS.length} files</StatusChip>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

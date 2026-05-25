@@ -6,9 +6,10 @@ export function PortfolioWorthyGrid() {
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="font-display text-lg font-semibold text-ink-900">
+          {/* A.14m Stream 3 a11y fix: h3 → h2. T5 ADDITIVE: section-title. */}
+          <h2 className="section-title font-display text-lg font-semibold text-ink-900">
             Portfolio-Worthy Posts
-          </h3>
+          </h2>
           <p className="text-xs text-ink-500">Save these for case studies & pitch decks</p>
         </div>
         <button

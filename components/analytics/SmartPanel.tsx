@@ -6,15 +6,17 @@ export function SmartPanel() {
     <aside className="glass-card rounded-2xl p-6 shadow-card flex flex-col gap-5">
       <div className="flex items-center gap-2">
         <Sparkles className="h-4 w-4 text-iris-400" />
-        <h3 className="font-display text-lg font-semibold text-ink-900">
+        {/* A.14m Stream 3 a11y fix: h3 → h2 (heading-order). T5 ADDITIVE: section-title. */}
+        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
           Smart Panel
-        </h3>
+        </h2>
       </div>
 
       <div>
-        <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-emerald-700 mb-2">
+        {/* A.14m Stream 3 a11y fix: h4 → h3 (descends from new h2 above). */}
+        <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-emerald-700 mb-2">
           What's Winning
-        </h4>
+        </h3>
         <ul className="flex flex-col gap-2">
           {WHATS_WINNING.map((it) => (
             <li key={it.id} className="flex items-start gap-2 text-sm text-ink-700">
@@ -26,9 +28,10 @@ export function SmartPanel() {
       </div>
 
       <div>
-        <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-orange-700 mb-2">
+        {/* A.14m Stream 3 a11y fix: h4 → h3. */}
+        <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-orange-700 mb-2">
           What Needs Attention
-        </h4>
+        </h3>
         <ul className="flex flex-col gap-2">
           {NEEDS_ATTENTION.map((it) => (
             <li key={it.id} className="flex items-start gap-2 text-sm text-ink-700">

@@ -246,7 +246,8 @@ export default function PaymentsPage() {
             {/* ============ FILTER CHIPS + PLATFORM/BRAND DROPDOWNS ============ */}
             <section className="rounded-3xl bg-white p-4 ring-1 ring-cloud-100 shadow-card">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500">Filters</h2>
+                {/* T5 ADDITIVE: section-title (A.14m Stream 3). */}
+                <h2 className="section-title text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500">Filters</h2>
                 {(activeFilters.size > 0 || platform !== 'all' || brand !== 'all') && (
                   <button
                     type="button"
@@ -537,7 +538,8 @@ function EmptyState() {
       <span className="grid h-12 w-12 place-items-center rounded-2xl bg-cloud-soft text-cloud-700 ring-1 ring-cloud-100">
         <Wallet className="h-5 w-5" />
       </span>
-      <h2 className="mt-4 font-display text-[22px] font-medium tracking-tight text-ink-900">No payments tracked yet.</h2>
+      {/* T5 ADDITIVE: section-title. */}
+      <h2 className="section-title mt-4 font-display text-[22px] font-medium tracking-tight text-ink-900">No payments tracked yet.</h2>
       <p className="mt-2 text-[14px] text-ink-600 max-w-xl">
         Payments appear when campaigns reach Submitted stage.
       </p>

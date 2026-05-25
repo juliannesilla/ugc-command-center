@@ -182,7 +182,7 @@ export default function PipelineDatabasePage() {
         {/* ============ SAVED FILTER CHIPS (spec L233-L246) ============ */}
         <section className="rounded-3xl bg-white p-4 ring-1 ring-cloud-100 shadow-card">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500">Saved filters</h2>
+            <h2 className="stat-label text-ink-500">Saved filters</h2>
             {activeFilters.size > 0 && (
               <button
                 type="button"
@@ -257,7 +257,7 @@ export default function PipelineDatabasePage() {
             {colsOpen && (
               <div className="absolute right-0 top-full mt-2 z-20 w-72 max-h-[420px] overflow-y-auto rounded-2xl bg-white p-3 shadow-card ring-1 ring-cloud-200">
                 <div className="flex items-center justify-between mb-2">
-                  <p className="text-[10px] uppercase tracking-[0.16em] font-semibold text-ink-500">Show/hide columns</p>
+                  <p className="stat-label text-ink-500">Show/hide columns</p>
                   <button
                     type="button"
                     onClick={() => setVisibleCols(new Set(DEFAULT_VISIBLE))}

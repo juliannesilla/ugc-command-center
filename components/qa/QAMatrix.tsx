@@ -96,13 +96,14 @@ const STATUS_TONE: Record<QAStatus, { bg: string; text: string; icon: typeof Shi
 
 export function QAMatrix({ campaigns }: { campaigns: Campaign[] }) {
   if (campaigns.length === 0) {
+    // A.14m T5: .card-hero + .section-title + .section-subtitle utilities.
     return (
-      <div className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-10 text-center">
-        <ShieldCheck className="h-10 w-10 text-iris-300 mx-auto mb-3" />
-        <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
+      <div className="card-hero !p-10 ring-cloud-200 text-center">
+        <ShieldCheck className="h-10 w-10 text-iris-300 mx-auto mb-3" aria-hidden="true" />
+        <h3 className="section-title">
           No deliverables awaiting QA right now.
         </h3>
-        <p className="text-sm text-ink-600 mt-2">
+        <p className="section-subtitle mt-2">
           QA checkpoints surface when campaigns enter Strategy Ready or beyond.
         </p>
       </div>

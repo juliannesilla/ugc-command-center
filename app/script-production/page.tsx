@@ -95,7 +95,8 @@ export default function ScriptProductionPage() {
       />
 
       <section className="px-7 md:px-12 -mt-8 pb-20">
-        <p className="text-sm text-ink-600 mb-6 max-w-2xl">
+        {/* A.14m T5: .section-subtitle utility on intro lede. */}
+        <p className="section-subtitle mb-6 max-w-2xl">
           One card per campaign in script + production. Hook options, core
           beats, the working script, A-Roll / B-Roll capture, and the
           post-production gate live side-by-side so a single scroll covers
@@ -103,21 +104,25 @@ export default function ScriptProductionPage() {
         </p>
 
         {sorted.length === 0 ? (
-          <div className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-10 text-center">
+          /* A.14m T5: empty-state uses .card-hero (generous p-10 preserved). */
+          <div className="card-hero !p-10 ring-cloud-200 text-center">
             <Film
               className="h-10 w-10 text-iris-300 mx-auto mb-3"
               aria-hidden="true"
             />
-            <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
+            <h3 className="section-title">
               No campaigns in script or production yet.
             </h3>
-            <p className="text-sm text-ink-600 mt-2 max-w-md mx-auto">
+            <p className="section-subtitle mt-2 max-w-md mx-auto">
               When a campaign clears SOW review and moves into scripting,
               its script + production card will surface here.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          /* A.14m T5 fix-fold (mockup #17): tighten lane gutter on lg+
+             (gap-5 → lg:gap-6) — premium spacing so cards breathe without
+             feeling sparse. ScriptProductionCard owns its own padding. */
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
             {sorted.map((campaign) => {
               const slug = campaign.campaign_id;
               return (

@@ -3,8 +3,8 @@ import { IDEAS_TO_SCRIPTS } from '@/lib/mock-data/brain-dump';
 
 export function IdeasToScriptList() {
   return (
-    <div className="glass-card rounded-2xl p-6 shadow-card">
-      <h4 className="text-sm font-semibold text-ink-900 mb-3">
+    <div className="card-secondary glass-card rounded-2xl p-6 shadow-card">
+      <h4 className="section-title text-sm font-semibold text-ink-900 mb-3">
         Ideas to Turn Into Scripts
       </h4>
       <ul className="flex flex-col gap-2">

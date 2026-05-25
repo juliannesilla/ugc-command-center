@@ -29,16 +29,18 @@ export function StatCard({
   return (
     <div
       className={cn(
-        'group relative rounded-3xl bg-white px-5 py-5 shadow-card ring-1 transition hover:-translate-y-0.5 hover:shadow-soft overflow-hidden',
+        // T5 ADDITIVE: card-stat semantic utility (A.14m Stream 3, mockup #06+08).
+        // Keep accent-bar + ring classes — additive only.
+        'card-stat group relative bg-white ring-1 transition hover:-translate-y-0.5 hover:shadow-soft overflow-hidden',
         a.ring,
         className,
       )}
     >
       <span className={cn('absolute inset-x-0 top-0 h-1 rounded-t-3xl', a.bar)} />
-      <div className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold">
+      <div className="stat-label text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold">
         {label}
       </div>
-      <div className="mt-1.5 font-display text-2xl text-ink-900 leading-tight">
+      <div className="stat-number mt-1.5 font-display text-2xl text-ink-900 leading-tight">
         {value}
       </div>
       {sub && (

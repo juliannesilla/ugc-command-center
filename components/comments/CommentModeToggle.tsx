@@ -39,7 +39,10 @@ export function CommentModeToggle() {
       {mode ? <X className="h-4 w-4" /> : <MessageCircle className="h-4 w-4" />}
       <span>{mode ? 'Close' : 'Leave feedback'}</span>
       {!mode && badge > 0 && (
+        // M4-G fix: aria-prohibited-attr — span needs role to legally carry aria-label.
+        // role="img" treats the visible count as image content + the label as description.
         <span
+          role="img"
           aria-label={`${badge} unresolved comments`}
           className="ml-1 min-w-[20px] h-5 px-1.5 grid place-items-center rounded-full bg-cloud-sunset text-white text-[10px] font-semibold tabular-nums ring-1 ring-white"
         >

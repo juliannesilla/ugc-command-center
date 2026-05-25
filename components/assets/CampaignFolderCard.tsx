@@ -20,7 +20,7 @@ const avatarTones: Record<'pink' | 'iris' | 'peach' | 'sky', string> = {
 
 export function CampaignFolderCard({ folder }: { folder: Campaign }) {
   return (
-    <article className="group relative flex flex-col rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-4 shadow-card hover:shadow-soft hover:-translate-y-0.5 transition-all duration-300">
+    <article className="card-secondary group relative flex flex-col rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-4 shadow-card hover:shadow-soft hover:-translate-y-0.5 transition-all duration-300">
       <div className={cn('relative h-24 w-full rounded-xl overflow-hidden mb-3', folder.thumbColor)}>
         <div className="absolute inset-0 bg-grain opacity-30 mix-blend-overlay" />
         <Folder className="absolute bottom-2 right-2 h-5 w-5 text-white/70 drop-shadow" strokeWidth={1.5} />
