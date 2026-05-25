@@ -15,3 +15,12 @@ scripts/sideshift-output/*.log
 scripts/cron-output/*.jsonl
 scripts/cron-output/*.log
 playwright-report/
+
+# Phase A.14m Stream 1: QA artifacts (regenerable, too large for git)
+test-results/
+.lighthouseci/
+_meta/mockups/post-a14i-visual-diff/
+_meta/mockups/post-a14m-visual-diff-live/
+_meta/qa-reports/a14m-lighthouse/*.html
+_meta/qa-reports/a14m-lighthouse/*.json
+_meta/qa-reports/a14m-playwright/html-report/

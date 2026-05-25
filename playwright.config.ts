@@ -26,7 +26,14 @@ export default defineConfig({
     timeout: 5_000,
   },
   use: {
-    baseURL: process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:3000',
+    // HR-33 / A.14m baseURL fix: WHATWG URL constructor strips the basePath
+    // when `new URL("/route", "https://host/subpath")` resolves because
+    // a leading-slash path is absolute. Normalize to trailing-slash and have
+    // spec files use relative gotos (e.g. `page.goto('pipeline/board')`).
+    baseURL: (() => {
+      const raw = process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:3000';
+      return raw.endsWith('/') ? raw : `${raw}/`;
+    })(),
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

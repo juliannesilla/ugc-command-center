@@ -44,7 +44,7 @@ async function dragCardViaMouse(page: Page, source: ReturnType<Page['locator']>,
 test.describe('brain dump drag-and-drop', () => {
   test.beforeEach(async ({ page }) => {
     await bypassAuth(page);
-    await page.goto('/brain-dump');
+    await page.goto('brain-dump');
   });
 
   test('page renders without errors', async ({ page }) => {

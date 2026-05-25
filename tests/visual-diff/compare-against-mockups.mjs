@@ -138,7 +138,12 @@ async function captureWithPlaywright(chromium, baseUrl, route, vw, vh, outPath) 
   try {
     const ctx = await browser.newContext({ viewport: { width: vw, height: vh } });
     const page = await ctx.newPage();
-    const url = new URL(route, baseUrl).toString();
+    // HR-33 / A.14m subpath fix: `new URL("/route", "https://host/subpath")`
+    // strips the subpath per WHATWG. Normalize: trailing-slash base + relative
+    // path to preserve the basePath when the deploy lives under one.
+    const baseWithSlash = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+    const relPath = route.startsWith("/") ? route.slice(1) : route;
+    const url = new URL(relPath, baseWithSlash).toString();
     await page.goto(url, { waitUntil: "networkidle", timeout: 45_000 });
     await page.screenshot({ path: outPath, fullPage: true });
     await ctx.close();

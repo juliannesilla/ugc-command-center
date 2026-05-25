@@ -30,14 +30,14 @@ test.describe('login flow', () => {
   });
 
   test('renders the login page', async ({ page }) => {
-    await page.goto('/login');
+    await page.goto('login');
     await expect(page.locator('nextjs-portal')).toHaveCount(0);
     // The page imports Lock + ArrowRight + Cloud icons and a password input.
     await expect(page.locator('input[type="password"]')).toBeVisible();
   });
 
   test('wrong password shows an error message', async ({ page }) => {
-    await page.goto('/login');
+    await page.goto('login');
     const input = page.locator('input[type="password"]');
     await input.fill('definitely-not-the-password');
     await input.press('Enter');
@@ -51,7 +51,7 @@ test.describe('login flow', () => {
   });
 
   test('correct password authenticates and redirects', async ({ page }) => {
-    await page.goto('/login');
+    await page.goto('login');
     const input = page.locator('input[type="password"]');
     await input.fill(DEV_PASSWORD);
     await input.press('Enter');
@@ -78,11 +78,14 @@ test.describe('login flow', () => {
     await page.addInitScript(() => {
       window.localStorage.setItem('ugc-cc-auth', 'ok');
     });
-    await page.goto('/login');
+    await page.goto('login');
     // The page's useEffect should router.replace('/') almost immediately.
-    await page.waitForURL((url) => url.pathname === '/', { timeout: 5_000 }).catch(() => {
+    // HR-33 / A.14m: on GH Pages the app root is `/ugc-command-center/`, not
+    // `/`. Assert we navigated AWAY from /login rather than to a specific
+    // pathname so the test works under both basePath modes (gh-pages + vercel).
+    await page.waitForURL((url) => !url.pathname.includes('/login'), { timeout: 5_000 }).catch(() => {
       /* If redirect doesn't fire we'll fail the next assertion. */
     });
-    expect(new URL(page.url()).pathname).toBe('/');
+    expect(page.url(), 'authenticated session should redirect away from /login').not.toContain('/login');
   });
 });

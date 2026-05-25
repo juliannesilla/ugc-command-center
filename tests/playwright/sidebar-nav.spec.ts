@@ -45,7 +45,9 @@ test.describe('sidebar navigation', () => {
   });
 
   test('sidebar renders all expected items on the Overview page', async ({ page }) => {
-    const response = await page.goto('/');
+    // HR-33 / A.14m fix: empty string + trailing-slash baseURL resolves to the
+    // dashboard root, preserving the basePath when deployed under one.
+    const response = await page.goto('');
     expect(response?.status(), 'Overview page must respond 2xx').toBeLessThan(400);
 
     for (const item of SIDEBAR_ITEMS) {
@@ -58,7 +60,11 @@ test.describe('sidebar navigation', () => {
 
   for (const item of SIDEBAR_ITEMS) {
     test(`navigates to ${item.label} (${item.href})`, async ({ page }) => {
-      const response = await page.goto(item.href);
+      // HR-33 / A.14m fix: strip leading slash so WHATWG URL resolution
+      // preserves the deployed basePath (sidebar item.href stays as /foo for
+      // routing semantics in the app).
+      const relHref = item.href.replace(/^\//, '');
+      const response = await page.goto(relHref);
       expect(
         response?.status(),
         `${item.href} must return a non-error status`,

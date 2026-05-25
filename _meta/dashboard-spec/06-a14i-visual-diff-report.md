@@ -1,9 +1,9 @@
 # 06 · A.14i Visual-Diff Report
 
-**Generated:** 2026-05-21T08:11:25.376Z
+**Generated:** 2026-05-25T23:22:15.279Z
 **Driver:** playwright
-**Base URL:** https://ugc-command-center.vercel.app
-**Dry run:** yes (no captures taken)
+**Base URL:** https://juliannesilla.github.io/ugc-command-center/
+**Dry run:** no
 
 ## 🟢 BOTTOM LINE
 
@@ -11,29 +11,31 @@
 
 ## 🔴 WHAT JULZ NEEDS TO DO RIGHT NOW
 
-1. Nothing right now — this is a dry-run scaffold.
+1. Review every P0 row's side-by-side composite.
+2. Confirm P1 routes are acceptable for ship or schedule polish.
+3. File Linear tickets for any P0 row before Phase A.14i closes.
 
 ## Per-route grade table
 
 | Route | Owner | Status | Grade | Mockups | Composite |
 |-------|-------|--------|-------|---------|-----------|
-| `/` | A14I-1 OVERVIEW + A14I SPACING-FINALIZE | ship-in-flight | **P1** | `01-overview-julz-rj-ready-to-make.png`<br>`02-overview-command-center-julianne.png`<br>`05-overview-good-morning-julianne.png`<br>`07-pipeline-overview-funnel.png`<br>`10-overview-sideshift.png`<br>`12-creator-command-center-full.png` | — |
-| `/pipeline/production-queue` | A14I PRODUCTION-QUEUE-AUDIT-FIX | ship-in-flight | **P1** | `03-production-queue.png` | — |
-| `/analytics` | shipped A.10 D-4 | shipped | **P2** | `04-analytics-performance.png` | — |
-| `/payments` | shipped A.14e E8 | shipped | **P2** | `06-payments-performance.png`<br>`08-payments-get-paid.png` | — |
-| `/contacts` | shipped A.14e E9 | shipped | **P2** | `09-brand-crm.png` | — |
-| `/pipeline/database` | shipped A.10 + A.14b STAGE_OPTIONS | shipped | **P2** | `11-pipeline-database.png` | — |
-| `/sow-breakdown` | A14I SOW-BREAKDOWN-XCAMPAIGN | ship-in-flight | **P1** | `13-sow-breakdown-elf.png`<br>`21-sow-breakdown-summer-glow.png` | — |
-| `/pipeline/board` | shipped A.10 + A.14e E2 | shipped | **P2** | `14-pipeline-kanban.png`<br>`23-pipeline-kanban-creator-dense.png` | — |
-| `/assets` | shipped A.10 D-5 | shipped | **P2** | `15-asset-vault.png` | — |
-| `/?mobile=1` | shipped A.14e E11 | shipped | **P2** | `16-mobile-compact-view.png` | — |
-| `/script-production` | A14I SCRIPT-PRODUCTION-XCAMPAIGN | ship-in-flight | **P1** | `17-script-production.png` | — |
-| `/brand-responses` | shipped A.13 + A.14g BRAND-RESPONSES | shipped | **P2** | `18-brand-responses-summer-fridays.png`<br>`25-brand-responses-glow-em-go.png` | — |
-| `/brand-responses/summer-fridays` | shipped A.13 | shipped | **P2** | `18-brand-responses-summer-fridays.png` | — |
-| `/pipeline/deadlines` | shipped A.14e E7 | shipped | **P2** | `19-pipeline-deadlines-calendar.png` | — |
-| `/sideshift-growth` | shipped A.14e E10 | shipped | **P2** | `20-sideshift-growth.png` | — |
-| `/brain-dump` | shipped A.10 D-4 | shipped | **P2** | `22-brain-dump-hook-bank.png` | — |
-| `/pipeline/needs-attention` | shipped A.14e E4 | shipped | **P2** | `24-fix-first-needs-attention.png` | — |
+| `/` | A14I-1 OVERVIEW + A14I SPACING-FINALIZE | ship-in-flight | **P1** | `01-overview-julz-rj-ready-to-make.png`<br>`02-overview-command-center-julianne.png`<br>`05-overview-good-morning-julianne.png`<br>`07-pipeline-overview-funnel.png`<br>`10-overview-sideshift.png`<br>`12-creator-command-center-full.png` | `_meta/mockups/post-a14i-visual-diff/root.diff.png` |
+| `/pipeline/production-queue` | A14I PRODUCTION-QUEUE-AUDIT-FIX | ship-in-flight | **P1** | `03-production-queue.png` | `_meta/mockups/post-a14i-visual-diff/pipeline_production-queue.diff.png` |
+| `/analytics` | shipped A.10 D-4 | shipped | **P2** | `04-analytics-performance.png` | `_meta/mockups/post-a14i-visual-diff/analytics.diff.png` |
+| `/payments` | shipped A.14e E8 | shipped | **P2** | `06-payments-performance.png`<br>`08-payments-get-paid.png` | `_meta/mockups/post-a14i-visual-diff/payments.diff.png` |
+| `/contacts` | shipped A.14e E9 | shipped | **P2** | `09-brand-crm.png` | `_meta/mockups/post-a14i-visual-diff/contacts.diff.png` |
+| `/pipeline/database` | shipped A.10 + A.14b STAGE_OPTIONS | shipped | **P2** | `11-pipeline-database.png` | `_meta/mockups/post-a14i-visual-diff/pipeline_database.diff.png` |
+| `/sow-breakdown` | A14I SOW-BREAKDOWN-XCAMPAIGN | ship-in-flight | **P1** | `13-sow-breakdown-elf.png`<br>`21-sow-breakdown-summer-glow.png` | `_meta/mockups/post-a14i-visual-diff/sow-breakdown.diff.png` |
+| `/pipeline/board` | shipped A.10 + A.14e E2 | shipped | **P2** | `14-pipeline-kanban.png`<br>`23-pipeline-kanban-creator-dense.png` | `_meta/mockups/post-a14i-visual-diff/pipeline_board.diff.png` |
+| `/assets` | shipped A.10 D-5 | shipped | **P2** | `15-asset-vault.png` | `_meta/mockups/post-a14i-visual-diff/assets.diff.png` |
+| `/?mobile=1` | shipped A.14e E11 | shipped | **P2** | `16-mobile-compact-view.png` | `_meta/mockups/post-a14i-visual-diff/-q-mobile-1.diff.png` |
+| `/script-production` | A14I SCRIPT-PRODUCTION-XCAMPAIGN | ship-in-flight | **P1** | `17-script-production.png` | `_meta/mockups/post-a14i-visual-diff/script-production.diff.png` |
+| `/brand-responses` | shipped A.13 + A.14g BRAND-RESPONSES | shipped | **P2** | `18-brand-responses-summer-fridays.png`<br>`25-brand-responses-glow-em-go.png` | `_meta/mockups/post-a14i-visual-diff/brand-responses.diff.png` |
+| `/brand-responses/summer-fridays` | shipped A.13 | shipped | **P2** | `18-brand-responses-summer-fridays.png` | `_meta/mockups/post-a14i-visual-diff/brand-responses_summer-fridays.diff.png` |
+| `/pipeline/deadlines` | shipped A.14e E7 | shipped | **P2** | `19-pipeline-deadlines-calendar.png` | `_meta/mockups/post-a14i-visual-diff/pipeline_deadlines.diff.png` |
+| `/sideshift-growth` | shipped A.14e E10 | shipped | **P2** | `20-sideshift-growth.png` | `_meta/mockups/post-a14i-visual-diff/sideshift-growth.diff.png` |
+| `/brain-dump` | shipped A.10 D-4 | shipped | **P2** | `22-brain-dump-hook-bank.png` | `_meta/mockups/post-a14i-visual-diff/brain-dump.diff.png` |
+| `/pipeline/needs-attention` | shipped A.14e E4 | shipped | **P2** | `24-fix-first-needs-attention.png` | `_meta/mockups/post-a14i-visual-diff/pipeline_needs-attention.diff.png` |
 
 ## Methodology
 

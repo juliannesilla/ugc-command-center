@@ -21,7 +21,7 @@ async function bypassAuth(page: Page) {
 test.describe('brand responses split pane', () => {
   test.beforeEach(async ({ page }) => {
     await bypassAuth(page);
-    await page.goto('/brand-responses');
+    await page.goto('brand-responses');
   });
 
   test('page renders without errors', async ({ page }) => {
@@ -59,7 +59,7 @@ test.describe('brand responses split pane', () => {
   });
 
   test('direct deep-link with ?id= renders the detail pane', async ({ page }) => {
-    await page.goto('/brand-responses?id=1');
+    await page.goto('brand-responses?id=1');
     await expect(page.locator('nextjs-portal')).toHaveCount(0);
     // We don't assert content (id=1 may not exist in seed data), only that
     // navigation does not throw a runtime error.

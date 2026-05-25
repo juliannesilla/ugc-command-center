@@ -20,7 +20,7 @@ async function bypassAuth(page: Page) {
 test.describe('SOW quick actions', () => {
   test.beforeEach(async ({ page }) => {
     await bypassAuth(page);
-    await page.goto('/documents');
+    await page.goto('documents');
   });
 
   test('documents page renders without errors', async ({ page }) => {
