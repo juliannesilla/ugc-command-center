@@ -51,6 +51,45 @@ export interface SideShiftMessage {
   draft_text?: string;
   thread_url: string;
   status: "awaiting-you" | "awaiting-brand" | "no-action";
+  thread_id?: string;
+}
+
+/**
+ * A.14s S4: brand-fit score row written by scripts/score-brand-fit.mjs.
+ * Loaded client-side from /data/brand-fit-scores.jsonl alongside the
+ * messages feed. Keyed by thread_id (multiple messages share one thread).
+ */
+export interface BrandFitScore {
+  thread_id: string;
+  brand: string;
+  score: number; // 1-10
+  reasoning: string;
+  niche_match: "strong" | "moderate" | "weak";
+  brand_safety: "safe" | "review" | "avoid";
+  scored_at: string;
+}
+
+/**
+ * A.14s S4: Fit score badge. Color band reflects triage priority —
+ * green=reply-first, amber=reply-soon, red=deprioritize. Tooltip surfaces
+ * the one-line reasoning so Julz can decide without opening the row.
+ */
+function FitBadge({ score, reasoning }: { score: number; reasoning?: string }) {
+  const tone =
+    score >= 7
+      ? "bg-emerald-100 text-emerald-700 ring-emerald-200"
+      : score >= 4
+      ? "bg-amber-100 text-amber-700 ring-amber-200"
+      : "bg-red-100 text-red-700 ring-red-200";
+  return (
+    <span
+      className={`inline-flex h-7 w-9 items-center justify-center rounded-lg ring-1 font-mono text-[12.5px] font-semibold tabular-nums ${tone}`}
+      title={reasoning ? `Fit ${score}/10 — ${reasoning}` : `Fit ${score}/10`}
+      aria-label={`Brand fit score ${score} out of 10`}
+    >
+      {score}
+    </span>
+  );
 }
 
 type Props = {
@@ -104,6 +143,40 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
   const router = useRouter();
   const [messages, setMessages] = useState<SideShiftMessage[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  // A.14s S4: brand-fit scores loaded once, indexed by thread_id.
+  // Missing file or empty = scoresByThread stays empty (graceful — Fit
+  // column renders "—" placeholder, table stays usable).
+  const [scoresByThread, setScoresByThread] = useState<Record<string, BrandFitScore>>({});
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/data/brand-fit-scores.jsonl", { cache: "no-store" });
+        if (!res.ok) return;
+        const txt = await res.text();
+        const out: Record<string, BrandFitScore> = {};
+        for (const line of txt.split(/\r?\n/)) {
+          const trimmed = line.trim();
+          if (!trimmed) continue;
+          try {
+            const obj = JSON.parse(trimmed);
+            if (obj && typeof obj.thread_id === "string" && typeof obj.score === "number") {
+              out[obj.thread_id] = obj as BrandFitScore;
+            }
+          } catch {
+            // skip schema-header / malformed lines
+          }
+        }
+        if (!cancelled) setScoresByThread(out);
+      } catch {
+        // silent — Fit column gracefully shows "—"
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -172,6 +245,7 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
           <thead>
             <tr className="bg-cloud-50/60 text-[10px] uppercase tracking-[0.16em] text-ink-500">
               <Th>Brand / Campaign</Th>
+              <Th>Fit</Th>
               <Th>Last Message</Th>
               <Th>When</Th>
               <Th>Status</Th>
@@ -182,7 +256,7 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
             {messages === null && (
               <tr>
                 <td
-                  colSpan={5}
+                  colSpan={6}
                   className="px-5 py-16 text-center text-ink-400 italic"
                 >
                   Loading SideShift inbox…
@@ -192,7 +266,7 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
             {messages !== null && rows.length === 0 && (
               <tr>
                 <td
-                  colSpan={5}
+                  colSpan={6}
                   className="px-5 py-16 text-center text-ink-500"
                 >
                   <p className="italic">
@@ -210,6 +284,12 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
             {rows.map((m) => {
               const isActive = selectedId === m.id;
               const needsYou = m.status === "awaiting-you";
+              // A.14s S4: lookup score by thread_id (preferred) with fallback
+              // to id since older feed rows may not carry a thread_id column.
+              const fit =
+                (m.thread_id && scoresByThread[m.thread_id]) ||
+                scoresByThread[m.id] ||
+                null;
               return (
                 <tr
                   key={m.id}
@@ -256,6 +336,19 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
                         </p>
                       </div>
                     </div>
+                  </td>
+                  <td className="px-5 py-3.5 align-middle">
+                    {fit ? (
+                      <FitBadge score={fit.score} reasoning={fit.reasoning} />
+                    ) : (
+                      <span
+                        className="inline-flex h-7 w-9 items-center justify-center rounded-lg bg-cloud-50 text-ink-400 font-mono text-[12.5px] ring-1 ring-cloud-100"
+                        title="Brand-fit score not generated yet — run `npm run score-brand-fit` with ANTHROPIC_API_KEY set."
+                        aria-label="Brand fit score not available"
+                      >
+                        —
+                      </span>
+                    )}
                   </td>
                   <td className="px-5 py-3.5 align-middle">
                     <div className="max-w-[24rem]">
