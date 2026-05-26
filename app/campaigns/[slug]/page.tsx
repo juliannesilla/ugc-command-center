@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CampaignHeader, CampaignTabs } from "@/components/campaigns/CampaignHeader";
 import { CaseStudyButton } from "@/components/campaigns/CaseStudyButton";
+import { PerfMetricsWidget } from "@/components/campaigns/PerfMetricsWidget";
 import {
   getCampaign,
   sowData,
@@ -228,11 +229,18 @@ export default async function CampaignOverviewPage({
         />
       </section>
 
-      {/* Row 4 — A.14t T6: Case-Study auto-generator (A.4 G31 deferred-gap).
+      {/* Row 4 — A.14t T5: Performance Metrics widget (A.4 G35 deferred-gap).
+          Sits between Row 3 QuickJumps and the Case-Study button (Row 5) so
+          metrics inform the case-study generator visually. */}
+      <section className="rise rise-5 mt-8">
+        <PerfMetricsWidget campaignSlug={campaign.slug} />
+      </section>
+
+      {/* Row 5 — A.14t T6: Case-Study auto-generator (A.4 G31 deferred-gap).
           Insertion point for sibling T5 Perf Metrics widget: add BEFORE this
           section (between Row 3 QuickJumps and this Row 4) to keep case-study
           at the bottom of the page. */}
-      <section className="rise rise-5 mt-8">
+      <section className="rise rise-6 mt-8">
         <CaseStudyButton slug={campaign.slug} />
       </section>
     </div>
