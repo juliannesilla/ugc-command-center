@@ -28,9 +28,10 @@
  * standalone — different aggregate semantics).
  */
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Inbox, Mail, Sparkles, MessageSquare, Filter } from "lucide-react";
 import { UnifiedDetailPanel } from "./UnifiedDetailPanel";
+import { StaleBadge, computeStaleness } from "./StaleBadge";
 
 export type UnifiedSource = "sideshift" | "gmail" | "linear";
 
@@ -60,6 +61,17 @@ type Props = {
 };
 
 type FilterKey = "all" | UnifiedSource;
+
+// A.14s S3 — urgency filter pills (orthogonal to source filter chips above).
+// Lets Julz triage by who owes whom rather than which channel.
+type UrgencyKey = "all" | "owed" | "silent" | "urgent";
+
+const URGENCY_PILLS: { key: UrgencyKey; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "owed", label: "Owed by you" },
+  { key: "silent", label: "Brand silent" },
+  { key: "urgent", label: "Urgent" },
+];
 
 const SOURCE_META: Record<
   UnifiedSource,
@@ -113,7 +125,26 @@ function fmtTs(iso: string): string {
 
 export function UnifiedBrandInbox({ entries, sourceStatuses }: Props) {
   const [filter, setFilter] = useState<FilterKey>("all");
+  const [urgency, setUrgency] = useState<UrgencyKey>("all");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  // A.14s S3 — pin "now" to mount so SSR/client renders agree (Next.js static
+  // export). Without this useEffect, staleness ages would diverge between
+  // initial HTML and hydration, causing a hydration mismatch.
+  const [now, setNow] = useState<number>(() => Date.now());
+  useEffect(() => {
+    setNow(Date.now());
+  }, []);
+
+  // Pre-compute staleness once per entry per render (cheap — O(n)).
+  const annotated = useMemo(
+    () =>
+      entries.map((e) => ({
+        entry: e,
+        stale: computeStaleness(e.direction, e.ts, now),
+      })),
+    [entries, now]
+  );
 
   const counts = useMemo(() => {
     const c: Record<FilterKey, number> = {
@@ -126,10 +157,57 @@ export function UnifiedBrandInbox({ entries, sourceStatuses }: Props) {
     return c;
   }, [entries]);
 
+  // Urgency counts drive the pill row + "default to Urgent" auto-select.
+  const urgencyCounts = useMemo(() => {
+    const c: Record<UrgencyKey, number> = {
+      all: annotated.length,
+      owed: 0,
+      silent: 0,
+      urgent: 0,
+    };
+    for (const a of annotated) {
+      if (a.stale.level === "owed") c.owed += 1;
+      else if (a.stale.level === "silent") c.silent += 1;
+      else if (a.stale.level === "urgent") c.urgent += 1;
+    }
+    return c;
+  }, [annotated]);
+
+  // Default filter per spec: "Urgent" if urgent rows exist, else "All".
+  // Only auto-set ONCE on first mount so user choice is sticky.
+  const [didAutoSelect, setDidAutoSelect] = useState(false);
+  useEffect(() => {
+    if (didAutoSelect) return;
+    if (urgencyCounts.urgent > 0) setUrgency("urgent");
+    setDidAutoSelect(true);
+  }, [urgencyCounts.urgent, didAutoSelect]);
+
   const visible = useMemo(() => {
-    if (filter === "all") return entries;
-    return entries.filter((e) => e.source === filter);
-  }, [entries, filter]);
+    // First filter by source.
+    const bySource =
+      filter === "all"
+        ? annotated
+        : annotated.filter((a) => a.entry.source === filter);
+
+    // Then filter by urgency.
+    const byUrgency =
+      urgency === "all"
+        ? bySource
+        : bySource.filter((a) => a.stale.level === urgency);
+
+    // Sort: "All" urgency → urgency desc then ts desc (urgent floats up).
+    //       specific urgency → ts desc only (urgency is constant inside group).
+    const sorted = [...byUrgency].sort((a, b) => {
+      const tA = Date.parse(a.entry.ts) || 0;
+      const tB = Date.parse(b.entry.ts) || 0;
+      if (urgency === "all") {
+        if (b.stale.rank !== a.stale.rank) return b.stale.rank - a.stale.rank;
+      }
+      return tB - tA;
+    });
+
+    return sorted.map((a) => a.entry);
+  }, [annotated, filter, urgency]);
 
   const selected = useMemo(
     () => entries.find((e) => e.id === selectedId) || null,
@@ -183,6 +261,51 @@ export function UnifiedBrandInbox({ entries, sourceStatuses }: Props) {
           <Filter className="h-3 w-3" />
           {visible.length} {visible.length === 1 ? "message" : "messages"}
         </span>
+      </div>
+
+      {/* A.14s S3 — urgency filter pill row (orthogonal to source filter above) */}
+      <div
+        role="tablist"
+        aria-label="Filter by urgency"
+        className="mb-4 inline-flex flex-wrap items-center gap-1 rounded-2xl bg-white/85 backdrop-blur p-1 shadow-card ring-1 ring-cloud-100"
+      >
+        {URGENCY_PILLS.map(({ key, label }) => {
+          const active = urgency === key;
+          const count = urgencyCounts[key];
+          const isUrgent = key === "urgent";
+          const isOwed = key === "owed";
+          const isSilent = key === "silent";
+          const activeBg = isUrgent
+            ? "bg-ink-900 text-white shadow-card"
+            : isOwed
+              ? "bg-peach-500 text-white shadow-card"
+              : isSilent
+                ? "bg-amber-500 text-white shadow-card"
+                : "bg-cloud-sunset text-white shadow-card";
+          return (
+            <button
+              key={key}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => setUrgency(key)}
+              className={`flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.14em] transition ${
+                active
+                  ? activeBg
+                  : "text-ink-600 hover:text-ink-900 hover:bg-cloud-50"
+              }`}
+            >
+              {label}
+              <span
+                className={`rounded-full px-1.5 py-0.5 text-[10px] tabular-nums ${
+                  active ? "bg-white/25 text-white" : "bg-cloud-100 text-cloud-700"
+                }`}
+              >
+                {count}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       {/* Honesty banner — surfaces any source that has 0 rows */}
@@ -271,6 +394,13 @@ export function UnifiedBrandInbox({ entries, sourceStatuses }: Props) {
                         >
                           {meta.label}
                         </span>
+                        {/* A.14s S3 — staleness severity badge (null when row not stale) */}
+                        <StaleBadge
+                          direction={e.direction}
+                          ts={e.ts}
+                          now={now}
+                          className="flex-shrink-0"
+                        />
                       </div>
                       <p className="mt-0.5 truncate text-[12.5px] text-ink-600">
                         <span className="font-medium text-ink-700">

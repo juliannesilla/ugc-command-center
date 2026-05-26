@@ -1,4 +1,8 @@
 // Phase A.14p P3 · A14P-P3-UNIFIED-INBOX — NEW unified brand inbox UI shell.
+// Phase A.14s S3 · A14S-S3-STALE-FLAGGER — adds StaleBadge severity flags +
+//   urgency filter pills (rendered inside UnifiedBrandInbox client component).
+//   Page-level entry list is now passed through unchanged; client component
+//   handles staleness scoring + urgency-aware sort.
 //
 // PURPOSE
 //   ONE inbox surface that merges 3 brand-relevant data streams into a single
