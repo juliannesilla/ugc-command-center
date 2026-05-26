@@ -318,6 +318,7 @@ async function launchContext(chromium, profileDir, headed, logger) {
   await ensureDir(profileDir);
   logger.info('launching persistent context', { profileDir, headed });
   const context = await chromium.launchPersistentContext(profileDir, {
+    channel: 'chrome', // Use installed Google Chrome Stable (code-signed; avoids AV-quarantine of bundled Chromium). A.14p P8-FIX 2026-05-26.
     headless: !headed,
     viewport: { width: 1280, height: 900 },
     timeout: NAV_TIMEOUT_MS,
