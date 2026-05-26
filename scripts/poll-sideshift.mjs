@@ -228,32 +228,49 @@ async function scrapeInbox(page, logger) {
     return { messages: [], authFailed: true };
   }
 
-  // Selector candidates (in order of preference; first match wins).
-  const SELECTORS = [
-    '[data-testid="conversation-item"]',
-    '[data-conversation]',
-    '.conversation-row',
-    '.chat-list-item',
-    'a[href*="/chat/"]',
+  // A.14q Q2: SideShift is React SPA — wait for the chat-list container to actually render.
+  // In headless mode hydration takes 5-15s longer than headed. Wait for ul.py-0 to appear
+  // with at least one li, OR timeout cleanly with honest log.
+  try {
+    await page.waitForSelector('ul.py-0 > li, ul[class*="py-0"] > li', { timeout: 20_000, state: 'attached' });
+    // Extra grace period for the full list to populate after first row appears
+    await page.waitForTimeout(1500);
+    logger.info('chat-list rendered');
+  } catch (err) {
+    logger.warn('chat-list never rendered within 20s', { error: String(err).slice(0, 200) });
+    // Fall through — selectors will return 0 rows + log clean miss
+  }
+
+  // A.14q Q2 2026-05-26: SideShift uses Tailwind utility classes on bare DOM.
+  // Selectors derived from live inspection — see _meta/dashboard-spec/06-a14q-sideshift-dom-inspection.md
+  const PRIMARY_SELECTOR = 'ul.py-0 > li';
+  const FALLBACK_SELECTORS = [
+    'ul[class*="py-0"] > li',
+    'main ul > li',
+    'li:has(button img)', // any li with a button containing an img
   ];
 
   let usedSelector = null;
-  let rows = [];
-  for (const sel of SELECTORS) {
-    try {
-      const found = await page.$$(sel);
-      if (found.length > 0) {
-        usedSelector = sel;
-        rows = found;
-        break;
-      }
-    } catch { /* try next */ }
+  let rows = await page.$$(PRIMARY_SELECTOR);
+  if (rows.length > 0) {
+    usedSelector = PRIMARY_SELECTOR;
+  } else {
+    for (const sel of FALLBACK_SELECTORS) {
+      try {
+        const found = await page.$$(sel);
+        if (found.length > 0) {
+          usedSelector = sel;
+          rows = found;
+          break;
+        }
+      } catch { /* try next */ }
+    }
   }
 
   if (!usedSelector) {
     logger.warn('no conversation rows matched any known selector', {
-      tried: SELECTORS,
-      remediation: 'Re-run with --headed; update SELECTORS in poll-sideshift.mjs',
+      tried: [PRIMARY_SELECTOR, ...FALLBACK_SELECTORS],
+      remediation: 'Re-run with --headed; SideShift may have redesigned. Update SELECTORS in poll-sideshift.mjs',
     });
     return { messages: [], authFailed: false };
   }
@@ -263,46 +280,64 @@ async function scrapeInbox(page, logger) {
   for (let i = 0; i < rows.length; i++) {
     try {
       const data = await rows[i].evaluate((el) => {
-        const txt = (sel) => {
-          const n = el.querySelector(sel);
-          return n ? n.textContent.trim() : '';
-        };
-        const href = el.getAttribute('href') || el.querySelector('a')?.getAttribute('href') || '';
-        return {
-          brand: txt('[data-brand], .brand, .conversation-name, .name') ||
-                 (el.querySelector('img[alt]')?.getAttribute('alt') || '').trim(),
-          preview: txt('[data-preview], .preview, .last-message, .snippet, .conversation-preview'),
-          tsRaw: txt('[data-ts], .timestamp, .time, time'),
-          campaign: txt('[data-campaign], .campaign-title'),
-          href,
-          all: el.textContent.trim().slice(0, 500),
-        };
+        // A.14q Q2: extract brand from h4, timestamp from span.tabular-nums, preview from
+        // the last span in the content div that isn't the timestamp.
+        const h4 = el.querySelector('h4');
+        const brand = h4 ? h4.textContent.trim() : '';
+
+        const tsSpan = el.querySelector('span.tabular-nums');
+        const tsRel = tsSpan ? tsSpan.textContent.trim() : '';
+
+        // Preview: collect all spans inside the button, drop the tabular-nums one + any with no text
+        const allSpans = Array.from(el.querySelectorAll('button span'));
+        const previewSpan = allSpans
+          .filter(s => !s.classList.contains('tabular-nums') && s.textContent.trim())
+          .pop(); // last surviving span = preview
+        const preview = previewSpan ? previewSpan.textContent.trim() : '';
+
+        const img = el.querySelector('img');
+        const avatarSrc = img ? img.getAttribute('src') || '' : '';
+
+        return { brand, tsRel, preview, avatarSrc };
       });
 
-      const brand = data.brand || (data.all.split('\n')[0] || '').trim();
-      const preview = data.preview || (data.all.split('\n').slice(1).join(' ').trim().slice(0, 140));
-      const tsRaw = data.tsRaw || '';
-      const dt = new Date(tsRaw);
-      const ts = !Number.isNaN(dt.getTime()) ? dt.toISOString() : nowIso();
-      const threadId = data.href ? data.href.replace(/^.*\/chat\//, '').split(/[?#]/)[0] : `unknown-${i}`;
-      const thread_url = data.href
-        ? (data.href.startsWith('http') ? data.href : `https://app.sideshift.app${data.href}`)
-        : INBOX_URL;
+      if (!data.brand || !data.preview) continue;
 
-      if (!brand || !preview) continue;
+      // Parse relative timestamp ("23m", "1h", "Yesterday", "2d") → ISO approximation.
+      // Cron runs every 30min so granularity-to-minute is fine.
+      const tsRel = (data.tsRel || '').toLowerCase();
+      let ts;
+      const now = new Date();
+      const mMatch = tsRel.match(/^(\d+)\s*m/);
+      const hMatch = tsRel.match(/^(\d+)\s*h/);
+      const dMatch = tsRel.match(/^(\d+)\s*d/);
+      if (mMatch) ts = new Date(now.getTime() - parseInt(mMatch[1], 10) * 60_000).toISOString();
+      else if (hMatch) ts = new Date(now.getTime() - parseInt(hMatch[1], 10) * 3_600_000).toISOString();
+      else if (dMatch) ts = new Date(now.getTime() - parseInt(dMatch[1], 10) * 86_400_000).toISOString();
+      else if (/yesterday/i.test(tsRel)) ts = new Date(now.getTime() - 86_400_000).toISOString();
+      else ts = nowIso(); // unknown format → stamp now
+
+      // Synthetic thread_id since no href is exposed in DOM (clicks are React onClick).
+      // sha256(brand + preview.slice(0,80)) — collision-resistant for normal usage.
+      const threadId = createHash('sha256')
+        .update(`${data.brand}|${data.preview.slice(0, 80)}`)
+        .digest('hex').slice(0, 16);
+
+      // Outbound preview starts with "You:" — set direction accordingly
+      const isOutbound = /^you:/i.test(data.preview);
 
       messages.push({
         id: makeMessageId(threadId, ts),
         schema_version: 1,
         thread_id: threadId,
-        brand,
-        campaign_title: data.campaign || '',
-        message_text: preview, // list view only; full thread scrape is deferred
-        last_message_preview: preview.slice(0, 140),
+        brand: data.brand,
+        campaign_title: '', // SideShift list view doesn't expose campaign title; deferred to thread-detail scrape
+        message_text: data.preview,
+        last_message_preview: data.preview.slice(0, 140),
         ts,
-        direction: 'inbound', // list rows surface counterparty's latest; conservative default
-        status: 'awaiting-you',
-        thread_url,
+        direction: isOutbound ? 'outbound' : 'inbound',
+        status: isOutbound ? 'awaiting-brand' : 'awaiting-you',
+        thread_url: INBOX_URL, // No per-thread href exposed; click target is React onClick
       });
     } catch (err) {
       logger.warn('row scrape failed', { idx: i, error: String(err) });
