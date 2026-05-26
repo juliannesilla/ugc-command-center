@@ -1,0 +1,39 @@
+{
+  "tag": "before",
+  "base": "http://localhost:3002/ugc-command-center",
+  "viewport": "375x812",
+  "results": [
+    {
+      "slug": "root",
+      "docW": 375,
+      "winW": 375,
+      "hScroll": false,
+      "asideVisible": true,
+      "statCols": 1
+    },
+    {
+      "slug": "pipeline-board",
+      "docW": 375,
+      "winW": 375,
+      "hScroll": false,
+      "asideVisible": true,
+      "statCols": 0
+    },
+    {
+      "slug": "sow-breakdown",
+      "docW": 412,
+      "winW": 412,
+      "hScroll": false,
+      "asideVisible": true,
+      "statCols": 0
+    },
+    {
+      "slug": "analytics",
+      "docW": 375,
+      "winW": 375,
+      "hScroll": false,
+      "asideVisible": true,
+      "statCols": 1
+    }
+  ]
+}

@@ -9,8 +9,10 @@ export function CampaignHealthSnapshot() {
 
   return (
     <section className="rise rise-3 grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6">
-      {/* Health donut — A.14m T5: card-secondary */}
-      <div className="card-secondary">
+      {/* Health donut — A.14m T5: card-secondary
+          A.14o W2-S4 microinteractions: Saffer §3 Feedback (state-shift on hover);
+          Kowalski custom curve ease-out 200ms with subtle lift. */}
+      <div className="card-secondary transition-[transform,box-shadow] duration-200 ease-out will-change-transform motion-safe:hover:-translate-y-0.5 hover:shadow-soft">
         <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
           Campaign health
         </p>
@@ -48,8 +50,8 @@ export function CampaignHealthSnapshot() {
         </div>
       </div>
 
-      {/* What's strong */}
-      <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-emerald-100">
+      {/* What's strong — A.14o W2-S4: hover-lift (Saffer §3 Feedback) */}
+      <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-emerald-100 transition-[transform,box-shadow] duration-200 ease-out will-change-transform motion-safe:hover:-translate-y-0.5 hover:shadow-soft">
         <div className="flex items-center gap-2">
           <CheckCircle2 className="h-4 w-4 text-emerald-500" />
           <p className="text-[10.5px] uppercase tracking-[0.22em] text-emerald-700 font-semibold">
@@ -72,8 +74,8 @@ export function CampaignHealthSnapshot() {
         )}
       </div>
 
-      {/* What's blocking */}
-      <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-orange-100">
+      {/* What's blocking — A.14o W2-S4: hover-lift (Saffer §3 Feedback) */}
+      <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-orange-100 transition-[transform,box-shadow] duration-200 ease-out will-change-transform motion-safe:hover:-translate-y-0.5 hover:shadow-soft">
         <div className="flex items-center gap-2">
           <AlertTriangle className="h-4 w-4 text-orange-500" />
           <p className="text-[10.5px] uppercase tracking-[0.22em] text-orange-700 font-semibold">

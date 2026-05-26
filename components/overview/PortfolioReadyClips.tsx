@@ -30,7 +30,9 @@ export function PortfolioReadyClips() {
           {clips.map((c) => (
             <div
               key={`${c.brand}-${c.stage}`}
-              className="rounded-2xl bg-white shadow-card ring-1 ring-cloud-100 overflow-hidden group hover:-translate-y-0.5 hover:shadow-soft transition"
+              // A.14o W2-S4 microinteractions: Saffer §3 Feedback — refined
+              // ease-out curve + explicit transition properties (Kowalski).
+              className="rounded-2xl bg-white shadow-card ring-1 ring-cloud-100 overflow-hidden group transition-[transform,box-shadow] duration-200 ease-out will-change-transform motion-safe:hover:-translate-y-0.5 hover:shadow-soft"
             >
               {/* Thumbnail placeholder — gradient block in brand accent. */}
               <div
@@ -39,7 +41,7 @@ export function PortfolioReadyClips() {
                   background: `linear-gradient(135deg, ${c.thumbnailAccent} 0%, #FFF5FA 100%)`,
                 }}
               >
-                <PlayCircle className="h-8 w-8 text-white drop-shadow-md" />
+                <PlayCircle className="h-8 w-8 text-white drop-shadow-md transition-transform duration-200 ease-out group-hover:scale-110" />
                 <div className="absolute top-2 right-2">
                   <StatusChip
                     tone={c.status === "ready" ? "green" : "iris"}

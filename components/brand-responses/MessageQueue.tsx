@@ -112,7 +112,10 @@ export function MessageQueue({ tab, search, selectedId, onSelect }: Props) {
                   key={c.id}
                   onClick={() => handleSelect(c.id)}
                   aria-selected={isActive}
-                  className={`group border-t border-cloud-100 transition cursor-pointer ${
+                  // A.14o W2-S4 microinteractions: Saffer §3 Feedback — explicit
+                  // transition properties for row hover state-shift (Kowalski:
+                  // avoid `transition: all`, prefer named properties + 150ms).
+                  className={`group border-t border-cloud-100 transition-colors duration-150 ease-out cursor-pointer ${
                     isActive
                       ? "bg-cloud-50 ring-2 ring-inset ring-cloud-300"
                       : c.unread
@@ -192,10 +195,12 @@ export function MessageQueue({ tab, search, selectedId, onSelect }: Props) {
                       <Link
                         href={`/brand-responses/${c.id}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1 rounded-xl bg-cloud-100 px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-cloud-700 opacity-0 group-hover:opacity-100 transition"
+                        // A.14o W2-S4: Saffer §3 Feedback — button-press affordance
+                        // (active:scale) + reveal on row hover with named transition.
+                        className="inline-flex items-center gap-1 rounded-xl bg-cloud-100 px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-cloud-700 opacity-0 group-hover:opacity-100 transition-[opacity,transform] duration-150 ease-out active:scale-[0.97] hover:bg-cloud-200"
                       >
                         Open
-                        <ArrowUpRight className="h-3 w-3" />
+                        <ArrowUpRight className="h-3 w-3 transition-transform duration-150 ease-out group-hover:translate-x-0.5" />
                       </Link>
                     </div>
                   </td>

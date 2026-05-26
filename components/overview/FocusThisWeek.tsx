@@ -27,10 +27,12 @@ export function FocusThisWeek() {
           return (
             <div
               key={group.title}
-              className="card-secondary"
+              // A.14o W2-S4 microinteractions: Saffer §3 Feedback — group hover
+              // surfaces card elevation + icon micro-scale to confirm hit area.
+              className="card-secondary group transition-[transform,box-shadow] duration-200 ease-out will-change-transform motion-safe:hover:-translate-y-0.5 hover:shadow-soft"
             >
               <div className="flex items-center gap-2">
-                <span className="grid h-7 w-7 place-items-center rounded-lg bg-cloud-50 text-cloud-600 ring-1 ring-cloud-100">
+                <span className="grid h-7 w-7 place-items-center rounded-lg bg-cloud-50 text-cloud-600 ring-1 ring-cloud-100 transition-transform duration-200 ease-out group-hover:scale-105">
                   <Icon className="h-3.5 w-3.5" />
                 </span>
                 <p className="text-[11px] uppercase tracking-[0.2em] text-ink-500 font-semibold">

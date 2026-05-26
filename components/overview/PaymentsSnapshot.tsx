@@ -82,14 +82,16 @@ export function PaymentsSnapshot() {
           return (
             <div
               key={t.label}
-              className={`rounded-3xl bg-white p-5 lg:p-6 shadow-card ring-1 ${styles.ring}`}
+              // A.14o W2-S4 microinteractions: Saffer §3 Feedback (hover-lift +
+              // icon micro-scale via group) — confirms interactivity to user.
+              className={`group rounded-3xl bg-white p-5 lg:p-6 shadow-card ring-1 ${styles.ring} transition-[transform,box-shadow] duration-200 ease-out will-change-transform motion-safe:hover:-translate-y-0.5 hover:shadow-soft`}
             >
               <div className="flex items-start justify-between">
                 <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold leading-tight">
                   {t.label}
                 </p>
                 <span
-                  className={`grid h-7 w-7 place-items-center rounded-lg ring-1 ${styles.iconBg}`}
+                  className={`grid h-7 w-7 place-items-center rounded-lg ring-1 ${styles.iconBg} transition-transform duration-200 ease-out group-hover:scale-110`}
                 >
                   <Icon className="h-3.5 w-3.5" />
                 </span>

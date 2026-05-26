@@ -21,9 +21,11 @@ export function ToolsConnected() {
           return (
             <div
               key={tool.name}
-              className="group rounded-3xl bg-white px-4 py-3.5 shadow-card ring-1 ring-cloud-100/70 hover:ring-cloud-300 hover:-translate-y-0.5 transition flex items-center gap-3"
+              // A.14o W2-S4 microinteractions: Saffer §3 Feedback — refined
+              // explicit transition props + ease-out curve (Kowalski).
+              className="group rounded-3xl bg-white px-4 py-3.5 shadow-card ring-1 ring-cloud-100/70 transition-[transform,box-shadow,border-color] duration-200 ease-out will-change-transform hover:ring-cloud-300 motion-safe:hover:-translate-y-0.5 hover:shadow-soft flex items-center gap-3"
             >
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-cloud-soft text-cloud-700 ring-1 ring-cloud-100">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-cloud-soft text-cloud-700 ring-1 ring-cloud-100 transition-transform duration-200 ease-out group-hover:scale-105">
                 <Icon className="h-4 w-4" />
               </span>
               <span className="flex-1 min-w-0">

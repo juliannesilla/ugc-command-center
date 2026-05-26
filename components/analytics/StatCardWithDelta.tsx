@@ -32,7 +32,9 @@ export function StatCardWithDelta({
       className={cn(
         // T5 ADDITIVE: card-stat semantic utility (A.14m Stream 3, mockup #11).
         // Keep glass-card + existing classes — additive only.
-        'card-stat glass-card flex flex-col gap-2',
+        // A.14o W2-S4 microinteractions: Saffer §3 Feedback — hover elevation
+        // confirms interactive surface; Kowalski 200ms ease-out + explicit props.
+        'card-stat glass-card flex flex-col gap-2 transition-[transform,box-shadow] duration-200 ease-out will-change-transform motion-safe:hover:-translate-y-0.5 hover:shadow-soft',
         className,
       )}
     >
