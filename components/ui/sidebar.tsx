@@ -20,6 +20,7 @@ import {
   Inbox,
   MessageSquare,
   CalendarDays,
+  Calendar,
   BarChart3,
   Wallet,
   FileText,
@@ -75,6 +76,7 @@ export const NAV_ENTRIES: NavEntry[] = [
     children: [
       { label: 'Board',              href: '/pipeline/board',            icon: Kanban },
       { label: 'Database',           href: '/pipeline/database',         icon: Database },
+      { label: 'Calendar',           href: '/calendar',                  icon: Calendar },
       { label: 'Deadlines',          href: '/pipeline/deadlines',        icon: CalendarClock },
       { label: 'Needs Attention',    href: '/pipeline/needs-attention',  icon: AlertTriangle },
       { label: 'Ready to Execute',   href: '/pipeline/ready-to-execute', icon: PlayCircle },
