@@ -8,6 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build",
+    "new-campaign": "node scripts/new-campaign.mjs",
+    "parse-sow": "node scripts/parse-sow.mjs",
+    "poll-gmail-brand": "node scripts/poll-gmail-brand.mjs",
+    "poll-linear-pipeline": "node scripts/poll-linear-pipeline.mjs",
+    "poll-sideshift": "node scripts/poll-sideshift.mjs",
     "build:gh-pages-local": "node -e \"const fs=require('fs');if(fs.existsSync('app/api')){fs.renameSync('app/api','app/_api_tmp_for_local_gh_pages_build');}\" && (cross-env DEPLOY_TARGET=gh-pages next build || true) && node -e \"const fs=require('fs');if(fs.existsSync('app/_api_tmp_for_local_gh_pages_build')){fs.renameSync('app/_api_tmp_for_local_gh_pages_build','app/api');}\""
   },
   "dependencies": {
