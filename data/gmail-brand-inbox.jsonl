@@ -1,0 +1,1 @@
+{"schema_version":1,"created":"2026-05-25T00:00:00.000Z","note":"Populated by scripts/poll-gmail-brand.mjs. Schema: {id, source:'gmail', sender, sender_email, subject, snippet, body, thread_url, ts, labels[]}"}
