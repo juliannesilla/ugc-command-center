@@ -95,4 +95,5 @@ Neither failure references `globals.css` or `CommentPopover.tsx`. My deliverable
 After V1's CSS edits were wiped by git-race, V2 re-applied:
 - `app/globals.css` — motion tokens + 3 keyframes + sidebar-group data-attr selectors + reduced-motion override
 - `components/comments/CommentPopover.tsx` — motion-popover-in + motion-backdrop-in classes on wrapper + backdrop
-Commit SHA: [filled in post-commit]
+Commit SHA: `5268ea6` (local; push to `origin/main` pending Julz authorization — auto-mode classifier soft-blocked direct push to default branch)
+Build verification: PASS — `npm run build` with `DEPLOY_TARGET=vercel` after `rm -rf .next` compiled all routes including `/inbox` (CommentPopover consumer) without errors.
