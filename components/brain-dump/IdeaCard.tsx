@@ -21,7 +21,7 @@ export function IdeaCard({ card }: { card: IdeaCardType }) {
         transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
       }}
       className={cn(
-        'group rounded-xl bg-white ring-1 ring-cloud-100 p-3 shadow-card transition-all duration-200 ease-out will-change-transform',
+        'group rounded-xl bg-white ring-1 ring-cloud-100 p-2.5 shadow-card transition-all duration-200 ease-out will-change-transform',
         'hover:shadow-soft hover:-translate-y-0.5 hover:ring-iris-200',
         isDragging && 'shadow-soft ring-iris-300 rotate-[1.5deg] scale-[1.03]',
         'motion-reduce:transition-none motion-reduce:hover:transform-none',
@@ -43,7 +43,7 @@ export function IdeaCard({ card }: { card: IdeaCardType }) {
               <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400 shrink-0" />
             )}
           </div>
-          <div className="mt-1.5 flex items-center gap-1.5">
+          <div className="mt-1 flex items-center gap-1">
             {card.isNew && (
               <span className="inline-flex items-center rounded-full bg-iris-100 text-iris-600 px-1.5 py-0.5 text-[9.5px] font-semibold uppercase tracking-wide ring-1 ring-iris-200">
                 New

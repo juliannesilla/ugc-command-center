@@ -39,7 +39,7 @@ function Column({
     <div
       ref={setNodeRef}
       className={cn(
-        'flex flex-col gap-2 rounded-2xl p-3 ring-1 transition-all duration-200 ease-out min-h-[420px]',
+        'flex flex-col gap-1.5 rounded-2xl p-2.5 ring-1 transition-all duration-200 ease-out',
         isOver
           ? 'bg-iris-50/80 ring-iris-300 shadow-soft scale-[1.005]'
           : 'bg-white/50 ring-cloud-100',
@@ -55,7 +55,7 @@ function Column({
           {count}
         </span>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         {cards.map((c) => (
           <IdeaCard key={c.id} card={c} />
         ))}
@@ -117,7 +117,7 @@ export function IdeaBankBoard() {
       </div>
 
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
           {BOARD_COLUMNS.map((col) => (
             <Column
               key={col.id}

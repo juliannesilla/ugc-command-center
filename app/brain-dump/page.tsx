@@ -50,7 +50,7 @@ export default function BrainDumpPage() {
         </div>
 
         {/* Quick capture + smart chips */}
-        <div className="flex flex-col gap-3 rise rise-2">
+        <div className="flex flex-col gap-3 rise rise-2 sticky top-6 z-10">
           <QuickCapture />
           <SmartIdeaChips />
         </div>
@@ -60,7 +60,7 @@ export default function BrainDumpPage() {
           <div className="lg:col-span-3">
             <IdeaBankBoard />
           </div>
-          <aside className="flex flex-col gap-4">
+          <aside className="flex flex-col gap-3">
             <BestNewIdeaCard />
             <IdeasToScriptList />
             <PatternsWorthReusing />
@@ -68,7 +68,7 @@ export default function BrainDumpPage() {
         </div>
 
         {/* Bottom row */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rise rise-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 rise rise-4">
           <ContentPatternLibrary />
           <ReusablePhrasesVault />
           <IdeaToScriptConverter />
