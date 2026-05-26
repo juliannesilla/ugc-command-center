@@ -7,8 +7,7 @@ import {
   CalendarRange,
   CheckCircle2,
 } from 'lucide-react';
-import { ReadOnlyMirrorBadge } from '@/components/ui/read-only-mirror-badge';
-import { MantraQuote } from '@/components/ui/mantra-quote';
+import { Header } from '@/components/ui/header';
 import { StatStrip, ContentArea, RightRail } from '@/components/ui';
 import { WeekHeatmap } from '@/components/deadlines/WeekHeatmap';
 import { DeadlineStatCard } from '@/components/deadlines/DeadlineStatCard';
@@ -29,29 +28,19 @@ export const metadata = { title: 'Deadlines · UGC | Campaign HQ' };
 export default function DeadlinesPage() {
   return (
     <>
-      {/* Header */}
-      <header className="header-cloud px-7 md:px-12 py-6">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.22em] text-white/80 mb-2">
-              Deadlines
-            </p>
-            <h1 className="font-display text-white text-3xl md:text-4xl leading-tight drop-shadow-sm">
-              What&rsquo;s due. What&rsquo;s late. <em className="not-italic text-white/90">What&rsquo;s next.</em>
-            </h1>
-            <p className="mt-2 text-[13px] text-white/85 max-w-xl">
-              Every overdue, today, this-week, and next-week deliverable — plus filming dates,
-              follow-ups, and payments — in one calm view.
-            </p>
-          </div>
-          <div className="flex flex-col items-end gap-3">
-            <ReadOnlyMirrorBadge />
-            <MantraQuote />
-          </div>
-        </div>
-      </header>
+      {/* Header — A.14p P5: adopt shared <Header> chrome (was inline header-cloud). */}
+      <Header
+        pageEyebrow="Deadlines"
+        pageTitle="What's due. What's late. What's next."
+      />
 
       <main className="px-7 md:px-12 py-6 space-y-8">
+        {/* Page subtitle — preserves HR-2 intent from prior inline header copy. */}
+        <p className="text-[13px] text-ink-600 max-w-xl -mt-2 rise">
+          Every overdue, today, this-week, and next-week deliverable — plus filming dates,
+          follow-ups, and payments — in one calm view.
+        </p>
+
         {/* Quick actions row */}
         <section className="flex flex-wrap items-center justify-end gap-2 rise rise-1">
           <button className="inline-flex items-center gap-1.5 rounded-2xl border border-cloud-200 bg-white/85 px-3 py-2 text-[12.5px] font-semibold text-ink-700 hover:bg-cloud-50">

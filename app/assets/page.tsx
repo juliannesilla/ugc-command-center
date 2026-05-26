@@ -12,8 +12,7 @@ import {
   PlusCircle,
 } from 'lucide-react';
 import { StatusChip } from '@/components/ui/status-chip';
-import { ReadOnlyMirrorBadge } from '@/components/ui/read-only-mirror-badge';
-import { MantraQuote } from '@/components/ui/mantra-quote';
+import { Header } from '@/components/ui/header';
 import {
   CampaignFolderCard,
   NewCampaignFolderCard,
@@ -91,28 +90,18 @@ const statIconTones: Record<string, string> = {
 export default function AssetsPage() {
   return (
     <>
-      {/* Header */}
-      <header className="header-cloud px-7 md:px-12 py-6">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.22em] text-white/80 mb-2">
-                Asset Vault
-              </p>
-              <h1 className="font-display text-white text-3xl md:text-4xl leading-tight drop-shadow-sm">
-                Asset Vault
-              </h1>
-              <p className="mt-2 text-[13px] text-white/85 max-w-xl">
-                Store and organize every file for your UGC campaigns.
-              </p>
-            </div>
-            <div className="flex flex-col items-end gap-3">
-              <ReadOnlyMirrorBadge />
-              <MantraQuote />
-            </div>
-          </div>
-        </header>
+      {/* Header — A.14p P5: adopt shared <Header> chrome (was inline header-cloud). */}
+      <Header
+        pageEyebrow="Asset Vault"
+        pageTitle="Asset Vault"
+      />
 
         <main className="px-7 md:px-12 py-6 space-y-6 lg:space-y-8">
+          {/* Page subtitle — preserves HR-2 intent from prior inline header copy. */}
+          <p className="text-[13px] text-ink-600 max-w-xl -mt-2 rise">
+            Store and organize every file for your UGC campaigns.
+          </p>
+
           {/* Stat cards */}
           <section className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 rise rise-1">
             {STAT_CARDS.map(({ label, value, sub, tone, Icon }) => (
