@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Search,
@@ -27,6 +27,10 @@ import {
   SideShiftMessageQueue,
   SideShiftDetailPanel,
 } from "@/components/brand-responses/SideShiftMessageQueue";
+import {
+  DraftReviewPanel,
+  type SideShiftDraft,
+} from "@/components/brand-responses/DraftReviewPanel";
 import { ReadOnlyMirrorBadge } from "@/components/ui/read-only-mirror-badge";
 // A.14n N3-CROSS-DATA Wave 2b: PageHeader hero primitive replaces inline
 // header-cloud markup (mockup #18 + #25 — consistent eyebrow + H1 + ReadOnlyMirror
@@ -61,6 +65,48 @@ function BrandResponsesInner() {
   const [tab, setTab] = useState<TabKey>("all");
   const [search, setSearch] = useState("");
   const [compact, setCompact] = useState(false);
+  // A.14s S2: fetch SideShift drafts once at page level so we can show an
+  // empty-state banner AND pass to <DraftReviewPanel> without each panel
+  // re-fetching. Loaded lazily; null = loading, [] = file missing/empty.
+  const [drafts, setDrafts] = useState<SideShiftDraft[] | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/data/sideshift-drafts.jsonl", {
+          cache: "no-store",
+        });
+        if (!res.ok) {
+          if (!cancelled) setDrafts([]);
+          return;
+        }
+        const txt = await res.text();
+        const out: SideShiftDraft[] = [];
+        for (const line of txt.split(/\r?\n/)) {
+          const trimmed = line.trim();
+          if (!trimmed) continue;
+          try {
+            const obj = JSON.parse(trimmed);
+            if (
+              obj &&
+              typeof obj.thread_id === "string" &&
+              typeof obj.draft_text === "string"
+            ) {
+              out.push(obj as SideShiftDraft);
+            }
+          } catch {
+            // skip malformed / header lines
+          }
+        }
+        if (!cancelled) setDrafts(out);
+      } catch {
+        if (!cancelled) setDrafts([]);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -261,6 +307,29 @@ function BrandResponsesInner() {
         </div>
         )}
 
+        {/* A.14s S2: empty-state banner when no drafts exist yet. Only shown
+            on SideShift source so Gmail UX is untouched. */}
+        {source === "sideshift" && drafts !== null && drafts.length === 0 && (
+          <div className="rise rise-3 mb-3 rounded-2xl bg-iris-50/70 ring-1 ring-iris-100 px-4 py-2.5 text-[12px] text-iris-700">
+            <span className="font-semibold">No drafts yet</span>{" "}
+            <span className="text-ink-600">
+              — run{" "}
+              <code className="rounded bg-white/80 px-1 py-0.5 text-[11px]">
+                npm run draft-sideshift
+              </code>{" "}
+              locally with{" "}
+              <code className="rounded bg-white/80 px-1 py-0.5 text-[11px]">
+                ANTHROPIC_API_KEY
+              </code>{" "}
+              set to populate{" "}
+              <code className="rounded bg-white/80 px-1 py-0.5 text-[11px]">
+                data/sideshift-drafts.jsonl
+              </code>
+              .
+            </span>
+          </div>
+        )}
+
         {/* SideShift controls row — slimmer than Gmail's (no status tabs) */}
         {source === "sideshift" && (
           <div className="rise rise-3 mb-4 flex flex-wrap items-center justify-end gap-2">
@@ -309,7 +378,17 @@ function BrandResponsesInner() {
               {source === "gmail" ? (
                 <BrandResponseDetailPanel id={selectedId} variant="panel" />
               ) : (
-                <SideShiftDetailPanel id={selectedId} />
+                <>
+                  <SideShiftDetailPanel id={selectedId} />
+                  {/* A.14s S2: Draft Review panel — renders null when no
+                      matching draft exists for the selected thread, so it's
+                      invisible until a draft lands. HR-2 PRESERVE: purely
+                      additive sibling of the detail panel. */}
+                  <DraftReviewPanel
+                    threadId={selectedId}
+                    drafts={drafts ?? []}
+                  />
+                </>
               )}
             </div>
           )}
