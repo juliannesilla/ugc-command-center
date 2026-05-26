@@ -33,6 +33,9 @@ import { MOCK_CAMPAIGNS } from "@/lib/mock-data/campaigns";
 import { RECENT_ACTIVITY } from "@/lib/mock-data/campaigns";
 
 // Modular overview sections (E1 Wave 2 — components/overview/).
+// A.14s S1 — SmartDailyBrief: top-of-Overview triage cockpit reading
+//   data/sideshift-messages.jsonl + drafts + deadlines at build time.
+import { SmartDailyBrief } from "@/components/overview/SmartDailyBrief";
 import { YourNextMove } from "@/components/overview/YourNextMove";
 import { PipelineSnapshot } from "@/components/overview/PipelineSnapshot";
 import { CampaignHealthSnapshot } from "@/components/overview/CampaignHealthSnapshot";
@@ -266,6 +269,11 @@ export default function OverviewPage() {
           </p>
           <TodayModeToggle />
         </div>
+
+        {/* A.14s S1 — Smart Daily Brief triage cockpit. Top-of-Overview glanceable
+            decision card reading data/sideshift-messages.jsonl + drafts + deadlines.
+            Sits ABOVE HeroBand so the single most-important action lands first. */}
+        <SmartDailyBrief />
 
         {/* HERO BAND — Wave 2b adoption: replaces inline KPI section L105-L133.
             mockup #05 cite — light lavender hero band with mantra + 5-tile strip.
