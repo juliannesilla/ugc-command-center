@@ -317,8 +317,12 @@ async function scrapeInbox(page, logger) {
 async function launchContext(chromium, profileDir, headed, logger) {
   await ensureDir(profileDir);
   logger.info('launching persistent context', { profileDir, headed });
-  const context = await chromium.launchPersistentContext(profileDir, {
-    channel: 'chrome', // Use installed Google Chrome Stable (code-signed; avoids AV-quarantine of bundled Chromium). A.14p P8-FIX 2026-05-26.
+  // A.14p P8-FIX-V3 2026-05-26: Use Playwright's intact chrome-headless-shell binary
+  // (regular chrome.exe at chromium-1223/ keeps getting AV-quarantined to 4MB stub;
+  // headless shell at chromium_headless_shell-1223/ is fully intact at 201MB).
+  // Caveat: headless shell only supports headless mode. Setup mode falls back to
+  // installed Chrome via channel:'chrome' (separate code path).
+  const opts = {
     headless: !headed,
     viewport: { width: 1280, height: 900 },
     timeout: NAV_TIMEOUT_MS,
@@ -327,7 +331,16 @@ async function launchContext(chromium, profileDir, headed, logger) {
       '--no-first-run',
       '--no-default-browser-check',
     ],
-  });
+  };
+  if (headed) {
+    // For interactive --setup, use installed Chrome (works for one-time OAuth)
+    opts.channel = 'chrome';
+  } else {
+    // For headless polling, use the intact chrome-headless-shell binary directly
+    const headlessShell = 'C:\\Users\\julia\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1223\\chrome-headless-shell-win64\\chrome-headless-shell.exe';
+    opts.executablePath = headlessShell;
+  }
+  const context = await chromium.launchPersistentContext(profileDir, opts);
   return context;
 }
 
