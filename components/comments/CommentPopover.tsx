@@ -137,14 +137,14 @@ export function CommentPopover({ clientX, clientY, target, onClose }: CommentPop
     <>
       {/* Backdrop catches outside clicks */}
       <div
-        className="fixed inset-0 z-[60] bg-ink-900/10"
+        className="motion-backdrop-in fixed inset-0 z-[60] bg-ink-900/10"
         onClick={onClose}
         aria-hidden
       />
       <div
         role="dialog"
         aria-label="Add comment"
-        className="fixed z-[61] w-80 rounded-2xl bg-white shadow-soft ring-1 ring-cloud-200 p-4 space-y-3"
+        className="motion-popover-in fixed z-[61] w-80 rounded-2xl bg-white shadow-soft ring-1 ring-cloud-200 p-4 space-y-3"
         style={{ left, top }}
         onClick={e => e.stopPropagation()}
       >

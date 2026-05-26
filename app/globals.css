@@ -146,3 +146,74 @@ html[data-today-mode="on"] [data-today-only-label] {
     @apply outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white;
   }
 }
+
+/* ============================================================
+ * A.14o O11-B-V2 — Emil Kowalski motion tokens + keyframes
+ * Recovered from V1 git-race wipe. Coordinates w/ O6 sidebar.
+ * ============================================================ */
+
+@layer utilities {
+  /* Motion tokens (CSS custom props — easy to override per-component) */
+  :root {
+    --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out-natural: cubic-bezier(0.77, 0, 0.175, 1);
+    --dur-base: 200ms;
+    --dur-collapse: 260ms;
+    --dur-fast: 150ms;
+  }
+
+  /* Popover enter/exit per Emil §3 — never from scale(0) */
+  @keyframes popover-in {
+    from { opacity: 0; transform: scale(0.97) translateY(4px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes popover-out {
+    from { opacity: 1; transform: scale(1) translateY(0); }
+    to { opacity: 0; transform: scale(0.97) translateY(4px); }
+  }
+  @keyframes backdrop-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .motion-popover-in {
+    animation: popover-in var(--dur-base) var(--ease-out-strong) both;
+    transform-origin: top left; /* anchor-aware */
+  }
+  .motion-popover-out {
+    animation: popover-out var(--dur-fast) var(--ease-out-strong) both;
+  }
+  .motion-backdrop-in {
+    animation: backdrop-in var(--dur-base) var(--ease-out-strong) both;
+  }
+
+  /* Sidebar group expand/collapse — CSS-only via data-attr (no React state coupling) */
+  [data-sidebar-group-open="true"] {
+    max-height: 500px;
+    overflow: hidden;
+    transition: max-height var(--dur-collapse) var(--ease-in-out-natural),
+                opacity var(--dur-base) ease-out 40ms;
+    opacity: 1;
+  }
+  [data-sidebar-group-open="false"] {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--dur-collapse) var(--ease-in-out-natural),
+                opacity var(--dur-fast) ease-out;
+    opacity: 0;
+  }
+
+  /* Reduced motion (A11y override) */
+  @media (prefers-reduced-motion: reduce) {
+    .motion-popover-in,
+    .motion-popover-out,
+    .motion-backdrop-in {
+      animation-duration: 160ms;
+      animation-timing-function: linear;
+      transform: none !important;
+    }
+    [data-sidebar-group-open] {
+      transition-duration: 0ms;
+    }
+  }
+}

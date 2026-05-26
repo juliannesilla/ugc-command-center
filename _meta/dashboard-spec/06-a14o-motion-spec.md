@@ -90,3 +90,9 @@ Neither failure references `globals.css` or `CommentPopover.tsx`. My deliverable
 | HR-4 SMALLEST | PASS — CSS-only, no libs, no React refactor |
 | HR-34 sandbox | N/A — edited real repo via absolute paths |
 | HR-35 `.next` cleanup | PASS — removed before build |
+
+## V2 Recovery — CSS shipped
+After V1's CSS edits were wiped by git-race, V2 re-applied:
+- `app/globals.css` — motion tokens + 3 keyframes + sidebar-group data-attr selectors + reduced-motion override
+- `components/comments/CommentPopover.tsx` — motion-popover-in + motion-backdrop-in classes on wrapper + backdrop
+Commit SHA: [filled in post-commit]
