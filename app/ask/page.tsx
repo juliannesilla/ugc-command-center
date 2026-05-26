@@ -25,8 +25,10 @@ export const metadata = {
     'AI Q&A search engine over your UGC data — campaigns, SideShift, brand-fit, pillars.',
 };
 
-// Force dynamic so we re-read ask-history.jsonl on every visit (no stale answers).
-export const dynamic = 'force-dynamic';
+// A.14t FIX 2026-05-26: removed `export const dynamic = 'force-dynamic'` because it
+// breaks `output: 'export'` GH Pages static deploy (caused 5 CI failures, blocking
+// ALL A.14t commits from going live). ask-history.jsonl is read at build time —
+// next gh-pages cron rebuild (or commit-triggered redeploy) refreshes it.
 
 type AskHistoryEntry = {
   ts: string;
