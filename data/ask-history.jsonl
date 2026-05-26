@@ -1,0 +1,1 @@
+{"schema":"ask-history","version":1,"note":"Append-only log of Q&A pairs from scripts/ask.mjs --save. Schema: { ts, run_id, query, answer, model, cost_estimate_usd, input_tokens, output_tokens, claude_session_id }"}
