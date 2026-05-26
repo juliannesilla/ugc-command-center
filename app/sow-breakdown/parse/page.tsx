@@ -7,6 +7,7 @@
 
 import { PageHeader } from '@/components/ui';
 import { SowParser } from '@/components/sow-breakdown/SowParser';
+import { ConceptGenButton } from '@/components/sow-breakdown/ConceptGenButton';
 
 export const metadata = {
   title: 'Parse SOW · UGC | Campaign HQ',
@@ -69,7 +70,16 @@ export default function ParseSowPage() {
               Anthropic API call happens on your machine, not the static site.
             </p>
           </div>
-          <SowParser />
+          <div className="flex flex-wrap items-center gap-3">
+            <SowParser />
+            <ConceptGenButton />
+          </div>
+          <p className="text-xs text-ink-700">
+            <strong className="font-semibold text-ink-900">Sequence:</strong> Parse SOW first
+            (writes <code className="font-mono text-[11px]">03-sow-breakdown.md</code>), then
+            Generate concepts (reads that file + brand rules, writes{' '}
+            <code className="font-mono text-[11px]">07-creative-concepts.md</code>).
+          </p>
         </div>
 
         {/* Schema preview — meeting-analyzer style structured extraction */}
