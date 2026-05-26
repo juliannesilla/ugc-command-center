@@ -11,6 +11,7 @@
     "new-campaign": "node scripts/new-campaign.mjs",
     "parse-sow": "node scripts/parse-sow.mjs",
     "generate-concepts": "node scripts/generate-concepts.mjs",
+    "generate-case-study": "node scripts/generate-case-study.mjs",
     "poll-gmail-brand": "node scripts/poll-gmail-brand.mjs",
     "poll-linear-pipeline": "node scripts/poll-linear-pipeline.mjs",
     "poll-sideshift": "node scripts/poll-sideshift.mjs",

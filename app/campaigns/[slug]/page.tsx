@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CampaignHeader, CampaignTabs } from "@/components/campaigns/CampaignHeader";
+import { CaseStudyButton } from "@/components/campaigns/CaseStudyButton";
 import {
   getCampaign,
   sowData,
@@ -225,6 +226,14 @@ export default async function CampaignOverviewPage({
           label="Open Assets"
           sub={`${script?.assets?.length ?? 0} files attached`}
         />
+      </section>
+
+      {/* Row 4 — A.14t T6: Case-Study auto-generator (A.4 G31 deferred-gap).
+          Insertion point for sibling T5 Perf Metrics widget: add BEFORE this
+          section (between Row 3 QuickJumps and this Row 4) to keep case-study
+          at the bottom of the page. */}
+      <section className="rise rise-5 mt-8">
+        <CaseStudyButton slug={campaign.slug} />
       </section>
     </div>
   );
