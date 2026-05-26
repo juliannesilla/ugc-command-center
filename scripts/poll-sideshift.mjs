@@ -132,8 +132,12 @@ CRON
 const nowIso = () => new Date().toISOString();
 const runId = () => new Date().toISOString().replace(/[:.]/g, '-');
 
-function makeMessageId(threadId, ts) {
-  return createHash('sha256').update(`${threadId}|${ts}`).digest('hex').slice(0, 16);
+// A.14r 2026-05-26: id was previously sha(thread_id + ts) — but since SideShift doesn't
+// expose ISO timestamps, ts changes every poll → every row looked "new" → dedup broke.
+// New stable id: sha(thread_id + preview_text). Same conversation + same preview = same id
+// (dedup works). Different preview in same thread = new id (legitimate new message captured).
+function makeMessageId(threadId, content) {
+  return createHash('sha256').update(`${threadId}|${content}`).digest('hex').slice(0, 16);
 }
 
 async function ensureDir(p) {
@@ -214,7 +218,84 @@ async function loadChromium(logger) {
  * Selector strategy is tolerant: we try several known patterns. If SideShift
  * redesigns and selectors miss, we log SCRAPE-EMPTY and exit 0 (HR-26).
  */
+// A.14r 2026-05-26: stealth-patch helper. Runs BEFORE every page navigation to mask
+// the most common Playwright/automation fingerprints that React apps (incl. SideShift)
+// use to detect bots and stall content rendering. Sources: standard `playwright-extra`
+// stealth plugin patterns + Chrome DevTools Protocol fingerprinting research.
+async function applyStealthPatches(page, logger) {
+  await page.addInitScript(() => {
+    // 1. navigator.webdriver — the #1 bot signal
+    Object.defineProperty(Object.getPrototypeOf(navigator), 'webdriver', {
+      get: () => undefined,
+      configurable: true,
+    });
+
+    // 2. navigator.plugins — Playwright defaults to empty array, real Chrome has plugins
+    Object.defineProperty(navigator, 'plugins', {
+      get: () => [
+        { name: 'PDF Viewer', filename: 'internal-pdf-viewer', description: 'Portable Document Format' },
+        { name: 'Chrome PDF Viewer', filename: 'internal-pdf-viewer', description: '' },
+        { name: 'Chromium PDF Viewer', filename: 'internal-pdf-viewer', description: '' },
+        { name: 'Microsoft Edge PDF Viewer', filename: 'internal-pdf-viewer', description: '' },
+        { name: 'WebKit built-in PDF', filename: 'internal-pdf-viewer', description: '' },
+      ],
+      configurable: true,
+    });
+
+    // 3. navigator.languages — Playwright headless often empty
+    Object.defineProperty(navigator, 'languages', {
+      get: () => ['en-US', 'en'],
+      configurable: true,
+    });
+
+    // 4. Remove ChromeDriver fingerprint properties (cdc_*)
+    for (const key of Object.keys(window)) {
+      if (key.startsWith('cdc_')) {
+        try { delete window[key]; } catch { /* */ }
+      }
+    }
+
+    // 5. window.chrome — headless Chrome doesn't set this object, real Chrome does
+    if (!window.chrome) {
+      window.chrome = {
+        runtime: {},
+        loadTimes: () => ({}),
+        csi: () => ({}),
+        app: {},
+      };
+    }
+
+    // 6. Notification.permission — some sites check this, headless returns 'denied'
+    if (window.Notification) {
+      const origQuery = window.Notification.permission;
+      Object.defineProperty(window.Notification, 'permission', {
+        get: () => origQuery === 'denied' ? 'default' : origQuery,
+        configurable: true,
+      });
+    }
+
+    // 7. WebGL vendor/renderer — real Chrome reports specific GPU info
+    const getParameter = WebGLRenderingContext.prototype.getParameter;
+    WebGLRenderingContext.prototype.getParameter = function (parameter) {
+      if (parameter === 37445) return 'Intel Inc.'; // UNMASKED_VENDOR_WEBGL
+      if (parameter === 37446) return 'Intel Iris OpenGL Engine'; // UNMASKED_RENDERER_WEBGL
+      return getParameter.apply(this, [parameter]);
+    };
+
+    // 8. Permissions query — headless returns inconsistent results vs real Chrome
+    const origQuery = navigator.permissions.query.bind(navigator.permissions);
+    navigator.permissions.query = (parameters) =>
+      parameters.name === 'notifications'
+        ? Promise.resolve({ state: 'default' })
+        : origQuery(parameters);
+  });
+  logger.info('stealth patches injected (navigator.webdriver, plugins, languages, cdc_*, window.chrome, WebGL, permissions)');
+}
+
 async function scrapeInbox(page, logger) {
+  // A.14r: apply stealth BEFORE first navigation
+  await applyStealthPatches(page, logger);
+
   await page.goto(INBOX_URL, { timeout: NAV_TIMEOUT_MS, waitUntil: 'domcontentloaded' });
 
   // Auth check — if redirected to Google/login, we're not authenticated.
@@ -228,16 +309,42 @@ async function scrapeInbox(page, logger) {
     return { messages: [], authFailed: true };
   }
 
-  // A.14q Q2: SideShift is React SPA — wait for the chat-list container to actually render.
-  // In headless mode hydration takes 5-15s longer than headed. Wait for ul.py-0 to appear
-  // with at least one li, OR timeout cleanly with honest log.
-  try {
-    await page.waitForSelector('ul.py-0 > li, ul[class*="py-0"] > li', { timeout: 20_000, state: 'attached' });
-    // Extra grace period for the full list to populate after first row appears
-    await page.waitForTimeout(1500);
-    logger.info('chat-list rendered');
-  } catch (err) {
-    logger.warn('chat-list never rendered within 20s', { error: String(err).slice(0, 200) });
+  // A.14r: SideShift React SPA needs more time + better signal. Wait up to 30s.
+  // Every 5s, log render progress so we can diagnose stealth-vs-stall on failure.
+  const RENDER_TIMEOUT_MS = 30_000;
+  const startMs = Date.now();
+  let rendered = false;
+  while (Date.now() - startMs < RENDER_TIMEOUT_MS) {
+    try {
+      const liCount = await page.evaluate(() => document.querySelectorAll('ul.py-0 > li, ul[class*="py-0"] > li').length);
+      if (liCount >= 5) {
+        rendered = true;
+        logger.info('chat-list rendered', { liCount, waitMs: Date.now() - startMs });
+        await page.waitForTimeout(1000); // settle for late-rendering rows
+        break;
+      }
+      const elapsed = Math.round((Date.now() - startMs) / 1000);
+      logger.info(`waiting for chat-list… ${elapsed}s elapsed, ${liCount} rows so far`);
+      await page.waitForTimeout(5000);
+    } catch (err) {
+      logger.warn('render-probe error', { error: String(err).slice(0, 200) });
+      break;
+    }
+  }
+  if (!rendered) {
+    // Capture diagnostic info before giving up
+    const diag = await page.evaluate(() => ({
+      url: location.pathname,
+      bodyTextLen: document.body.textContent.length,
+      anyUl: document.querySelectorAll('ul').length,
+      anyLi: document.querySelectorAll('li').length,
+      hasMain: !!document.querySelector('main'),
+      title: document.title,
+    })).catch(() => null);
+    logger.warn('STEALTH_FAILED or render-stall — chat-list never reached 5 rows in 30s', {
+      diag,
+      remediation: 'If diag.anyLi > 0 but ul.py-0 > li = 0, SideShift redesigned (selector drift). If diag.anyLi == 0, bot detection still active. Either way: fall back to Claude-in-Chrome MCP scrape per _meta/dashboard-spec/06-a14q-sideshift-dom-inspection.md',
+    });
     // Fall through — selectors will return 0 rows + log clean miss
   }
 
@@ -277,6 +384,24 @@ async function scrapeInbox(page, logger) {
   logger.info('inbox loaded', { usedSelector, rowCount: rows.length });
 
   const messages = [];
+  // A.14r diagnostic: dump first row structure if it exists, helps debug headless vs headed DOM differences
+  if (rows.length > 0) {
+    try {
+      const firstRowDiag = await rows[0].evaluate((el) => ({
+        innerHTML_first1k: el.innerHTML.slice(0, 1000),
+        h4Count: el.querySelectorAll('h4').length,
+        h4Text: el.querySelector('h4')?.textContent?.trim()?.slice(0, 50) || null,
+        buttonCount: el.querySelectorAll('button').length,
+        spanCount: el.querySelectorAll('span').length,
+        tabularNumsCount: el.querySelectorAll('span.tabular-nums').length,
+        allTextSlice: el.textContent.trim().slice(0, 200),
+      }));
+      logger.info('first-row diagnostic', firstRowDiag);
+    } catch (err) {
+      logger.warn('first-row diag failed', { error: String(err).slice(0, 200) });
+    }
+  }
+
   for (let i = 0; i < rows.length; i++) {
     try {
       const data = await rows[i].evaluate((el) => {
@@ -327,7 +452,7 @@ async function scrapeInbox(page, logger) {
       const isOutbound = /^you:/i.test(data.preview);
 
       messages.push({
-        id: makeMessageId(threadId, ts),
+        id: makeMessageId(threadId, data.preview.slice(0, 140)), // A.14r: stable per (thread+preview), not per ts
         schema_version: 1,
         thread_id: threadId,
         brand: data.brand,
@@ -361,10 +486,17 @@ async function launchContext(chromium, profileDir, headed, logger) {
     headless: !headed,
     viewport: { width: 1280, height: 900 },
     timeout: NAV_TIMEOUT_MS,
+    // A.14r: match Chrome Stable UA (not chrome-headless-shell UA) — bot detectors
+    // often check this against the WebGL/screen fingerprints.
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36',
+    locale: 'en-US',
+    timezoneId: 'America/Los_Angeles',
     args: [
       '--disable-blink-features=AutomationControlled',
       '--no-first-run',
       '--no-default-browser-check',
+      '--lang=en-US,en;q=0.9',
+      '--disable-features=IsolateOrigins,site-per-process',
     ],
   };
   if (headed) {
