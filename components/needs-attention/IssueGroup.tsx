@@ -72,7 +72,9 @@ export function IssueGroup({
       </button>
 
       {open && (
-        <div className="px-6 pb-6 pt-1 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        // A.14o O3-V2 (recovered from V1 git-race wipe): density bump
+        // xl:grid-cols-3 → 2xl:grid-cols-4 per mockup #24 dense tile grid.
+        <div className="px-6 pb-6 pt-1 grid gap-5 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           {items.map((issue) => (
             <IssueCard key={issue.id} issue={issue} />
           ))}

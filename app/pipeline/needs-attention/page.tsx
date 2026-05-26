@@ -63,6 +63,12 @@ export default function NeedsAttentionPage() {
   const waitingOnMe = allIssues.filter((i) => i.isWaitingOnMe).length;
   const affectedBrands = new Set(allIssues.map((i) => i.campaign.brand)).size;
 
+  // A.14o O3-V2 (recovered from V1 git-race wipe) — severity-grouped jump
+  // strip counts per mockup #24. Mapping: P0 = high, P1 = medium, P2 = low.
+  const p0Count = filtered.filter((i) => i.severity === 'high').length;
+  const p1Count = filtered.filter((i) => i.severity === 'medium').length;
+  const p2Count = filtered.filter((i) => i.severity === 'low').length;
+
   return (
     <>
       <Header pageEyebrow="Campaign Pipeline" pageTitle="Needs Attention" />
@@ -119,6 +125,33 @@ export default function NeedsAttentionPage() {
           ]}
         />
 
+        {/* A.14o O3-V2 (recovered from V1 git-race wipe) — severity-grouped
+            jump strip per mockup #24. P0 (rose) / P1 (orange) / P2 (iris)
+            anchor-scroll into the grouped list below. Placed ABOVE the saved
+            filter chips so the severity hierarchy is the first scannable cue
+            after StatStrip. */}
+        <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] font-medium">
+          <span className="text-ink-500">JUMP TO:</span>
+          <a
+            href="#p0-issues"
+            className="rounded-full bg-rose-100 px-3 py-1 text-rose-700 hover:bg-rose-200 transition-colors duration-150"
+          >
+            P0 ({p0Count})
+          </a>
+          <a
+            href="#p1-issues"
+            className="rounded-full bg-orange-100 px-3 py-1 text-orange-700 hover:bg-orange-200 transition-colors duration-150"
+          >
+            P1 ({p1Count})
+          </a>
+          <a
+            href="#p2-issues"
+            className="rounded-full bg-iris-100 px-3 py-1 text-iris-700 hover:bg-iris-200 transition-colors duration-150"
+          >
+            P2 ({p2Count})
+          </a>
+        </div>
+
         {/* Filter chips + sort note */}
         <section className="flex flex-wrap items-center justify-between gap-3">
           <FilterChips active={filter} onChange={setFilter} counts={counts} />
@@ -132,13 +165,30 @@ export default function NeedsAttentionPage() {
           <EmptyState />
         ) : (
           <div className="space-y-4">
-            {grouped.map((g) => (
-              <IssueGroup
-                key={g.category}
-                category={g.category}
-                items={g.items}
-              />
-            ))}
+            {/* A.14o O3-V2: anchor markers for the severity jump strip — first
+                group containing each severity tier gets a corresponding id so
+                #p0-issues / #p1-issues / #p2-issues smooth-scroll lands on a
+                meaningful boundary. scroll-margin-top accounts for sticky
+                header. */}
+            {(() => {
+              const firstWithSev = (sev: 'high' | 'medium' | 'low') =>
+                grouped.findIndex((g) => g.items.some((i) => i.severity === sev));
+              const p0Idx = firstWithSev('high');
+              const p1Idx = firstWithSev('medium');
+              const p2Idx = firstWithSev('low');
+              return grouped.map((g, idx) => {
+                const id =
+                  idx === p0Idx ? 'p0-issues'
+                  : idx === p1Idx ? 'p1-issues'
+                  : idx === p2Idx ? 'p2-issues'
+                  : undefined;
+                return (
+                  <div key={g.category} id={id} className="scroll-mt-24">
+                    <IssueGroup category={g.category} items={g.items} />
+                  </div>
+                );
+              });
+            })()}
           </div>
         )}
       </main>
