@@ -206,9 +206,9 @@ export function SowBreakdownTable({
                   <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-medium">
                     Ready for review · {meta.status}
                   </p>
-                  <h3 className="font-display text-xl text-ink-900 leading-tight truncate">
+                  <h2 className="font-display text-xl text-ink-900 leading-tight truncate">
                     {meta.brand}
-                  </h3>
+                  </h2>
                   <p className="text-[13px] text-ink-600 truncate">{meta.product}</p>
                 </div>
               </div>

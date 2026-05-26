@@ -125,6 +125,7 @@ export function PipelineCardCampaign({ card }: { card: Campaign }) {
             <div className="flex items-center gap-1 shrink-0">
               {blockers.length > 0 && (
                 <span
+                  role="img"
                   className="grid h-4 w-4 place-items-center rounded-full bg-rose-100 ring-1 ring-rose-200"
                   title={`Blocked: ${blockers.join(' · ')}`}
                   aria-label={`Blocked: ${blockers.join(', ')}`}
@@ -134,6 +135,7 @@ export function PipelineCardCampaign({ card }: { card: Campaign }) {
               )}
               {missing.length > 0 && (
                 <span
+                  role="img"
                   className="grid h-4 w-4 place-items-center rounded-full bg-amber-100 ring-1 ring-amber-200"
                   title={`Missing: ${missing.join(' · ')}`}
                   aria-label={`Missing info: ${missing.join(', ')}`}

@@ -3,8 +3,12 @@
 import { useMemo, useState } from 'react';
 import { Search, ChevronLeft, ChevronRight, Plus, Columns3, ArrowUpDown, X } from 'lucide-react';
 import { Header } from '@/components/ui/header';
-import { StatCard } from '@/components/ui/stat-card';
 import { cn, formatMoney } from '@/lib/utils';
+// A.14n N3-CROSS-DATA Wave 2b: StatStrip primitive replaces inline StatCard
+// grid for the 8 top stat columns (mockup #11 — tight inline KPI row matches
+// /payments + /). HR-2 PRESERVE: <Header> hero, filter chips, columns dropdown,
+// table cells, pagination — ALL untouched.
+import { StatStrip } from '@/components/ui';
 import { DATABASE_CAMPAIGNS, DATABASE_STAT_COLUMNS } from '@/lib/mock-data/database-rows';
 import {
   COLUMNS,
@@ -166,18 +170,18 @@ export default function PipelineDatabasePage() {
       <Header pageEyebrow="Campaign Pipeline" pageTitle="Database view" />
 
       <div className="px-7 md:px-12 -mt-8 pb-20 space-y-8">
-        {/* ============ TOP STAT CARDS ============ */}
-        <section className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-5">
-          {DATABASE_STAT_COLUMNS.map((s, i) => (
-            <StatCard
-              key={s.label}
-              label={s.label}
-              value={s.count}
-              sub={formatMoney(s.value)}
-              accent={STAT_ACCENTS[i]}
-            />
-          ))}
-        </section>
+        {/* ============ TOP STAT CARDS — StatStrip primitive ============
+            A.14n N3-CROSS-DATA: mockup #11 cites an 8-tile inline KPI row above
+            the saved-filters panel. StatStrip centralizes accent rings + tabular
+            numerics so this matches /payments + analytics. */}
+        <StatStrip
+          tiles={DATABASE_STAT_COLUMNS.map((s, i) => ({
+            number: s.count,
+            label: s.label,
+            sub: formatMoney(s.value),
+            accent: STAT_ACCENTS[i],
+          }))}
+        />
 
         {/* ============ SAVED FILTER CHIPS (spec L233-L246) ============ */}
         <section className="rounded-3xl bg-white p-4 ring-1 ring-cloud-100 shadow-card">

@@ -10,6 +10,12 @@ import { ReusablePhrasesVault } from '@/components/brain-dump/ReusablePhrasesVau
 import { IdeaToScriptConverter } from '@/components/brain-dump/IdeaToScriptConverter';
 import { BRAIN_STATS } from '@/lib/mock-data/brain-dump';
 import { Dices, Lightbulb } from 'lucide-react';
+import { PageHeader } from '@/components/ui';
+
+// A.14n Wave 2b N3-MOBILE+SECONDARY — adopt PageHeader hero variant per mockup
+// #22 (brain-dump-hook-bank). HR-2 PRESERVE: @dnd-kit drag-drop on IdeaBankBoard,
+// existing StatCardWithDelta (unique +delta affordance — different contract than
+// StatStrip), all card components untouched.
 
 export const metadata = {
   title: "Brain Dump · UGC | Campaign HQ",
@@ -19,20 +25,14 @@ export const metadata = {
 export default function BrainDumpPage() {
   return (
     <main className="min-h-screen bg-cloud-soft">
-      {/* Header */}
-      <section className="header-cloud px-7 md:px-12 pt-10 pb-12 text-white">
-        <div className="rise rise-1">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80">
-            Brain Dump
-          </p>
-          <h1 className="font-display text-3xl md:text-4xl font-semibold mt-1">
-            Hook Bank
-          </h1>
-          <p className="text-sm text-white/85 mt-1 max-w-xl">
-            Catch ideas in 5 seconds — turn them into scripts later.
-          </p>
-        </div>
-      </section>
+      {/* Header — A.14n Wave 2b adopts PageHeader hero variant (mockup #22) for
+          consistent eyebrow + Playfair display H1 + subtitle across routes. */}
+      <PageHeader
+        variant="hero"
+        eyebrow="Brain Dump"
+        title="Hook Bank"
+        subtitle="Catch ideas in 5 seconds — turn them into scripts later."
+      />
 
       <section className="px-7 md:px-12 -mt-8 pb-20 flex flex-col gap-6 lg:gap-8">
         {/* Top stats */}

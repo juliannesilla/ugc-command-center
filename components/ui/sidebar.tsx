@@ -107,7 +107,7 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
                     // A14L L3-G polish: 200ms ease-out (HIG), focus-visible ring, subtle translate-x on hover (microinteractions skill).
                     'group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
                     active
-                      ? 'bg-cloud-100 text-cloud-700 shadow-card ring-1 ring-cloud-200/60'
+                      ? 'bg-cloud-100 text-cloud-800 shadow-card ring-1 ring-cloud-200/60'
                       : 'text-ink-600 hover:bg-cloud-50 hover:text-ink-900 hover:translate-x-[1px]',
                   )}
                 >

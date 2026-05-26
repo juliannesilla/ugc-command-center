@@ -11,6 +11,12 @@
 import { Header } from '@/components/ui/header';
 import { CrmTable } from '@/components/brand-relationships/crm-table';
 import { MOCK_CAMPAIGNS } from '@/lib/mock-data/campaigns';
+// A.14n N3-CROSS-DATA Wave 2b: PageHeader 'standard' variant adds a sub-section
+// title above the CRM table for visual rhythm parity with /payments + /pipeline
+// (mockup #09 — eyebrow "Warm Bench" + H1 "Build the warm bench." above the
+// 13-col CRM grid). HR-2 PRESERVE: <Header> hero stays (carries mantra +
+// brand-string locked HR-27), CrmTable owns its own internal layout.
+import { PageHeader } from '@/components/ui';
 
 export const metadata = {
   title: 'Brand Relationships · UGC | Campaign HQ',
@@ -27,8 +33,18 @@ export default function BrandRelationshipsPage() {
         pageEyebrow="Brand Relationships"
         pageTitle="Build the warm bench."
       />
-      <div className="px-7 md:px-12 -mt-8 pb-20">
-        <CrmTable rows={rows} />
+      <div className="-mt-8 pb-20">
+        {/* Sub-section header — orients viewers to the live CRM grid below. */}
+        <PageHeader
+          variant="standard"
+          eyebrow={`CRM · ${rows.length} brands tracked`}
+          title="Warm bench — live"
+          subtitle="Every brand you've talked to, sorted by what to do next. Status, fit, last touch — at a glance."
+          className="pb-3"
+        />
+        <div className="px-7 md:px-12">
+          <CrmTable rows={rows} />
+        </div>
       </div>
     </>
   );

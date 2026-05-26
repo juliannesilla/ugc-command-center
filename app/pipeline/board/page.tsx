@@ -22,6 +22,7 @@ import { DonutChart } from '@/components/ui/donut-chart';
 import { StatusChip } from '@/components/ui/status-chip';
 import { cn, formatMoney } from '@/lib/utils';
 import { MOCK_CAMPAIGNS } from '@/lib/mock-data/campaigns';
+import { BOARD_EXTRA_CAMPAIGNS } from '@/lib/mock-data/board-extra-campaigns';
 import {
   BOARD_STAGES,
   BOARD_TOTAL_VALUE,
@@ -62,7 +63,13 @@ function sortCampaignsForColumn(cards: Campaign[]): Campaign[] {
 
 export default function PipelineBoardPage() {
   // Default filter per spec L146-L148: "Status is not Archived".
-  const visibleCampaigns = MOCK_CAMPAIGNS.filter(c => c.status !== 'archived');
+  //
+  // A.14n Wave 2b density fix (N1-V2 gap #8): concat additive
+  // BOARD_EXTRA_CAMPAIGNS to populate the 18 active stages per mockups
+  // #14 + #23. MOCK_CAMPAIGNS keeps its 6-row canonical shape for the
+  // other 24 consumers (HR-2 PRESERVE INTENT).
+  const visibleCampaigns = [...MOCK_CAMPAIGNS, ...BOARD_EXTRA_CAMPAIGNS]
+    .filter(c => c.status !== 'archived');
 
   return (
     <>
@@ -93,7 +100,10 @@ export default function PipelineBoardPage() {
             </div>
           </div>
 
-          <div className="px-7 md:px-12 flex gap-6 lg:gap-8 items-start min-w-max">
+          {/* Mockup #14: tighter column gap so the 19-stage funnel reads as
+              one continuous board, not loose cards. gap-4 lg:gap-5 keeps
+              breathing room without stretching the row. */}
+          <div className="px-7 md:px-12 flex gap-4 lg:gap-5 items-start min-w-max">
             {BOARD_STAGES.map(stageDef => {
               const cards = sortCampaignsForColumn(
                 visibleCampaigns.filter(c => c.current_stage === stageDef.stage),
@@ -111,15 +121,19 @@ export default function PipelineBoardPage() {
               return (
                 <section
                   key={stageDef.stage}
-                  className="group/col w-72 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 hover:ring-cloud-200 hover:bg-white/85 transition-[box-shadow,background-color,border-color] duration-200 ease-out flex flex-col max-h-[78vh]"
+                  // Mockup #14 + #23: w-64 columns lined up tight, multiple
+                  // cards visible per column. Slightly narrower than the
+                  // legacy w-72 to land closer to the mockup's 8-col density
+                  // at 1440px viewport.
+                  className="group/col w-64 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 hover:ring-cloud-200 hover:bg-white/85 transition-[box-shadow,background-color,border-color] duration-200 ease-out flex flex-col max-h-[78vh]"
                 >
                   {/* column header */}
                   <header className="relative px-3.5 pt-4 pb-3 border-b border-cloud-50">
                     <span className={cn('absolute inset-x-3.5 top-0 h-1 rounded-b-full', accentBar[stageDef.accent])} />
                     <div className="flex items-baseline justify-between gap-2">
-                      <h3 className="text-[11px] font-display font-medium uppercase tracking-tight text-ink-700 leading-tight">
+                      <h2 className="text-[11px] font-display font-medium uppercase tracking-tight text-ink-700 leading-tight">
                         {stageDef.stage}
-                      </h3>
+                      </h2>
                       <span className="stat-label text-ink-400">
                         {displayCount}
                       </span>

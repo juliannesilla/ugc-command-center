@@ -14,9 +14,16 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { AlertTriangle, ArrowLeft } from 'lucide-react';
+import {
+  AlertTriangle,
+  ArrowLeft,
+  AlertOctagon,
+  Flame,
+  UserCheck,
+  Building2,
+} from 'lucide-react';
 import { Header } from '@/components/ui/header';
-import { StatCard } from '@/components/ui/stat-card';
+import { StatStrip } from '@/components/ui';
 import { MOCK_CAMPAIGNS } from '@/lib/mock-data/campaigns';
 import {
   buildAllIssues,
@@ -77,33 +84,40 @@ export default function NeedsAttentionPage() {
           </span>
         </div>
 
-        {/* Stat strip */}
-        <section className="grid grid-cols-2 md:grid-cols-4 gap-5">
-          <StatCard
-            label="Total issues"
-            value={allIssues.length}
-            sub={`${grouped.length} categories`}
-            accent="pink"
-          />
-          <StatCard
-            label="High severity"
-            value={highCount}
-            sub="Resolve first"
-            accent="orange"
-          />
-          <StatCard
-            label="Waiting on me"
-            value={waitingOnMe}
-            sub="Your turn"
-            accent="iris"
-          />
-          <StatCard
-            label="Affected brands"
-            value={affectedBrands}
-            sub={`of ${MOCK_CAMPAIGNS.length} campaigns`}
-            accent="peach"
-          />
-        </section>
+        {/* Stat strip — A.14n Wave 2b adopts N3-PRIMITIVES StatStrip per mockup #24
+            (fix-first-needs-attention shows 4-tile inline density above filter chips). */}
+        <StatStrip
+          tiles={[
+            {
+              number: allIssues.length,
+              label: 'Total issues',
+              sub: `${grouped.length} categories`,
+              accent: 'pink',
+              icon: <AlertOctagon className="h-4 w-4" />,
+            },
+            {
+              number: highCount,
+              label: 'High severity',
+              sub: 'Resolve first',
+              accent: 'orange',
+              icon: <Flame className="h-4 w-4" />,
+            },
+            {
+              number: waitingOnMe,
+              label: 'Waiting on me',
+              sub: 'Your turn',
+              accent: 'iris',
+              icon: <UserCheck className="h-4 w-4" />,
+            },
+            {
+              number: affectedBrands,
+              label: 'Affected brands',
+              sub: `of ${MOCK_CAMPAIGNS.length} campaigns`,
+              accent: 'peach',
+              icon: <Building2 className="h-4 w-4" />,
+            },
+          ]}
+        />
 
         {/* Filter chips + sort note */}
         <section className="flex flex-wrap items-center justify-between gap-3">

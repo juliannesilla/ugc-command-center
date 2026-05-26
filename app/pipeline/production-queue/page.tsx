@@ -138,7 +138,10 @@ export default function ProductionQueuePage() {
               </p>
             </div>
 
-            <div className="flex gap-6 lg:gap-8 items-start min-w-max">
+            {/* Mockup #03: tighter 13-col film/edit lane — gap-4 lg:gap-5
+                matches the board view and reads as a single workflow funnel
+                rather than disconnected lanes. */}
+            <div className="flex gap-4 lg:gap-5 items-start min-w-max">
               {byStatus.map(({ status, deliverables }) => (
                 <ProductionQueueColumn
                   key={status}

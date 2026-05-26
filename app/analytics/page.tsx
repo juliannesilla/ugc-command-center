@@ -1,4 +1,3 @@
-import { StatCardWithDelta } from '@/components/analytics/StatCardWithDelta';
 import { SmartPanel } from '@/components/analytics/SmartPanel';
 import { TopCampaignsCard } from '@/components/analytics/TopCampaignsCard';
 import { PortfolioWorthyGrid } from '@/components/analytics/PortfolioWorthyGrid';
@@ -11,6 +10,12 @@ import { BestVideosCard } from '@/components/analytics/BestVideosCard';
 import { PlatformPerformanceCard } from '@/components/analytics/PlatformPerformanceCard';
 import { DateRangePicker } from '@/components/analytics/DateRangePicker';
 import { TOP_STAT_CARDS } from '@/lib/mock-data/analytics';
+// A.14n N3-CROSS-DATA Wave 2b: adopt PageHeader hero + ContentArea + RightRail
+// + StatStrip primitives (mockup #04 — Smart Panel right rail, KPI tile row).
+// HR-2 PRESERVE: ALL existing analytics components (charts, tables, SmartPanel)
+// untouched at the body level — only the header markup + outer layout composition
+// swap.
+import { PageHeader, ContentArea, RightRail, StatStrip } from '@/components/ui';
 
 export const metadata = {
   title: "Analytics · UGC | Campaign HQ",
@@ -20,53 +25,47 @@ export const metadata = {
 export default function AnalyticsPage() {
   return (
     <main className="min-h-screen bg-cloud-soft">
-      {/* Header */}
-      <section className="header-cloud px-7 md:px-12 pt-10 pb-12 text-white">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div className="rise rise-1">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80">
-              Performance
-            </p>
-            <h1 className="font-display text-3xl md:text-4xl font-semibold mt-1">
-              Analytics
-            </h1>
-            <p className="text-sm text-white/85 mt-1 max-w-xl">
-              What's converting, what's plateauing, and where your next bonus is hiding.
-            </p>
-          </div>
-          <div className="rise rise-2">
-            <DateRangePicker />
-          </div>
-        </div>
-      </section>
+      {/* A.14n N3-CROSS-DATA: shared PageHeader hero (mockup #04 — uppercase
+          eyebrow "Performance" + display H1 + lede + DateRangePicker top-right). */}
+      <PageHeader
+        variant="hero"
+        eyebrow="Performance"
+        title="Analytics"
+        subtitle="What's converting, what's plateauing, and where your next bonus is hiding."
+        actions={<DateRangePicker />}
+      />
 
-      {/* Body */}
-      <section className="px-7 md:px-12 -mt-8 pb-20 flex flex-col gap-6 lg:gap-8">
-        {/* Top stat cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 rise rise-1">
-          {TOP_STAT_CARDS.map((s) => (
-            <StatCardWithDelta
-              key={s.id}
-              label={s.label}
-              value={s.value}
-              delta={s.delta}
-              deltaTone={s.deltaTone}
-              sublabel={s.sublabel}
-            />
-          ))}
-        </div>
-
-        {/* Smart panel + top campaigns + portfolio */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rise rise-2">
-          <div className="lg:col-span-2 flex flex-col gap-6">
-            <TopCampaignsCard />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <PortfolioWorthyGrid />
-              <UpcomingBonusThresholds />
-            </div>
-          </div>
-          <div>
+      {/* A.14n N3-CROSS-DATA: ContentArea with persistent right rail (mockup #04
+          gap #2 — Smart Panel lives in the ~320px sidebar, not inline). Body
+          components flow in the main column unchanged. */}
+      <ContentArea
+        className="-mt-20"
+        rightRail={
+          <RightRail>
             <SmartPanel />
+            <PlatformPerformanceCard />
+          </RightRail>
+        }
+      >
+        {/* Top stat cards — StatStrip primitive replaces inline grid for
+            consistent KPI density (mockup #04 — tight 4-tile inline row, not
+            stacked cards). */}
+        <StatStrip
+          className="rise rise-1"
+          tiles={TOP_STAT_CARDS.map((s) => ({
+            number: s.value,
+            label: s.label,
+            sub: s.sublabel,
+            accent: 'iris',
+          }))}
+        />
+
+        {/* Top campaigns + portfolio (Smart Panel moved to right rail) */}
+        <div className="grid grid-cols-1 gap-6 rise rise-2">
+          <TopCampaignsCard />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <PortfolioWorthyGrid />
+            <UpcomingBonusThresholds />
           </div>
         </div>
 
@@ -82,14 +81,11 @@ export default function AnalyticsPage() {
           <BonusTrackerByCampaign />
         </div>
 
-        {/* Best videos + platform performance */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rise rise-4">
-          <div className="lg:col-span-2">
-            <BestVideosCard />
-          </div>
-          <PlatformPerformanceCard />
+        {/* Best videos full-width (PlatformPerformanceCard moved to rail) */}
+        <div className="rise rise-4">
+          <BestVideosCard />
         </div>
-      </section>
+      </ContentArea>
     </main>
   );
 }

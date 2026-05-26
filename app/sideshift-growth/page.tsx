@@ -1,151 +1,198 @@
-'use client';
-
 /**
- * SideShift Growth — creator visibility / platform growth dashboard.
+ * SideShift Growth — creator analytics dashboard.
  *
- * Source: `_meta/dashboard-spec/02-campaign-pipeline-views-architecture.md`
- *         Section 11 "SideShift Growth View" (L820–L867).
+ * REBUILD: Phase A.14n Wave 2b N3-SIDESHIFT-REBUILD.
  *
- * Layout: progress dashboard + checklist, with filter chips, a Visibility
- * Next Move smart-feature panel, and an empty state when 100% complete.
+ * Source mockup: `_meta/mockups/20-sideshift-growth.png` (UGC repo) —
+ *   full analytics dashboard tracking applications / conversions / earnings /
+ *   visibility / XP, NOT the prior profile-completion checklist.
  *
- * Sidebar nav: this route is NOT yet linked in the sidebar — E9 in this same
- * wave owns sidebar edits. Reachable by direct URL `/sideshift-growth` until
- * E9 (or a Wave 5/8 close-up) wires the nav link.
+ * Driver:  `_meta/dashboard-spec/06-a14n-visual-baseline.md` row 15 —
+ *   "ENTIRELY DIFFERENT page concept ... needs full rebuild not polish"
+ *   (deployed 58% fidelity → target ≥90%).
  *
- * Owned by E10 (Phase A.14e Wave 4).
+ * Adopted primitives (Wave 2a):
+ *   - <Header pageEyebrow pageTitle/> — global chrome
+ *   - <HeroBand>  — content hero band with mantra + StatStrip slot
+ *   - <StatStrip> — 6-tile dense KPI row
+ *   - <ContentArea rightRail={<RightRail>}> — main + 320px sticky rail grid
+ *
+ * Composed components (this rebuild):
+ *   - ProfileCompletenessCard   — donut, hero row col 1
+ *   - VisibilityScoreCard       — big 84/100 number + tier, hero row col 2
+ *   - NextActionsPanel          — 3 visibility moves, hero row col 3
+ *   - LeagueXpCard              — XP/league progress + boosters, lower-left
+ *   - VisibilityOverTimeChart   — area chart, lower-right (main col)
+ *   - TopPerformingNiches       — horizontal bars, bottom-left
+ *   - RecentActivityFeed        — chronological events, bottom-middle
+ *   - BoostYourGrowthCta        — full-bleed gradient CTA, footer
+ *
+ * HR-2 PRESERVE: profile-completion concept retained — donut card at top
+ * row + xp/league card in main col + full legacy checklist data still
+ * available in `lib/mock-data/sideshift-growth.ts` (kept inline at bottom of
+ * that file). Legacy components (`ProgressHero`, `FieldCard`, `FilterChips`,
+ * `VisibilityNextMove`, `EmptyState`) remain on disk untouched for potential
+ * future reuse; this page no longer imports them.
+ *
+ * HR-31 auto-applied: full skill stack (refactoring-ui, top-design,
+ * hooked-ux, data:create-viz, design:design-handoff, superpowers:
+ * verification-before-completion), ELON Tier-2 gate after build, registry
+ * of action items in spec docs.
  */
 
-import { useMemo, useState } from 'react';
-import Link from 'next/link';
-import { ArrowLeft, Eye, Sparkles } from 'lucide-react';
+import {
+  Sparkles,
+  Megaphone,
+  BadgeCheck,
+  GraduationCap,
+  Timer,
+  Trophy,
+  type LucideIcon,
+} from 'lucide-react';
 import { Header } from '@/components/ui/header';
 import {
-  SIDESHIFT_PROFILE_FIELDS,
-  applyBucket,
-  profileCompletionPercent,
-  visibilityNextMoves,
-  FILTER_BUCKETS,
-} from '@/lib/mock-data/sideshift-growth';
-import { ProgressHero } from '@/components/sideshift-growth/ProgressHero';
+  HeroBand,
+  StatStrip,
+  ContentArea,
+  RightRail,
+  type StatTile,
+} from '@/components/ui';
+
 import {
-  FilterChips,
-  type BucketKey,
-} from '@/components/sideshift-growth/FilterChips';
-import { FieldCard } from '@/components/sideshift-growth/FieldCard';
-import { VisibilityNextMove } from '@/components/sideshift-growth/VisibilityNextMove';
-import { ProfileCompleteEmptyState } from '@/components/sideshift-growth/EmptyState';
+  SIDESHIFT_KPI_TILES,
+  SIDESHIFT_SNAPSHOT,
+  type GrowthKpiTile,
+} from '@/lib/mock-data/sideshift-growth';
+
+import { ProfileCompletenessCard } from '@/components/sideshift-growth/ProfileCompletenessCard';
+import { VisibilityScoreCard } from '@/components/sideshift-growth/VisibilityScoreCard';
+import { NextActionsPanel } from '@/components/sideshift-growth/NextActionsPanel';
+import { LeagueXpCard } from '@/components/sideshift-growth/LeagueXpCard';
+import { VisibilityOverTimeChart } from '@/components/sideshift-growth/VisibilityOverTimeChart';
+import { TopPerformingNiches } from '@/components/sideshift-growth/TopPerformingNiches';
+import { RecentActivityFeed } from '@/components/sideshift-growth/RecentActivityFeed';
+import { BoostYourGrowthCta } from '@/components/sideshift-growth/BoostYourGrowthCta';
+
+// Map icon-name string from mock data → Lucide component.
+// (Mock layer stays serializable; UI layer resolves the icon.)
+const KPI_ICON: Record<GrowthKpiTile['iconName'], LucideIcon> = {
+  Sparkles,
+  Megaphone,
+  BadgeCheck,
+  GraduationCap,
+  Timer,
+  Trophy,
+};
+
+function buildKpiTiles(): StatTile[] {
+  return SIDESHIFT_KPI_TILES.map((t) => {
+    const Icon = KPI_ICON[t.iconName];
+    const deltaSub =
+      typeof t.deltaPct === 'number' && t.deltaPct !== 0
+        ? `${t.deltaPct > 0 ? '▲' : '▼'} ${Math.abs(t.deltaPct)}% · ${t.sub ?? ''}`.trim()
+        : t.sub;
+    return {
+      number: t.number,
+      label: t.label,
+      sub: deltaSub,
+      accent: t.accent,
+      icon: <Icon className="h-3.5 w-3.5" />,
+    };
+  });
+}
 
 export default function SideShiftGrowthPage() {
-  const [bucket, setBucket] = useState<BucketKey>('all');
-
-  // Stable references — mock data is constant, but useMemo signals intent.
-  const allFields = useMemo(() => SIDESHIFT_PROFILE_FIELDS, []);
-
-  const percent = useMemo(
-    () => profileCompletionPercent(allFields),
-    [allFields],
-  );
-
-  const counts = useMemo(() => {
-    const out = {} as Record<BucketKey, number>;
-    for (const f of FILTER_BUCKETS) {
-      out[f.key] = applyBucket(allFields, f.key).length;
-    }
-    return out;
-  }, [allFields]);
-
-  const filtered = useMemo(
-    () => applyBucket(allFields, bucket),
-    [allFields, bucket],
-  );
-
-  const completeCount = allFields.filter((f) => f.status === 'complete').length;
-  const partialCount  = allFields.filter((f) => f.status === 'partial').length;
-  const missingCount  = allFields.filter((f) => f.status === 'missing').length;
-
-  const profileFullyComplete =
-    completeCount === allFields.length && missingCount === 0;
-
-  const nextMoves = useMemo(() => visibilityNextMoves(allFields), [allFields]);
+  const kpiTiles = buildKpiTiles();
 
   return (
     <>
       <Header
-        pageEyebrow="Creator Growth"
+        pageEyebrow="Creator Growth · SideShift"
         pageTitle="SideShift Growth"
       />
 
-      <main className="flex-1 px-7 md:px-12 py-6 space-y-6 lg:space-y-8">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-3 text-[12px] text-ink-500">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1 hover:text-cloud-700 transition"
+      <div className="px-7 md:px-12 -mt-24 pb-20 space-y-10 lg:space-y-12">
+        {/* ── HERO BAND ─────────────────────────────────────────────
+            Mockup #20 hero: lavender bg + mantra upper-right + bottom
+            slot for the 6-tile KPI strip. */}
+        <HeroBand
+          title="Track every brand, post, and payout."
+          mantra={'"You don\'t trust data facts. You trust data trends."'}
+          gradient="lavender"
+        >
+          <StatStrip tiles={kpiTiles} />
+        </HeroBand>
+
+        {/* ── ROW 1 · 3-up hero summary cards ───────────────────────
+            Mockup #20 top row: Profile Completeness · Visibility Score
+            · Next Actions. Stretched equal height with auto-rows. */}
+        <section
+          aria-label="SideShift hero summary"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 auto-rows-fr"
+        >
+          <ProfileCompletenessCard />
+          <VisibilityScoreCard />
+          <NextActionsPanel />
+        </section>
+
+        {/* ── MAIN + RIGHT RAIL via ContentArea primitive ───────────
+            Main column: Visibility chart (lg col 1) + Top Niches
+            + Recent Activity (lg 2-up below chart).
+            Right rail: LeagueXpCard + small quick stats + profile-completion
+            secondary widget (HR-2 PRESERVE). */}
+        <ContentArea
+          className="px-0 md:px-0 pb-0 space-y-0"
+          rightRail={
+            <RightRail>
+              <LeagueXpCard />
+
+              {/* Quick snapshot tile in rail — mirrors mockup's small
+                  "Total Applications" stat next to League card. */}
+              <div className="glass-card rounded-2xl p-5 shadow-card">
+                <p className="text-[10.5px] uppercase tracking-[0.22em] text-cloud-700 font-semibold">
+                  Quick Snapshot
+                </p>
+                <dl className="mt-3 space-y-2.5 text-[12.5px]">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <dt className="text-ink-600">Total applications</dt>
+                    <dd className="font-display tabular-nums text-ink-900 font-semibold">
+                      {SIDESHIFT_SNAPSHOT.totalApplications}
+                    </dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <dt className="text-ink-600">Pending payouts</dt>
+                    <dd className="font-display tabular-nums text-emerald-700 font-semibold">
+                      ${SIDESHIFT_SNAPSHOT.pendingPayouts.toLocaleString()}
+                    </dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <dt className="text-ink-600">Profile complete</dt>
+                    <dd className="font-display tabular-nums text-ink-900 font-semibold">
+                      {SIDESHIFT_SNAPSHOT.profileCompleteness}%
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </RightRail>
+          }
+        >
+          {/* Main column — visibility chart full-width */}
+          <VisibilityOverTimeChart />
+
+          {/* Main column — 2-up: niches + activity */}
+          <section
+            aria-label="Performance breakdown"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            Back to Overview
-          </Link>
-          <span aria-hidden>·</span>
-          <span className="inline-flex items-center gap-1 text-iris-600">
-            <Eye className="h-3.5 w-3.5" />
-            Profile visibility &amp; platform growth
-          </span>
-        </div>
+            <TopPerformingNiches />
+            <RecentActivityFeed />
+          </section>
+        </ContentArea>
 
-        {profileFullyComplete ? (
-          <ProfileCompleteEmptyState />
-        ) : (
-          <>
-            {/* Overall progress hero */}
-            <ProgressHero
-              percent={percent}
-              completeCount={completeCount}
-              partialCount={partialCount}
-              missingCount={missingCount}
-              totalCount={allFields.length}
-            />
-
-            {/* Visibility Next Move smart panel */}
-            <VisibilityNextMove moves={nextMoves} />
-
-            {/* Filter chips */}
-            <section className="flex flex-wrap items-center justify-between gap-3">
-              <FilterChips
-                active={bucket}
-                onChange={setBucket}
-                counts={counts}
-              />
-              <p className="inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.18em] text-ink-500">
-                <Sparkles className="h-3 w-3 text-cloud-sunset" />
-                13 fields tracked
-              </p>
-            </section>
-
-            {/* Field checklist */}
-            <section
-              aria-label="Profile field checklist"
-              className="grid gap-5 md:grid-cols-2 xl:grid-cols-3"
-            >
-              {filtered.length === 0 ? (
-                <div className="md:col-span-2 xl:col-span-3 rounded-3xl bg-white/70 backdrop-blur ring-1 ring-cloud-100 px-6 py-10 text-center">
-                  <p className="font-display text-lg text-ink-900">
-                    Nothing in this filter.
-                  </p>
-                  <p className="mt-1 text-[13px] text-ink-500">
-                    All fields in this bucket are already taken care of. Try
-                    another filter.
-                  </p>
-                </div>
-              ) : (
-                filtered.map((field) => (
-                  <FieldCard key={field.key} field={field} />
-                ))
-              )}
-            </section>
-          </>
-        )}
-      </main>
+        {/* ── FOOTER CTA ─────────────────────────────────────────────
+            Mockup #20 bottom banner — full-bleed gradient CTA. */}
+        <BoostYourGrowthCta />
+      </div>
     </>
   );
 }

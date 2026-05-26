@@ -25,7 +25,12 @@ import {
   Wallet,
 } from 'lucide-react';
 import { Header } from '@/components/ui/header';
-import { StatCard, type StatAccent } from '@/components/ui/stat-card';
+import { type StatAccent } from '@/components/ui/stat-card';
+// A.14n N3-CROSS-DATA Wave 2b: StatStrip adopted for the 8-KPI tile row
+// (mockup #06 + #08 — tight inline row with accent rings + tabular-nums, not
+// stacked cards). HR-2 PRESERVE: full Header with mantra/brand-string locked
+// HR-27, table + filter chips + follow-up modal untouched.
+import { StatStrip } from '@/components/ui';
 import { StatusChip, type ChipTone } from '@/components/ui/status-chip';
 import { MoneyCell, BonusCell, DateCell } from '@/components/database/cell-renderers';
 import { cn, formatMoney } from '@/lib/utils';
@@ -230,18 +235,22 @@ export default function PaymentsPage() {
           <EmptyState />
         ) : (
           <>
-            {/* ============ 8 TOP METRIC CARDS ============ */}
-            <section className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-5">
-              {cards.map((c) => (
-                <StatCard
-                  key={c.label}
-                  label={c.label}
-                  value={c.value}
-                  sub={c.sub}
-                  accent={c.accent}
-                />
-              ))}
-            </section>
+            {/* ============ 8 TOP METRIC CARDS — StatStrip primitive ============
+                A.14n N3-CROSS-DATA: mockup #06+#08 cite a tight 8-tile inline row
+                with accent rings and tabular-nums alignment. StatStrip handles
+                the lg:grid-cols-8 + .card-stat / .stat-label / .stat-number
+                rhythm in one place so this matches /pipeline/database + /. */}
+            <StatStrip
+              tiles={cards.map((c) => ({
+                number: c.value,
+                label: c.label,
+                sub: c.sub,
+                // StatStrip palette doesn't include 'yellow' — fold it onto peach
+                // (the next-warmest tone) so the 8-card row stays visually varied.
+                accent: c.accent === 'yellow' ? 'peach' : c.accent,
+              }))}
+            />
+
 
             {/* ============ FILTER CHIPS + PLATFORM/BRAND DROPDOWNS ============ */}
             <section className="rounded-3xl bg-white p-4 ring-1 ring-cloud-100 shadow-card">

@@ -3,9 +3,13 @@ import {
   Plus,
   SlidersHorizontal,
   ChevronDown,
+  CalendarClock,
+  CalendarRange,
+  CheckCircle2,
 } from 'lucide-react';
 import { ReadOnlyMirrorBadge } from '@/components/ui/read-only-mirror-badge';
 import { MantraQuote } from '@/components/ui/mantra-quote';
+import { StatStrip, ContentArea, RightRail } from '@/components/ui';
 import { WeekHeatmap } from '@/components/deadlines/WeekHeatmap';
 import { DeadlineStatCard } from '@/components/deadlines/DeadlineStatCard';
 import { PrioritizedToDo } from '@/components/deadlines/PrioritizedToDo';
@@ -13,6 +17,12 @@ import { PaymentsDue } from '@/components/deadlines/PaymentsDue';
 import { WhatsNextTimeline } from '@/components/deadlines/WhatsNextTimeline';
 import { DeadlinesViewSwitcher } from '@/components/deadlines/DeadlinesViewSwitcher';
 import { DEADLINE_STATS } from '@/lib/mock-data/deadlines';
+
+// A.14n Wave 2b N3-MOBILE+SECONDARY — adopt StatStrip primitive for secondary
+// 3-stat row per mockup #19 (pipeline-deadlines-calendar.png shows the
+// "Due This Week / Due Next Week / Completed This Week" tiles in a tight
+// inline density). HR-2 PRESERVE: heatmap + DeadlineStatCard for overdue/today
+// pair (different visual treatment, larger tone tiles) untouched.
 
 export const metadata = { title: 'Deadlines · UGC | Campaign HQ' };
 
@@ -73,10 +83,33 @@ export default function DeadlinesPage() {
           </div>
         </section>
 
-        <section className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-5 rise rise-3">
-          <DeadlineStatCard label="Due This Week"     value={DEADLINE_STATS.dueThisWeek}      tone="iris"  sub="May 13 – 19" />
-          <DeadlineStatCard label="Due Next Week"     value={DEADLINE_STATS.dueNextWeek}      tone="cloud" sub="May 20 – 26" />
-          <DeadlineStatCard label="Completed This Week" value={DEADLINE_STATS.completedThisWeek} tone="green" sub="Already shipped" />
+        {/* Secondary 3-stat row — adopts N3-PRIMITIVES StatStrip (mockup #19 inline density) */}
+        <section className="rise rise-3">
+          <StatStrip
+            tiles={[
+              {
+                number: DEADLINE_STATS.dueThisWeek,
+                label: 'Due This Week',
+                sub: 'May 13 – 19',
+                accent: 'iris',
+                icon: <CalendarClock className="h-4 w-4" />,
+              },
+              {
+                number: DEADLINE_STATS.dueNextWeek,
+                label: 'Due Next Week',
+                sub: 'May 20 – 26',
+                accent: 'cloud',
+                icon: <CalendarRange className="h-4 w-4" />,
+              },
+              {
+                number: DEADLINE_STATS.completedThisWeek,
+                label: 'Completed This Week',
+                sub: 'Already shipped',
+                accent: 'green',
+                icon: <CheckCircle2 className="h-4 w-4" />,
+              },
+            ]}
+          />
         </section>
 
         {/* Tabs + filters + active view (Calendar | Timeline | List) */}

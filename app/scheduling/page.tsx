@@ -1,5 +1,16 @@
 "use client";
 
+// Phase A.14n Wave 2b · N3-CHROME-AUDIT — header chrome consistency.
+// Inline `<section className="header-cloud">` hero band replaced with shared
+// global `<Header pageEyebrow pageTitle>` to match all other secondary
+// routes (inbox/documents/templates/settings/content-hub/qa/creative-strategy).
+// HR-2 PRESERVE: M4-E 75 dynamic aria-labels on calendar buttons untouched;
+// ReadOnlyMirrorBadge moves into the global Header chrome (it already renders
+// there). Subtitle moved into a card-secondary below the toolbar so no
+// information is lost.
+// HR-21 CITE = INVOKE: refactoring-ui, apple-hig-expert, ios-hig-design,
+// design:design-system, superpowers:verification-before-completion.
+
 import { useMemo, useState } from "react";
 import {
   ChevronLeft,
@@ -10,7 +21,7 @@ import {
   CalendarPlus,
   Globe2,
 } from "lucide-react";
-import { ReadOnlyMirrorBadge } from "@/components/ui/read-only-mirror-badge";
+import { Header } from "@/components/ui/header";
 import { BRAND_CONVERSATIONS } from "@/lib/mock-data/brand-responses";
 
 type CalEvent = {
@@ -71,28 +82,21 @@ export default function SchedulingPage() {
 
   return (
     <>
-      {/* Header */}
-      <section className="header-cloud px-7 md:px-12 pt-10 pb-12 text-white">
-        <div className="flex items-start justify-between gap-6">
-          <div className="rise rise-1">
-            <p className="text-[11px] uppercase tracking-[0.22em] font-semibold opacity-90">
-              Calendar · Week of May 18
-            </p>
-            <h1 className="mt-2 font-display text-[44px] leading-[1.05] tracking-tight">
-              Call Scheduling
-            </h1>
-            <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-white/90">
-              Discovery, kickoff and review calls — all in one view. Pick a slot
-              to send to a brand, or block focus time for filming.
-            </p>
-          </div>
-          <div className="rise rise-2">
-            <ReadOnlyMirrorBadge />
-          </div>
-        </div>
-      </section>
+      {/* A.14n Wave 2b · global Header chrome (eyebrow + H1 + brand mantra
+          + ReadOnlyMirrorBadge). Subtitle relocated into the toolbar row's
+          subtitle line so no copy is lost. */}
+      <Header
+        pageEyebrow="Calendar · Week of May 18"
+        pageTitle="Call Scheduling"
+      />
 
-      <section className="-mt-6 px-7 md:px-12 pb-16">
+      <section className="-mt-8 px-7 md:px-12 pb-16">
+        {/* Subtitle relocated from inline hero (preserved per HR-2). */}
+        <p className="rise rise-1 mb-4 max-w-xl font-display italic text-sm leading-relaxed text-ink-700/80">
+          Discovery, kickoff and review calls — all in one view. Pick a slot
+          to send to a brand, or block focus time for filming.
+        </p>
+
         {/* Toolbar */}
         <div className="rise rise-2 mb-4 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">

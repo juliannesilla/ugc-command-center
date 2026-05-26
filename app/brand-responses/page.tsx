@@ -28,6 +28,11 @@ import {
   SideShiftDetailPanel,
 } from "@/components/brand-responses/SideShiftMessageQueue";
 import { ReadOnlyMirrorBadge } from "@/components/ui/read-only-mirror-badge";
+// A.14n N3-CROSS-DATA Wave 2b: PageHeader hero primitive replaces inline
+// header-cloud markup (mockup #18 + #25 — consistent eyebrow + H1 + ReadOnlyMirror
+// pill across all routes). HR-2 PRESERVE: STAT_CARDS grid + SideShift queue
+// components UNTOUCHED — only the title-row markup swaps.
+import { PageHeader } from "@/components/ui";
 
 type SourceKey = "gmail" | "sideshift";
 
@@ -79,28 +84,23 @@ function BrandResponsesInner() {
 
   return (
     <>
-      {/* Header */}
-      <section className="header-cloud px-7 md:px-12 pt-10 pb-12 text-white">
-        <div className="flex items-start justify-between gap-6">
-          <div className="rise rise-1">
-            <p className="text-[11px] uppercase tracking-[0.22em] font-semibold opacity-90">
-              Inbox · Live
-            </p>
-            <h1 className="mt-2 font-display text-[44px] leading-[1.05] tracking-tight">
-              Brand Responses
-            </h1>
-            <p className="mt-3 max-w-xl text-[14px] leading-relaxed text-white/90">
-              Every conversation, sorted by what needs you next. Drafts saved,
-              templates ready, follow-ups already on the calendar.
-            </p>
-          </div>
-          <div className="rise rise-2">
-            <ReadOnlyMirrorBadge />
-          </div>
-        </div>
+      {/* A.14n N3-CROSS-DATA: hero header via shared PageHeader primitive.
+          Mockup #18 + #25 cite uppercase eyebrow + display H1 + lede + Read-Only
+          Mirror badge top-right. Stat cards stay below as a sibling grid that
+          overlaps the hero band's bottom padding (header pb-36 → -mt-20 below). */}
+      <PageHeader
+        variant="hero"
+        eyebrow="Inbox · Live"
+        title="Brand Responses"
+        subtitle="Every conversation, sorted by what needs you next. Drafts saved, templates ready, follow-ups already on the calendar."
+        actions={<ReadOnlyMirrorBadge />}
+        className="pb-28 lg:pb-32"
+      />
 
-        {/* Stat cards */}
-        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-6">
+      {/* Stat cards — pulled up over the hero band edge for the layered density
+          mockup #18 shows. */}
+      <section className="-mt-20 px-7 md:px-12">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-6">
           {STAT_CARDS.map((s, idx) => {
             const up = s.delta >= 0;
             return (

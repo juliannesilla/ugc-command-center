@@ -855,6 +855,68 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
       { from: "brand", at: "3h ago", body: "Need draft by Friday — running tight." },
     ],
   },
+  // ---- A.14n N3-CROSS-DATA fix #9: canonical slugs cited by mockups
+  // 18-brand-responses-summer-fridays.png and 25-brand-responses-glow-em-go.png.
+  // Both were missing from BRAND_CONVERSATIONS, causing
+  // /brand-responses/summer-fridays + /brand-responses/glow-em-go to 404 in
+  // the static export (Next.js `generateStaticParams` reads this array).
+  {
+    id: "summer-fridays",
+    brand: "Summer Fridays",
+    contactName: "Lauren Ireland",
+    contactRole: "Senior Influencer Mgr",
+    contactEmail: "lauren@summerfridays.com",
+    logoSeed: "S",
+    lastMessage:
+      "Hi Julianne — we'd love you for the Jet Lag Mask relaunch. Concept attached.",
+    lastMessageAt: "Today, 9:42 AM",
+    receivedAt: "2026-05-19T09:42:00",
+    responseDeadline: "Today 5h left",
+    deadlineHoursLeft: 5,
+    status: "new",
+    brandFit: 5,
+    unread: true,
+    callRequested: true,
+    callSlots: ["Wed 10:00 PT", "Wed 2:00 PT", "Thu 11:30 PT"],
+    nextAction: "Reply — confirm rate tier + propose call slot",
+    notes:
+      "Tier-1 beauty brand. Repeat-client potential. Concept doc shows 2x60s + 1x carousel — quote at retainer floor.",
+    thread: [
+      {
+        from: "brand",
+        at: "Today, 9:42 AM",
+        body: "Hi Julianne — we'd love you for the Jet Lag Mask relaunch. Concept attached. Looking for 2x60s UGC + 1 carousel, IG + TikTok usage 90 days. Open to a quick call this week?",
+      },
+    ],
+  },
+  {
+    id: "glow-em-go",
+    brand: "Glow Em Go",
+    contactName: "Naomi Brookfield",
+    contactRole: "Brand Director",
+    contactEmail: "naomi@glowemgo.co",
+    logoSeed: "G",
+    lastMessage:
+      "Love your aesthetic. Quick Q on usage + bonus structure before we send brief.",
+    lastMessageAt: "Yesterday",
+    receivedAt: "2026-05-18T15:20:00",
+    responseDeadline: "Today 6h left",
+    deadlineHoursLeft: 6,
+    status: "brief-requested",
+    brandFit: 5,
+    unread: true,
+    callRequested: false,
+    nextAction: "Reply with usage tiers + bonus ladder; request full brief",
+    notes:
+      "Founder-led skincare. Asked smart Qs upfront — strong fit. Send rate card v3 + bonus ladder.",
+    thread: [
+      {
+        from: "brand",
+        at: "Yesterday",
+        body: "Love your aesthetic. Quick Q on usage + bonus structure before we send brief — what's your tier for 90-day paid social + a CPM bonus on top?",
+      },
+    ],
+  },
 ];
 
 // Spec tabs (mockup #2): All 36 / Unread 8 / Response Needed 12 / Drafts 6 / Awaiting Reply 7 / Call Requested 3 / Archived

@@ -41,7 +41,10 @@ export function ProductionQueueColumn({
   const stripeKey = getStripe(status);
 
   return (
-    <section className="w-72 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 flex flex-col max-h-[78vh]">
+    // Mockup #03 + A.14n Wave 2b: w-64 column lines up with /pipeline/board
+    // density and exposes more lanes per viewport. p-4 cards container stays
+    // (M4-B + A.14i lock — HR-2 PRESERVE).
+    <section className="w-64 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 flex flex-col max-h-[78vh]">
       {/* column header */}
       <header className="relative px-3.5 pt-4 pb-3 border-b border-cloud-50">
         <span className={cn('absolute inset-x-3.5 top-0 h-1 rounded-b-full', accentBar[stripeKey])} />

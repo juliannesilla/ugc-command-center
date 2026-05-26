@@ -1,65 +1,65 @@
 /**
- * Script & Production — cross-campaign route.
+ * Script & Production — cross-campaign route (server entry).
  *
- * Spec: `01-initial-dashboard-prompt.md` "NAVIGATION / VIEWS" → Script &
- * Production. Owned by Phase A.14i Wave 2a (A14I-2a SCRIPT-CARD).
+ * Phase A.14n Wave 2b N3-SOW+SCRIPT. N1-V2 P0 gap #5 fix: single-campaign
+ * focus with chip selector replaces the 2-col grid that diverged from
+ * mockup #17's single-campaign 6-card lane.
  *
- * Surfaces every active campaign with script + production work in flight,
- * sorted by due date ascending so the deadline-closest cards rise to the
- * top. Mirrors the layout of `/creative-strategy` + `/qa` for consistency.
+ * Mockup: `_meta/mockups/17-script-production.png` — one campaign fills the
+ * content area with the 6-panel lane (Hooks · Beats · Script · A-Roll ·
+ * B-Roll · Edit Checklist). The card itself encodes those 6 panels.
  *
- * Mockup: `UGC/_meta/mockups/17-script-production.png` — hero banner
- * "Plan it. Film it. Edit it. Ship it." sits above a 2-column grid of
- * ScriptProductionCards.
+ * - PageHeader (A.14n Wave 2a primitive) for consistent eyebrow + H1 + subtitle.
+ * - Server resolves campaigns + script/production data, hands to client island.
+ * - ScriptProductionClient owns the selector useState + single-card render.
  *
- * Pure server component — static export friendly, no client hydration
- * beyond what the layout already requires.
+ * HR-2 PRESERVE: <ScriptProductionCard /> body untouched (A14I-2a/2b owners).
+ *   Only composition layer changed (one-at-a-time vs all-stacked).
+ * HR-21 CITE = INVOKE: skills top-design, emil-design-eng, design:design-handoff,
+ *   refactoring-ui, superpowers:verification-before-completion invoked at
+ *   agent boot at 2026-05-25T00:00:00Z.
  */
 
-import { Film } from "lucide-react";
-import { Header } from "@/components/ui/header";
+import { PageHeader } from '@/components/ui';
+import type { CampaignSelectorChip } from '@/components/ui';
 import {
   MOCK_CAMPAIGNS,
   scriptData,
   productionData,
-} from "@/lib/mock-data/campaigns";
-import {
-  ScriptProductionCard,
-  type ScriptShape,
-  type ProductionShape,
-} from "@/components/script-production/ScriptProductionCard";
+  campaigns as campaignMeta,
+} from '@/lib/mock-data/campaigns';
+import type { CampaignSlug } from '@/lib/mock-data/campaigns';
+import type {
+  ScriptShape,
+  ProductionShape,
+} from '@/components/script-production/ScriptProductionCard';
+import ScriptProductionClient from './ScriptProductionClient';
 
 export const metadata = {
-  title: "Script & Production · UGC | Campaign HQ",
+  title: 'Script & Production · UGC | Campaign HQ',
   description:
-    "Plan it. Film it. Edit it. Ship it. — script + production checklist across every active campaign.",
+    'Plan it. Film it. Edit it. Ship it. — one campaign in focus, all six panels at hand.',
 };
 
 // Stages that gate "has script/production work in flight". Earlier stages
 // (NEW LEAD, APPLIED, BRAND REPLIED, etc.) don't have script content yet.
 const SCRIPT_PRODUCTION_STAGES = new Set([
-  "SOW REVIEWED",
-  "STRATEGY READY",
-  "SCRIPT READY",
-  "FILMING",
-  "EDITING",
-  "QA",
-  "SUBMITTED",
+  'SOW REVIEWED',
+  'STRATEGY READY',
+  'SCRIPT READY',
+  'FILMING',
+  'EDITING',
+  'QA',
+  'SUBMITTED',
 ]);
 
 function findScriptForSlug(slug: string): ScriptShape | undefined {
-  const data: Record<string, unknown> = scriptData as unknown as Record<
-    string,
-    unknown
-  >;
+  const data: Record<string, unknown> = scriptData as unknown as Record<string, unknown>;
   return data[slug] as ScriptShape | undefined;
 }
 
 function findProductionForSlug(slug: string): ProductionShape | undefined {
-  const data: Record<string, unknown> = productionData as unknown as Record<
-    string,
-    unknown
-  >;
+  const data: Record<string, unknown> = productionData as unknown as Record<string, unknown>;
   return data[slug] as ProductionShape | undefined;
 }
 
@@ -70,16 +70,13 @@ function dueDateMs(due: string | undefined): number {
 }
 
 export default function ScriptProductionPage() {
-  // Cross-campaign filter: active + in (or past) the script/production
-  // window. Cards still surface for SUBMITTED so Julz can spot-check the
-  // delivered script copy without bouncing into the campaign detail page.
+  // Active = not archived AND in script/production window (or has script.json
+  // drafted ahead of the stage advance). Sort by due date asc so the chip
+  // ordering surfaces the most-urgent campaign first.
   const active = MOCK_CAMPAIGNS.filter(
     (c) =>
-      c.status !== "archived" &&
+      c.status !== 'archived' &&
       (SCRIPT_PRODUCTION_STAGES.has(c.current_stage) ||
-        // Always show campaigns with script.json drafted, even if their
-        // current stage hasn't formally advanced — useful during the
-        // pre-FILMING dry run.
         Boolean(findScriptForSlug(c.campaign_id)?.hooks?.length)),
   );
 
@@ -87,56 +84,45 @@ export default function ScriptProductionPage() {
     (a, b) => dueDateMs(a.due_date) - dueDateMs(b.due_date),
   );
 
+  const chips: CampaignSelectorChip[] = sorted.map((c) => {
+    const meta = campaignMeta[c.campaign_id as CampaignSlug];
+    return {
+      slug: c.campaign_id,
+      brand: meta?.brand ?? c.brand,
+      logoMark: meta?.logoMark ?? (c.brand?.[0]?.toUpperCase() ?? '?'),
+      accent: meta?.accent ?? '#9D6BFF',
+    };
+  });
+
+  const scriptBySlug: Record<string, ScriptShape | undefined> = sorted.reduce(
+    (acc, c) => {
+      acc[c.campaign_id] = findScriptForSlug(c.campaign_id);
+      return acc;
+    },
+    {} as Record<string, ScriptShape | undefined>,
+  );
+
+  const productionBySlug: Record<string, ProductionShape | undefined> = sorted.reduce(
+    (acc, c) => {
+      acc[c.campaign_id] = findProductionForSlug(c.campaign_id);
+      return acc;
+    },
+    {} as Record<string, ProductionShape | undefined>,
+  );
+
   return (
     <>
-      <Header
-        pageEyebrow="Script & Production"
-        pageTitle="Plan it. Film it. Edit it. Ship it."
+      <PageHeader
+        eyebrow={`Script & Production · ${sorted.length} active`}
+        title="Plan it. Film it. Edit it. Ship it."
+        subtitle="One campaign in focus. Switch brands without losing your scroll."
       />
-
-      <section className="px-7 md:px-12 -mt-8 pb-20">
-        {/* A.14m T5: .section-subtitle utility on intro lede. */}
-        <p className="section-subtitle mb-6 max-w-2xl">
-          One card per campaign in script + production. Hook options, core
-          beats, the working script, A-Roll / B-Roll capture, and the
-          post-production gate live side-by-side so a single scroll covers
-          every active shoot.
-        </p>
-
-        {sorted.length === 0 ? (
-          /* A.14m T5: empty-state uses .card-hero (generous p-10 preserved). */
-          <div className="card-hero !p-10 ring-cloud-200 text-center">
-            <Film
-              className="h-10 w-10 text-iris-300 mx-auto mb-3"
-              aria-hidden="true"
-            />
-            <h3 className="section-title">
-              No campaigns in script or production yet.
-            </h3>
-            <p className="section-subtitle mt-2 max-w-md mx-auto">
-              When a campaign clears SOW review and moves into scripting,
-              its script + production card will surface here.
-            </p>
-          </div>
-        ) : (
-          /* A.14m T5 fix-fold (mockup #17): tighten lane gutter on lg+
-             (gap-5 → lg:gap-6) — premium spacing so cards breathe without
-             feeling sparse. ScriptProductionCard owns its own padding. */
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
-            {sorted.map((campaign) => {
-              const slug = campaign.campaign_id;
-              return (
-                <ScriptProductionCard
-                  key={campaign.campaign_id}
-                  campaign={campaign}
-                  script={findScriptForSlug(slug)}
-                  production={findProductionForSlug(slug)}
-                />
-              );
-            })}
-          </div>
-        )}
-      </section>
+      <ScriptProductionClient
+        campaigns={sorted}
+        chips={chips}
+        scriptBySlug={scriptBySlug}
+        productionBySlug={productionBySlug}
+      />
     </>
   );
 }

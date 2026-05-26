@@ -1,0 +1,241 @@
+[
+  {
+    "slug": "home",
+    "url": "/",
+    "baselineA11y": null,
+    "scores": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 96,
+      "seo": 100
+    },
+    "violations": [
+      {
+        "rule": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "count": 32,
+        "selectors": [
+          "ul.space-y-0.5 > li > a.group > span.truncate",
+          "div.px-7 > section.rise > div.card-stat > p.text-[10.5px]",
+          "div.px-7 > section.rise > div.card-stat > p.text-[10.5px]",
+          "div.px-7 > section.rise > div.card-stat > p.text-[10.5px]",
+          "div.px-7 > section.rise > div.card-stat > p.text-[10.5px]",
+          "div.px-7 > section.rise > div.card-stat > p.text-[10.5px]",
+          "section.rise > div.grid > div.card-stat > div.mt-0.5",
+          "section.rise > div.grid > div.card-stat > div.mt-0.5",
+          "section.rise > div.grid > div.card-stat > div.mt-0.5",
+          "section.rise > div.grid > div.card-stat > div.mt-0.5"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "pipeline-board",
+    "url": "/pipeline/board/",
+    "baselineA11y": 90,
+    "scores": {
+      "perf": 100,
+      "a11y": 90,
+      "bp": 96,
+      "seo": 100
+    },
+    "violations": [
+      {
+        "rule": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "count": 1,
+        "selectors": [
+          "ul.space-y-0.5 > li > a.group > span.truncate"
+        ]
+      },
+      {
+        "rule": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order",
+        "count": 1,
+        "selectors": [
+          "section.group/col > header.relative > div.flex > h3.text-[11px]"
+        ]
+      },
+      {
+        "rule": "aria-prohibited-attr",
+        "title": "Elements use prohibited ARIA attributes",
+        "count": 10,
+        "selectors": [
+          "div.min-w-0 > div.flex > div.flex > span.grid",
+          "div.min-w-0 > div.flex > div.flex > span.grid",
+          "div.min-w-0 > div.flex > div.flex > span.grid",
+          "div.min-w-0 > div.flex > div.flex > span.grid",
+          "div.min-w-0 > div.flex > div.flex > span.grid",
+          "div.min-w-0 > div.flex > div.flex > span.grid",
+          "div.min-w-0 > div.flex > div.flex > span.grid",
+          "div.min-w-0 > div.flex > div.flex > span.grid",
+          "div.min-w-0 > div.flex > div.flex > span.grid",
+          "div.min-w-0 > div.flex > div.flex > span.grid"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "sow-breakdown",
+    "url": "/sow-breakdown/",
+    "baselineA11y": 94,
+    "scores": {
+      "perf": 100,
+      "a11y": 94,
+      "bp": 96,
+      "seo": 100
+    },
+    "violations": [
+      {
+        "rule": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "count": 1,
+        "selectors": [
+          "ul.space-y-0.5 > li > a.group > span.truncate"
+        ]
+      },
+      {
+        "rule": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order",
+        "count": 1,
+        "selectors": [
+          "div.grid > div.flex > div.min-w-0 > h3.font-display"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "sow-breakdown-elf",
+    "url": "/sow-breakdown/elf/",
+    "baselineA11y": null,
+    "scores": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 96,
+      "seo": 100
+    },
+    "violations": [
+      {
+        "rule": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "count": 1,
+        "selectors": [
+          "ul.space-y-0.5 > li > a.group > span.truncate"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "brand-responses",
+    "url": "/brand-responses/",
+    "baselineA11y": null,
+    "scores": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 96,
+      "seo": 100
+    },
+    "violations": [
+      {
+        "rule": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "count": 21,
+        "selectors": [
+          "ul.space-y-0.5 > li > a.group > span.truncate",
+          "div.rise > nav.flex > button.relative > span.rounded-full",
+          "tr.group > td.px-5 > div.max-w-[24rem] > p.text-[11px]",
+          "tr.group > td.px-5 > div.max-w-[24rem] > p.text-[11px]",
+          "tr.group > td.px-5 > div.max-w-[24rem] > p.text-[11px]",
+          "tr.group > td.px-5 > div.max-w-[24rem] > p.text-[11px]",
+          "tr.group > td.px-5 > div.max-w-[24rem] > p.text-[11px]",
+          "tr.group > td.px-5 > div.max-w-[24rem] > p.text-[11px]",
+          "tr.group > td.px-5 > div.max-w-[24rem] > p.text-[11px]",
+          "tr.group > td.px-5 > div.max-w-[24rem] > p.text-[11px]"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "analytics",
+    "url": "/analytics/",
+    "baselineA11y": 94,
+    "scores": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 96,
+      "seo": 100
+    },
+    "violations": [
+      {
+        "rule": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "count": 6,
+        "selectors": [
+          "ul.space-y-0.5 > li > a.group > span.truncate",
+          "div.min-w-0 > div.flex > span.shrink-0 > span.ml-1.5",
+          "div.min-w-0 > div.flex > span.shrink-0 > span.ml-1.5",
+          "div.min-w-0 > div.flex > span.shrink-0 > span.ml-1.5",
+          "div.min-w-0 > div.flex > span.shrink-0 > span.ml-1.5",
+          "div.grid > div > aside.glass-card > button.mt-1"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "inbox",
+    "url": "/inbox/",
+    "baselineA11y": null,
+    "scores": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 96,
+      "seo": 100
+    },
+    "violations": [
+      {
+        "rule": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "count": 1,
+        "selectors": [
+          "ul.space-y-0.5 > li > a.group > span.truncate"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "scheduling",
+    "url": "/scheduling/",
+    "baselineA11y": 87,
+    "scores": {
+      "perf": 100,
+      "a11y": 96,
+      "bp": 96,
+      "seo": 100
+    },
+    "violations": [
+      {
+        "rule": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "count": 4,
+        "selectors": [
+          "ul.space-y-0.5 > li > a.group > span.truncate",
+          "div.rise > div.grid > div.px-3 > p.font-semibold",
+          "div.rise > div.grid > div.px-3 > p.mt-0.5",
+          "div.grid > aside.rise > section.rounded-3xl > h2.stat-label"
+        ]
+      },
+      {
+        "rule": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "count": 5,
+        "selectors": [
+          "div.rise > div.relative > div.grid > button.group/slot",
+          "div.rise > div.relative > div.grid > button.group/slot",
+          "div.rise > div.relative > div.grid > button.group/slot",
+          "div.rise > div.relative > div.grid > button.group/slot",
+          "div.rise > div.relative > div.grid > button.group/slot"
+        ]
+      }
+    ]
+  }
+]

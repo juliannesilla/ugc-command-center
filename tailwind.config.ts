@@ -19,6 +19,7 @@ const config: Config = {
           500: '#FF6B9D', // primary pink
           600: '#E84C82',
           700: '#C2376A',
+          800: '#9C2255', // AA contrast on cloud-100 bg (~6.1:1)
         },
         iris: {
           50:  '#F5F0FF',
