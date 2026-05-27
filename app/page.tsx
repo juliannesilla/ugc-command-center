@@ -123,6 +123,17 @@ export default function OverviewPage() {
     },
   ];
 
+  // A.14u FIX 2026-05-27: dynamic date at build time (Julz caught "MAY 19" stale)
+  // gh-pages rebuilds on every push + daily cron, so this refreshes naturally.
+  const today = new Date();
+  const dayLong = today.toLocaleDateString("en-US", { weekday: "long" });
+  const dayShort = today.toLocaleDateString("en-US", { weekday: "short" });
+  const monthLong = today.toLocaleDateString("en-US", { month: "long" });
+  const monthShort = today.toLocaleDateString("en-US", { month: "short" });
+  const dayNum = today.getDate();
+  const pageEyebrow = `${dayLong} · ${monthLong} ${dayNum} · Creator Campaign HQ`;
+  const pulseEyebrow = `Today's pulse · ${dayShort} ${monthShort} ${dayNum}`;
+
   return (
     <>
       {/* Chrome strip — brand mark + mantra + notifs + avatar.
@@ -130,7 +141,7 @@ export default function OverviewPage() {
           hero (HR-27 brand lock). HeroBand below is the content-area secondary
           hero with scale-bumped title + KPI strip per mockup #05. */}
       <Header
-        pageEyebrow="Wednesday · May 19 · Creator Campaign HQ"
+        pageEyebrow={pageEyebrow}
         pageTitle="Good morning, Julianne."
       />
 
@@ -280,7 +291,7 @@ export default function OverviewPage() {
             Gap #1 fix: title now 44px via HeroBand spec lock (was inline text-2xl/3xl).
             Gap #3 fix: StatStrip lg:grid-cols-5 inline-tight (was full-width stacked). */}
         <HeroBand
-          eyebrow="Today's pulse · Wed May 19"
+          eyebrow={pulseEyebrow}
           title="Let's make today count."
           mantra={'"The goal isn\'t to be perfect. It\'s to be better than yesterday."'}
         >
