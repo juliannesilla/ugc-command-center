@@ -35,20 +35,23 @@ export function ReplyComposer({ conv }: Props) {
   const [templateOpen, setTemplateOpen] = useState(false);
   const [variableOpen, setVariableOpen] = useState(false);
 
+  // SHIP-SAFE substitution policy (A.14u F7):
+  // - Only substitute variables where we have REAL data (brand, contact, call slots).
+  // - For variables that depend on per-campaign data we don't have here
+  //   (campaign, deliverable, rate, timeline), we DO NOT substitute. The
+  //   `{{key}}` placeholder stays visible in the textarea so Julz must fill it
+  //   before send. This prevents a literal like "$X,XXX" or "next Friday" from
+  //   shipping to a brand.
   const substitutions = useMemo<Record<string, string>>(
     () => ({
       brand_name: conv.brand,
       contact_first_name: conv.contactName.split(" ")[0],
-      campaign: "your campaign",
-      deliverable: "the deliverables",
-      rate: "$X,XXX",
-      timeline: "next Friday",
-      // legacy support
+      // legacy support (same real-data-only policy)
       contactName: conv.contactName.split(" ")[0],
       brand: conv.brand,
-      slot1: conv.callSlots?.[0] ?? "Tue 11:00 PT",
-      slot2: conv.callSlots?.[1] ?? "Wed 2:00 PT",
-      slot3: conv.callSlots?.[2] ?? "Thu 10:00 PT",
+      slot1: conv.callSlots?.[0] ?? "{{slot1}}",
+      slot2: conv.callSlots?.[1] ?? "{{slot2}}",
+      slot3: conv.callSlots?.[2] ?? "{{slot3}}",
     }),
     [conv],
   );
@@ -72,7 +75,21 @@ export function ReplyComposer({ conv }: Props) {
   // Lightweight validator chip
   const wordCount = body.trim().split(/\s+/).filter(Boolean).length;
   const hasSignoff = /respectfully|julianne/i.test(body);
-  const looksGood = wordCount > 25 && hasSignoff;
+  // Ship-safety: block "looks good" if any unfilled {{placeholder}} or literal
+  // money/date placeholders (e.g. "$X,XXX") remain in the body.
+  const hasUnfilledVar = /\{\{[^}]+\}\}/.test(body);
+  const hasShipRiskLiteral = /\$X,XXX|\$XX,XXX|XXX-XXXX|\[BRAND\]|\[NAME\]|\[INSERT/i.test(body);
+  const looksGood =
+    wordCount > 25 && hasSignoff && !hasUnfilledVar && !hasShipRiskLiteral;
+  const validatorLabel = hasShipRiskLiteral
+    ? "Remove placeholder"
+    : hasUnfilledVar
+    ? "Fill {{ }} vars"
+    : !hasSignoff
+    ? "Add sign-off"
+    : looksGood
+    ? "Looks good!"
+    : "Add sign-off";
 
   return (
     <section className="rounded-3xl bg-white/90 backdrop-blur shadow-card ring-1 ring-cloud-100 overflow-hidden">
@@ -190,7 +207,7 @@ export function ReplyComposer({ conv }: Props) {
             }`}
           >
             <CheckCircle2 className="h-3 w-3" />
-            {looksGood ? "Looks good!" : "Add sign-off"}
+            {validatorLabel}
           </span>
           <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-400">
             {wordCount} words

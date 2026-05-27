@@ -1006,7 +1006,7 @@ export const REPLY_TEMPLATES = [
     id: "rate-quote",
     label: "Rate quote (Tier 2)",
     body:
-      "Based on the brief, here's where I land for {{brand}}:\n\n• 2 x 30s UGC (organic usage, 30 days): $X,XXX\n• Add: paid usage 60 days: +30%\n• Add: exclusivity in category: +20%\n\nHappy to adjust scope if needed. Let me know what works.\n\nRespectfully,\nJulianne Silla",
+      "Based on the brief, here's where I land for {{brand}}:\n\n• 2 x 30s UGC (organic usage, 30 days): {{rate}}\n• Add: paid usage 60 days: +30%\n• Add: exclusivity in category: +20%\n\nHappy to adjust scope if needed. Let me know what works.\n\nRespectfully,\nJulianne Silla",
   },
   {
     id: "polite-decline",
