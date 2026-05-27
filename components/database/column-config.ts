@@ -114,7 +114,7 @@ export interface FilterDef {
   predicate: (c: Campaign) => boolean;
 }
 
-const TODAY = new Date('2026-05-20');
+const TODAY = new Date(); // A.14u F2: dynamic anchor
 function daysUntil(iso?: string): number {
   if (!iso) return Number.POSITIVE_INFINITY;
   const d = new Date(iso);

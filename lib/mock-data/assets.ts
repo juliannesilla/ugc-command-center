@@ -1,6 +1,9 @@
 // Mock asset seed — 1,248 assets across 4 campaign folders + recent activity.
 // TODO(D-5 live swap): replace MOCK_* exports with lib/data-sync/markdown.ts reads.
 
+// A.14u F2: dates anchored relative to today via lib/date-anchor.
+import { daysFromNow as _daysFromNow } from "@/lib/date-anchor";
+
 import type {
   Asset,
   AssetCategory,
@@ -29,7 +32,7 @@ export const MOCK_CAMPAIGN_FOLDERS: Campaign[] = [
     brand: 'Goodie AI',
     name: 'Goodie AI — Spring Refresh',
     status: 'IN REVIEW',
-    dueDate: '2026-05-22',
+    dueDate: _daysFromNow(3),
     assetCount: 32,
     collaborators: [
       { initials: 'JS', tone: 'pink' },
@@ -78,7 +81,7 @@ export const MOCK_RECENT_ASSETS: Asset[] = [
     campaign: 'parakeet',
     campaignLabel: 'ParakeetAI',
     sizeMB: 184.2,
-    uploadedAt: '2026-05-19T13:48:00Z',
+    uploadedAt: `${_daysFromNow(0)}T13:48:00Z`,
     uploadedBy: { initials: 'JS', tone: 'pink' },
     health: 'ready',
   },
@@ -90,7 +93,7 @@ export const MOCK_RECENT_ASSETS: Asset[] = [
     campaign: 'goodie',
     campaignLabel: 'Goodie AI',
     sizeMB: 4.8,
-    uploadedAt: '2026-05-19T11:21:00Z',
+    uploadedAt: `${_daysFromNow(0)}T11:21:00Z`,
     uploadedBy: { initials: 'JS', tone: 'pink' },
     health: 'ready',
   },
@@ -102,7 +105,7 @@ export const MOCK_RECENT_ASSETS: Asset[] = [
     campaign: 'lumina',
     campaignLabel: 'Lumina Skin',
     sizeMB: 0.6,
-    uploadedAt: '2026-05-19T09:02:00Z',
+    uploadedAt: `${_daysFromNow(0)}T09:02:00Z`,
     uploadedBy: { initials: 'NV', tone: 'iris' },
     health: 'ready',
   },

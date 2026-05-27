@@ -3,8 +3,8 @@
 
 import type { PaymentRow } from "@/lib/mock-data/payments";
 
-/** Today is fixed at 2026-05-20 per project context. */
-const TODAY = new Date("2026-05-20");
+/** A.14u F2: today anchored via lib/date-anchor (slides forward at build). */
+const TODAY = new Date();
 
 /** Bonus as a number — coerces structured-text bonuses to 0 in totals (still surfaced in highest-bonus filter). */
 function bonusValue(b?: number | string): number {

@@ -1,5 +1,15 @@
 // Mock data for Brand Responses — seeded with 18 SideShift chat conversations
 // from UGC Campaign System (OneDrive/Desktop/UGC/_meta/, Phase B-prep)
+// A.14u F2: receivedAt + responseDeadline now resolve via lib/date-anchor.
+
+import { daysFromNow } from "@/lib/date-anchor";
+const _DATE_PREFIX = daysFromNow(0);
+const _mShort = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+function _futureLabel(daysAhead: number): string {
+  const d = new Date();
+  d.setDate(d.getDate() + daysAhead);
+  return `${_mShort[d.getMonth()]} ${d.getDate()} ${daysAhead}d left`;
+}
 
 export type BrandStatus =
   | "new"
@@ -46,7 +56,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     lastMessage:
       "Loved your tone on the Acorns drop. Open to a quick call this week?",
     lastMessageAt: "32 min ago",
-    receivedAt: "2026-05-19T14:00:00",
+    receivedAt: `${_DATE_PREFIX}T14:00:00`,
     responseDeadline: "Today 4h left",
     deadlineHoursLeft: 4,
     status: "new",
@@ -74,7 +84,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     lastMessage:
       "Sending brief now. Need 2 x 30s UGC, IG + TikTok usage, 60 days.",
     lastMessageAt: "1h ago",
-    receivedAt: "2026-05-19T13:00:00",
+    receivedAt: `${_DATE_PREFIX}T13:00:00`,
     responseDeadline: "Today 6h left",
     deadlineHoursLeft: 6,
     status: "brief-requested",
@@ -110,7 +120,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "w",
     lastMessage: "Confirmed Tuesday 11am PT. Calendar invite sent.",
     lastMessageAt: "4h ago",
-    receivedAt: "2026-05-19T10:00:00",
+    receivedAt: `${_DATE_PREFIX}T10:00:00`,
     responseDeadline: "Tomorrow 1d left",
     deadlineHoursLeft: 24,
     status: "call-scheduled",
@@ -175,7 +185,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     lastMessage:
       "Can you do a 60s explainer with on-camera + b-roll?",
     lastMessageAt: "5h ago",
-    receivedAt: "2026-05-19T09:00:00",
+    receivedAt: `${_DATE_PREFIX}T09:00:00`,
     responseDeadline: "Tomorrow 18h left",
     deadlineHoursLeft: 18,
     status: "new",
@@ -244,7 +254,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "f",
     lastMessage: "Could you do a travel-themed angle?",
     lastMessageAt: "3h ago",
-    receivedAt: "2026-05-19T11:00:00",
+    receivedAt: `${_DATE_PREFIX}T11:00:00`,
     responseDeadline: "Today 5h left",
     deadlineHoursLeft: 5,
     status: "new",
@@ -265,7 +275,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "c",
     lastMessage: "Are weekends ok for filming?",
     lastMessageAt: "6h ago",
-    receivedAt: "2026-05-19T08:00:00",
+    receivedAt: `${_DATE_PREFIX}T08:00:00`,
     responseDeadline: "Tomorrow 18h left",
     deadlineHoursLeft: 18,
     status: "awaiting-reply",
@@ -309,7 +319,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "s",
     lastMessage: "Contract attached — please sign by EOW.",
     lastMessageAt: "Today, 9:14 AM",
-    receivedAt: "2026-05-19T09:14:00",
+    receivedAt: `${_DATE_PREFIX}T09:14:00`,
     responseDeadline: "Today 7h left",
     deadlineHoursLeft: 7,
     status: "in-progress",
@@ -417,7 +427,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "H",
     lastMessage: "What's your usage rate for 6 month paid social?",
     lastMessageAt: "8h ago",
-    receivedAt: "2026-05-19T06:00:00",
+    receivedAt: `${_DATE_PREFIX}T06:00:00`,
     responseDeadline: "Today 9h left",
     deadlineHoursLeft: 9,
     status: "new",
@@ -460,7 +470,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "V",
     lastMessage: "Can you send your media kit?",
     lastMessageAt: "10h ago",
-    receivedAt: "2026-05-19T04:00:00",
+    receivedAt: `${_DATE_PREFIX}T04:00:00`,
     responseDeadline: "Tomorrow 22h left",
     deadlineHoursLeft: 22,
     status: "new",
@@ -482,7 +492,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "S",
     lastMessage: "Looking for a creator for our summer drop. Rates?",
     lastMessageAt: "2h ago",
-    receivedAt: "2026-05-19T12:00:00",
+    receivedAt: `${_DATE_PREFIX}T12:00:00`,
     responseDeadline: "Today 5h left",
     deadlineHoursLeft: 5,
     status: "new",
@@ -503,7 +513,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "F",
     lastMessage: "Brief attached — looking for 1x60s explainer.",
     lastMessageAt: "5h ago",
-    receivedAt: "2026-05-19T09:30:00",
+    receivedAt: `${_DATE_PREFIX}T09:30:00`,
     responseDeadline: "Tomorrow 14h left",
     deadlineHoursLeft: 14,
     status: "brief-requested",
@@ -524,7 +534,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "L",
     lastMessage: "Need media kit + recent example videos.",
     lastMessageAt: "7h ago",
-    receivedAt: "2026-05-19T07:00:00",
+    receivedAt: `${_DATE_PREFIX}T07:00:00`,
     responseDeadline: "Today 6h left",
     deadlineHoursLeft: 6,
     status: "new",
@@ -545,7 +555,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "B",
     lastMessage: "Pitch for our Q3 series — can we hop on call Thursday?",
     lastMessageAt: "1h ago",
-    receivedAt: "2026-05-19T13:30:00",
+    receivedAt: `${_DATE_PREFIX}T13:30:00`,
     responseDeadline: "Today 3h left",
     deadlineHoursLeft: 3,
     status: "new",
@@ -589,7 +599,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     lastMessage: "Send the rough cut whenever ready — we're flexible.",
     lastMessageAt: "Yesterday",
     receivedAt: "2026-05-18T12:00:00",
-    responseDeadline: "May 22 3d left",
+    responseDeadline: _futureLabel(3),
     deadlineHoursLeft: 72,
     status: "in-progress",
     brandFit: 4,
@@ -652,7 +662,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "A",
     lastMessage: "Re: rates — would $1,200 for 2x organic posts work?",
     lastMessageAt: "4h ago",
-    receivedAt: "2026-05-19T10:30:00",
+    receivedAt: `${_DATE_PREFIX}T10:30:00`,
     responseDeadline: "Today 7h left",
     deadlineHoursLeft: 7,
     status: "new",
@@ -674,7 +684,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     lastMessage: "Reviewing internally — back to you by Friday.",
     lastMessageAt: "Yesterday",
     receivedAt: "2026-05-18T11:00:00",
-    responseDeadline: "May 22 3d left",
+    responseDeadline: _futureLabel(3),
     deadlineHoursLeft: 72,
     status: "awaiting-reply",
     brandFit: 4,
@@ -694,7 +704,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "S",
     lastMessage: "Need it by next Wed — can you commit?",
     lastMessageAt: "30 min ago",
-    receivedAt: "2026-05-19T14:30:00",
+    receivedAt: `${_DATE_PREFIX}T14:30:00`,
     responseDeadline: "Today 2h left",
     deadlineHoursLeft: 2,
     status: "new",
@@ -757,7 +767,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "V",
     lastMessage: "Are you bookable for July? We're locking creators now.",
     lastMessageAt: "9h ago",
-    receivedAt: "2026-05-19T05:30:00",
+    receivedAt: `${_DATE_PREFIX}T05:30:00`,
     responseDeadline: "Today 8h left",
     deadlineHoursLeft: 8,
     status: "new",
@@ -778,7 +788,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "H",
     lastMessage: "We'd love a longer-term ambassador deal — interested?",
     lastMessageAt: "1h ago",
-    receivedAt: "2026-05-19T13:00:00",
+    receivedAt: `${_DATE_PREFIX}T13:00:00`,
     responseDeadline: "Today 4h left",
     deadlineHoursLeft: 4,
     status: "new",
@@ -843,7 +853,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     logoSeed: "R",
     lastMessage: "Need draft by Friday — running tight.",
     lastMessageAt: "3h ago",
-    receivedAt: "2026-05-19T11:30:00",
+    receivedAt: `${_DATE_PREFIX}T11:30:00`,
     responseDeadline: "Today 4h left",
     deadlineHoursLeft: 4,
     status: "in-progress",
@@ -870,7 +880,7 @@ export const BRAND_CONVERSATIONS: BrandConversation[] = [
     lastMessage:
       "Hi Julianne — we'd love you for the Jet Lag Mask relaunch. Concept attached.",
     lastMessageAt: "Today, 9:42 AM",
-    receivedAt: "2026-05-19T09:42:00",
+    receivedAt: `${_DATE_PREFIX}T09:42:00`,
     responseDeadline: "Today 5h left",
     deadlineHoursLeft: 5,
     status: "new",

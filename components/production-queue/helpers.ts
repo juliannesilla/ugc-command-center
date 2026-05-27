@@ -18,6 +18,9 @@
 //
 // Pure functions only — same logic runs SSG + client.
 
+// A.14u F2: dates anchored relative to today via lib/date-anchor.
+import { daysFromNow as _daysFromNow } from "@/lib/date-anchor";
+
 import type { Campaign, CampaignStage } from "@/lib/types/campaign";
 
 // ──────────────────────────────────────────────────────────────────────────
@@ -630,7 +633,7 @@ const SYNTHETIC_DELIVERABLES: SyntheticDeliverable[] = [
     qaStatus: "Pending",
     submissionStatus: "Not submitted",
     hookSelected: true,
-    dueDate: "2026-05-23",
+    dueDate: _daysFromNow(4),
     notes: "Macro b-roll for e.l.f. — need ring light + doe-foot close-up.",
     readinessOverridePct: 67,
   },
@@ -650,7 +653,7 @@ const SYNTHETIC_DELIVERABLES: SyntheticDeliverable[] = [
     qaStatus: "Pending",
     submissionStatus: "Not submitted",
     hookSelected: true,
-    dueDate: "2026-05-26",
+    dueDate: _daysFromNow(7),
     notes: "Filming block locked Wed 4-6pm — Parakeet screen-rec dependency.",
     readinessOverridePct: 67,
   },
@@ -670,7 +673,7 @@ const SYNTHETIC_DELIVERABLES: SyntheticDeliverable[] = [
     qaStatus: "Pending",
     submissionStatus: "Not submitted",
     hookSelected: true,
-    dueDate: "2026-05-24",
+    dueDate: _daysFromNow(5),
     notes: "Raw footage backed up to OneDrive. Edit window: Thu morning.",
     readinessOverridePct: 83,
   },
@@ -690,7 +693,7 @@ const SYNTHETIC_DELIVERABLES: SyntheticDeliverable[] = [
     qaStatus: "Pending",
     submissionStatus: "Not submitted",
     hookSelected: true,
-    dueDate: "2026-05-24",
+    dueDate: _daysFromNow(5),
     notes: "Edit V1 in CapCut — hook trim + b-roll layering left.",
     readinessOverridePct: 83,
   },
@@ -710,7 +713,7 @@ const SYNTHETIC_DELIVERABLES: SyntheticDeliverable[] = [
     qaStatus: "Pending",
     submissionStatus: "Not submitted",
     hookSelected: true,
-    dueDate: "2026-05-25",
+    dueDate: _daysFromNow(6),
     notes: "ParakeetAI cut at 95% — captions + final color pass remaining.",
     readinessOverridePct: 100,
   },
@@ -750,7 +753,7 @@ const SYNTHETIC_DELIVERABLES: SyntheticDeliverable[] = [
     qaStatus: "Pass",
     submissionStatus: "Not submitted",
     hookSelected: true,
-    dueDate: "2026-05-26",
+    dueDate: _daysFromNow(7),
     notes: "Exported 1080×1920 H.264 — staged in SideShift drop folder.",
     readinessOverridePct: 100,
   },
@@ -770,7 +773,7 @@ const SYNTHETIC_DELIVERABLES: SyntheticDeliverable[] = [
     qaStatus: "Failed",
     submissionStatus: "Revision needed",
     hookSelected: true,
-    dueDate: "2026-05-24",
+    dueDate: _daysFromNow(5),
     notes: "e.l.f. requested 3s tighter hook + brighter LUT. Re-export by Fri.",
     readinessOverridePct: 100,
   },

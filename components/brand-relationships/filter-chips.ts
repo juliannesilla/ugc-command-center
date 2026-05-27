@@ -23,9 +23,9 @@ export interface FilterDef {
   match: (c: Campaign, today: string) => boolean;
 }
 
-// today is passed in (not Date.now()) so the table is deterministic during
-// SSR + matches the date-based mock data ("2026-05-20" in MEMORY.md).
-const TODAY_FALLBACK = '2026-05-20';
+// A.14u F2: TODAY_FALLBACK now resolves at build time via lib/date-anchor.
+import { daysFromNow } from '@/lib/date-anchor';
+const TODAY_FALLBACK = daysFromNow(0);
 
 export const FILTERS: FilterDef[] = [
   {

@@ -52,7 +52,7 @@ export interface PipelineCard {
   source: 'SideShift' | 'Outbound' | 'Inbound' | 'Referral';
 }
 
-const today = new Date('2026-05-19');
+const today = new Date(); // A.14u F2: dynamic anchor
 const addDays = (n: number) => {
   const d = new Date(today);
   d.setDate(d.getDate() + n);

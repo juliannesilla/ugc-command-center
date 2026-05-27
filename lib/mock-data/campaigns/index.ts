@@ -13,6 +13,9 @@
 // Backward-compat: `CampaignMeta` + `campaigns` record kept intact for legacy
 // per-campaign detail pages. New components consume `MOCK_CAMPAIGNS` instead.
 
+// A.14u F2: dates anchored relative to today via lib/date-anchor.
+import { daysFromNow as _daysFromNow } from "@/lib/date-anchor";
+
 import parakeetaiSow from "./parakeetai/sow.json";
 import parakeetaiScript from "./parakeetai/script.json";
 import parakeetaiProduction from "./parakeetai/production.json";
@@ -51,7 +54,7 @@ export const campaigns: Record<CampaignSlug, CampaignMeta> = {
     accent: "#2EC27E",
     status: "Drafting",
     startDate: "2026-05-12",
-    dueDate: "2026-05-26",
+    dueDate: _daysFromNow(7),
     payment: { base: 25, bonus: 100, total: 125, structure: "$25 base + up to $100 per 100K views (uncapped)" },
     sowProgress: { complete: 9, total: 14 },
     stage: 6,
@@ -104,8 +107,8 @@ export const MOCK_CAMPAIGNS: Campaign[] = [
     deliverable_count: 1,
     required_format: "vertical_video",
     required_length: "30-90 seconds",
-    due_date: "2026-05-26",
-    follow_up_date: "2026-05-22",
+    due_date: _daysFromNow(7),
+    follow_up_date: _daysFromNow(3),
     base_pay: 25,
     bonus_potential: "$100 per 100K views (uncapped)",
     total_potential_value: 125,
