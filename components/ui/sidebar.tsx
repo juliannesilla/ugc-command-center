@@ -30,6 +30,7 @@ import {
   Settings,
   Lightbulb,
   ShieldCheck,
+  Target,
   TrendingUp,
   Workflow,
   ChevronLeft,
@@ -94,6 +95,7 @@ export const NAV_ENTRIES: NavEntry[] = [
     icon: Heart,
     children: [
       { label: 'Brand Responses',  href: '/brand-responses',  icon: Inbox },
+      { label: 'Brand Fit',        href: '/brand-fit',        icon: Target },
       { label: 'Contacts',         href: '/contacts',         icon: Heart },
       { label: 'SideShift Growth', href: '/sideshift-growth', icon: TrendingUp },
     ],
