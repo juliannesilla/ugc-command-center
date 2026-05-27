@@ -244,7 +244,7 @@ export function SmartDailyBrief() {
               Smart Daily Brief · {b.headlineKicker}
             </p>
           </div>
-          <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500">
+          <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700">
             Triage cockpit · live
           </p>
         </div>
@@ -282,7 +282,7 @@ export function SmartDailyBrief() {
               <div className="mt-1.5 text-[11px] uppercase tracking-[0.14em] text-ink-700 font-semibold">
                 {t.label}
               </div>
-              <div className="text-[10.5px] text-ink-500 mt-0.5">{t.sub}</div>
+              <div className="text-[10.5px] text-ink-700 mt-0.5">{t.sub}</div>
             </div>
           ))}
         </div>

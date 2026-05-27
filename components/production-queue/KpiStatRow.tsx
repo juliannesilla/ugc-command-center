@@ -162,7 +162,7 @@ export function KpiStatRow({ deliverables }: { deliverables: DeliverableCard[] }
               <p className="font-display text-[18px] text-ink-900 leading-none">
                 {tile.count}
               </p>
-              <p className="text-[10px] uppercase tracking-[0.14em] text-ink-500 font-semibold mt-0.5 truncate">
+              <p className="text-[10px] uppercase tracking-[0.14em] text-ink-700 font-semibold mt-0.5 truncate">
                 {tile.label}
               </p>
             </div>

@@ -23,9 +23,9 @@ export function BrandFollowupsList() {
               <p className="text-[13px] font-semibold text-ink-900 leading-tight truncate">
                 {f.brand}
               </p>
-              <p className="text-[11px] text-ink-500 truncate">{f.topic}</p>
+              <p className="text-[11px] text-ink-700 truncate">{f.topic}</p>
             </div>
-            <span className="hidden sm:inline text-[11px] text-ink-400 tabular-nums w-16 text-right">
+            <span className="hidden sm:inline text-[11px] text-ink-600 tabular-nums w-16 text-right">
               {fmtDate(f.lastContact)}
             </span>
             <StatusChip tone={priorityTone[f.priority]}>{f.priority}</StatusChip>

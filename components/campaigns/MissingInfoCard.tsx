@@ -41,7 +41,7 @@ export function MissingInfoCard({ items }: { items: MissingInfoItem[] }) {
             </span>
             <div className="text-[12.5px] text-ink-800">
               <p className="leading-snug">{item.question}</p>
-              <p className="mt-0.5 text-[10.5px] text-ink-500">
+              <p className="mt-0.5 text-[10.5px] text-ink-700">
                 Ask before stage {item.askBefore}
               </p>
             </div>

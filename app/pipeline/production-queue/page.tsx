@@ -110,10 +110,10 @@ export default function ProductionQueuePage() {
             <span className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-cloud-100 text-cloud-700 ring-1 ring-cloud-200">
               <Clapperboard className="h-6 w-6" />
             </span>
-            <h2 className="font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight mb-2">
+            <h2 className="font-display text-[22px] font-bold tracking-tight text-ink-900 leading-tight mb-2">
               No deliverables in production right now.
             </h2>
-            <p className="text-[13.5px] text-ink-500 max-w-md mx-auto leading-relaxed">
+            <p className="text-[13.5px] text-ink-700 max-w-md mx-auto leading-relaxed">
               When campaigns move past strategy, they land here.{' '}
               <a
                 href="/pipeline/ready-to-execute"
@@ -127,13 +127,13 @@ export default function ProductionQueuePage() {
         ) : (
           <div className="rise rise-3 flex-1 min-h-0 overflow-x-auto pb-4">
             <div className="flex items-center justify-between gap-3 mb-3">
-              <p className="text-[12px] text-ink-500">
+              <p className="text-[12px] text-ink-700">
                 <span className="font-display text-lg text-ink-900 mr-2">
                   {PRODUCTION_STATUS_ORDER.length}
                 </span>
                 production statuses · {visibleDeliverables.length} cards live · drag &amp; drop ready
               </p>
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-700">
                 Refreshed 2 min ago
               </p>
             </div>

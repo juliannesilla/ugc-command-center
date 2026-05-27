@@ -38,11 +38,11 @@ export function TopPerformingNiches() {
         <div>
           <h2
             id="top-niches-heading"
-            className="section-title font-display text-lg font-semibold text-ink-900"
+            className="section-title font-display text-lg font-bold text-ink-900"
           >
             Top Performing Niches
           </h2>
-          <p className="text-xs text-ink-500 mt-0.5">
+          <p className="text-xs text-ink-700 mt-0.5">
             Conversion rate · 90-day window
           </p>
         </div>
@@ -57,7 +57,7 @@ export function TopPerformingNiches() {
                 <span className="text-[15px] font-semibold">
                   {n.conversionPct}%
                 </span>
-                <span className="ml-2 text-[11px] text-ink-400">
+                <span className="ml-2 text-[11px] text-ink-600">
                   · ${n.earned.toLocaleString()}
                 </span>
               </span>

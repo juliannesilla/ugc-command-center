@@ -32,38 +32,38 @@ export default function PillarsPage() {
         {/* KPI strip — top-pillar + classification coverage */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 rise rise-1">
           <div className="glass-card rounded-2xl p-5 shadow-card">
-            <p className="text-xs uppercase tracking-wider text-ink-500">
+            <p className="text-xs uppercase tracking-wider text-ink-700">
               Top pillar
             </p>
-            <p className="mt-2 font-display text-lg font-semibold text-ink-900">
+            <p className="mt-2 font-display text-lg font-bold text-ink-900">
               {topPillar.pillar}
             </p>
-            <p className="mt-1 text-xs text-ink-500">
+            <p className="mt-1 text-xs text-ink-700">
               {topPillar.avgEngagement.toFixed(1)} avg engagement per post
             </p>
           </div>
           <div className="glass-card rounded-2xl p-5 shadow-card">
-            <p className="text-xs uppercase tracking-wider text-ink-500">
+            <p className="text-xs uppercase tracking-wider text-ink-700">
               Posts classified
             </p>
-            <p className="mt-2 font-display text-2xl font-semibold text-ink-900">
+            <p className="mt-2 font-display text-2xl font-bold text-ink-900">
               {PILLAR_TOTALS.classifiedPosts}
-              <span className="ml-1 text-sm font-normal text-ink-500">
+              <span className="ml-1 text-sm font-normal text-ink-700">
                 / {PILLAR_TOTALS.totalPosts}
               </span>
             </p>
-            <p className="mt-1 text-xs text-ink-500">
+            <p className="mt-1 text-xs text-ink-700">
               {PILLAR_TOTALS.unclassifiedPosts} still unclassified
             </p>
           </div>
           <div className="glass-card rounded-2xl p-5 shadow-card">
-            <p className="text-xs uppercase tracking-wider text-ink-500">
+            <p className="text-xs uppercase tracking-wider text-ink-700">
               Total engagement
             </p>
-            <p className="mt-2 font-display text-2xl font-semibold text-ink-900">
+            <p className="mt-2 font-display text-2xl font-bold text-ink-900">
               {(PILLAR_TOTALS.totalLikes + PILLAR_TOTALS.totalComments).toLocaleString()}
             </p>
-            <p className="mt-1 text-xs text-ink-500">
+            <p className="mt-1 text-xs text-ink-700">
               {PILLAR_TOTALS.totalLikes.toLocaleString()} likes ·{' '}
               {PILLAR_TOTALS.totalComments.toLocaleString()} comments
             </p>
@@ -76,9 +76,9 @@ export default function PillarsPage() {
         </div>
 
         {/* Source-of-truth note */}
-        <div className="rise rise-3 text-xs text-ink-500">
+        <div className="rise rise-3 text-xs text-ink-700">
           Source: <code>julz-vault/01-WORK-CURRENT/social-media/tiktok_data_enhanced.csv</code>{' '}
-          · {PILLAR_TOTALS.totalPosts} @geezjulz posts · aggregated 2026-05-26.
+          · {PILLAR_TOTALS.totalPosts} @geezjulz posts · aggregated {new Date().toISOString().slice(0, 10)}.
         </div>
       </ContentArea>
     </main>

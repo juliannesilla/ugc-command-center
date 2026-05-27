@@ -157,11 +157,11 @@ export function RedGreenFlagScan({ campaign }: Props) {
           <p className="text-[10px] uppercase tracking-[0.28em] text-cloud-700 font-semibold">
             Red / Green Flag Scan
           </p>
-          <h2 className="mt-1 font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight">
+          <h2 className="mt-1 font-display text-[22px] font-bold tracking-tight text-ink-900 leading-tight">
             {campaign.brand} signal check
           </h2>
         </div>
-        <div className="text-right text-[11px] text-ink-500">
+        <div className="text-right text-[11px] text-ink-700">
           <div>
             <span className="font-semibold text-rose-600">{reds.length}</span> red ·{" "}
             <span className="font-semibold text-emerald-600">{greens.length}</span> green
@@ -173,7 +173,7 @@ export function RedGreenFlagScan({ campaign }: Props) {
         <div className="mt-6 rounded-2xl bg-cloud-50/60 p-6 text-center ring-1 ring-cloud-100">
           <Sparkles className="mx-auto h-6 w-6 text-cloud-500" />
           <p className="mt-2 text-sm text-ink-700 font-semibold">No flags detected</p>
-          <p className="mt-1 text-[13px] text-ink-500">
+          <p className="mt-1 text-[13px] text-ink-700">
             Campaign looks balanced — no red blockers, no green standouts yet.
           </p>
         </div>
@@ -189,7 +189,7 @@ export function RedGreenFlagScan({ campaign }: Props) {
             </div>
             <ul className="mt-3 space-y-2">
               {reds.length === 0 ? (
-                <li className="text-[13px] text-ink-500 italic">None detected.</li>
+                <li className="text-[13px] text-ink-700 italic">None detected.</li>
               ) : (
                 reds.map((f) => (
                   <li
@@ -214,7 +214,7 @@ export function RedGreenFlagScan({ campaign }: Props) {
             </div>
             <ul className="mt-3 space-y-2">
               {greens.length === 0 ? (
-                <li className="text-[13px] text-ink-500 italic">None detected.</li>
+                <li className="text-[13px] text-ink-700 italic">None detected.</li>
               ) : (
                 greens.map((f) => (
                   <li

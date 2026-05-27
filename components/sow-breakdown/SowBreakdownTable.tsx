@@ -203,7 +203,7 @@ export function SowBreakdownTable({
                   {meta.logoMark}
                 </span>
                 <div className="min-w-0">
-                  <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-medium">
+                  <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-medium">
                     Ready for review · {meta.status}
                   </p>
                   <h2 className="font-display text-xl text-ink-900 leading-tight truncate">
@@ -214,7 +214,7 @@ export function SowBreakdownTable({
               </div>
 
               <div>
-                <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-medium">
+                <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-medium">
                   Campaign Window
                 </p>
                 <p className="text-[13.5px] text-ink-800 font-medium tabular-nums">
@@ -223,23 +223,23 @@ export function SowBreakdownTable({
               </div>
 
               <div>
-                <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-medium">
+                <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-medium">
                   Total Pay
                 </p>
                 <p className="font-display text-2xl text-ink-900 leading-tight tabular-nums">
                   {formatPayment(meta)}
                 </p>
-                <p className="text-[11.5px] text-ink-500 truncate" title={meta.payment.structure}>
+                <p className="text-[11.5px] text-ink-700 truncate" title={meta.payment.structure}>
                   {meta.payment.structure}
                 </p>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="text-right">
-                  <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-medium">
+                  <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-medium">
                     Readiness
                   </p>
-                  <p className="text-[11.5px] text-ink-500 tabular-nums">
+                  <p className="text-[11.5px] text-ink-700 tabular-nums">
                     {completed}/{total} fields complete
                   </p>
                   {/* Open SOW drill-down — routes to L1's NEW slug page.
@@ -284,7 +284,7 @@ export function SowBreakdownTable({
             <div className="overflow-x-auto">
               <table className="min-w-full text-[13px]">
                 <thead>
-                  <tr className="bg-cloud-50/50 border-b border-cloud-100 text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-medium">
+                  <tr className="bg-cloud-50/50 border-b border-cloud-100 text-[10.5px] uppercase tracking-[0.16em] text-ink-700 font-medium">
                     <th className="text-left px-6 py-3 w-[180px]">Requirement</th>
                     <th className="text-left px-4 py-3 w-[260px]">Detail</th>
                     <th className="text-left px-4 py-3">What this means</th>
@@ -338,7 +338,7 @@ export function SowBreakdownTable({
                             {tone.label}
                           </span>
                         </td>
-                        <td className="px-4 py-3.5 align-top text-[11.5px] text-ink-500 font-mono tracking-tight">
+                        <td className="px-4 py-3.5 align-top text-[11.5px] text-ink-700 font-mono tracking-tight">
                           {req.source}
                         </td>
                       </tr>

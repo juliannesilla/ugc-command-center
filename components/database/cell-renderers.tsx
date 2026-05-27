@@ -119,7 +119,7 @@ const WAITING_TONE: Record<WaitingOn, string> = {
   brand:    'bg-cloud-50 text-cloud-700 ring-cloud-200',
   platform: 'bg-iris-50 text-iris-700 ring-iris-200',
   payment:  'bg-amber-50 text-amber-800 ring-amber-200',
-  none:     'bg-cloud-50 text-ink-400 ring-cloud-100',
+  none:     'bg-cloud-50 text-ink-600 ring-cloud-100',
 };
 export function WaitingOnCell({ value }: { value: WaitingOn }) {
   return (
@@ -150,7 +150,7 @@ export function DateCell({ value }: { value?: string }) {
   if (!value) return <span className="text-ink-300 text-[11.5px]">—</span>;
   try {
     const d = new Date(value);
-    const today = new Date('2026-05-20');
+    const today = new Date(); // A.14u F2: dynamic
     const diff = Math.round((d.getTime() - today.getTime()) / 86_400_000);
     const label =
       diff < -1 ? `${Math.abs(diff)}d overdue` :

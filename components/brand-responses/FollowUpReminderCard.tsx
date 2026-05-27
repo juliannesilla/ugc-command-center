@@ -31,7 +31,7 @@ export function FollowUpReminderCard({ conv }: { conv: BrandConversation }) {
           <Calendar className="h-4 w-4 text-iris-500" />
           <div>
             <p className="text-[13.5px] font-semibold text-ink-900">{followUpStr}</p>
-            <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-500">
+            <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-700">
               if no reply by then
             </p>
           </div>

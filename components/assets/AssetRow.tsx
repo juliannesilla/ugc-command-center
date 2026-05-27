@@ -20,7 +20,7 @@ const avatarTones = {
 };
 
 function ago(iso: string) {
-  const now = new Date('2026-05-19T16:00:00Z').getTime();
+  const now = new Date().getTime(); // A.14u F2: dynamic
   const then = new Date(iso).getTime();
   const diff = (now - then) / 1000;
   if (diff < 60 * 60)        return `${Math.max(1, Math.round(diff / 60))}m ago`;
@@ -48,14 +48,14 @@ export function AssetCard({ asset }: { asset: Asset }) {
           <p className="text-[13px] font-semibold text-ink-900 truncate leading-tight">
             {asset.name}
           </p>
-          <p className="mt-0.5 text-[11px] text-ink-500 truncate">
+          <p className="mt-0.5 text-[11px] text-ink-700 truncate">
             {asset.campaignLabel} · {asset.sizeMB.toFixed(asset.sizeMB < 10 ? 1 : 0)} MB
           </p>
         </div>
       </div>
 
       <div className="mt-3 flex items-center justify-between">
-        <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-400">
+        <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-600">
           {ago(asset.uploadedAt)}
         </span>
         <span

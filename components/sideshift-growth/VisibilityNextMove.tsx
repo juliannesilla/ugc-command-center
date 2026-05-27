@@ -35,7 +35,7 @@ export function VisibilityNextMove({ moves }: { moves: ProfileField[] }) {
 
         <h2
           id="visibility-next-move-heading"
-          className="mt-2 font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight"
+          className="mt-2 font-display text-[22px] font-bold tracking-tight text-ink-900 leading-tight"
         >
           Do these next.
         </h2>
@@ -58,12 +58,12 @@ export function VisibilityNextMove({ moves }: { moves: ProfileField[] }) {
                   <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-cloud-sunset/10 text-cloud-sunset text-[11px] font-bold tabular-nums">
                     {idx + 1}
                   </span>
-                  <ArrowUpRight className="h-4 w-4 text-ink-400 transition group-hover:text-cloud-sunset group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-4 w-4 text-ink-600 transition group-hover:text-cloud-sunset group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
                 <p className="mt-3 font-display text-[15px] leading-tight text-ink-900">
                   {move.improveLabel}
                 </p>
-                <p className="mt-1 text-[11.5px] text-ink-500 leading-snug">
+                <p className="mt-1 text-[11.5px] text-ink-700 leading-snug">
                   {move.label} · {move.why}
                 </p>
                 <div className="mt-3 inline-flex items-center gap-1 text-[10.5px] uppercase tracking-[0.14em] font-semibold text-emerald-700">

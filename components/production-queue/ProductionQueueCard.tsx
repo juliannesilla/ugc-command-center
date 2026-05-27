@@ -50,7 +50,7 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
       {/* drag-handle affordance — DnD-ready visual cue (microinteractions) */}
       <span
         aria-hidden="true"
-        className="absolute top-2 right-2 opacity-0 group-hover:opacity-80 text-ink-400 group-hover:text-iris-500 transition-[opacity,color] duration-200 ease-out"
+        className="absolute top-2 right-2 opacity-0 group-hover:opacity-80 text-ink-600 group-hover:text-iris-500 transition-[opacity,color] duration-200 ease-out"
       >
         <GripVertical className="h-3 w-3" />
       </span>
@@ -77,8 +77,8 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
               {formatPill.label}
             </StatusChip>
           </div>
-          <p className="text-[11.5px] text-ink-500 truncate">{campaign.product}</p>
-          <p className="text-[10.5px] text-ink-400 truncate">
+          <p className="text-[11.5px] text-ink-700 truncate">{campaign.product}</p>
+          <p className="text-[10.5px] text-ink-600 truncate">
             {deliverable.isSynthetic
               ? deliverable.deliverableName.split(' · ').slice(1).join(' · ') ||
                 'Production cut'
@@ -118,7 +118,7 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
 
         {/* Status pill grid — 9 pills per spec L549-L560 */}
         <div className="rounded-xl bg-cloud-50/70 p-2 ring-1 ring-cloud-100 space-y-1.5">
-          <p className="text-[9px] uppercase tracking-[0.14em] text-ink-500 font-semibold">
+          <p className="text-[9px] uppercase tracking-[0.14em] text-ink-700 font-semibold">
             Production stages
           </p>
           <div className="grid grid-cols-3 gap-1">
@@ -156,7 +156,7 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
                 ) : (
                   <Circle className="h-2.5 w-2.5 shrink-0 text-ink-300" />
                 )}
-                <span className={cn('truncate', item.done ? 'text-ink-700' : 'text-ink-400')}>
+                <span className={cn('truncate', item.done ? 'text-ink-700' : 'text-ink-600')}>
                   {item.label}
                 </span>
               </li>
@@ -166,8 +166,8 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
 
         {/* Notes (truncated) */}
         {deliverable.notes && (
-          <div className="flex items-start gap-1.5 text-[10.5px] text-ink-500 leading-snug">
-            <StickyNote className="h-2.5 w-2.5 mt-0.5 shrink-0 text-ink-400" />
+          <div className="flex items-start gap-1.5 text-[10.5px] text-ink-700 leading-snug">
+            <StickyNote className="h-2.5 w-2.5 mt-0.5 shrink-0 text-ink-600" />
             <p className="line-clamp-2">{deliverable.notes}</p>
           </div>
         )}
@@ -180,7 +180,7 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
 function PillRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-0.5 min-w-0">
-      <span className="text-[8.5px] uppercase tracking-[0.08em] text-ink-400 font-semibold truncate">
+      <span className="text-[8.5px] uppercase tracking-[0.08em] text-ink-600 font-semibold truncate">
         {label}
       </span>
       <StatusChip

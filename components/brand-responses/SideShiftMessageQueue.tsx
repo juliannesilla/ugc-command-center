@@ -243,7 +243,7 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
       <div className="overflow-x-auto">
         <table className="w-full text-left text-[13px]">
           <thead>
-            <tr className="bg-cloud-50/60 text-[10px] uppercase tracking-[0.16em] text-ink-500">
+            <tr className="bg-cloud-50/60 text-[10px] uppercase tracking-[0.16em] text-ink-700">
               <Th>Brand / Campaign</Th>
               <Th>Fit</Th>
               <Th>Last Message</Th>
@@ -257,7 +257,7 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
               <tr>
                 <td
                   colSpan={6}
-                  className="px-5 py-16 text-center text-ink-400 italic"
+                  className="px-5 py-16 text-center text-ink-600 italic"
                 >
                   Loading SideShift inbox…
                 </td>
@@ -267,13 +267,13 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
               <tr>
                 <td
                   colSpan={6}
-                  className="px-5 py-16 text-center text-ink-500"
+                  className="px-5 py-16 text-center text-ink-700"
                 >
                   <p className="italic">
                     {error ?? "No SideShift conversations yet."}
                   </p>
                   {error && (
-                    <p className="mt-2 text-[11px] text-ink-400">
+                    <p className="mt-2 text-[11px] text-ink-600">
                       Drop a JSONL feed at <code>/data/sideshift-messages.jsonl</code> or
                       wire up <code>/api/sideshift-messages</code>.
                     </p>
@@ -331,7 +331,7 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
                             {m.brand}
                           </p>
                         </div>
-                        <p className="truncate text-[11.5px] text-ink-500">
+                        <p className="truncate text-[11.5px] text-ink-700">
                           {m.campaign_title}
                         </p>
                       </div>
@@ -342,7 +342,7 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
                       <FitBadge score={fit.score} reasoning={fit.reasoning} />
                     ) : (
                       <span
-                        className="inline-flex h-7 w-9 items-center justify-center rounded-lg bg-cloud-50 text-ink-400 font-mono text-[12.5px] ring-1 ring-cloud-100"
+                        className="inline-flex h-7 w-9 items-center justify-center rounded-lg bg-cloud-50 text-ink-600 font-mono text-[12.5px] ring-1 ring-cloud-100"
                         title="Brand-fit score not generated yet — run `npm run score-brand-fit` with ANTHROPIC_API_KEY set."
                         aria-label="Brand fit score not available"
                       >
@@ -355,7 +355,7 @@ export function SideShiftMessageQueue({ search, selectedId, onSelect }: Props) {
                       <p className="truncate text-ink-700">
                         {m.last_message_preview}
                       </p>
-                      <p className="text-[11px] uppercase tracking-[0.14em] text-ink-400">
+                      <p className="text-[11px] uppercase tracking-[0.14em] text-ink-600">
                         {m.direction === "inbound" ? "Inbound" : "Sent"}
                       </p>
                     </div>
@@ -493,7 +493,7 @@ export function SideShiftDetailPanel({ id }: { id: string | null }) {
         <h2 className="mt-4 font-display text-[22px] leading-tight text-ink-900">
           Select a SideShift thread
         </h2>
-        <p className="mt-2 max-w-xs text-[12.5px] leading-relaxed text-ink-500">
+        <p className="mt-2 max-w-xs text-[12.5px] leading-relaxed text-ink-700">
           Pick a brand from the queue on the left to review the thread and
           send via SideShift.
         </p>
@@ -503,7 +503,7 @@ export function SideShiftDetailPanel({ id }: { id: string | null }) {
 
   if (!messages) {
     return (
-      <div className="flex h-full min-h-[480px] items-center justify-center rounded-3xl bg-white/85 backdrop-blur p-10 text-center shadow-card ring-1 ring-cloud-100 text-ink-400 italic">
+      <div className="flex h-full min-h-[480px] items-center justify-center rounded-3xl bg-white/85 backdrop-blur p-10 text-center shadow-card ring-1 ring-cloud-100 text-ink-600 italic">
         Loading thread…
       </div>
     );
@@ -515,7 +515,7 @@ export function SideShiftDetailPanel({ id }: { id: string | null }) {
         <h2 className="font-display text-[22px] text-ink-900">
           Thread not found
         </h2>
-        <p className="mt-2 max-w-xs text-[12.5px] text-ink-500">
+        <p className="mt-2 max-w-xs text-[12.5px] text-ink-700">
           That SideShift thread isn&apos;t in the current feed. Try picking
           another from the queue.
         </p>
@@ -553,7 +553,7 @@ export function SideShiftDetailPanel({ id }: { id: string | null }) {
     <div className="flex flex-col gap-4">
       <header className="flex flex-wrap items-end justify-between gap-3 rounded-3xl bg-white/85 backdrop-blur px-5 py-4 shadow-card ring-1 ring-cloud-100">
         <div className="min-w-0">
-          <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-ink-500">
+          <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-ink-700">
             SideShift · {msg.campaign_title}
           </p>
           <h2 className="mt-0.5 truncate font-display text-[24px] leading-tight tracking-tight text-ink-900">
@@ -570,7 +570,7 @@ export function SideShiftDetailPanel({ id }: { id: string | null }) {
           <h3 className="text-[11px] uppercase tracking-[0.16em] font-semibold text-ink-700">
             Last Message
           </h3>
-          <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-500">
+          <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-700">
             {fmtTs(msg.last_message_ts)} · {msg.direction}
           </span>
         </header>

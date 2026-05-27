@@ -115,7 +115,7 @@ export function UnifiedDetailPanel({ entry, onClose }: Props) {
               <Icon className="h-4 w-4" />
             </span>
             <div className="min-w-0">
-              <p className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-ink-500">
+              <p className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-ink-700">
                 {SOURCE_LABEL[entry.source]} · {tsLabel}
               </p>
               <h2 className="mt-1 font-display text-[22px] leading-tight text-ink-900">
@@ -130,7 +130,7 @@ export function UnifiedDetailPanel({ entry, onClose }: Props) {
             ref={closeRef}
             type="button"
             onClick={onClose}
-            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-2xl text-ink-500 hover:bg-cloud-50 hover:text-ink-900 transition focus:outline-none focus:ring-2 focus:ring-cloud-300"
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-2xl text-ink-700 hover:bg-cloud-50 hover:text-ink-900 transition focus:outline-none focus:ring-2 focus:ring-cloud-300"
             aria-label="Close panel"
           >
             <X className="h-4 w-4" />
@@ -140,7 +140,7 @@ export function UnifiedDetailPanel({ entry, onClose }: Props) {
         {/* Body */}
         <div className="px-6 py-6 space-y-6">
           <section>
-            <p className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-ink-500">
+            <p className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-ink-700">
               Message
             </p>
             <div className="mt-2 rounded-2xl bg-cloud-50/50 p-4 ring-1 ring-cloud-100">
@@ -153,13 +153,13 @@ export function UnifiedDetailPanel({ entry, onClose }: Props) {
           {/* Source-specific metadata */}
           {Object.keys(entry.meta).length > 0 && (
             <section>
-              <p className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-ink-500">
+              <p className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-ink-700">
                 Source metadata
               </p>
               <dl className="mt-2 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1.5 text-[12.5px]">
                 {Object.entries(entry.meta).map(([k, v]) => (
                   <div key={k} className="contents">
-                    <dt className="font-mono text-ink-500">{k}</dt>
+                    <dt className="font-mono text-ink-700">{k}</dt>
                     <dd className="truncate text-ink-800">
                       {Array.isArray(v)
                         ? v.join(", ") || "—"
@@ -170,7 +170,7 @@ export function UnifiedDetailPanel({ entry, onClose }: Props) {
                   </div>
                 ))}
                 <div className="contents">
-                  <dt className="font-mono text-ink-500">direction</dt>
+                  <dt className="font-mono text-ink-700">direction</dt>
                   <dd className="text-ink-800">{entry.direction}</dd>
                 </div>
               </dl>
@@ -179,7 +179,7 @@ export function UnifiedDetailPanel({ entry, onClose }: Props) {
 
           {/* Reply CTA */}
           <section>
-            <p className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-ink-500">
+            <p className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-ink-700">
               Reply
             </p>
             <p className="mt-1.5 text-[12.5px] text-ink-600">

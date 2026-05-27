@@ -63,7 +63,7 @@ function brandGradient(name: string): string {
 /** Renders a single cell value for the given column key. */
 function renderCell(col: ColumnKey, c: Campaign): React.ReactNode {
   switch (col) {
-    case 'campaign_id':           return <span className="font-mono text-[11px] text-ink-500">{c.campaign_id}</span>;
+    case 'campaign_id':           return <span className="font-mono text-[11px] text-ink-700">{c.campaign_id}</span>;
     case 'brand':                 return (
       <div className="flex items-center gap-2 min-w-0">
         <span
@@ -109,7 +109,7 @@ function renderCell(col: ColumnKey, c: Campaign): React.ReactNode {
     case 'brand_fit_score':       return <ScoreCell value={c.brand_fit_score} />;
     case 'risk_level':            return <RiskCell value={c.risk_level} />;
     case 'next_action':           return <span className="text-[11.5px] text-ink-700 truncate block max-w-[220px]" title={c.next_action}>{c.next_action}</span>;
-    case 'notes':                 return <span className="text-[11.5px] text-ink-500 truncate block max-w-[260px]" title={c.notes ?? ''}>{c.notes ?? '—'}</span>;
+    case 'notes':                 return <span className="text-[11.5px] text-ink-700 truncate block max-w-[260px]" title={c.notes ?? ''}>{c.notes ?? '—'}</span>;
   }
 }
 
@@ -186,12 +186,12 @@ export default function PipelineDatabasePage() {
         {/* ============ SAVED FILTER CHIPS (spec L233-L246) ============ */}
         <section className="rounded-3xl bg-white p-4 ring-1 ring-cloud-100 shadow-card">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="stat-label text-ink-500">Saved filters</h2>
+            <h2 className="stat-label text-ink-700">Saved filters</h2>
             {activeFilters.size > 0 && (
               <button
                 type="button"
                 onClick={() => { setActiveFilters(new Set()); setPage(1); }}
-                className="inline-flex items-center gap-1 text-[11px] text-ink-500 hover:text-ink-700 transition"
+                className="inline-flex items-center gap-1 text-[11px] text-ink-700 hover:text-ink-700 transition"
               >
                 <X className="h-3 w-3" />
                 Clear all
@@ -224,18 +224,18 @@ export default function PipelineDatabasePage() {
         {/* ============ SEARCH + SORT + COLUMNS ============ */}
         <div className="flex flex-wrap items-center gap-3 rounded-3xl bg-white p-3 ring-1 ring-cloud-100 shadow-card">
           <div className="relative flex-1 min-w-[220px]">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-600" />
             <input
               type="search"
               value={query}
               onChange={e => { setQuery(e.target.value); setPage(1); }}
               placeholder="Search brand, campaign, contact, next action…"
-              className="w-full rounded-2xl bg-cloud-soft pl-9 pr-3 py-2 text-[13px] text-ink-900 placeholder:text-ink-400 ring-1 ring-cloud-100 focus:ring-cloud-300 focus:outline-none transition"
+              className="w-full rounded-2xl bg-cloud-soft pl-9 pr-3 py-2 text-[13px] text-ink-900 placeholder:text-ink-600 ring-1 ring-cloud-100 focus:ring-cloud-300 focus:outline-none transition"
             />
           </div>
 
           <div className="group flex items-center gap-2">
-            <ArrowUpDown className="h-4 w-4 text-ink-400 group-hover:text-ink-600 transition-colors duration-150" />
+            <ArrowUpDown className="h-4 w-4 text-ink-600 group-hover:text-ink-600 transition-colors duration-150" />
             <select
               value={sortKey}
               onChange={e => setSortKey(e.target.value as SortPresetKey)}
@@ -254,14 +254,14 @@ export default function PipelineDatabasePage() {
               aria-expanded={colsOpen}
               className="inline-flex items-center gap-1.5 rounded-2xl bg-cloud-soft px-3 py-2 text-[13px] font-medium text-ink-700 ring-1 ring-cloud-100 hover:bg-cloud-50 hover:ring-cloud-200 transition-[box-shadow,background-color] duration-200 ease-out"
             >
-              <Columns3 className="h-4 w-4 text-ink-400" />
+              <Columns3 className="h-4 w-4 text-ink-600" />
               Columns
-              <span className="text-[10px] text-ink-500">({visibleCols.size}/{COLUMNS.length})</span>
+              <span className="text-[10px] text-ink-700">({visibleCols.size}/{COLUMNS.length})</span>
             </button>
             {colsOpen && (
               <div className="absolute right-0 top-full mt-2 z-20 w-72 max-h-[420px] overflow-y-auto rounded-2xl bg-white p-3 shadow-card ring-1 ring-cloud-200">
                 <div className="flex items-center justify-between mb-2">
-                  <p className="stat-label text-ink-500">Show/hide columns</p>
+                  <p className="stat-label text-ink-700">Show/hide columns</p>
                   <button
                     type="button"
                     onClick={() => setVisibleCols(new Set(DEFAULT_VISIBLE))}
@@ -280,9 +280,9 @@ export default function PipelineDatabasePage() {
                         disabled={col.key === 'brand'}
                         className="accent-cloud-sunset"
                       />
-                      <span className={cn('text-[12px]', col.key === 'brand' ? 'text-ink-400' : 'text-ink-700')}>
+                      <span className={cn('text-[12px]', col.key === 'brand' ? 'text-ink-600' : 'text-ink-700')}>
                         {col.label}
-                        {col.key === 'brand' && <span className="ml-1 text-[10px] text-ink-400">(sticky)</span>}
+                        {col.key === 'brand' && <span className="ml-1 text-[10px] text-ink-600">(sticky)</span>}
                       </span>
                     </label>
                   ))}
@@ -291,7 +291,7 @@ export default function PipelineDatabasePage() {
             )}
           </div>
 
-          <p className="ml-auto text-[12px] text-ink-500">
+          <p className="ml-auto text-[12px] text-ink-700">
             <span className="font-display text-base text-ink-900 mr-1">{filtered.length}</span>
             of {DATABASE_CAMPAIGNS.length} campaigns
           </p>
@@ -351,7 +351,7 @@ export default function PipelineDatabasePage() {
                   <tr>
                     <td colSpan={visibleColumns.length} className="px-4 py-16 text-center">
                       <p className="text-ink-700 font-display text-base mb-1">No campaigns match your filters.</p>
-                      <p className="text-ink-400 text-[12px]">Try removing a filter chip or clearing search.</p>
+                      <p className="text-ink-600 text-[12px]">Try removing a filter chip or clearing search.</p>
                     </td>
                   </tr>
                 )}
@@ -361,7 +361,7 @@ export default function PipelineDatabasePage() {
 
           {/* pagination */}
           <div className="flex items-center justify-between gap-3 border-t border-cloud-100 px-4 py-3 bg-cloud-soft/40">
-            <p className="text-[11.5px] text-ink-500">
+            <p className="text-[11.5px] text-ink-700">
               Showing <span className="font-semibold text-ink-700">{Math.min(start + 1, filtered.length)}</span>
               –<span className="font-semibold text-ink-700">{Math.min(start + PAGE_SIZE, filtered.length)}</span> of {filtered.length}
             </p>
@@ -395,7 +395,7 @@ export default function PipelineDatabasePage() {
                   {p}
                 </button>
               ))}
-              {totalPages > 8 && <span className="text-ink-400 text-[11px]">…</span>}
+              {totalPages > 8 && <span className="text-ink-600 text-[11px]">…</span>}
               <button
                 type="button"
                 onClick={() => setPage(p => Math.min(totalPages, p + 1))}

@@ -112,7 +112,7 @@ export function RequirementCard({
           </span>
         )}
         {source && (
-          <span className="text-[10px] uppercase tracking-[0.14em] text-ink-400 font-medium tabular-nums">
+          <span className="text-[10px] uppercase tracking-[0.14em] text-ink-600 font-medium tabular-nums">
             {source}
           </span>
         )}

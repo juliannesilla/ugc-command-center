@@ -45,7 +45,7 @@ function BonusRow({ entry }: { entry: UpcomingBonusThreshold }) {
               <span className="font-semibold text-ink-900">
                 {formatMoney(entry.earned)}
               </span>
-              <span className="mx-1 text-ink-400">/</span>
+              <span className="mx-1 text-ink-600">/</span>
               {formatMoney(entry.target)}
               <span className="ml-1.5 rounded-full bg-peach-100 px-1.5 py-0.5 text-[10.5px] font-semibold text-peach-500">
                 {pct}%
@@ -75,10 +75,10 @@ export function UpcomingBonusThresholds() {
             </span>
             <div>
               {/* A.14m Stream 3 a11y fix: h3 → h2. T5 ADDITIVE: section-title. */}
-              <h2 className="section-title font-display text-lg font-semibold leading-tight text-ink-900">
+              <h2 className="section-title font-display text-lg font-bold leading-tight text-ink-900">
                 Upcoming Bonus Thresholds
               </h2>
-              <p className="text-[11px] uppercase tracking-[0.14em] text-ink-500">
+              <p className="text-[11px] uppercase tracking-[0.14em] text-ink-700">
                 Progress toward next milestone
               </p>
             </div>

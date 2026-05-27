@@ -25,7 +25,7 @@ export function EmptyState() {
         <div className="mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-white/90 shadow-soft ring-1 ring-cloud-200">
           <Sparkles className="h-7 w-7 text-cloud-sunset" />
         </div>
-        <h2 className="mt-5 font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight">
+        <h2 className="mt-5 font-display text-[22px] font-bold tracking-tight text-ink-900 leading-tight">
           All clear.
         </h2>
         <p className="mt-2 text-[14px] text-ink-600 leading-relaxed">

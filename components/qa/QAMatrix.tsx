@@ -91,7 +91,7 @@ const STATUS_TONE: Record<QAStatus, { bg: string; text: string; icon: typeof Shi
   pass: { bg: "bg-emerald-50 ring-emerald-200", text: "text-emerald-700", icon: ShieldCheck },
   fail: { bg: "bg-rose-50 ring-rose-200", text: "text-rose-700", icon: ShieldAlert },
   pending: { bg: "bg-amber-50 ring-amber-200", text: "text-amber-700", icon: ShieldQuestion },
-  "n/a": { bg: "bg-cloud-50 ring-cloud-200", text: "text-ink-400", icon: ShieldQuestion },
+  "n/a": { bg: "bg-cloud-50 ring-cloud-200", text: "text-ink-600", icon: ShieldQuestion },
 };
 
 export function QAMatrix({ campaigns }: { campaigns: Campaign[] }) {
@@ -150,7 +150,7 @@ export function QAMatrix({ campaigns }: { campaigns: Campaign[] }) {
                 >
                   <td className="sticky left-0 z-10 bg-white group-hover/qa-row:bg-iris-50/80 px-4 py-3 align-top transition-colors duration-200 ease-out motion-reduce:transition-none">
                     <div className="font-semibold text-ink-900">{campaign.brand}</div>
-                    <div className="text-[10px] text-ink-500 mt-0.5 truncate max-w-[160px]">
+                    <div className="text-[10px] text-ink-700 mt-0.5 truncate max-w-[160px]">
                       {campaign.product}
                     </div>
                     <div className="text-[10px] text-iris-600 mt-0.5">
@@ -187,12 +187,12 @@ export function QAMatrix({ campaigns }: { campaigns: Campaign[] }) {
                   })}
                   <td className="px-3 py-3 text-center align-top">
                     <span
-                      className={`font-display text-base font-semibold tabular-nums ${
+                      className={`font-display text-base font-bold tabular-nums ${
                         passRate >= 80
                           ? "text-emerald-700"
                           : passRate >= 50
                           ? "text-amber-700"
-                          : "text-ink-500"
+                          : "text-ink-700"
                       }`}
                     >
                       {activeCount > 0 ? `${passRate}%` : "—"}

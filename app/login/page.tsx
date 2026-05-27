@@ -112,7 +112,7 @@ export default function LoginPage() {
           >
             <label
               htmlFor="pw"
-              className="block text-[11px] uppercase tracking-[0.18em] text-ink-500 font-semibold mb-2"
+              className="block text-[11px] uppercase tracking-[0.18em] text-ink-700 font-semibold mb-2"
             >
               Password
             </label>
@@ -123,7 +123,7 @@ export default function LoginPage() {
             >
               <Lock
                 className={`pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 transition-colors duration-200 ${
-                  focused ? 'text-cloud-600' : 'text-ink-400'
+                  focused ? 'text-cloud-600' : 'text-ink-600'
                 }`}
               />
               <input
@@ -136,7 +136,7 @@ export default function LoginPage() {
                 autoFocus
                 placeholder="Enter password"
                 aria-describedby={error ? 'pw-error' : undefined}
-                className="w-full rounded-2xl border border-cloud-200 bg-white/85 pl-10 pr-11 py-3 text-[15px] text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-cloud-300 focus:border-cloud-300 transition-all duration-200"
+                className="w-full rounded-2xl border border-cloud-200 bg-white/85 pl-10 pr-11 py-3 text-[15px] text-ink-900 placeholder:text-ink-600 focus:outline-none focus:ring-2 focus:ring-cloud-300 focus:border-cloud-300 transition-all duration-200"
               />
               <button
                 type="button"
@@ -144,7 +144,7 @@ export default function LoginPage() {
                 aria-label={showPw ? 'Hide password' : 'Show password'}
                 aria-pressed={showPw}
                 tabIndex={pw.length > 0 ? 0 : -1}
-                className={`absolute right-2 top-1/2 -translate-y-1/2 grid h-8 w-8 place-items-center rounded-xl text-ink-400 hover:text-ink-700 hover:bg-cloud-50 active:scale-95 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-cloud-300 ${
+                className={`absolute right-2 top-1/2 -translate-y-1/2 grid h-8 w-8 place-items-center rounded-xl text-ink-600 hover:text-ink-700 hover:bg-cloud-50 active:scale-95 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-cloud-300 ${
                   pw.length === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
               >
@@ -171,7 +171,7 @@ export default function LoginPage() {
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-disabled:translate-x-0" />
             </button>
 
-            <p className="mt-4 text-center text-[11px] text-ink-500 leading-relaxed">
+            <p className="mt-4 text-center text-[11px] text-ink-700 leading-relaxed">
               Forgot? Check your password manager.<br />
               No account required — this is a personal dashboard.
             </p>

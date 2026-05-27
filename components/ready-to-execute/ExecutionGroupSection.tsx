@@ -48,7 +48,7 @@ export function ExecutionGroupSection({
             className={`h-7 w-1.5 rounded-full bg-gradient-to-b ${groupAccent[group]} shrink-0`}
           />
           <div className="min-w-0">
-            <h2 className="font-display text-[22px] font-medium tracking-tight text-ink-900 leading-tight">
+            <h2 className="font-display text-[22px] font-bold tracking-tight text-ink-900 leading-tight">
               {EXECUTION_GROUP_LABEL[group]}
             </h2>
             <p className="text-[13px] text-ink-600 leading-relaxed">

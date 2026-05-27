@@ -7,7 +7,7 @@ export function SmartPanel() {
       <div className="flex items-center gap-2">
         <Sparkles className="h-4 w-4 text-iris-400" />
         {/* A.14m Stream 3 a11y fix: h3 → h2 (heading-order). T5 ADDITIVE: section-title. */}
-        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+        <h2 className="section-title font-display text-lg font-bold text-ink-900">
           Smart Panel
         </h2>
       </div>

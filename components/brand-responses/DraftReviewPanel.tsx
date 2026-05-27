@@ -179,10 +179,10 @@ export function DraftReviewPanel({ threadId, brand, drafts: initial }: Props) {
               : "Draft ready · click to review"}
           </span>
           {brand && !expanded && (
-            <span className="text-[11px] text-ink-500">· {brand}</span>
+            <span className="text-[11px] text-ink-700">· {brand}</span>
           )}
         </span>
-        <span className="text-ink-500">
+        <span className="text-ink-700">
           {expanded ? (
             <ChevronUp className="h-4 w-4" />
           ) : (
@@ -241,13 +241,13 @@ export function DraftReviewPanel({ threadId, brand, drafts: initial }: Props) {
               )}
             </button>
             {draft.generated_at && (
-              <span className="ml-auto text-[10.5px] uppercase tracking-[0.14em] text-ink-400">
+              <span className="ml-auto text-[10.5px] uppercase tracking-[0.14em] text-ink-600">
                 Drafted {fmtTs(draft.generated_at)}
               </span>
             )}
           </div>
 
-          <p className="mt-2 text-[10.5px] italic text-ink-400">
+          <p className="mt-2 text-[10.5px] italic text-ink-600">
             Mark-as-sent is local-only this phase — full persistence ships with
             the send API route.
           </p>

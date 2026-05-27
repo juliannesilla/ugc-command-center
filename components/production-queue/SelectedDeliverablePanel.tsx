@@ -80,7 +80,7 @@ export function SelectedDeliverablePanel({
             {campaign.brand.charAt(0)}
           </span>
           <div className="min-w-0">
-            <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold">
+            <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold">
               Focused deliverable · {PRODUCTION_STATUS_LABEL[selected.productionStatus]}
             </p>
             <h2 className="font-display text-[22px] text-ink-900 leading-tight mt-0.5 truncate">
@@ -136,7 +136,7 @@ export function SelectedDeliverablePanel({
             className={
               i === 0
                 ? 'rounded-t-xl bg-cloud-50 px-3 py-1.5 text-[11.5px] font-semibold text-ink-900 ring-1 ring-cloud-100 ring-b-0 -mb-px'
-                : 'rounded-t-xl px-3 py-1.5 text-[11.5px] font-semibold text-ink-500 hover:text-ink-700 transition'
+                : 'rounded-t-xl px-3 py-1.5 text-[11.5px] font-semibold text-ink-700 hover:text-ink-700 transition'
             }
           >
             {tab}
@@ -149,7 +149,7 @@ export function SelectedDeliverablePanel({
         {/* Col 1: Readiness checklist */}
         <div className="space-y-2.5">
           <div className="flex items-center justify-between">
-            <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold">
+            <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-700 font-semibold">
               Readiness
             </p>
             <span className="font-display text-[14px] text-iris-700 leading-none">
@@ -174,7 +174,7 @@ export function SelectedDeliverablePanel({
                 ) : (
                   <Circle className="h-3 w-3 shrink-0 text-ink-300" />
                 )}
-                <span className={item.done ? 'text-ink-700' : 'text-ink-400'}>
+                <span className={item.done ? 'text-ink-700' : 'text-ink-600'}>
                   {item.label}
                 </span>
               </li>
@@ -184,7 +184,7 @@ export function SelectedDeliverablePanel({
 
         {/* Col 2: Brief */}
         <div className="space-y-2.5">
-          <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold inline-flex items-center gap-1.5">
+          <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-700 font-semibold inline-flex items-center gap-1.5">
             <FileText className="h-3 w-3" />
             Brief
           </p>
@@ -207,7 +207,7 @@ export function SelectedDeliverablePanel({
 
         {/* Col 3: Files */}
         <div className="space-y-2.5">
-          <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold inline-flex items-center gap-1.5">
+          <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-700 font-semibold inline-flex items-center gap-1.5">
             <Folder className="h-3 w-3" />
             Files
           </p>
@@ -226,7 +226,7 @@ export function SelectedDeliverablePanel({
                   <Film className="h-3 w-3 shrink-0 text-cloud-700" />
                   <span className="text-ink-700 font-semibold truncate">{f.name}</span>
                 </span>
-                <span className="text-[10px] text-ink-500 shrink-0">{f.meta}</span>
+                <span className="text-[10px] text-ink-700 shrink-0">{f.meta}</span>
               </li>
             ))}
           </ul>
@@ -234,7 +234,7 @@ export function SelectedDeliverablePanel({
 
         {/* Col 4: Activity */}
         <div className="space-y-2.5">
-          <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold inline-flex items-center gap-1.5">
+          <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-700 font-semibold inline-flex items-center gap-1.5">
             <MessageSquare className="h-3 w-3" />
             Activity
           </p>
@@ -252,7 +252,7 @@ export function SelectedDeliverablePanel({
                     <span className="font-semibold text-ink-900">{row.who}</span>{' '}
                     {row.what}
                   </p>
-                  <p className="text-[10px] text-ink-400">{row.when}</p>
+                  <p className="text-[10px] text-ink-600">{row.when}</p>
                 </div>
               </li>
             ))}

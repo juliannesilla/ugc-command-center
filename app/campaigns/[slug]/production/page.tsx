@@ -99,7 +99,7 @@ export default async function ProductionPage({ params }: { params: Promise<{ slu
               {(script.assets ?? []).map((a: any, i: number) => (
                 <li key={i} className="flex items-center justify-between py-1.5">
                   <span className="truncate text-ink-800">{a.name}</span>
-                  <span className="font-mono text-[10.5px] text-ink-400">{a.type}</span>
+                  <span className="font-mono text-[10.5px] text-ink-600">{a.type}</span>
                 </li>
               ))}
             </ul>

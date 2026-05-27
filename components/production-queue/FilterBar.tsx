@@ -59,7 +59,7 @@ export function FilterBar({
 
       {/* Saved filter chips — 7 per spec */}
       <div className="flex flex-wrap items-center gap-2">
-        <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold mr-1">
+        <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold mr-1">
           Saved
         </p>
         {FILTER_CHIPS.map((chip) => {
@@ -71,7 +71,7 @@ export function FilterBar({
               className="group inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[11.5px] font-semibold text-ink-700 ring-1 ring-cloud-100 hover:ring-iris-200 hover:bg-iris-50 hover:text-iris-700 transition"
             >
               {chip.label}
-              <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] rounded-full bg-cloud-50 group-hover:bg-iris-100 text-[10px] font-semibold text-ink-500 group-hover:text-iris-700 px-1">
+              <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] rounded-full bg-cloud-50 group-hover:bg-iris-100 text-[10px] font-semibold text-ink-700 group-hover:text-iris-700 px-1">
                 {count}
               </span>
             </button>
@@ -80,7 +80,7 @@ export function FilterBar({
       </div>
 
       {/* Default-filter explainer */}
-      <p className="text-[11px] text-ink-500 leading-snug">
+      <p className="text-[11px] text-ink-700 leading-snug">
         <span className="font-semibold text-ink-700">Showing:</span>{' '}
         Active deliverables · Not yet submitted OR in revision · Excludes archived + paid.
         Submission column hidden from default view (toggle Filter to surface).

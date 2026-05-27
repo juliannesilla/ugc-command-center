@@ -74,7 +74,7 @@ export function ContentCard({ item }: Props) {
             </span>
           )}
           {item.meta && (
-            <span className="text-[11px] text-ink-500 tabular-nums truncate">{item.meta}</span>
+            <span className="text-[11px] text-ink-700 tabular-nums truncate">{item.meta}</span>
           )}
         </div>
         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

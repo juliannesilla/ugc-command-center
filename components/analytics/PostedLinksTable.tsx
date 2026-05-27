@@ -5,15 +5,15 @@ export function PostedLinksTable() {
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-4">
         {/* A.14m Stream 3 a11y fix: h3 → h2. T5 ADDITIVE: section-title. */}
-        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+        <h2 className="section-title font-display text-lg font-bold text-ink-900">
           Posted Links with Metrics
         </h2>
-        <p className="text-xs text-ink-500">Per-campaign click + conversion performance</p>
+        <p className="text-xs text-ink-700">Per-campaign click + conversion performance</p>
       </div>
       <div className="overflow-x-auto -mx-2">
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-left text-[10.5px] font-semibold uppercase tracking-[0.1em] text-ink-500">
+            <tr className="text-left text-[10.5px] font-semibold uppercase tracking-[0.1em] text-ink-700">
               <th className="px-2 py-2 font-semibold">Campaign</th>
               <th className="px-2 py-2 font-semibold text-right">Clicks</th>
               <th className="px-2 py-2 font-semibold text-right">CTR</th>

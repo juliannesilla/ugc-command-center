@@ -37,7 +37,7 @@ function formatDue(iso?: string): { label: string; tone: 'rose' | 'amber' | 'ink
 const dueColor = {
   rose:  'text-rose-600',
   amber: 'text-amber-600',
-  ink:   'text-ink-500',
+  ink:   'text-ink-700',
 } as const;
 
 function handleGenerateFix(brand: string, category: string) {
@@ -76,7 +76,7 @@ export function IssueCard({ issue }: { issue: TriageIssue }) {
             <h3 className="font-display text-[15px] text-ink-900 leading-tight truncate">
               {c.brand}
             </h3>
-            <p className="text-[11px] text-ink-500 truncate mt-0.5">{c.product}</p>
+            <p className="text-[11px] text-ink-700 truncate mt-0.5">{c.product}</p>
           </div>
           <div className="flex flex-col items-end gap-1 shrink-0">
             {/* A.14o O3-V2: bolder severity pill — explicit font-bold lifts the
@@ -103,7 +103,7 @@ export function IssueCard({ issue }: { issue: TriageIssue }) {
 
         {/* Next action */}
         <p className="mt-3 text-[12.5px] text-ink-900 leading-snug">
-          <span className="text-[10px] uppercase tracking-[0.16em] text-ink-400 font-semibold block mb-0.5">
+          <span className="text-[10px] uppercase tracking-[0.16em] text-ink-600 font-semibold block mb-0.5">
             Next action
           </span>
           {issue.nextAction || categoryMeta?.tagline || '—'}
@@ -115,7 +115,7 @@ export function IssueCard({ issue }: { issue: TriageIssue }) {
             <Clock className="h-3 w-3" />
             {due.label}
           </span>
-          <span className="inline-flex items-center gap-1 text-ink-500">
+          <span className="inline-flex items-center gap-1 text-ink-700">
             <User2 className="h-3 w-3" />
             Waiting on{' '}
             <span className={cn(
@@ -146,7 +146,7 @@ export function IssueCard({ issue }: { issue: TriageIssue }) {
               type="button"
               onClick={() => setNotesOpen((v) => !v)}
               aria-expanded={notesOpen}
-              className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-[11px] font-medium text-ink-500 hover:bg-cloud-50 hover:text-ink-900 transition"
+              className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-[11px] font-medium text-ink-700 hover:bg-cloud-50 hover:text-ink-900 transition"
             >
               {notesOpen ? 'Hide notes' : 'Show notes'}
               {notesOpen

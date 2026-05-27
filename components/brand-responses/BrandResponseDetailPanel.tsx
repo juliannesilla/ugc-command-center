@@ -42,7 +42,7 @@ export function BrandResponseDetailPanel({ id, variant = "panel" }: Props) {
         <h2 className="mt-4 font-display text-[22px] leading-tight text-ink-900">
           Select a conversation
         </h2>
-        <p className="mt-2 max-w-xs text-[12.5px] leading-relaxed text-ink-500">
+        <p className="mt-2 max-w-xs text-[12.5px] leading-relaxed text-ink-700">
           Pick a brand from the queue on the left to see the full thread,
           deadline, draft reply, and follow-up reminders.
         </p>
@@ -58,7 +58,7 @@ export function BrandResponseDetailPanel({ id, variant = "panel" }: Props) {
         <h2 className="font-display text-[22px] text-ink-900">
           Conversation not found
         </h2>
-        <p className="mt-2 max-w-xs text-[12.5px] text-ink-500">
+        <p className="mt-2 max-w-xs text-[12.5px] text-ink-700">
           That conversation ID doesn&apos;t exist. Try selecting one from the queue.
         </p>
       </div>
@@ -122,7 +122,7 @@ export function BrandResponseDetailPanel({ id, variant = "panel" }: Props) {
         {!isPage && (
           <header className="mb-4 flex flex-wrap items-end justify-between gap-3 rounded-3xl bg-white/85 backdrop-blur px-5 py-4 shadow-card ring-1 ring-cloud-100">
             <div className="min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-ink-500">
+              <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-ink-700">
                 Conversation · {conv.contactRole}
               </p>
               <h2 className="mt-0.5 truncate font-display text-[24px] leading-tight tracking-tight text-ink-900">
@@ -155,7 +155,7 @@ export function BrandResponseDetailPanel({ id, variant = "panel" }: Props) {
                     Message Received
                   </h3>
                 </div>
-                <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-500">
+                <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-700">
                   {latestBrandMsg.at}
                 </span>
               </header>
@@ -196,7 +196,7 @@ export function BrandResponseDetailPanel({ id, variant = "panel" }: Props) {
                     role="progressbar"
                   />
                 </div>
-                <div className="mt-2 flex items-center justify-between text-[10.5px] uppercase tracking-[0.14em] text-ink-500">
+                <div className="mt-2 flex items-center justify-between text-[10.5px] uppercase tracking-[0.14em] text-ink-700">
                   <span>Received</span>
                   <span>Drafting</span>
                   <span>Sent</span>
@@ -214,7 +214,7 @@ export function BrandResponseDetailPanel({ id, variant = "panel" }: Props) {
                     Draft Response
                   </h3>
                 </div>
-                <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-500">
+                <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-700">
                   Last edited 12 min ago
                 </span>
               </header>

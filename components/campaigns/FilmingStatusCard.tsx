@@ -44,14 +44,14 @@ export function FilmingStatusCard({ status }: { status: FilmingStatus }) {
       </header>
       <div className="space-y-2.5 text-[12.5px]">
         <div>
-          <p className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-500">
+          <p className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-700">
             Scheduled
           </p>
           <p className="leading-snug text-ink-800">{fmt(status.scheduledAt)}</p>
         </div>
         {status.location && (
           <div>
-            <p className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-500">
+            <p className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-700">
               Location
             </p>
             <p className="flex items-start gap-1.5 leading-snug text-ink-800">

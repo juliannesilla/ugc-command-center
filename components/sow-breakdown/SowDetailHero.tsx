@@ -150,12 +150,12 @@ export function SowDetailHero({ campaign }: { campaign: CampaignMeta }) {
       {/* SOW progress bar */}
       <div className="relative mt-5">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold">
+          <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold">
             SOW Progress
           </p>
           <p className="text-[12px] text-ink-700 font-medium tabular-nums">
             {sowProgress.complete} of {sowProgress.total} complete
-            <span className="text-ink-500"> · </span>
+            <span className="text-ink-700"> · </span>
             <span className="text-cloud-600 font-semibold">{pct}%</span>
           </p>
         </div>

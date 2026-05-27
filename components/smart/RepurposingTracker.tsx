@@ -43,7 +43,7 @@ const STATE_CONFIG = {
     label: "Planned",
     ring: "ring-cloud-200",
     bg: "bg-white",
-    text: "text-ink-500",
+    text: "text-ink-700",
   },
   reused: {
     icon: CheckCircle2,
@@ -57,7 +57,7 @@ const STATE_CONFIG = {
     label: "Skipped",
     ring: "ring-cloud-200",
     bg: "bg-cloud-50",
-    text: "text-ink-400",
+    text: "text-ink-600",
   },
 } as const;
 
@@ -92,7 +92,7 @@ export function RepurposingTracker({ campaign }: { campaign: Campaign }) {
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-iris-500">
             Content Repurposing
           </p>
-          <h3 className="font-display text-lg font-semibold text-ink-900 mt-1">
+          <h3 className="font-display text-lg font-bold text-ink-900 mt-1">
             Where can this concept ship?
           </h3>
           <p className="text-xs text-ink-600 mt-1">
@@ -100,10 +100,10 @@ export function RepurposingTracker({ campaign }: { campaign: Campaign }) {
           </p>
         </div>
         <div className="text-right">
-          <p className="font-display text-3xl font-semibold text-ink-900 leading-none">
-            {reusedCount}<span className="text-ink-400 text-xl"> / {total}</span>
+          <p className="font-display text-3xl font-bold text-ink-900 leading-none">
+            {reusedCount}<span className="text-ink-600 text-xl"> / {total}</span>
           </p>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-ink-500 mt-1">
+          <p className="text-[10px] uppercase tracking-[0.18em] text-ink-700 mt-1">
             Reused
           </p>
         </div>
@@ -128,7 +128,7 @@ export function RepurposingTracker({ campaign }: { campaign: Campaign }) {
                   <p className="text-sm font-medium text-ink-900 truncate">
                     {p.label}
                   </p>
-                  <p className="text-[11px] text-ink-500 truncate">{p.why}</p>
+                  <p className="text-[11px] text-ink-700 truncate">{p.why}</p>
                 </div>
                 <span className={`text-[10px] font-semibold uppercase tracking-[0.16em] ${config.text}`}>
                   {config.label}

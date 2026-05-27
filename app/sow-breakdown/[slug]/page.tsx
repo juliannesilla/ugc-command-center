@@ -74,9 +74,8 @@ function findReq(reqs: SowReq[], key: string): SowReq | undefined {
 function daysUntil(iso: string): number | null {
   const d = new Date(iso + 'T00:00:00');
   if (Number.isNaN(d.getTime())) return null;
-  // Pinned "today" = 2026-05-19 (one day before elf draft due) so labels
-  // stay deterministic across the static export.
-  const today = new Date('2026-05-19T00:00:00');
+  // A.14u F2: dynamic anchor (static export rebuilds daily via cron).
+  const today = new Date();
   const ms = d.getTime() - today.getTime();
   return Math.ceil(ms / (1000 * 60 * 60 * 24));
 }
@@ -286,7 +285,7 @@ export default async function SowBreakdownDetailPage({ params }: { params: Promi
 
       <main className="px-7 md:px-12 py-6 space-y-6">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="text-[12px] text-ink-500">
+        <nav aria-label="Breadcrumb" className="text-[12px] text-ink-700">
           <ol className="flex items-center gap-1.5">
             <li>
               <Link href="/" className="hover:text-ink-700 transition-colors">Docs</Link>
@@ -341,7 +340,7 @@ export default async function SowBreakdownDetailPage({ params }: { params: Promi
             </section>
 
             {/* Footer */}
-            <footer className="pt-4 pb-2 text-center text-[11px] text-ink-400">
+            <footer className="pt-4 pb-2 text-center text-[11px] text-ink-600">
               This is a read-only mirror of your live command center.
             </footer>
           </div>

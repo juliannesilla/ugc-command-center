@@ -37,7 +37,7 @@ export function AssetHealthDonut() {
     <section className="card-secondary rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
       <div className="flex items-baseline justify-between">
         <h3 className="section-title font-display text-[15px] text-ink-900">Asset Health</h3>
-        <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-400">
+        <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-600">
           {total.toLocaleString()} total
         </span>
       </div>
@@ -53,7 +53,7 @@ export function AssetHealthDonut() {
               <p className="font-display text-2xl text-ink-900 leading-none">
                 {total.toLocaleString()}
               </p>
-              <p className="text-[9.5px] uppercase tracking-[0.18em] text-ink-400 mt-0.5">
+              <p className="text-[9.5px] uppercase tracking-[0.18em] text-ink-600 mt-0.5">
                 Assets
               </p>
             </div>
@@ -70,8 +70,8 @@ export function AssetHealthDonut() {
                 />
                 {s.label}
               </span>
-              <span className="text-ink-500 font-medium tabular-nums">
-                {s.value} <span className="text-ink-400">· {s.pct}%</span>
+              <span className="text-ink-700 font-medium tabular-nums">
+                {s.value} <span className="text-ink-600">· {s.pct}%</span>
               </span>
             </li>
           ))}

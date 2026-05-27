@@ -47,14 +47,14 @@ function ChannelCell({ value }: { value: ContactChannel }) {
   const Icon = CHANNEL_ICON[value];
   return (
     <span className="inline-flex items-center gap-1.5 text-[11.5px] capitalize text-ink-700">
-      <Icon className="h-3 w-3 text-ink-400" aria-hidden />
+      <Icon className="h-3 w-3 text-ink-600" aria-hidden />
       {value}
     </span>
   );
 }
 
 function RepeatBadge({ value }: { value?: string }) {
-  if (!value) return <span className="text-ink-400 text-[11px]">—</span>;
+  if (!value) return <span className="text-ink-600 text-[11px]">—</span>;
   const tone =
     value === 'high' ? 'green' : value === 'medium' ? 'yellow' : 'pink';
   return <StatusChip tone={tone}>{value}</StatusChip>;
@@ -67,7 +67,7 @@ function QualityCell({
   value?: string;
   goodTone?: 'green' | 'blue';
 }) {
-  if (!value) return <span className="text-ink-400 text-[11px]">—</span>;
+  if (!value) return <span className="text-ink-600 text-[11px]">—</span>;
   const tone =
     value === 'good' || value === 'fast'
       ? goodTone
@@ -78,7 +78,7 @@ function QualityCell({
 }
 
 function BrandFitBar({ score }: { score?: number }) {
-  if (score === undefined) return <span className="text-ink-400 text-[11px]">—</span>;
+  if (score === undefined) return <span className="text-ink-600 text-[11px]">—</span>;
   return (
     <div className="flex items-center gap-2 min-w-[88px]">
       <div className="relative h-1.5 w-16 overflow-hidden rounded-full bg-cloud-100">
@@ -133,7 +133,7 @@ function RelationshipPromptsModal({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 grid h-8 w-8 place-items-center rounded-full text-ink-400 hover:bg-cloud-50 hover:text-ink-700 transition"
+          className="absolute top-4 right-4 grid h-8 w-8 place-items-center rounded-full text-ink-600 hover:bg-cloud-50 hover:text-ink-700 transition"
         >
           <X className="h-4 w-4" />
         </button>
@@ -142,7 +142,7 @@ function RelationshipPromptsModal({
             <Sparkles className="h-4 w-4" />
           </span>
           <div>
-            <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+            <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-700 font-semibold">
               Smart Feature · Wave 5
             </p>
             <h3 className="font-display text-xl text-ink-900">
@@ -196,7 +196,7 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
   if (rows.length === 0) {
     return (
       <div className="rise rise-2 rounded-3xl bg-white p-10 shadow-card ring-1 ring-cloud-100 max-w-3xl">
-        <h2 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
+        <h2 className="font-display text-[22px] font-bold tracking-tight text-ink-900">
           No active brand relationships yet.
         </h2>
         <p className="mt-2 text-[14px] text-ink-600 max-w-xl">
@@ -230,7 +230,7 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
               <span
                 className={cn(
                   'rounded-full px-1.5 text-[10px] font-mono tabular-nums',
-                  active ? 'bg-white/70 text-cloud-700' : 'bg-cloud-50 text-ink-500',
+                  active ? 'bg-white/70 text-cloud-700' : 'bg-cloud-50 text-ink-700',
                 )}
               >
                 {count}
@@ -240,7 +240,7 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
         })}
 
         <div className="ml-auto flex items-center gap-2">
-          <label className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold">
+          <label className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold">
             Sort
           </label>
           <select
@@ -293,7 +293,7 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
               <tr>
                 <td
                   colSpan={15}
-                  className="px-6 py-12 text-center text-[13px] text-ink-500"
+                  className="px-6 py-12 text-center text-[13px] text-ink-700"
                 >
                   No relationships match this filter. Try{' '}
                   <button
@@ -319,7 +319,7 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
                     {/* 1. Brand */}
                     <td className="h-12 lg:h-14 px-4 py-3 border-b border-cloud-100/70 whitespace-nowrap">
                       <span className="font-semibold text-ink-900">{c.brand}</span>
-                      <span className="block text-[10.5px] text-ink-500 mt-0.5">
+                      <span className="block text-[10.5px] text-ink-700 mt-0.5">
                         {c.product}
                       </span>
                     </td>
@@ -364,7 +364,7 @@ export function CrmTable({ rows }: { rows: Campaign[] }) {
                           {fmtDate(c.follow_up_date)}
                         </span>
                       ) : (
-                        <span className="text-ink-400 text-[11px]">—</span>
+                        <span className="text-ink-600 text-[11px]">—</span>
                       )}
                     </td>
                     {/* 9. Relationship status (stage pill) — hover lifts chip (hooked-ux: trigger→action loop) */}

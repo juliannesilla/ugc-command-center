@@ -52,7 +52,7 @@ export function DonutChart({
               </div>
             )}
             {centerLabel && (
-              <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-ink-500">
+              <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-ink-700">
                 {centerLabel}
               </div>
             )}

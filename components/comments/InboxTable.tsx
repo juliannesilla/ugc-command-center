@@ -144,7 +144,7 @@ export function InboxTable() {
           >
             <RefreshCw className="h-3.5 w-3.5" />
             Trigger cron now
-            <ExternalLink className="h-3 w-3 text-ink-400" />
+            <ExternalLink className="h-3 w-3 text-ink-600" />
           </a>
         </div>
       </div>
@@ -161,7 +161,7 @@ export function InboxTable() {
         <div className="overflow-x-auto rounded-2xl ring-1 ring-cloud-100">
           <table className="w-full text-[13px]">
             <thead>
-              <tr className="bg-cloud-50/60 text-left text-[10.5px] uppercase tracking-[0.14em] text-ink-500">
+              <tr className="bg-cloud-50/60 text-left text-[10.5px] uppercase tracking-[0.14em] text-ink-700">
                 <th className="w-10 px-3 py-2">
                   <span className="sr-only">Select</span>
                 </th>
@@ -230,7 +230,7 @@ export function InboxTable() {
                           PR
                         </a>
                       ) : (
-                        <span className="text-ink-400">—</span>
+                        <span className="text-ink-600">—</span>
                       )}
                     </td>
                     <td className="px-3 py-2 font-mono text-[11px] text-ink-600">
@@ -260,7 +260,7 @@ function Selector({
 }) {
   return (
     <label className="inline-flex items-center gap-2">
-      <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-500 font-medium">
+      <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-700 font-medium">
         {label}
       </span>
       <select

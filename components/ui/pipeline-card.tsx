@@ -46,7 +46,7 @@ export function PipelineCard({ card }: { card: PipelineCardType }) {
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5">
             <span className={cn('h-1.5 w-1.5 rounded-full', healthDot[card.health])} />
-            <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-500 truncate">
+            <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-700 truncate">
               {card.brand}
             </span>
           </div>
@@ -60,7 +60,7 @@ export function PipelineCard({ card }: { card: PipelineCardType }) {
           {formatMoney(card.value)}
         </span>
         {card.deadline && (
-          <span className="inline-flex items-center gap-1 text-ink-500">
+          <span className="inline-flex items-center gap-1 text-ink-700">
             <Calendar className="h-3 w-3" />
             {formatDeadline(card.deadline)}
           </span>
@@ -72,7 +72,7 @@ export function PipelineCard({ card }: { card: PipelineCardType }) {
           {card.platform}
         </span>
         <div className="flex items-center gap-2">
-          <span className="text-ink-400">{card.daysInStage}d</span>
+          <span className="text-ink-600">{card.daysInStage}d</span>
           {/* Creator avatar — Julianne */}
           <span
             title="Julianne Silla"

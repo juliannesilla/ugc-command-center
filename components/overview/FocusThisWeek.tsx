@@ -2,6 +2,7 @@
 // 3 stacks: Top Campaign Actions · Filming/Editing · Follow-Ups/Deadlines.
 import { Send, Film, Clock, type LucideIcon } from "lucide-react";
 import { getFocusGroups } from "@/lib/mock-data/overview";
+import { thisWeekRange } from "@/lib/date-anchor";
 
 const ICON_MAP: Record<string, LucideIcon> = {
   send: Send,
@@ -17,8 +18,8 @@ export function FocusThisWeek() {
       <div className="flex items-end justify-between gap-4 flex-wrap">
         {/* A.14m T5: section-title */}
         <h3 className="section-title text-[22px]">Focus this week</h3>
-        <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
-          May 19 – May 25
+        <p className="text-[11px] uppercase tracking-[0.18em] text-ink-700">
+          {thisWeekRange()}
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
@@ -35,12 +36,12 @@ export function FocusThisWeek() {
                 <span className="grid h-7 w-7 place-items-center rounded-lg bg-cloud-50 text-cloud-600 ring-1 ring-cloud-100 transition-transform duration-200 ease-out group-hover:scale-105">
                   <Icon className="h-3.5 w-3.5" />
                 </span>
-                <p className="text-[11px] uppercase tracking-[0.2em] text-ink-500 font-semibold">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-ink-700 font-semibold">
                   {group.title}
                 </p>
               </div>
               {group.items.length === 0 ? (
-                <p className="mt-4 text-[13px] text-ink-500 italic">
+                <p className="mt-4 text-[13px] text-ink-700 italic">
                   Nothing queued — clear week.
                 </p>
               ) : (
@@ -50,7 +51,7 @@ export function FocusThisWeek() {
                       <p className="text-[13.5px] text-ink-900 font-medium leading-snug">
                         {it.label}
                       </p>
-                      <p className="text-[11px] text-ink-500 mt-0.5">
+                      <p className="text-[11px] text-ink-700 mt-0.5">
                         {it.meta}
                       </p>
                     </li>

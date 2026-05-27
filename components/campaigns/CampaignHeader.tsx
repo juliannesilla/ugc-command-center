@@ -58,15 +58,15 @@ export function CampaignHeader({ campaign }: { campaign: CampaignMeta }) {
               {formatMoney(campaign.payment.base)}
               {campaign.payment.bonus > 0 && (
                 <>
-                  <span className="text-ink-400"> + </span>
+                  <span className="text-ink-600"> + </span>
                   {formatMoney(campaign.payment.bonus)}
-                  <span className="text-[10.5px] text-ink-500"> bonus</span>
+                  <span className="text-[10.5px] text-ink-700"> bonus</span>
                 </>
               )}
             </span>
           </Stat>
           <div className="min-w-[180px]">
-            <p className="flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-500">
+            <p className="flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-700">
               <TrendingUp className="h-3.5 w-3.5" /> SOW Progress
             </p>
             <div className="mt-1 flex items-center gap-2">
@@ -77,7 +77,7 @@ export function CampaignHeader({ campaign }: { campaign: CampaignMeta }) {
                 {campaign.sowProgress.complete}/{campaign.sowProgress.total}
               </span>
             </div>
-            <p className="mt-0.5 text-[10.5px] text-ink-500">{pct}% complete</p>
+            <p className="mt-0.5 text-[10.5px] text-ink-700">{pct}% complete</p>
           </div>
         </dl>
       </div>
@@ -88,7 +88,7 @@ export function CampaignHeader({ campaign }: { campaign: CampaignMeta }) {
 function Stat({ icon, label, children }: { icon: React.ReactNode; label: string; children: React.ReactNode }) {
   return (
     <div>
-      <dt className="flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-500">
+      <dt className="flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-700">
         {icon} {label}
       </dt>
       <dd className="mt-0.5 text-[13px] font-semibold text-ink-900">{children}</dd>

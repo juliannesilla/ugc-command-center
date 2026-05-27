@@ -61,7 +61,7 @@ export function CampaignSelector({
   return (
     <div className={cn('w-full', className)}>
       {label && (
-        <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-medium mb-2">
+        <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-medium mb-2">
           {label}
         </p>
       )}

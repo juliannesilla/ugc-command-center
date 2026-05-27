@@ -72,7 +72,7 @@ export function PerfMetricsWidget({ campaignSlug }: { campaignSlug: string }) {
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-peach-100 text-peach-500">
             <TrendingUp className="h-3.5 w-3.5" strokeWidth={2.4} />
           </span>
-          <h2 className="font-display text-base font-semibold text-ink-900">
+          <h2 className="font-display text-base font-bold text-ink-900">
             Performance Metrics
           </h2>
         </div>
@@ -138,7 +138,7 @@ export function PerfMetricsWidget({ campaignSlug }: { campaignSlug: string }) {
             />
           </div>
 
-          <p className="mt-2 text-[10.5px] text-ink-500">
+          <p className="mt-2 text-[10.5px] text-ink-700">
             Latest reading · {fmtDate(latest.date)} · {latest.platform} ·{" "}
             <span className="capitalize">
               {latest.source.replace("_", " ")}
@@ -225,7 +225,7 @@ export function PerfMetricsWidget({ campaignSlug }: { campaignSlug: string }) {
               </ResponsiveContainer>
             </div>
           ) : (
-            <p className="mt-4 rounded-xl border border-dashed border-cloud-200 bg-white/60 p-3 text-center text-[11.5px] text-ink-500">
+            <p className="mt-4 rounded-xl border border-dashed border-cloud-200 bg-white/60 p-3 text-center text-[11.5px] text-ink-700">
               Log a second reading to unlock the trend chart.
             </p>
           )}
@@ -235,7 +235,7 @@ export function PerfMetricsWidget({ campaignSlug }: { campaignSlug: string }) {
       {/* Inline form stub — persistence deferred (no server runtime in static export) */}
       {showForm && (
         <div className="mt-4 rounded-xl border border-cloud-200 bg-white/85 p-4">
-          <p className="mb-3 flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-500">
+          <p className="mb-3 flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-700">
             <Plus className="h-3 w-3" /> Log a new reading
           </p>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -262,7 +262,7 @@ export function PerfMetricsWidget({ campaignSlug }: { campaignSlug: string }) {
               placeholder="0.0"
             />
           </div>
-          <p className="mt-3 text-[11px] leading-snug text-ink-500">
+          <p className="mt-3 text-[11px] leading-snug text-ink-700">
             Form persistence ships in A.14u — for now, append the row directly
             to{" "}
             <code className="rounded bg-cloud-100 px-1 py-0.5 text-[10.5px] font-medium text-cloud-700">
@@ -299,7 +299,7 @@ function KpiTile({
   } as any;
   return (
     <div className="rounded-xl border border-cloud-100 bg-white/70 p-3">
-      <p className="flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-500">
+      <p className="flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-700">
         <span
           className={cn(
             "inline-flex h-5 w-5 items-center justify-center rounded-full",
@@ -330,7 +330,7 @@ function FormField({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-500">
+      <span className="mb-1 block text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-700">
         {label}
       </span>
       {type === "select" ? (
@@ -344,7 +344,7 @@ function FormField({
         <input
           type={type}
           placeholder={placeholder}
-          className="w-full rounded-lg border border-cloud-200 bg-white px-2.5 py-1.5 text-[12px] text-ink-800 placeholder:text-ink-400 focus:border-iris-400 focus:outline-none focus:ring-2 focus:ring-iris-200"
+          className="w-full rounded-lg border border-cloud-200 bg-white px-2.5 py-1.5 text-[12px] text-ink-800 placeholder:text-ink-600 focus:border-iris-400 focus:outline-none focus:ring-2 focus:ring-iris-200"
           disabled
         />
       )}

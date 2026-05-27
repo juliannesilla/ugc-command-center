@@ -82,7 +82,7 @@ export function ChecklistCard({ title, icon, items: initialItems, tone = "cloud"
               <span
                 className={cn(
                   "text-[12px] leading-snug",
-                  it.done ? "text-ink-400 line-through" : "text-ink-800",
+                  it.done ? "text-ink-600 line-through" : "text-ink-800",
                 )}
               >
                 {it.label}

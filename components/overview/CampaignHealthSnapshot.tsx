@@ -13,7 +13,7 @@ export function CampaignHealthSnapshot() {
           A.14o W2-S4 microinteractions: Saffer §3 Feedback (state-shift on hover);
           Kowalski custom curve ease-out 200ms with subtle lift. */}
       <div className="card-secondary transition-[transform,box-shadow] duration-200 ease-out will-change-transform motion-safe:hover:-translate-y-0.5 hover:shadow-soft">
-        <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+        <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-700 font-semibold">
           Campaign health
         </p>
         <h4 className="mt-1 font-display text-xl text-ink-900">
@@ -59,7 +59,7 @@ export function CampaignHealthSnapshot() {
           </p>
         </div>
         {strengths.length === 0 ? (
-          <p className="mt-3 text-[13px] text-ink-500 italic">
+          <p className="mt-3 text-[13px] text-ink-700 italic">
             No strong signals yet — keep building momentum.
           </p>
         ) : (
@@ -83,7 +83,7 @@ export function CampaignHealthSnapshot() {
           </p>
         </div>
         {blockers.length === 0 ? (
-          <p className="mt-3 text-[13px] text-ink-500 italic">
+          <p className="mt-3 text-[13px] text-ink-700 italic">
             Nothing blocking — clear runway.
           </p>
         ) : (

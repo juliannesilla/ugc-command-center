@@ -27,7 +27,7 @@ export function SidebarCollapsed({ onExpand }: { onExpand?: () => void }) {
                   title={item.label}
                   className={cn(
                     'grid h-10 w-10 place-items-center rounded-xl transition relative',
-                    active ? 'bg-cloud-100 text-cloud-700' : 'text-ink-500 hover:bg-cloud-50 hover:text-ink-900',
+                    active ? 'bg-cloud-100 text-cloud-700' : 'text-ink-700 hover:bg-cloud-50 hover:text-ink-900',
                   )}
                 >
                   {active && (
@@ -43,7 +43,7 @@ export function SidebarCollapsed({ onExpand }: { onExpand?: () => void }) {
       <button
         type="button"
         onClick={onExpand}
-        className="grid h-10 w-10 place-items-center rounded-xl text-ink-500 hover:bg-cloud-50 hover:text-ink-900 transition"
+        className="grid h-10 w-10 place-items-center rounded-xl text-ink-700 hover:bg-cloud-50 hover:text-ink-900 transition"
         aria-label="Expand sidebar"
       >
         <ChevronRight className="h-4 w-4" />

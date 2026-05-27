@@ -36,11 +36,11 @@ export function VisibilityScoreCard() {
         <div className="mt-3 flex items-baseline gap-3">
           <h2
             id="visibility-score-heading"
-            className="font-display text-7xl text-ink-900 leading-none tracking-tight tabular-nums font-medium"
+            className="font-display text-7xl text-ink-900 leading-none tracking-tight tabular-nums font-bold"
           >
             {visibilityScore}
           </h2>
-          <span className="text-[11px] text-ink-500 font-medium tabular-nums">
+          <span className="text-[11px] text-ink-700 font-medium tabular-nums">
             / 100
           </span>
         </div>
@@ -67,7 +67,7 @@ export function VisibilityScoreCard() {
               />
             ))}
           </div>
-          <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-ink-400 font-semibold">
+          <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-ink-600 font-semibold">
             12-week trend
           </p>
         </div>

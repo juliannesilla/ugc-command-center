@@ -98,7 +98,7 @@ export function StatStrip({ tiles, className }: StatStripProps) {
             </div>
             <p className="stat-number mt-2 truncate">{t.number}</p>
             {t.sub && (
-              <p className="text-[10.5px] font-normal text-ink-400 mt-1 truncate">
+              <p className="text-[10.5px] font-normal text-ink-600 mt-1 truncate">
                 {t.sub}
               </p>
             )}

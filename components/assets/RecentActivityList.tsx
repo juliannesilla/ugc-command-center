@@ -21,7 +21,7 @@ export function RecentActivityList() {
     <section className="card-secondary rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
       <div className="flex items-baseline justify-between">
         <h3 className="section-title font-display text-[15px] text-ink-900">Recent Activity</h3>
-        <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-400">Last 48h</span>
+        <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-600">Last 48h</span>
       </div>
       <ul className="mt-3 space-y-2.5">
         {MOCK_RECENT_ACTIVITY.map(item => {
@@ -37,10 +37,10 @@ export function RecentActivityList() {
                   <span className="text-ink-700">{item.detail}</span>
                 </p>
                 {item.meta && (
-                  <p className="text-[11px] text-ink-500 truncate">{item.meta}</p>
+                  <p className="text-[11px] text-ink-700 truncate">{item.meta}</p>
                 )}
               </div>
-              <span className="shrink-0 text-[10.5px] uppercase tracking-[0.12em] text-ink-400">
+              <span className="shrink-0 text-[10.5px] uppercase tracking-[0.12em] text-ink-600">
                 {item.agoLabel}
               </span>
             </li>

@@ -67,7 +67,7 @@ export default function ContentHubPage() {
               <p className="mt-3 font-display text-[15px] font-medium text-ink-900">
                 {label}
               </p>
-              <p className="mt-1 text-[12px] text-ink-500 leading-relaxed">{desc}</p>
+              <p className="mt-1 text-[12px] text-ink-700 leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>

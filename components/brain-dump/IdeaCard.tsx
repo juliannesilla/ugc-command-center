@@ -32,7 +32,7 @@ export function IdeaCard({ card }: { card: IdeaCardType }) {
           {...attributes}
           {...listeners}
           aria-label="Drag idea"
-          className="text-ink-300 hover:text-ink-600 cursor-grab active:cursor-grabbing pt-0.5 transition-colors duration-150 group-hover:text-ink-500"
+          className="text-ink-300 hover:text-ink-600 cursor-grab active:cursor-grabbing pt-0.5 transition-colors duration-150 group-hover:text-ink-700"
         >
           <GripVertical className="h-3.5 w-3.5" />
         </button>

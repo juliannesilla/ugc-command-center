@@ -113,7 +113,7 @@ export default function AssetsPage() {
                 )}
               >
                 <div className="flex items-center justify-between">
-                  <p className="stat-label text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold">
+                  <p className="stat-label text-[10.5px] uppercase tracking-[0.16em] text-ink-700 font-semibold">
                     {label}
                   </p>
                   <span className={cn('grid h-7 w-7 place-items-center rounded-lg', statIconTones[tone])}>
@@ -123,7 +123,7 @@ export default function AssetsPage() {
                 <p className="mt-2 font-display text-[30px] text-ink-900 leading-none tabular-nums">
                   {value}
                 </p>
-                <p className="mt-1 text-[11px] text-ink-500">{sub}</p>
+                <p className="mt-1 text-[11px] text-ink-700">{sub}</p>
               </div>
             ))}
           </section>
@@ -205,11 +205,11 @@ export default function AssetsPage() {
           {/* Search + filters row */}
           <section className="flex flex-wrap items-center gap-2.5">
             <div className="relative flex-1 min-w-[220px]">
-              <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-400" />
+              <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-600" />
               <input
                 type="search"
                 placeholder="Search assets, briefs, scripts…"
-                className="w-full rounded-2xl border border-cloud-200 bg-white/85 pl-9 pr-3 py-2.5 text-[13px] text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-cloud-300 focus:border-cloud-300 transition"
+                className="w-full rounded-2xl border border-cloud-200 bg-white/85 pl-9 pr-3 py-2.5 text-[13px] text-ink-900 placeholder:text-ink-600 focus:outline-none focus:ring-2 focus:ring-cloud-300 focus:border-cloud-300 transition"
               />
             </div>
             {['All Campaigns', 'All File Types', 'All Statuses'].map(label => (
@@ -219,7 +219,7 @@ export default function AssetsPage() {
                 className="inline-flex items-center gap-1.5 rounded-2xl border border-cloud-200 bg-white/85 px-3 py-2.5 text-[12.5px] font-semibold text-ink-700 hover:bg-cloud-50 transition"
               >
                 {label}
-                <ChevronDown className="h-3.5 w-3.5 text-ink-400" />
+                <ChevronDown className="h-3.5 w-3.5 text-ink-600" />
               </button>
             ))}
             <button
@@ -243,13 +243,13 @@ export default function AssetsPage() {
                 <div className="flex items-center gap-2">
                   <button className="inline-flex items-center gap-1.5 rounded-xl border border-cloud-200 bg-white px-2.5 py-1.5 text-[11.5px] font-semibold text-ink-700">
                     Sort: Recently Added
-                    <ChevronDown className="h-3 w-3 text-ink-400" />
+                    <ChevronDown className="h-3 w-3 text-ink-600" />
                   </button>
                   <div className="flex rounded-xl border border-cloud-200 bg-white p-0.5">
                     <button className="grid h-7 w-7 place-items-center rounded-lg bg-cloud-100 text-cloud-700">
                       <LayoutGrid className="h-3.5 w-3.5" />
                     </button>
-                    <button className="grid h-7 w-7 place-items-center rounded-lg text-ink-400 hover:bg-cloud-50">
+                    <button className="grid h-7 w-7 place-items-center rounded-lg text-ink-600 hover:bg-cloud-50">
                       <List className="h-3.5 w-3.5" />
                     </button>
                   </div>

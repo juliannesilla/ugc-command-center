@@ -107,26 +107,36 @@ html[data-today-mode="on"] [data-today-only-label] {
    on cards — use these classes so the design system stays single-source.
 */
 @layer components {
+  /* A.14u F9 — card design pass: cleaner shadow, tighter ring (cloud-200/60 over /70),
+     consistent hover lift on all cards (was stat-only). Per Julz: "improve the design
+     for text boxes" + "improve color schemes for text boxes". */
   .card-hero {
-    @apply p-6 lg:p-7 rounded-3xl bg-white shadow-card ring-1 ring-cloud-100/70;
+    @apply p-6 lg:p-7 rounded-3xl bg-white shadow-card ring-1 ring-cloud-200/60 transition-all duration-200 ease-out hover:shadow-card-lg hover:ring-cloud-300/70;
   }
   .card-secondary {
-    @apply p-5 lg:p-6 rounded-3xl bg-white shadow-card ring-1 ring-cloud-100/70;
+    @apply p-5 lg:p-6 rounded-3xl bg-white shadow-card ring-1 ring-cloud-200/60 transition-all duration-200 ease-out hover:shadow-card-lg hover:ring-cloud-300/70;
   }
   .card-stat {
-    @apply p-5 lg:p-6 rounded-3xl bg-white shadow-card ring-1 ring-cloud-100/70 hover:-translate-y-0.5 hover:ring-cloud-300 transition;
+    @apply p-5 lg:p-6 rounded-3xl bg-white shadow-card ring-1 ring-cloud-200/60 hover:-translate-y-0.5 hover:shadow-card-lg hover:ring-cloud-300/70 transition-all duration-200 ease-out;
   }
+  /* A.14u F9 NEW — explicit non-interactive card variant (no hover-lift, just subtle ring) */
+  .card-flat {
+    @apply p-5 lg:p-6 rounded-2xl bg-white ring-1 ring-cloud-200/60;
+  }
+  /* A.14u F9 — headers/titles BOLD throughout per Julz: "I definitely want it in bold" */
   .section-title {
-    @apply font-display text-display-sm font-medium tracking-tight text-ink-900;
+    @apply font-display text-display-sm font-bold tracking-tight text-ink-900;
   }
+  /* A.14u F9 — bump body text contrast from ink-600 → ink-700 (WCAG AA bump, ~7.4:1 on white) */
   .section-subtitle {
-    @apply text-[13px] text-ink-600 leading-relaxed;
+    @apply text-[13px] text-ink-700 leading-relaxed;
   }
   .stat-label {
-    @apply text-label-xs uppercase tracking-magazine text-ink-600 font-medium;
+    @apply text-label-xs uppercase tracking-magazine text-ink-700 font-semibold;
   }
+  /* A.14u F9 — stat numbers BOLD (were font-medium); they're the loudest data point on the page */
   .stat-number {
-    @apply font-display text-display-md lg:text-display-lg font-medium tabular-nums leading-none text-ink-900;
+    @apply font-display text-display-md lg:text-display-lg font-bold tabular-nums leading-none text-ink-900;
   }
 }
 

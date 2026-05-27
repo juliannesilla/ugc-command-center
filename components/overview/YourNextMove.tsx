@@ -85,7 +85,7 @@ export function YourNextMove() {
             <div className="font-display text-2xl text-cloud-700">
               {daysWaiting}
             </div>
-            <div className="text-[10px] uppercase tracking-[0.16em] text-ink-500 mt-0.5">
+            <div className="text-[10px] uppercase tracking-[0.16em] text-ink-700 mt-0.5">
               days waiting
             </div>
           </div>
@@ -93,7 +93,7 @@ export function YourNextMove() {
             <div className="font-display text-2xl text-iris-500">
               ${value >= 1000 ? `${(value / 1000).toFixed(1)}k` : value}
             </div>
-            <div className="text-[10px] uppercase tracking-[0.16em] text-ink-500 mt-0.5">
+            <div className="text-[10px] uppercase tracking-[0.16em] text-ink-700 mt-0.5">
               unlocked
             </div>
           </div>

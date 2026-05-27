@@ -13,8 +13,8 @@ export function ProductionTracker({ currentStep }: { currentStep: number }) {
   return (
     <div className="glass-card rounded-3xl p-5 lg:p-6 shadow-card">
       <div className="mb-4 flex items-baseline justify-between">
-        <h2 className="font-display text-base font-semibold text-ink-900">Production Progress</h2>
-        <span className="text-[11px] font-medium text-ink-500">
+        <h2 className="font-display text-base font-bold text-ink-900">Production Progress</h2>
+        <span className="text-[11px] font-medium text-ink-700">
           Step {currentStep} of {STEPS.length}
         </span>
       </div>
@@ -37,7 +37,7 @@ export function ProductionTracker({ currentStep }: { currentStep: number }) {
                     ? "bg-cloud-sunset text-white shadow-glow"
                     : isCurrent
                     ? "ring-4 ring-cloud-300/50 bg-white text-cloud-600 ring-offset-2 ring-offset-white"
-                    : "bg-ink-300/30 text-ink-500",
+                    : "bg-ink-300/30 text-ink-700",
                 )}
               >
                 {isDone ? <Check className="h-4 w-4" strokeWidth={3} /> : step.id}
@@ -45,7 +45,7 @@ export function ProductionTracker({ currentStep }: { currentStep: number }) {
               <span
                 className={cn(
                   "max-w-[88px] text-center text-[10.5px] font-semibold leading-tight",
-                  isCurrent ? "text-ink-900" : isDone ? "text-ink-700" : "text-ink-500",
+                  isCurrent ? "text-ink-900" : isDone ? "text-ink-700" : "text-ink-700",
                 )}
               >
                 {step.label}

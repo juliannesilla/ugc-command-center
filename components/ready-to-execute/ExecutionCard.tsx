@@ -82,13 +82,13 @@ export function ExecutionCard({ campaign: c }: { campaign: Campaign }) {
         {/* Header: brand + due pill */}
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="min-w-0">
-            <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold mb-1">
+            <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold mb-1">
               {group ? EXECUTION_GROUP_LABEL[group] : c.current_stage}
             </p>
             <h3 className="font-display text-lg text-ink-900 leading-tight truncate">
               {c.brand}
             </h3>
-            <p className="text-[12.5px] text-ink-500 truncate mt-0.5">
+            <p className="text-[12.5px] text-ink-700 truncate mt-0.5">
               {c.product}
             </p>
           </div>
@@ -100,7 +100,7 @@ export function ExecutionCard({ campaign: c }: { campaign: Campaign }) {
         {/* Deliverable + value strip */}
         <div className="flex items-center justify-between gap-2 mb-4 rounded-2xl bg-cloud-50/70 px-3 py-2 ring-1 ring-cloud-100">
           <div className="min-w-0">
-            <p className="text-[11px] uppercase tracking-[0.12em] text-ink-500 font-semibold">
+            <p className="text-[11px] uppercase tracking-[0.12em] text-ink-700 font-semibold">
               Deliverable
             </p>
             <p className="text-[12.5px] text-ink-700 truncate">
@@ -109,7 +109,7 @@ export function ExecutionCard({ campaign: c }: { campaign: Campaign }) {
             </p>
           </div>
           <div className="text-right shrink-0">
-            <p className="text-[11px] uppercase tracking-[0.12em] text-ink-500 font-semibold">
+            <p className="text-[11px] uppercase tracking-[0.12em] text-ink-700 font-semibold">
               Value
             </p>
             <p className="font-display text-base text-cloud-700 leading-none">
@@ -121,19 +121,19 @@ export function ExecutionCard({ campaign: c }: { campaign: Campaign }) {
         {/* Estimated time + QA status */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           <div className="rounded-2xl bg-white p-3 ring-1 ring-cloud-100">
-            <div className="flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.12em] text-ink-500 font-semibold mb-1">
+            <div className="flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.12em] text-ink-700 font-semibold mb-1">
               <Clock className="h-3 w-3" />
               Est. time
             </div>
             <p className="text-[12.5px] font-semibold text-ink-900 leading-tight">
               {estimate.label}
             </p>
-            <p className="text-[10.5px] text-ink-500 mt-0.5">
+            <p className="text-[10.5px] text-ink-700 mt-0.5">
               {estimate.totalHours} hr total
             </p>
           </div>
           <div className="rounded-2xl bg-white p-3 ring-1 ring-cloud-100">
-            <div className="flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.12em] text-ink-500 font-semibold mb-1">
+            <div className="flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.12em] text-ink-700 font-semibold mb-1">
               <CheckCircle2 className="h-3 w-3" />
               Final QA
             </div>
@@ -167,7 +167,7 @@ export function ExecutionCard({ campaign: c }: { campaign: Campaign }) {
 
         {/* B-roll progress */}
         <div className="mb-4">
-          <div className="flex items-center justify-between text-[11px] text-ink-500 font-semibold uppercase tracking-[0.12em] mb-1.5">
+          <div className="flex items-center justify-between text-[11px] text-ink-700 font-semibold uppercase tracking-[0.12em] mb-1.5">
             <span className="flex items-center gap-1.5">
               <Film className="h-3 w-3" />
               B-roll checklist
@@ -187,7 +187,7 @@ export function ExecutionCard({ campaign: c }: { campaign: Campaign }) {
         {/* Production Readiness 6-checklist */}
         <div className="mb-4 rounded-2xl bg-cloud-soft/60 p-3 ring-1 ring-cloud-100">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-[11px] uppercase tracking-[0.12em] text-ink-500 font-semibold flex items-center gap-1.5">
+            <p className="text-[11px] uppercase tracking-[0.12em] text-ink-700 font-semibold flex items-center gap-1.5">
               <Sparkles className="h-3 w-3" />
               Production readiness
             </p>
@@ -206,7 +206,7 @@ export function ExecutionCard({ campaign: c }: { campaign: Campaign }) {
                 ) : (
                   <Circle className="h-3 w-3 shrink-0 text-ink-300" />
                 )}
-                <span className={cn(item.done ? 'text-ink-700' : 'text-ink-400')}>
+                <span className={cn(item.done ? 'text-ink-700' : 'text-ink-600')}>
                   {item.label}
                 </span>
               </li>

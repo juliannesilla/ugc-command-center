@@ -87,7 +87,7 @@ export function PaymentsSnapshot() {
               className={`group rounded-3xl bg-white p-5 lg:p-6 shadow-card ring-1 ${styles.ring} transition-[transform,box-shadow] duration-200 ease-out will-change-transform motion-safe:hover:-translate-y-0.5 hover:shadow-soft`}
             >
               <div className="flex items-start justify-between">
-                <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold leading-tight">
+                <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold leading-tight">
                   {t.label}
                 </p>
                 <span

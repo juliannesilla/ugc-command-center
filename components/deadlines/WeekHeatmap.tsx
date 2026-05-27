@@ -1,5 +1,9 @@
 import { cn } from '@/lib/utils';
 import { HEATMAP_DAYS } from '@/lib/mock-data/deadlines';
+import { monthLong } from '@/lib/date-anchor';
+
+// A.14u F2: dynamic month label.
+const _monthLabel = `${monthLong()} ${new Date().getFullYear()}`;
 
 /**
  * Horizontal 10-day calendar strip — replaces the original heatmap to match
@@ -10,8 +14,8 @@ export function WeekHeatmap() {
   return (
     <section className="rounded-2xl border border-cloud-100 bg-white/85 backdrop-blur p-6 shadow-card">
       <div className="flex items-baseline justify-between mb-3">
-        <h3 className="font-display text-[14px] text-ink-900">May 2026</h3>
-        <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-400">
+        <h3 className="font-display text-[14px] text-ink-900">{_monthLabel}</h3>
+        <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-600">
           10-day strip
         </span>
       </div>
@@ -29,7 +33,7 @@ export function WeekHeatmap() {
                   : isHot
                   ? 'border-iris-200 bg-iris-50 text-ink-900'
                   : isEmpty
-                  ? 'border-cloud-100 bg-white text-ink-400'
+                  ? 'border-cloud-100 bg-white text-ink-600'
                   : 'border-cloud-100 bg-cloud-soft text-ink-700',
               )}
               title={`${d.dayLabel} ${d.dayNum} · ${d.count} deliverable${d.count !== 1 ? 's' : ''}`}
@@ -59,7 +63,7 @@ export function WeekHeatmap() {
           );
         })}
       </div>
-      <p className="mt-3 text-[10.5px] text-ink-500 flex items-center gap-3">
+      <p className="mt-3 text-[10.5px] text-ink-700 flex items-center gap-3">
         <span className="inline-flex items-center gap-1.5">
           <span className="h-2 w-2 rounded-full bg-cloud-sunset" />
           Today

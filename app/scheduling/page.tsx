@@ -23,6 +23,18 @@ import {
 } from "lucide-react";
 import { Header } from "@/components/ui/header";
 import { BRAND_CONVERSATIONS } from "@/lib/mock-data/brand-responses";
+import { dayShort, monthShort, dayNum } from "@/lib/date-anchor";
+
+// A.14u F2: anchor to current week (Mon–Sun) instead of hardcoded May 18–24.
+const _now = new Date();
+const _weekMon = new Date(_now);
+_weekMon.setDate(_now.getDate() - ((_now.getDay() + 6) % 7));
+const _weekSun = new Date(_weekMon);
+_weekSun.setDate(_weekMon.getDate() + 6);
+const _weekStartDay = _weekMon.getDate();
+const _todayDay = _now.getDate();
+const _weekRangeLabel = `${monthShort(_weekMon)} ${dayNum(_weekMon)} – ${dayNum(_weekSun)}, ${_weekSun.getFullYear()}`;
+const _weekHeaderEyebrow = `Calendar · Week of ${monthShort(_weekMon)} ${dayNum(_weekMon)}`;
 
 type CalEvent = {
   id: string;
@@ -38,7 +50,7 @@ type CalEvent = {
 // Derive a small calendar from conversations with confirmed call slots
 function buildEvents(): CalEvent[] {
   const out: CalEvent[] = [];
-  let dayCursor = 19; // current week start (May 19, 2026 = Tue per memory date)
+  let dayCursor = _weekStartDay + 1; // A.14u F2: day after Mon = Tue of current week
   BRAND_CONVERSATIONS.filter((c) => c.callRequested).forEach((c, i) => {
     out.push({
       id: c.id,
@@ -64,8 +76,8 @@ export default function SchedulingPage() {
   const events = useMemo(buildEvents, []);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
 
-  // Anchor week: May 18 (Mon) - 24 (Sun) 2026
-  const weekStart = 18;
+  // A.14u F2: anchor to current week Mon (dynamic).
+  const weekStart = _weekStartDay;
 
   const colorMap = {
     cloud: "bg-gradient-to-br from-cloud-200 to-cloud-400 text-white",
@@ -86,7 +98,7 @@ export default function SchedulingPage() {
           + ReadOnlyMirrorBadge). Subtitle relocated into the toolbar row's
           subtitle line so no copy is lost. */}
       <Header
-        pageEyebrow="Calendar · Week of May 18"
+        pageEyebrow={_weekHeaderEyebrow}
         pageTitle="Call Scheduling"
       />
 
@@ -121,11 +133,11 @@ export default function SchedulingPage() {
               <ChevronRight className="h-4 w-4 text-ink-700" />
             </button>
             <span className="ml-2 font-display text-[20px] text-ink-900">
-              May 18 – 24, 2026
+              {_weekRangeLabel}
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 text-[10.5px] uppercase tracking-[0.14em] text-ink-500">
+            <span className="inline-flex items-center gap-1 text-[10.5px] uppercase tracking-[0.14em] text-ink-700">
               <Globe2 className="h-3 w-3" />
               PT (UTC-7)
             </span>
@@ -142,11 +154,11 @@ export default function SchedulingPage() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-5">
           {/* Calendar grid */}
           <div className="rise rise-3 overflow-hidden rounded-3xl bg-white/85 backdrop-blur shadow-card ring-1 ring-cloud-100">
-            <div className="grid grid-cols-[60px_repeat(7,1fr)] bg-cloud-50/60 text-[10px] uppercase tracking-[0.14em] text-ink-500">
+            <div className="grid grid-cols-[60px_repeat(7,1fr)] bg-cloud-50/60 text-[10px] uppercase tracking-[0.14em] text-ink-700">
               <div className="px-3 py-3"></div>
               {WEEKDAYS.map((d, i) => {
                 const date = weekStart + i;
-                const isToday = date === 19; // today is May 19
+                const isToday = date === _todayDay; // A.14u F2: dynamic
                 return (
                   <div
                     key={d}
@@ -173,7 +185,7 @@ export default function SchedulingPage() {
                   key={t}
                   className="grid grid-cols-[60px_repeat(7,1fr)] border-t border-cloud-100"
                 >
-                  <div className="px-3 py-3 text-right text-[10.5px] font-mono text-ink-400">
+                  <div className="px-3 py-3 text-right text-[10.5px] font-mono text-ink-600">
                     {t}
                   </div>
                   {WEEKDAYS.map((d, i) => {
@@ -237,17 +249,20 @@ export default function SchedulingPage() {
               <h2 className="stat-label text-[11px] tracking-[0.16em] font-semibold text-ink-700">
                 Quick Slots
               </h2>
-              <p className="section-subtitle mt-1 text-[12px] text-ink-500">
+              <p className="section-subtitle mt-1 text-[12px] text-ink-700">
                 Pick 3 to send to a brand
               </p>
               <ul className="mt-4 space-y-2">
-                {[
-                  "Tue May 19 · 11:00 PT",
-                  "Wed May 20 · 14:30 PT",
-                  "Thu May 21 · 10:00 PT",
-                  "Fri May 22 · 9:30 PT",
-                  "Mon May 25 · 13:00 PT",
-                ].map((slot) => (
+                {(() => {
+                  // A.14u F2: build quick-slot labels from current week + times.
+                  const offsets = [1, 2, 3, 4, 7];
+                  const times = ["11:00", "14:30", "10:00", "9:30", "13:00"];
+                  return offsets.map((n, i) => {
+                    const d = new Date(_weekMon);
+                    d.setDate(_weekMon.getDate() + n);
+                    return `${dayShort(d)} ${monthShort(d)} ${dayNum(d)} · ${times[i]} PT`;
+                  });
+                })().map((slot) => (
                   <li key={slot}>
                     <button
                       type="button"
@@ -255,7 +270,7 @@ export default function SchedulingPage() {
                       className="group w-full flex items-center justify-between rounded-2xl bg-cloud-50/60 px-3.5 py-2.5 text-[12.5px] ring-1 ring-transparent transition-all duration-150 ease-out hover:bg-cloud-100 hover:ring-cloud-200 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cloud-300"
                     >
                       <span className="font-mono text-ink-900">{slot}</span>
-                      <Plus className="h-3.5 w-3.5 text-ink-400 transition-transform duration-150 ease-out group-hover:text-cloud-600 group-hover:rotate-90" />
+                      <Plus className="h-3.5 w-3.5 text-ink-600 transition-transform duration-150 ease-out group-hover:text-cloud-600 group-hover:rotate-90" />
                     </button>
                   </li>
                 ))}

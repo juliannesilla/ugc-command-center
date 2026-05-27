@@ -83,24 +83,24 @@ export function RenewalRow({ data }: { data: RenewalRowData }) {
           {/* Meta row */}
           <dl className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[12px] text-ink-600">
             <div className="inline-flex items-center gap-1.5">
-              <Calendar className="h-3.5 w-3.5 text-ink-400" aria-hidden />
+              <Calendar className="h-3.5 w-3.5 text-ink-600" aria-hidden />
               <dt className="sr-only">Paid</dt>
               <dd>
                 <span className="text-ink-700 font-medium">
                   {relativeDays(data.days_since_paid)}
                 </span>
-                <span className="text-ink-400"> · {formatDate(data.paid_date)}</span>
+                <span className="text-ink-600"> · {formatDate(data.paid_date)}</span>
               </dd>
             </div>
             <div className="inline-flex items-center gap-1.5">
-              <DollarSign className="h-3.5 w-3.5 text-ink-400" aria-hidden />
+              <DollarSign className="h-3.5 w-3.5 text-ink-600" aria-hidden />
               <dt className="sr-only">Amount received</dt>
               <dd className="text-ink-700 font-medium">
                 ${data.amount_received.toLocaleString()}
               </dd>
             </div>
             <div className="inline-flex items-center gap-1.5">
-              <CreditCard className="h-3.5 w-3.5 text-ink-400" aria-hidden />
+              <CreditCard className="h-3.5 w-3.5 text-ink-600" aria-hidden />
               <dt className="sr-only">Platform</dt>
               <dd>{data.payment_platform}</dd>
             </div>
@@ -118,7 +118,7 @@ export function RenewalRow({ data }: { data: RenewalRowData }) {
           </Link>
           <Link
             href={`/campaigns/${data.campaign_id}`}
-            className="text-[11.5px] text-ink-500 underline-offset-2 hover:text-iris-600 hover:underline"
+            className="text-[11.5px] text-ink-700 underline-offset-2 hover:text-iris-600 hover:underline"
           >
             View prior campaign
           </Link>

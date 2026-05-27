@@ -28,7 +28,7 @@ export function BestNewIdeaCard() {
           </span>
         ))}
       </div>
-      <p className="text-[11px] text-ink-500 mb-3">Captured {BEST_NEW_IDEA.capturedAgo}</p>
+      <p className="text-[11px] text-ink-700 mb-3">Captured {BEST_NEW_IDEA.capturedAgo}</p>
       <button
         type="button"
         className="w-full inline-flex items-center justify-center gap-1.5 rounded-full bg-ink-900 text-white px-3 py-2 text-sm font-semibold hover:bg-ink-800 transition-colors"

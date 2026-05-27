@@ -32,11 +32,11 @@ export function NextActionsPanel() {
         </p>
         <h2
           id="next-actions-heading"
-          className="mt-1 font-display text-[20px] font-medium tracking-tight text-ink-900 leading-tight"
+          className="mt-1 font-display text-[20px] font-bold tracking-tight text-ink-900 leading-tight"
         >
           Do these next.
         </h2>
-        <p className="mt-1 text-[12px] text-ink-500 leading-snug">
+        <p className="mt-1 text-[12px] text-ink-700 leading-snug">
           3 fastest moves to lift your SideShift visibility.
         </p>
 
@@ -53,7 +53,7 @@ export function NextActionsPanel() {
                     <p className="font-display text-[14px] font-medium text-ink-900 leading-tight">
                       {action.title}
                     </p>
-                    <p className="mt-0.5 text-[11px] text-ink-500 leading-snug">
+                    <p className="mt-0.5 text-[11px] text-ink-700 leading-snug">
                       {action.sub}
                     </p>
                     <div className="mt-1.5 inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] font-semibold text-emerald-700">
@@ -61,7 +61,7 @@ export function NextActionsPanel() {
                       {action.boost}
                     </div>
                   </div>
-                  <ArrowUpRight className="h-4 w-4 text-ink-400 shrink-0 transition group-hover:text-cloud-sunset group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-4 w-4 text-ink-600 shrink-0 transition group-hover:text-cloud-sunset group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </button>
             </li>

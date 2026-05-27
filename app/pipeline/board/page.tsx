@@ -82,12 +82,12 @@ export default function PipelineBoardPage() {
         {/* ============ KANBAN COLUMNS ============ */}
         <div className="flex-1 min-w-0 overflow-x-auto pb-6">
           <div className="px-7 md:px-12 pt-2 pb-2 flex items-center justify-between gap-3">
-            <p className="text-[12px] text-ink-500">
+            <p className="text-[12px] text-ink-700">
               <span className="font-display text-lg text-ink-900 mr-2">{BOARD_STAGES.length}</span>
               stages · status ≠ Archived · drag &amp; drop ready
             </p>
             <div className="flex items-center gap-3">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-700">
                 Refreshed 4 min ago
               </p>
               <button
@@ -134,7 +134,7 @@ export default function PipelineBoardPage() {
                       <h2 className="text-[11px] font-display font-medium uppercase tracking-tight text-ink-700 leading-tight">
                         {stageDef.stage}
                       </h2>
-                      <span className="stat-label text-ink-400">
+                      <span className="stat-label text-ink-600">
                         {displayCount}
                       </span>
                     </div>
@@ -150,7 +150,7 @@ export default function PipelineBoardPage() {
                         <PipelineCardCampaign key={card.campaign_id} card={card} />
                       ))
                     ) : (
-                      <div className="rounded-2xl border border-dashed border-cloud-200 p-4 text-center text-[11.5px] text-ink-400">
+                      <div className="rounded-2xl border border-dashed border-cloud-200 p-4 text-center text-[11.5px] text-ink-600">
                         No campaigns in this stage yet
                       </div>
                     )}
@@ -165,13 +165,13 @@ export default function PipelineBoardPage() {
         <aside className="lg:w-[340px] shrink-0 border-l border-cloud-100 bg-white/85 backdrop-blur-xl px-6 py-8 space-y-8 overflow-y-auto max-h-[calc(100vh-160px)]">
           {/* total */}
           <div>
-            <p className="stat-label text-ink-500">
+            <p className="stat-label text-ink-700">
               Pipeline overview
             </p>
             <p className="mt-1 font-display text-3xl text-ink-900 leading-tight">
               {formatMoney(BOARD_TOTAL_VALUE)}
             </p>
-            <p className="text-[12px] text-ink-500">total potential value</p>
+            <p className="text-[12px] text-ink-700">total potential value</p>
           </div>
 
           {/* donut */}
@@ -198,7 +198,7 @@ export default function PipelineBoardPage() {
 
           {/* deadlines */}
           <div>
-            <p className="stat-label text-ink-500">
+            <p className="stat-label text-ink-700">
               Upcoming deadlines
             </p>
             <ul className="mt-3 space-y-2.5">
@@ -206,7 +206,7 @@ export default function PipelineBoardPage() {
                 <li key={`${d.brand}-${d.label}`} className="flex items-center gap-3 rounded-2xl bg-white p-3 ring-1 ring-cloud-100">
                   <div className="flex-1 min-w-0">
                     <p className="text-[13px] font-semibold text-ink-900 truncate">{d.brand}</p>
-                    <p className="text-[11.5px] text-ink-500 truncate">{d.label}</p>
+                    <p className="text-[11.5px] text-ink-700 truncate">{d.label}</p>
                   </div>
                   <StatusChip tone={d.tone}>{d.due}</StatusChip>
                 </li>
@@ -216,7 +216,7 @@ export default function PipelineBoardPage() {
 
           {/* top brands */}
           <div>
-            <p className="stat-label text-ink-500">
+            <p className="stat-label text-ink-700">
               Top brands by value
             </p>
             <ul className="mt-3 space-y-2.5">
@@ -227,7 +227,7 @@ export default function PipelineBoardPage() {
                   <li key={b.brand}>
                     <div className="flex items-center justify-between text-[12.5px]">
                       <span className="font-semibold text-ink-900">
-                        <span className="text-ink-400 mr-2">{i + 1}.</span>
+                        <span className="text-ink-600 mr-2">{i + 1}.</span>
                         {b.brand}
                       </span>
                       <span className="font-display text-cloud-700">{formatMoney(b.value)}</span>

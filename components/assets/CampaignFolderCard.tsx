@@ -33,7 +33,7 @@ export function CampaignFolderCard({ folder }: { folder: Campaign }) {
           <h3 className="font-display text-[15px] leading-tight text-ink-900 truncate">
             {folder.brand}
           </h3>
-          <p className="mt-0.5 text-[11px] text-ink-500 truncate">
+          <p className="mt-0.5 text-[11px] text-ink-700 truncate">
             Due {new Date(folder.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
           </p>
         </div>
@@ -68,7 +68,7 @@ export function NewCampaignFolderCard() {
   return (
     <button
       type="button"
-      className="group flex h-full min-h-[180px] flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-cloud-200 bg-white/40 text-ink-500 hover:border-cloud-400 hover:bg-cloud-50/60 hover:text-cloud-700 transition"
+      className="group flex h-full min-h-[180px] flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-cloud-200 bg-white/40 text-ink-700 hover:border-cloud-400 hover:bg-cloud-50/60 hover:text-cloud-700 transition"
     >
       <span className="grid h-10 w-10 place-items-center rounded-2xl bg-white shadow-card group-hover:scale-105 transition-transform duration-200 ease-out">
         <Plus className="h-5 w-5" />

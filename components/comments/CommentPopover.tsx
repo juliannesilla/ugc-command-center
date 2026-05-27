@@ -149,10 +149,10 @@ export function CommentPopover({ clientX, clientY, target, onClose }: CommentPop
         onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center justify-between">
-          <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-medium">
+          <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-700 font-medium">
             Leave feedback · {pathname}
           </span>
-          <span className="text-[10px] text-ink-400 tabular-nums">
+          <span className="text-[10px] text-ink-600 tabular-nums">
             {x_pct.toFixed(0)}%, {y_pct.toFixed(0)}%
           </span>
         </div>
@@ -163,7 +163,7 @@ export function CommentPopover({ clientX, clientY, target, onClose }: CommentPop
           onChange={e => setText(e.target.value)}
           placeholder="What's wrong, what's missing, what's bugging you?"
           rows={4}
-          className="w-full resize-none rounded-xl border border-cloud-200 bg-cloud-50/40 px-3 py-2 text-[13px] text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-cloud-300"
+          className="w-full resize-none rounded-xl border border-cloud-200 bg-cloud-50/40 px-3 py-2 text-[13px] text-ink-900 placeholder:text-ink-600 focus:outline-none focus:ring-2 focus:ring-cloud-300"
         />
 
         <fieldset className="flex items-center gap-1">

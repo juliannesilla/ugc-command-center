@@ -37,7 +37,7 @@ export function StatCard({
       )}
     >
       <span className={cn('absolute inset-x-0 top-0 h-1 rounded-t-3xl', a.bar)} />
-      <div className="stat-label text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold">
+      <div className="stat-label text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold">
         {label}
       </div>
       <div className="stat-number mt-1.5 font-display text-2xl text-ink-900 leading-tight">

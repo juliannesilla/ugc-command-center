@@ -38,11 +38,11 @@ export function StatCardWithDelta({
         className,
       )}
     >
-      <span className="stat-label text-[10.5px] font-semibold uppercase tracking-[0.12em] text-ink-500">
+      <span className="stat-label text-[10.5px] font-semibold uppercase tracking-[0.12em] text-ink-700">
         {label}
       </span>
       <div className="flex items-baseline gap-3">
-        <span className="stat-number font-display text-3xl font-semibold text-ink-900 leading-none">
+        <span className="stat-number font-display text-3xl font-bold text-ink-900 leading-none">
           {value}
         </span>
         {delta && (
@@ -58,7 +58,7 @@ export function StatCardWithDelta({
         )}
       </div>
       {sublabel && (
-        <span className="text-[11px] text-ink-500">{sublabel}</span>
+        <span className="text-[11px] text-ink-700">{sublabel}</span>
       )}
     </div>
   );

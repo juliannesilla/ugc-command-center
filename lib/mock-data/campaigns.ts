@@ -15,14 +15,11 @@ export interface FocusItem {
   priority: 'P0' | 'P1' | 'P2';
 }
 
-export const FOCUS_THIS_WEEK: FocusItem[] = [
-  { id: 'f1', title: 'Submit Glossier IG cut v3',     due: 'Today', brand: 'Glossier',        type: 'Submit',  priority: 'P0' },
-  { id: 'f2', title: 'Film Ouai hair-care 3-pack',    due: 'Today', brand: 'Ouai',            type: 'Film',    priority: 'P0' },
-  { id: 'f3', title: 'Reply to Caraway brief Q\'s',   due: 'Tue',   brand: 'Caraway',         type: 'Respond', priority: 'P1' },
-  { id: 'f4', title: 'QA Olipop final delivery',      due: 'Tue',   brand: 'Olipop',          type: 'QA',      priority: 'P1' },
-  { id: 'f5', title: 'Edit Rare Beauty hook variants',due: 'Wed',   brand: 'Rare Beauty',     type: 'Edit',    priority: 'P1' },
-  { id: 'f6', title: 'Script Liquid Death 30s spot',  due: 'Thu',   brand: 'Liquid Death',    type: 'Script',  priority: 'P2' },
-];
+// Phase A.14u F5-STRIP-MOCKS (2026-05-27, Julz directive): emptied — was 6
+// fake focus items (Glossier, Ouai, Caraway, Olipop, Rare Beauty, Liquid
+// Death). The real focus this week is ParakeetAI script + film; the
+// FocusThisWeek component will populate from MOCK_CAMPAIGNS instead.
+export const FOCUS_THIS_WEEK: FocusItem[] = [];
 
 export interface ActivityRow {
   id: string;
@@ -32,15 +29,12 @@ export interface ActivityRow {
   stage: string;
 }
 
-export const RECENT_ACTIVITY: ActivityRow[] = [
-  { id: 'a1', when: '2h ago',  brand: 'Glossier',     event: 'Submitted v3 cut for approval',     stage: 'SUBMITTED' },
-  { id: 'a2', when: '6h ago',  brand: 'Olipop',       event: 'QA pass — sent to brand',           stage: 'QA → SUBMITTED' },
-  { id: 'a3', when: 'Yesterday', brand: 'Caraway',    event: 'SOW received from brand',           stage: 'SOW RECEIVED' },
-  { id: 'a4', when: 'Yesterday', brand: 'Rare Beauty',event: 'Script approved by brand',          stage: 'SCRIPT READY' },
-  { id: 'a5', when: '2d ago',  brand: 'Drunk Elephant', event: 'New lead from SideShift',          stage: 'NEW LEAD' },
-  { id: 'a6', when: '2d ago',  brand: 'Our Place',    event: 'Posted to TikTok — 412k views in 18h', stage: 'POSTED' },
-  { id: 'a7', when: '3d ago',  brand: 'Whoop',        event: 'Payment received $5,200',           stage: 'PAID' },
-];
+// Phase A.14u F5-STRIP-MOCKS (2026-05-27, Julz directive): emptied — was 7
+// fake activity rows (Glossier, Olipop, Caraway, Rare Beauty, Drunk Elephant,
+// Our Place, Whoop) that misrepresented real pipeline state. Empty array =
+// honest "no recent activity" empty state. Will populate when real campaign
+// events ship (parakeetai submission, payment, etc.).
+export const RECENT_ACTIVITY: ActivityRow[] = [];
 
 export interface ToolConnection {
   name: string;

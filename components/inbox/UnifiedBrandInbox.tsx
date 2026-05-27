@@ -257,7 +257,7 @@ export function UnifiedBrandInbox({ entries, sourceStatuses }: Props) {
             );
           })}
         </div>
-        <span className="ml-auto inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.14em] text-ink-500">
+        <span className="ml-auto inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.14em] text-ink-700">
           <Filter className="h-3 w-3" />
           {visible.length} {visible.length === 1 ? "message" : "messages"}
         </span>
@@ -311,7 +311,7 @@ export function UnifiedBrandInbox({ entries, sourceStatuses }: Props) {
       {/* Honesty banner — surfaces any source that has 0 rows */}
       {emptySources.length > 0 && (
         <div className="mb-4 rounded-2xl bg-white/85 backdrop-blur p-4 ring-1 ring-cloud-100 shadow-card">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-700">
             No data yet for
           </p>
           <ul className="mt-2 space-y-1">
@@ -329,7 +329,7 @@ export function UnifiedBrandInbox({ entries, sourceStatuses }: Props) {
                     <Icon className="h-3 w-3" />
                   </span>
                   <span className="font-semibold">{meta.label}</span>
-                  <span className="text-ink-500">
+                  <span className="text-ink-700">
                     — run{" "}
                     <code className="rounded bg-ink-50 px-1.5 py-0.5 text-[11.5px] text-ink-800">
                       {meta.pollCmd}
@@ -355,7 +355,7 @@ export function UnifiedBrandInbox({ entries, sourceStatuses }: Props) {
           <h3 className="mt-4 font-display text-[22px] text-ink-900">
             No conversations yet
           </h3>
-          <p className="mt-1.5 text-[13px] text-ink-500">
+          <p className="mt-1.5 text-[13px] text-ink-700">
             Once the polling scripts run locally and you commit + deploy the
             updated JSONLs, brand messages from all 3 sources will collect
             here in one stream.
@@ -414,7 +414,7 @@ export function UnifiedBrandInbox({ entries, sourceStatuses }: Props) {
                         )}
                       </p>
                     </div>
-                    <span className="flex-shrink-0 text-[11px] tabular-nums text-ink-500">
+                    <span className="flex-shrink-0 text-[11px] tabular-nums text-ink-700">
                       {fmtTs(e.ts)}
                     </span>
                   </div>

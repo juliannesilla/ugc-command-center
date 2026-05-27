@@ -137,7 +137,7 @@ export function CreativeStrategyCard({
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-iris-500">
             Creative Strategy
           </p>
-          <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900 mt-1">
+          <h3 className="font-display text-[22px] font-bold tracking-tight text-ink-900 mt-1">
             {campaign.brand}
           </h3>
           <p className="text-sm text-ink-600 mt-0.5">{campaign.product}</p>
@@ -155,7 +155,7 @@ export function CreativeStrategyCard({
                 <CheckCircle2 className="h-3 w-3" /> Concept approved
               </span>
             ) : (
-              <span className="text-[10px] font-semibold text-ink-400">Concept pending</span>
+              <span className="text-[10px] font-semibold text-ink-600">Concept pending</span>
             )}
           </div>
         </div>
@@ -168,7 +168,7 @@ export function CreativeStrategyCard({
             <Target className="h-3 w-3" /> Personal angle
           </dt>
           <dd className="text-xs text-ink-800 mt-1 leading-relaxed">
-            {coreAngle || <span className="text-ink-400">Not defined yet</span>}
+            {coreAngle || <span className="text-ink-600">Not defined yet</span>}
           </dd>
         </div>
         <div className="rounded-2xl bg-peach-100/60 ring-1 ring-peach-100 p-3 transition-colors duration-200 ease-out hover:bg-peach-100/80 hover:ring-peach-300 motion-reduce:transition-none">
@@ -176,14 +176,14 @@ export function CreativeStrategyCard({
             <Lightbulb className="h-3 w-3" /> Next action
           </dt>
           <dd className="text-xs text-ink-800 mt-1 leading-relaxed">
-            {campaign.next_action || <span className="text-ink-400">No action queued</span>}
+            {campaign.next_action || <span className="text-ink-600">No action queued</span>}
           </dd>
         </div>
       </dl>
 
       {hooks.length > 0 && (
         <section>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-500 mb-1.5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-700 mb-1.5">
             Hook options ({hooks.length})
           </p>
           <ul className="flex flex-col gap-1.5">
@@ -202,7 +202,7 @@ export function CreativeStrategyCard({
 
       {(ctas.primary || ctas.secondary || ctas.tertiary) && (
         <section>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-500 mb-1.5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-700 mb-1.5">
             CTAs
           </p>
           <ul className="flex flex-col gap-1 text-xs text-ink-800">

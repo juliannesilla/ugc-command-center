@@ -45,19 +45,19 @@ export function HookOptionsList({ hooks, toneHint, className }: HookOptionsListP
             Hook options
           </h4>
         </div>
-        <span className="text-[10px] font-medium text-ink-400 tabular-nums shrink-0">
+        <span className="text-[10px] font-medium text-ink-600 tabular-nums shrink-0">
           {visible.length}/5
         </span>
       </header>
 
       {toneHint && (
-        <p className="text-[11px] italic text-ink-500 mb-2 leading-snug">
+        <p className="text-[11px] italic text-ink-700 mb-2 leading-snug">
           Tone: {toneHint}
         </p>
       )}
 
       {visible.length === 0 ? (
-        <p className="text-[12px] text-ink-500 italic">
+        <p className="text-[12px] text-ink-700 italic">
           No hook options drafted yet.
         </p>
       ) : (

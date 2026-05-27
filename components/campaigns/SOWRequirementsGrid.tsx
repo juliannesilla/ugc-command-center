@@ -30,14 +30,14 @@ export function SOWRequirementsGrid({ requirements }: { requirements: Requiremen
                 <Check className="h-3 w-3" strokeWidth={3} />
               </span>
             ) : (
-              <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink-300/40 text-ink-500">
+              <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink-300/40 text-ink-700">
                 <Circle className="h-2.5 w-2.5" strokeWidth={2.5} />
               </span>
             )}
           </header>
           <dl className="space-y-1.5 text-[12.5px]">
             <div>
-              <dt className="text-[10.5px] font-semibold uppercase tracking-[0.1em] text-ink-500">
+              <dt className="text-[10.5px] font-semibold uppercase tracking-[0.1em] text-ink-700">
                 Detail
               </dt>
               <dd className="leading-snug text-ink-800">{req.detail}</dd>
@@ -50,7 +50,7 @@ export function SOWRequirementsGrid({ requirements }: { requirements: Requiremen
             </div>
           </dl>
           <footer className="mt-3 border-t border-cloud-100 pt-2">
-            <span className="text-[10px] font-medium text-ink-400">{req.source}</span>
+            <span className="text-[10px] font-medium text-ink-600">{req.source}</span>
           </footer>
         </article>
       ))}

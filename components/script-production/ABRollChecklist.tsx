@@ -57,7 +57,7 @@ const STATUS_TONE: Record<
   }
 > = {
   "not-started": {
-    pill: "bg-cloud-100 text-ink-500 ring-cloud-200",
+    pill: "bg-cloud-100 text-ink-700 ring-cloud-200",
     label: "Not started",
     indicator: Circle,
     indicatorClass: "text-cloud-300",
@@ -95,7 +95,7 @@ function ChecklistRow({ item }: { item: ChecklistItem }) {
           {item.label}
         </div>
         {item.hint && (
-          <div className="text-[11px] text-ink-500 mt-0.5 leading-snug">
+          <div className="text-[11px] text-ink-700 mt-0.5 leading-snug">
             {item.hint}
           </div>
         )}
@@ -131,12 +131,12 @@ function ChecklistColumn({
             {title}
           </h4>
         </div>
-        <span className="text-[11px] font-medium text-ink-500 shrink-0 tabular-nums">
+        <span className="text-[11px] font-medium text-ink-700 shrink-0 tabular-nums">
           {total > 0 ? `${approved}/${total}` : "—"}
         </span>
       </header>
       {items.length === 0 ? (
-        <p className="px-3 py-3 text-[12px] text-ink-500 italic">{emptyHint}</p>
+        <p className="px-3 py-3 text-[12px] text-ink-700 italic">{emptyHint}</p>
       ) : (
         <ul className="space-y-0.5">
           {items.map((item) => (
@@ -162,22 +162,22 @@ export function ABRollChecklist({ aRoll, bRoll, className }: ABRollChecklistProp
       }`}
     >
       <header className="flex items-baseline justify-between gap-3 mb-3">
-        <h3 className="font-display text-[15px] font-semibold text-ink-900">
+        <h3 className="font-display text-[15px] font-bold text-ink-900">
           A-Roll + B-Roll checklist
         </h3>
         <div className="flex items-baseline gap-2 shrink-0">
           <span
-            className={`font-display text-base font-semibold tabular-nums ${
+            className={`font-display text-base font-bold tabular-nums ${
               pct >= 80
                 ? "text-emerald-700"
                 : pct >= 50
                 ? "text-amber-700"
-                : "text-ink-500"
+                : "text-ink-700"
             }`}
           >
             {totalItems > 0 ? `${pct}%` : "—"}
           </span>
-          <span className="text-[10px] uppercase tracking-wide text-ink-400">
+          <span className="text-[10px] uppercase tracking-wide text-ink-600">
             approved
           </span>
         </div>

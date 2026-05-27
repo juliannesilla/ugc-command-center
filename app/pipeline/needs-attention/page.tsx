@@ -75,7 +75,7 @@ export default function NeedsAttentionPage() {
 
       <main className="flex-1 px-7 md:px-12 py-6 space-y-8">
         {/* Breadcrumb back */}
-        <div className="flex items-center gap-3 text-[12px] text-ink-500">
+        <div className="flex items-center gap-3 text-[12px] text-ink-700">
           <Link
             href="/pipeline/board"
             className="inline-flex items-center gap-1 hover:text-cloud-700 transition"
@@ -131,7 +131,7 @@ export default function NeedsAttentionPage() {
             filter chips so the severity hierarchy is the first scannable cue
             after StatStrip. */}
         <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] font-medium">
-          <span className="text-ink-500">JUMP TO:</span>
+          <span className="text-ink-700">JUMP TO:</span>
           <a
             href="#p0-issues"
             className="rounded-full bg-rose-100 px-3 py-1 text-rose-700 hover:bg-rose-200 transition-colors duration-150"
@@ -155,7 +155,7 @@ export default function NeedsAttentionPage() {
         {/* Filter chips + sort note */}
         <section className="flex flex-wrap items-center justify-between gap-3">
           <FilterChips active={filter} onChange={setFilter} counts={counts} />
-          <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500">
+          <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700">
             Sort: severity → due date → waiting on me → value
           </p>
         </section>

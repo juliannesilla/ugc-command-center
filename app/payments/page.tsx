@@ -144,7 +144,7 @@ const PLATFORM_TONE: Record<PaymentPlatform, string> = {
   Stripe:          'bg-cloud-50 text-cloud-700 ring-cloud-200',
   SideShift:       'bg-emerald-50 text-emerald-700 ring-emerald-200',
   'Bank Transfer': 'bg-amber-50 text-amber-800 ring-amber-200',
-  Unknown:         'bg-cloud-50 text-ink-400 ring-cloud-100',
+  Unknown:         'bg-cloud-50 text-ink-600 ring-cloud-100',
 };
 
 export default function PaymentsPage() {
@@ -256,7 +256,7 @@ export default function PaymentsPage() {
             <section className="rounded-3xl bg-white p-4 ring-1 ring-cloud-100 shadow-card">
               <div className="flex items-center justify-between mb-3">
                 {/* T5 ADDITIVE: section-title (A.14m Stream 3). */}
-                <h2 className="section-title text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500">Filters</h2>
+                <h2 className="section-title text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-700">Filters</h2>
                 {(activeFilters.size > 0 || platform !== 'all' || brand !== 'all') && (
                   <button
                     type="button"
@@ -265,7 +265,7 @@ export default function PaymentsPage() {
                       setPlatform('all');
                       setBrand('all');
                     }}
-                    className="inline-flex items-center gap-1 text-[11px] text-ink-500 hover:text-ink-700 transition"
+                    className="inline-flex items-center gap-1 text-[11px] text-ink-700 hover:text-ink-700 transition"
                   >
                     <XIcon className="h-3 w-3" />
                     Clear all
@@ -306,7 +306,7 @@ export default function PaymentsPage() {
                       <option key={p} value={p}>{p}</option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-2 h-3 w-3 text-ink-400" />
+                  <ChevronDown className="pointer-events-none absolute right-2 h-3 w-3 text-ink-600" />
                 </div>
 
                 {/* By brand */}
@@ -321,7 +321,7 @@ export default function PaymentsPage() {
                       <option key={b} value={b}>{b}</option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-2 h-3 w-3 text-ink-400" />
+                  <ChevronDown className="pointer-events-none absolute right-2 h-3 w-3 text-ink-600" />
                 </div>
               </div>
             </section>
@@ -329,18 +329,18 @@ export default function PaymentsPage() {
             {/* ============ SEARCH + SORT BAR ============ */}
             <div className="flex flex-wrap items-center gap-3 rounded-3xl bg-white p-3 ring-1 ring-cloud-100 shadow-card">
               <div className="relative flex-1 min-w-[220px]">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-600" />
                 <input
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search brand, campaign, deliverable, notes…"
-                  className="w-full rounded-2xl bg-cloud-soft pl-9 pr-3 py-2 text-[13px] text-ink-900 placeholder:text-ink-400 ring-1 ring-cloud-100 focus:ring-cloud-300 focus:outline-none transition"
+                  className="w-full rounded-2xl bg-cloud-soft pl-9 pr-3 py-2 text-[13px] text-ink-900 placeholder:text-ink-600 ring-1 ring-cloud-100 focus:ring-cloud-300 focus:outline-none transition"
                 />
               </div>
 
               <div className="flex items-center gap-2">
-                <ArrowUpDown className="h-4 w-4 text-ink-400" />
+                <ArrowUpDown className="h-4 w-4 text-ink-600" />
                 <select
                   value={sortKey}
                   onChange={(e) => setSortKey(e.target.value as SortKey)}
@@ -352,7 +352,7 @@ export default function PaymentsPage() {
                 </select>
               </div>
 
-              <p className="ml-auto text-[12px] text-ink-500">
+              <p className="ml-auto text-[12px] text-ink-700">
                 <span className="font-display text-base text-ink-900 mr-1">{filtered.length}</span>
                 of {MOCK_PAYMENTS.length} payments
               </p>
@@ -363,7 +363,7 @@ export default function PaymentsPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-[12.5px] border-separate border-spacing-0">
                   <thead className="bg-cloud-soft text-left">
-                    <tr className="text-[10px] uppercase tracking-[0.16em] text-ink-500">
+                    <tr className="text-[10px] uppercase tracking-[0.16em] text-ink-700">
                       <th className="sticky left-0 z-10 bg-cloud-soft px-4 py-3 font-semibold whitespace-nowrap border-b border-cloud-100" style={{ minWidth: 180 }}>Brand</th>
                       <th className="px-4 py-3 font-semibold whitespace-nowrap border-b border-cloud-100" style={{ minWidth: 220 }}>Campaign</th>
                       <th className="px-4 py-3 font-semibold whitespace-nowrap border-b border-cloud-100" style={{ minWidth: 180 }}>Deliverable</th>
@@ -476,7 +476,7 @@ export default function PaymentsPage() {
                                 </span>
                               ) : (
                                 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-cloud-soft ring-1 ring-cloud-200" title="No invoice sent">
-                                  <XIcon className="h-3 w-3 text-ink-400" />
+                                  <XIcon className="h-3 w-3 text-ink-600" />
                                 </span>
                               )}
                             </td>
@@ -503,7 +503,7 @@ export default function PaymentsPage() {
                             <tr key={`${r.id}-notes`}>
                               <td colSpan={16} className="sticky left-0 bg-cloud-soft/60 border-b border-cloud-100 px-6 py-3">
                                 <p className="text-[12px] text-ink-700 italic leading-relaxed">
-                                  <span className="text-[10px] uppercase tracking-[0.16em] not-italic text-ink-500 font-semibold mr-2">Notes ·</span>
+                                  <span className="text-[10px] uppercase tracking-[0.16em] not-italic text-ink-700 font-semibold mr-2">Notes ·</span>
                                   {r.notes}
                                 </p>
                               </td>
@@ -516,7 +516,7 @@ export default function PaymentsPage() {
                       <tr>
                         <td colSpan={16} className="px-4 py-16 text-center">
                           <p className="text-ink-700 font-display text-base mb-1">No payments match your filters.</p>
-                          <p className="text-ink-400 text-[12px]">Try removing a filter chip or clearing search.</p>
+                          <p className="text-ink-600 text-[12px]">Try removing a filter chip or clearing search.</p>
                         </td>
                       </tr>
                     )}
@@ -548,7 +548,7 @@ function EmptyState() {
         <Wallet className="h-5 w-5" />
       </span>
       {/* T5 ADDITIVE: section-title. */}
-      <h2 className="section-title mt-4 font-display text-[22px] font-medium tracking-tight text-ink-900">No payments tracked yet.</h2>
+      <h2 className="section-title mt-4 font-display text-[22px] font-bold tracking-tight text-ink-900">No payments tracked yet.</h2>
       <p className="mt-2 text-[14px] text-ink-600 max-w-xl">
         Payments appear when campaigns reach Submitted stage.
       </p>
@@ -588,7 +588,7 @@ function FollowUpButton({
           'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.08em] ring-1 transition-all duration-200 ease-out will-change-transform hover:scale-105 active:scale-95 motion-reduce:transform-none motion-reduce:transition-none',
           needs
             ? 'bg-cloud-sunset text-white ring-cloud-sunset hover:shadow-glow'
-            : 'bg-cloud-soft text-ink-500 ring-cloud-100 hover:bg-cloud-50',
+            : 'bg-cloud-soft text-ink-700 ring-cloud-100 hover:bg-cloud-50',
         )}
       >
         <Send className="h-3 w-3" />
@@ -603,7 +603,7 @@ function FollowUpButton({
             onClick={() => setOpen(false)}
           />
           <div className="absolute right-0 top-full mt-1.5 z-20 w-56 rounded-2xl bg-white p-1.5 shadow-card ring-1 ring-cloud-200">
-            <p className="px-2 py-1 text-[10px] uppercase tracking-[0.16em] font-semibold text-ink-500">Generate follow-up</p>
+            <p className="px-2 py-1 text-[10px] uppercase tracking-[0.16em] font-semibold text-ink-700">Generate follow-up</p>
             {FOLLOW_UP_TYPES.map((t) => (
               <button
                 key={t.key}
@@ -647,13 +647,13 @@ function FollowUpModal({
             <Send className="h-4 w-4" />
           </span>
           <div className="min-w-0 flex-1">
-            <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold">Coming soon</p>
+            <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold">Coming soon</p>
             <h3 className="mt-1 font-display text-xl text-ink-900 leading-tight">Payment Follow-up Generator</h3>
             <p className="mt-2 text-[13px] text-ink-700">
               Will draft a <span className="font-semibold">{type}</span> message for{' '}
               <span className="font-semibold">{row.brand}</span> — campaign <span className="italic">{row.campaign_name}</span>.
             </p>
-            <p className="mt-2 text-[12px] text-ink-500">
+            <p className="mt-2 text-[12px] text-ink-700">
               Wires up in Wave 5 (E13) via the Response Draft Generator.
             </p>
           </div>

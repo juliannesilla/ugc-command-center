@@ -55,7 +55,7 @@ export function DeadlineTimelineView({ events }: Props) {
       <div className="rounded-3xl border border-cloud-100 bg-white/85 backdrop-blur shadow-card p-10 text-center">
         <Sparkles className="mx-auto h-7 w-7 text-iris-400 mb-3" />
         <p className="font-display text-xl text-ink-900 mb-1">All clear.</p>
-        <p className="text-[13px] text-ink-500">No upcoming deadlines in the next 30 days.</p>
+        <p className="text-[13px] text-ink-700">No upcoming deadlines in the next 30 days.</p>
       </div>
     );
   }
@@ -64,12 +64,12 @@ export function DeadlineTimelineView({ events }: Props) {
     <div className="rounded-3xl border border-cloud-100 bg-white/85 backdrop-blur shadow-card overflow-hidden">
       <div className="flex items-center justify-between border-b border-cloud-100 px-5 py-3.5">
         <div>
-          <p className="text-[10px] uppercase tracking-[0.22em] text-ink-400">Timeline</p>
+          <p className="text-[10px] uppercase tracking-[0.22em] text-ink-600">Timeline</p>
           <h3 className="font-display text-xl text-ink-900 leading-tight">
             {events.length} {events.length === 1 ? "deadline" : "deadlines"} ahead
           </h3>
         </div>
-        <p className="text-[11px] text-ink-500">
+        <p className="text-[11px] text-ink-700">
           Sorted: overdue → today → soon → future
         </p>
       </div>
@@ -92,7 +92,7 @@ export function DeadlineTimelineView({ events }: Props) {
                 )}
               />
               <h4 className="font-display text-[15px] text-ink-900">{label}</h4>
-              <span className="text-[10.5px] font-semibold text-ink-400 tabular-nums">
+              <span className="text-[10.5px] font-semibold text-ink-600 tabular-nums">
                 ({group.length})
               </span>
             </div>
@@ -123,12 +123,12 @@ export function DeadlineTimelineView({ events }: Props) {
                         <p className="text-[12.5px] font-semibold text-ink-900 truncate">
                           {e.title}
                         </p>
-                        <span className="text-[10.5px] text-ink-400 tabular-nums shrink-0">
+                        <span className="text-[10.5px] text-ink-600 tabular-nums shrink-0">
                           {formatShortDate(e.dateISO)}
                         </span>
                       </div>
                       {e.meta && (
-                        <p className="text-[11px] text-ink-500 truncate">{e.meta}</p>
+                        <p className="text-[11px] text-ink-700 truncate">{e.meta}</p>
                       )}
                     </div>
 

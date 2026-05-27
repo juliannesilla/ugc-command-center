@@ -62,7 +62,7 @@ function Column({
       </div>
       <button
         type="button"
-        className="mt-1 inline-flex items-center justify-center gap-1 rounded-lg border border-dashed border-cloud-200 text-ink-500 px-2 py-1.5 text-xs hover:bg-cloud-50 transition-colors"
+        className="mt-1 inline-flex items-center justify-center gap-1 rounded-lg border border-dashed border-cloud-200 text-ink-700 px-2 py-1.5 text-xs hover:bg-cloud-50 transition-colors"
       >
         <Plus className="h-3 w-3" />
         Add Idea
@@ -97,10 +97,10 @@ export function IdeaBankBoard() {
     <div className="glass-card rounded-3xl p-6 lg:p-7 shadow-card">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="section-title font-display text-[22px] font-medium tracking-tight text-ink-900">
+          <h3 className="section-title font-display text-[22px] font-bold tracking-tight text-ink-900">
             Idea Bank Board
           </h3>
-          <p className="text-xs text-ink-500">
+          <p className="text-xs text-ink-700">
             Drag cards across columns to organize. New ideas land in their best-fit column.
           </p>
         </div>

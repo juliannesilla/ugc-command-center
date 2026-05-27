@@ -108,7 +108,7 @@ export default function ChatBox({ history, exampleQuestions }: ChatBoxProps) {
               className={cn(
                 'w-full resize-none rounded-lg border border-ink-200 bg-white',
                 'px-4 py-3 text-[15px] leading-relaxed text-ink-900',
-                'placeholder:text-ink-400 placeholder:italic',
+                'placeholder:text-ink-600 placeholder:italic',
                 'focus:outline-none focus:ring-2 focus:ring-iris-400/40 focus:border-iris-400',
               )}
             />
@@ -133,7 +133,7 @@ export default function ChatBox({ history, exampleQuestions }: ChatBoxProps) {
                   'transition-all duration-150',
                   command
                     ? 'bg-ink-900 text-white hover:bg-ink-800 active:scale-[0.98]'
-                    : 'bg-ink-100 text-ink-400 cursor-not-allowed',
+                    : 'bg-ink-100 text-ink-600 cursor-not-allowed',
                 )}
               >
                 {copied ? (
@@ -192,7 +192,7 @@ export default function ChatBox({ history, exampleQuestions }: ChatBoxProps) {
                       <p className="font-display font-medium text-ink-900 text-[15px] leading-snug">
                         {entry.query}
                       </p>
-                      <span className="text-[11px] tracking-wide text-ink-500 shrink-0">
+                      <span className="text-[11px] tracking-wide text-ink-700 shrink-0">
                         {fmtRelative(entry.ts)}
                       </span>
                     </div>
@@ -203,7 +203,7 @@ export default function ChatBox({ history, exampleQuestions }: ChatBoxProps) {
                       <pre className="mt-3 whitespace-pre-wrap font-body text-[14px] leading-relaxed text-ink-800 bg-ink-50/40 rounded-md p-4">
                         {entry.answer}
                       </pre>
-                      <p className="mt-2 text-[11px] text-ink-500 italic">
+                      <p className="mt-2 text-[11px] text-ink-700 italic">
                         cost ${entry.cost_estimate_usd?.toFixed(4) ?? '0.0000'} · {entry.model}
                       </p>
                     </details>

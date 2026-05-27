@@ -120,7 +120,7 @@ export function FieldCard({ field }: { field: ProfileField }) {
           <p className="mt-1.5 text-[12.5px] text-ink-700 leading-snug">
             {field.detail}
           </p>
-          <p className="mt-1 text-[11px] uppercase tracking-[0.12em] text-ink-400 font-semibold">
+          <p className="mt-1 text-[11px] uppercase tracking-[0.12em] text-ink-600 font-semibold">
             {field.why}
           </p>
         </div>

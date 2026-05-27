@@ -130,14 +130,14 @@ export function ResponseDraftGenerator({
                 >
                   {campaign.brand} · {campaign.campaign_name}
                 </h2>
-                <p className="mt-1 text-[13px] text-ink-500">
+                <p className="mt-1 text-[13px] text-ink-700">
                   Token-filled draft with sign-off auto-appended. Edit before sending.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="rounded-full p-2 text-ink-500 hover:bg-cloud-50 transition"
+                className="rounded-full p-2 text-ink-700 hover:bg-cloud-50 transition"
                 aria-label="Close draft generator"
               >
                 <X className="h-5 w-5" />
@@ -166,7 +166,7 @@ export function ResponseDraftGenerator({
                     </option>
                   ))}
                 </select>
-                <p className="mt-2 text-[12px] text-ink-500 italic">
+                <p className="mt-2 text-[12px] text-ink-700 italic">
                   {TEMPLATE_TYPES.find((t) => t.id === type)?.useWhen}
                 </p>
               </div>
@@ -187,7 +187,7 @@ export function ResponseDraftGenerator({
                   className="w-full rounded-2xl border border-cloud-200 bg-cloud-50/30 px-4 py-3 text-[14px] leading-relaxed text-ink-900 font-mono focus:ring-cloud-sunset focus:border-cloud-sunset transition resize-y"
                   spellCheck
                 />
-                <p className="mt-2 text-[11px] text-ink-500">
+                <p className="mt-2 text-[11px] text-ink-700">
                   Sign-off auto-appended. Edits stay until you switch templates.
                 </p>
               </div>

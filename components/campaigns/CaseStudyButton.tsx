@@ -37,7 +37,7 @@ export function CaseStudyButton({ slug }: { slug: string }) {
         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-iris-100 text-iris-600">
           <FileText className="h-3.5 w-3.5" strokeWidth={2.4} />
         </span>
-        <h2 className="font-display text-base font-semibold text-ink-900">
+        <h2 className="font-display text-base font-bold text-ink-900">
           Case Study
         </h2>
       </header>
@@ -66,7 +66,7 @@ export function CaseStudyButton({ slug }: { slug: string }) {
 
       {open && (
         <div className="mt-4 rounded-xl border border-cloud-200 bg-white/80 p-3">
-          <p className="mb-2 flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-500">
+          <p className="mb-2 flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-700">
             <FileText className="h-3 w-3" /> Run locally
           </p>
           <div className="flex items-center gap-2">
@@ -90,7 +90,7 @@ export function CaseStudyButton({ slug }: { slug: string }) {
               )}
             </button>
           </div>
-          <p className="mt-3 text-[11px] leading-snug text-ink-500">
+          <p className="mt-3 text-[11px] leading-snug text-ink-700">
             Requires <code className="text-ink-700">ANTHROPIC_API_KEY</code> in
             your shell. Daily spend cap: <strong>$5</strong>. Add{" "}
             <code className="text-ink-700">--dry-run</code> to preview without

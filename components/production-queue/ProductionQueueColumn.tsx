@@ -52,7 +52,7 @@ export function ProductionQueueColumn({
           <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-700 leading-tight">
             {PRODUCTION_STATUS_LABEL[status]}
           </h3>
-          <span className="stat-label text-ink-400">
+          <span className="stat-label text-ink-600">
             {deliverables.length}
           </span>
         </div>
@@ -65,7 +65,7 @@ export function ProductionQueueColumn({
             <ProductionQueueCard key={d.key} deliverable={d} />
           ))
         ) : (
-          <div className="rounded-2xl border border-dashed border-cloud-200 p-3 text-center text-[10.5px] text-ink-400">
+          <div className="rounded-2xl border border-dashed border-cloud-200 p-3 text-center text-[10.5px] text-ink-600">
             No deliverables in this stage
           </div>
         )}

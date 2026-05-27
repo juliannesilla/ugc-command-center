@@ -29,7 +29,7 @@ export function CallScheduler({
             Call Requested
           </h3>
         </div>
-        <span className="flex items-center gap-1 text-[10.5px] uppercase tracking-[0.14em] text-ink-500">
+        <span className="flex items-center gap-1 text-[10.5px] uppercase tracking-[0.14em] text-ink-700">
           <Globe2 className="h-3 w-3" />
           {timezone}
         </span>
@@ -89,7 +89,7 @@ export function CallScheduler({
         Suggest Different Time
       </button>
 
-      <p className="mt-3 text-[10.5px] uppercase tracking-[0.14em] text-ink-400">
+      <p className="mt-3 text-[10.5px] uppercase tracking-[0.14em] text-ink-600">
         Syncs with Google Calendar
       </p>
     </section>

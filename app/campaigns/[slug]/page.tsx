@@ -126,7 +126,7 @@ export default async function CampaignOverviewPage({
               </li>
             ))}
             {(script?.assets ?? []).length === 0 && (
-              <li className="flex items-center gap-1.5 text-ink-400">
+              <li className="flex items-center gap-1.5 text-ink-600">
                 <Boxes className="h-3 w-3 shrink-0 opacity-60" aria-hidden />
                 <span>Drop the first asset to kick off production</span>
               </li>
@@ -142,7 +142,7 @@ export default async function CampaignOverviewPage({
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-cloud-100 text-cloud-700">
               <Sparkles className="h-3.5 w-3.5" strokeWidth={2.4} />
             </span>
-            <h2 className="font-display text-base font-semibold text-ink-900">
+            <h2 className="font-display text-base font-bold text-ink-900">
               Campaign Brief
             </h2>
           </header>
@@ -180,7 +180,7 @@ export default async function CampaignOverviewPage({
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
               <DollarSign className="h-3.5 w-3.5" strokeWidth={2.4} />
             </span>
-            <h2 className="font-display text-base font-semibold text-ink-900">
+            <h2 className="font-display text-base font-bold text-ink-900">
               Payment Structure
             </h2>
           </header>
@@ -290,15 +290,15 @@ function OverviewCard({
         >
           {icon}
         </span>
-        <ArrowRight className="h-4 w-4 text-ink-400 transition group-hover:translate-x-1 group-hover:text-cloud-600" />
+        <ArrowRight className="h-4 w-4 text-ink-600 transition group-hover:translate-x-1 group-hover:text-cloud-600" />
       </header>
       <div>
-        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-ink-500">
+        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-ink-700">
           {title}
         </p>
         <p className="font-display text-2xl font-bold text-ink-900">
           {stat}{" "}
-          <span className="text-[12px] font-medium text-ink-500">{sub}</span>
+          <span className="text-[12px] font-medium text-ink-700">{sub}</span>
         </p>
       </div>
       {progress !== undefined && (
@@ -325,7 +325,7 @@ function BriefBlock({
 }) {
   return (
     <div className="rounded-xl border border-cloud-100 bg-white/60 p-3">
-      <p className="flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-500">
+      <p className="flex items-center gap-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-700">
         {icon} {label}
       </p>
       <p className="mt-1 text-[12px] leading-snug text-ink-800">{children}</p>
@@ -355,10 +355,10 @@ function QuickJump({
         </span>
         <div>
           <p className="text-[13px] font-semibold text-ink-900">{label}</p>
-          <p className="text-[11px] text-ink-500">{sub}</p>
+          <p className="text-[11px] text-ink-700">{sub}</p>
         </div>
       </div>
-      <ArrowRight className="h-4 w-4 text-ink-400 transition group-hover:translate-x-1 group-hover:text-cloud-600" />
+      <ArrowRight className="h-4 w-4 text-ink-600 transition group-hover:translate-x-1 group-hover:text-cloud-600" />
     </Link>
   );
 }

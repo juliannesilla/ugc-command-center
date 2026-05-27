@@ -32,13 +32,13 @@ export function ContentHubFilters({ value, onChange }: Props) {
       {/* Search + campaign select */}
       <div className="flex flex-col md:flex-row gap-3">
         <label className="relative flex-1">
-          <Search className="h-4 w-4 text-ink-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="h-4 w-4 text-ink-600 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={local.query}
             onChange={(e) => set({ query: e.target.value })}
             placeholder="Search hooks, scripts, b-roll, phrases…"
-            className="w-full rounded-xl bg-cloud-soft ring-1 ring-cloud-100 pl-9 pr-3 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-iris-300"
+            className="w-full rounded-xl bg-cloud-soft ring-1 ring-cloud-100 pl-9 pr-3 py-2.5 text-sm text-ink-900 placeholder:text-ink-600 focus:outline-none focus:ring-2 focus:ring-iris-300"
           />
         </label>
         <select

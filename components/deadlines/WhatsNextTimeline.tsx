@@ -25,13 +25,13 @@ export function WhatsNextTimeline() {
                   {d.count}
                 </span>
               </div>
-              <span className="text-[9.5px] uppercase tracking-[0.12em] text-ink-500">
+              <span className="text-[9.5px] uppercase tracking-[0.12em] text-ink-700">
                 {d.label}
               </span>
               <span
                 className={cn(
                   'text-[10px] tabular-nums',
-                  d.isToday ? 'font-bold text-cloud-700' : 'text-ink-400',
+                  d.isToday ? 'font-bold text-cloud-700' : 'text-ink-600',
                 )}
               >
                 {d.shortLabel.replace('May ', '')}
@@ -50,11 +50,11 @@ export function WhatsNextTimeline() {
         ].map(s => (
           <div key={s.label} className="text-center">
             <p className="font-display text-[20px] text-ink-900 leading-none tabular-nums">{s.value}</p>
-            <p className="text-[9.5px] uppercase tracking-[0.12em] text-ink-500 mt-1">{s.label}</p>
+            <p className="text-[9.5px] uppercase tracking-[0.12em] text-ink-700 mt-1">{s.label}</p>
           </div>
         ))}
       </div>
-      <p className="mt-2 text-center text-[10.5px] uppercase tracking-[0.16em] text-ink-400">
+      <p className="mt-2 text-center text-[10.5px] uppercase tracking-[0.16em] text-ink-600">
         Next 7 Days
       </p>
     </section>

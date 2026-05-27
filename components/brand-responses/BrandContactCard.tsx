@@ -45,7 +45,7 @@ export function BrandContactCard({ conv }: { conv: BrandConversation }) {
           <p className="mt-0.5 text-[13.5px] text-ink-700 font-medium">
             {conv.contactName}
           </p>
-          <p className="text-[11.5px] uppercase tracking-[0.14em] text-ink-500">
+          <p className="text-[11.5px] uppercase tracking-[0.14em] text-ink-700">
             {conv.contactRole}
           </p>
         </div>
@@ -96,7 +96,7 @@ function ActionIcon({ icon, label }: { icon: React.ReactNode; label: string }) {
       <span className="grid h-8 w-8 place-items-center rounded-xl bg-white shadow-card text-cloud-600 group-hover:text-cloud-700">
         {icon}
       </span>
-      <span className="text-[9.5px] uppercase tracking-[0.14em] text-ink-500">
+      <span className="text-[9.5px] uppercase tracking-[0.14em] text-ink-700">
         {label}
       </span>
     </button>

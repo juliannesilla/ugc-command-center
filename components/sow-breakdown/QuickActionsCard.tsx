@@ -17,7 +17,7 @@ export function QuickActionsCard({ className }: { className?: string }) {
         className,
       )}
     >
-      <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold mb-3">
+      <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold mb-3">
         Quick Actions
       </p>
 
@@ -57,7 +57,7 @@ export function QuickActionsCard({ className }: { className?: string }) {
         </button>
       </div>
 
-      <p className="mt-3 text-[10.5px] text-ink-400 leading-snug">
+      <p className="mt-3 text-[10.5px] text-ink-600 leading-snug">
         Read-only mirror — actions log to your live command center on next sync.
       </p>
     </section>

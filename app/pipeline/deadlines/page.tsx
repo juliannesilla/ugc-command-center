@@ -16,6 +16,16 @@ import { PaymentsDue } from '@/components/deadlines/PaymentsDue';
 import { WhatsNextTimeline } from '@/components/deadlines/WhatsNextTimeline';
 import { DeadlinesViewSwitcher } from '@/components/deadlines/DeadlinesViewSwitcher';
 import { DEADLINE_STATS } from '@/lib/mock-data/deadlines';
+import { monthLong, monthShort, dayNum, thisWeekRange } from '@/lib/date-anchor';
+
+const _today = new Date();
+const _nextMon = new Date(_today);
+_nextMon.setDate(_today.getDate() - ((_today.getDay() + 6) % 7) + 7);
+const _nextSun = new Date(_nextMon);
+_nextSun.setDate(_nextMon.getDate() + 6);
+const _nextWeekRange = `${monthShort(_nextMon)} ${dayNum(_nextMon)} – ${monthShort(_nextSun)} ${dayNum(_nextSun)}`;
+const _todayLabel = `${monthLong(_today)} ${dayNum(_today)}, ${_today.getFullYear()}`;
+const _todayShort = `${monthShort(_today)} ${dayNum(_today)}`;
 
 // A.14n Wave 2b N3-MOBILE+SECONDARY — adopt StatStrip primitive for secondary
 // 3-stat row per mockup #19 (pipeline-deadlines-calendar.png shows the
@@ -47,9 +57,9 @@ export default function DeadlinesPage() {
             Today
           </button>
           <button className="inline-flex items-center gap-1.5 rounded-2xl border border-cloud-200 bg-white/85 px-3 py-2 text-[12.5px] font-semibold text-ink-700 hover:bg-cloud-50">
-            <Calendar className="h-3.5 w-3.5 text-ink-400" />
-            May 19, 2026
-            <ChevronDown className="h-3 w-3 text-ink-400" />
+            <Calendar className="h-3.5 w-3.5 text-ink-600" />
+            {_todayLabel}
+            <ChevronDown className="h-3 w-3 text-ink-600" />
           </button>
           <button className="inline-flex items-center gap-1.5 rounded-2xl border border-cloud-200 bg-white/85 px-3 py-2 text-[12.5px] font-semibold text-ink-700 hover:bg-cloud-50">
             <SlidersHorizontal className="h-3.5 w-3.5" />
@@ -68,7 +78,7 @@ export default function DeadlinesPage() {
           </div>
           <div className="col-span-12 xl:col-span-5 grid grid-cols-2 md:grid-cols-5 xl:grid-cols-2 gap-2">
             <DeadlineStatCard label="Overdue"  value={DEADLINE_STATS.overdue}  tone="red"    sub="Address ASAP" />
-            <DeadlineStatCard label="Due Today" value={DEADLINE_STATS.dueToday} tone="orange" sub="May 19" />
+            <DeadlineStatCard label="Due Today" value={DEADLINE_STATS.dueToday} tone="orange" sub={_todayShort} />
           </div>
         </section>
 
@@ -79,14 +89,14 @@ export default function DeadlinesPage() {
               {
                 number: DEADLINE_STATS.dueThisWeek,
                 label: 'Due This Week',
-                sub: 'May 13 – 19',
+                sub: thisWeekRange(),
                 accent: 'iris',
                 icon: <CalendarClock className="h-4 w-4" />,
               },
               {
                 number: DEADLINE_STATS.dueNextWeek,
                 label: 'Due Next Week',
-                sub: 'May 20 – 26',
+                sub: _nextWeekRange,
                 accent: 'cloud',
                 icon: <CalendarRange className="h-4 w-4" />,
               },

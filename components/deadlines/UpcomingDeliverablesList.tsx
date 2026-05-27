@@ -37,10 +37,10 @@ export function UpcomingDeliverablesList() {
                 <p className="text-[13px] font-semibold text-ink-900 truncate leading-tight">
                   {d.campaign}
                 </p>
-                <p className="text-[11px] text-ink-500">{d.brand}</p>
+                <p className="text-[11px] text-ink-700">{d.brand}</p>
               </div>
               <StatusChip tone={s.tone}>{s.label}</StatusChip>
-              <span className="hidden sm:inline text-[11px] tabular-nums text-ink-500 w-16 text-right">
+              <span className="hidden sm:inline text-[11px] tabular-nums text-ink-700 w-16 text-right">
                 {fmtDate(d.dueDate)}
               </span>
             </li>

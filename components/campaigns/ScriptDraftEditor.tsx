@@ -33,7 +33,7 @@ export function ScriptDraftEditor({ lines }: { lines: ScriptLine[] }) {
           </span>
           <h3 className="font-display text-sm font-semibold text-ink-900">Script Draft</h3>
         </div>
-        <span className="text-[10.5px] font-medium text-ink-500">{lines.length} sections</span>
+        <span className="text-[10.5px] font-medium text-ink-700">{lines.length} sections</span>
       </header>
       <ol className="flex-1 space-y-2.5">
         {lines.map((l, i) => {
@@ -52,13 +52,13 @@ export function ScriptDraftEditor({ lines }: { lines: ScriptLine[] }) {
                   >
                     {section}
                   </span>
-                  <span className="font-mono text-[10.5px] font-semibold text-ink-500">
+                  <span className="font-mono text-[10.5px] font-semibold text-ink-700">
                     {l.ts}
                   </span>
                 </div>
                 <button
                   onClick={() => setEditing(isEditing ? null : i)}
-                  className="text-ink-400 transition hover:text-ink-700"
+                  className="text-ink-600 transition hover:text-ink-700"
                   aria-label={isEditing ? "Save line" : "Edit line"}
                 >
                   <Pencil className="h-3.5 w-3.5" />

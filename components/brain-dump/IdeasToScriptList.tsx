@@ -17,7 +17,7 @@ export function IdeasToScriptList() {
               {item.chip}
             </span>
             <p className="flex-1 text-xs leading-snug text-ink-800">{item.text}</p>
-            <ArrowRight className="h-3.5 w-3.5 text-ink-400 group-hover:text-iris-500 transition-colors mt-0.5" />
+            <ArrowRight className="h-3.5 w-3.5 text-ink-600 group-hover:text-iris-500 transition-colors mt-0.5" />
           </li>
         ))}
       </ul>

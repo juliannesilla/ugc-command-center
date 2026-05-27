@@ -62,7 +62,7 @@ export function NotesCard({ conv }: { conv: BrandConversation }) {
 
       {/* Body */}
       <div className="px-5 pt-4 pb-5">
-        <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-500 flex items-center gap-1">
+        <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-700 flex items-center gap-1">
           <Clock className="h-3 w-3 text-cloud-500" />
           Last updated {latest.updatedAt}
         </p>
@@ -70,7 +70,7 @@ export function NotesCard({ conv }: { conv: BrandConversation }) {
         <blockquote className="mt-2.5 border-l-2 border-cloud-300 pl-3 font-display text-[14.5px] leading-snug text-ink-900 italic">
           &ldquo;{latest.body}&rdquo;
         </blockquote>
-        <p className="mt-1.5 text-[10.5px] uppercase tracking-[0.14em] text-ink-500">
+        <p className="mt-1.5 text-[10.5px] uppercase tracking-[0.14em] text-ink-700">
           — {latest.author}
         </p>
 
@@ -79,7 +79,7 @@ export function NotesCard({ conv }: { conv: BrandConversation }) {
             <p className="text-[12px] leading-relaxed text-ink-600 italic line-clamp-2">
               &ldquo;{notes[1].body}&rdquo;
             </p>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-ink-400">
+            <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-ink-600">
               {notes[1].updatedAt} · {notes[1].author}
             </p>
           </div>

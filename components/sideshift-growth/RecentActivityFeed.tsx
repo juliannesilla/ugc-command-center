@@ -48,11 +48,11 @@ export function RecentActivityFeed() {
         <div>
           <h2
             id="recent-activity-heading"
-            className="section-title font-display text-lg font-semibold text-ink-900"
+            className="section-title font-display text-lg font-bold text-ink-900"
           >
             Recent Activity
           </h2>
-          <p className="text-xs text-ink-500 mt-0.5">
+          <p className="text-xs text-ink-700 mt-0.5">
             Last 72 hours · {RECENT_ACTIVITY.length} events
           </p>
         </div>
@@ -87,7 +87,7 @@ export function RecentActivityFeed() {
                   <span className="font-semibold">{event.brand}</span>{' '}
                   <span className="text-ink-700">{event.message}</span>
                 </p>
-                <p className="mt-0.5 text-[11px] text-ink-400 font-medium tabular-nums">
+                <p className="mt-0.5 text-[11px] text-ink-600 font-medium tabular-nums">
                   {event.timeAgo}
                 </p>
               </div>

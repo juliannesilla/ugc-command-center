@@ -25,7 +25,7 @@ export function ShotMapTable({ shots }: { shots: Shot[] }) {
       </header>
       <div className="overflow-x-auto">
         <table className="w-full text-left text-[12.5px]">
-          <thead className="bg-cloud-50/60 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-500">
+          <thead className="bg-cloud-50/60 text-[10.5px] font-bold uppercase tracking-[0.1em] text-ink-700">
             <tr>
               <th className="w-12 px-4 py-2.5">Scene</th>
               <th className="px-4 py-2.5">Visual / Shot</th>

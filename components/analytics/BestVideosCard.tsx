@@ -11,15 +11,15 @@ export function BestVideosCard() {
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-3">
         {/* A.14m Stream 3 a11y fix: h3 → h2. T5 ADDITIVE: section-title. */}
-        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+        <h2 className="section-title font-display text-lg font-bold text-ink-900">
           Top 5 Best-Performing Videos
         </h2>
-        <p className="text-xs text-ink-500">Views, avg watch time, engagement rate</p>
+        <p className="text-xs text-ink-700">Views, avg watch time, engagement rate</p>
       </div>
       <div className="overflow-x-auto -mx-2">
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-left text-[10.5px] font-semibold uppercase tracking-[0.1em] text-ink-500">
+            <tr className="text-left text-[10.5px] font-semibold uppercase tracking-[0.1em] text-ink-700">
               <th className="px-2 py-2">Video</th>
               <th className="px-2 py-2">Platform</th>
               <th className="px-2 py-2 text-right">Views</th>

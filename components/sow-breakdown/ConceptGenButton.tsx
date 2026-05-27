@@ -156,7 +156,7 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
                   autoComplete="off"
                   className={cn(
                     'mt-1.5 block w-full rounded-xl border bg-white px-4 py-2.5',
-                    'font-mono text-sm text-ink-900 placeholder:text-ink-400',
+                    'font-mono text-sm text-ink-900 placeholder:text-ink-600',
                     'focus:outline-none focus:ring-2',
                     slug && !slugValid
                       ? 'border-rose-300 focus:ring-rose-300/60'
@@ -185,7 +185,7 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
                   <span
                     className={cn(
                       'text-[11px] font-medium',
-                      ready ? 'text-emerald-600' : 'text-ink-400',
+                      ready ? 'text-emerald-600' : 'text-ink-600',
                     )}
                   >
                     {ready ? 'Ready to copy' : 'Enter a valid slug first'}
@@ -198,11 +198,11 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
                   )}
                 >
                   <pre className="overflow-x-auto px-5 py-4 font-mono text-[13px] leading-6 text-emerald-200">
-                    <span className="text-ink-400">$ </span>
+                    <span className="text-ink-600">$ </span>
                     {command}
                   </pre>
                   <div className="flex items-center justify-between border-t border-white/10 bg-ink-900/95 px-5 py-2.5">
-                    <span className="text-[11px] text-ink-400">
+                    <span className="text-[11px] text-ink-600">
                       Runs locally · needs <code className="text-ink-100">ANTHROPIC_API_KEY</code>
                     </span>
                     <button

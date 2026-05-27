@@ -180,10 +180,10 @@ function BrandResponsesInner() {
                 <p className="mt-3 font-display text-[32px] leading-none text-ink-900">
                   {s.value}
                 </p>
-                <p className="mt-1.5 text-[10px] uppercase tracking-[0.16em] text-ink-500">
+                <p className="mt-1.5 text-[10px] uppercase tracking-[0.16em] text-ink-700">
                   {s.label}
                 </p>
-                <p className="mt-0.5 text-[10px] text-ink-400">
+                <p className="mt-0.5 text-[10px] text-ink-600">
                   vs yesterday
                 </p>
               </button>
@@ -294,13 +294,13 @@ function BrandResponsesInner() {
               Filter
             </button>
             <div className="relative">
-              <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink-400" />
+              <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink-600" />
               <input
                 type="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search brand, contact, message…"
-                className="w-[280px] rounded-2xl bg-white/85 backdrop-blur pl-9 pr-3 py-2 text-[12.5px] text-ink-900 placeholder:text-ink-400 ring-1 ring-cloud-100 focus:outline-none focus:ring-2 focus:ring-cloud-300"
+                className="w-[280px] rounded-2xl bg-white/85 backdrop-blur pl-9 pr-3 py-2 text-[12.5px] text-ink-900 placeholder:text-ink-600 ring-1 ring-cloud-100 focus:outline-none focus:ring-2 focus:ring-cloud-300"
               />
             </div>
           </div>
@@ -348,13 +348,13 @@ function BrandResponsesInner() {
               {compact ? "Expand" : "Compact"}
             </button>
             <div className="relative">
-              <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink-400" />
+              <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink-600" />
               <input
                 type="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search brand, campaign, message…"
-                className="w-[280px] rounded-2xl bg-white/85 backdrop-blur pl-9 pr-3 py-2 text-[12.5px] text-ink-900 placeholder:text-ink-400 ring-1 ring-cloud-100 focus:outline-none focus:ring-2 focus:ring-cloud-300"
+                className="w-[280px] rounded-2xl bg-white/85 backdrop-blur pl-9 pr-3 py-2 text-[12.5px] text-ink-900 placeholder:text-ink-600 ring-1 ring-cloud-100 focus:outline-none focus:ring-2 focus:ring-cloud-300"
               />
             </div>
           </div>
@@ -402,7 +402,7 @@ export default function BrandResponsesPage() {
   return (
     <Suspense
       fallback={
-        <div className="px-7 md:px-12 py-16 text-ink-500 text-sm">Loading inbox…</div>
+        <div className="px-7 md:px-12 py-16 text-ink-700 text-sm">Loading inbox…</div>
       }
     >
       <BrandResponsesInner />

@@ -54,7 +54,7 @@ export function IssueGroup({
             <h2 className="font-display text-[17px] text-ink-900 leading-tight">
               {meta.label}
             </h2>
-            <span className="text-[11px] uppercase tracking-[0.14em] text-ink-400">
+            <span className="text-[11px] uppercase tracking-[0.14em] text-ink-600">
               {items.length} {items.length === 1 ? 'issue' : 'issues'}
               {highCount > 0 && (
                 <>
@@ -64,11 +64,11 @@ export function IssueGroup({
               )}
             </span>
           </div>
-          <p className="text-[12px] text-ink-500 mt-0.5">{meta.tagline}</p>
+          <p className="text-[12px] text-ink-700 mt-0.5">{meta.tagline}</p>
         </div>
         {open
-          ? <ChevronDown   className="h-4 w-4 text-ink-400 shrink-0" />
-          : <ChevronRight className="h-4 w-4 text-ink-400 shrink-0" />}
+          ? <ChevronDown   className="h-4 w-4 text-ink-600 shrink-0" />
+          : <ChevronRight className="h-4 w-4 text-ink-600 shrink-0" />}
       </button>
 
       {open && (

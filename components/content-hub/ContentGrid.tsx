@@ -37,7 +37,7 @@ export function ContentGrid() {
           <Sparkles className="h-4 w-4 text-iris-500" />
           {filtered.length} {filtered.length === 1 ? 'piece' : 'pieces'} of content
         </h3>
-        <span className="text-xs text-ink-500">
+        <span className="text-xs text-ink-700">
           across {new Set(filtered.map((f) => f.campaignSlug).filter(Boolean)).size} campaigns
         </span>
       </div>
@@ -46,7 +46,7 @@ export function ContentGrid() {
       {filtered.length === 0 ? (
         <div className="rounded-3xl bg-white ring-1 ring-cloud-100/70 shadow-card p-10 text-center">
           <p className="text-sm text-ink-600">No content matches that filter combination.</p>
-          <p className="mt-1 text-xs text-ink-400">Try clearing the search or switching campaigns.</p>
+          <p className="mt-1 text-xs text-ink-600">Try clearing the search or switching campaigns.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">

@@ -10,7 +10,7 @@ export function CategorySidebar() {
           <Library className="h-4 w-4" />
         </span>
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-500">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-700">
             Library
           </p>
           <p className="text-sm font-semibold text-ink-900">{total} total pieces</p>
@@ -28,7 +28,7 @@ export function CategorySidebar() {
                 <span aria-hidden>{c.emoji}</span>
                 <span className="font-medium">{c.label}</span>
               </span>
-              <span className="tabular-nums text-xs font-semibold text-ink-500">
+              <span className="tabular-nums text-xs font-semibold text-ink-700">
                 {c.count}
               </span>
             </button>

@@ -17,10 +17,10 @@ export function HookPerformanceBars() {
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-4">
         {/* A.14m Stream 3 a11y fix: h3 → h2 (heading-order). T5 ADDITIVE: section-title. */}
-        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+        <h2 className="section-title font-display text-lg font-bold text-ink-900">
           Hook Performance Comparison
         </h2>
-        <p className="text-xs text-ink-500">
+        <p className="text-xs text-ink-700">
           Avg view rate vs. completion rate, by hook style
         </p>
       </div>

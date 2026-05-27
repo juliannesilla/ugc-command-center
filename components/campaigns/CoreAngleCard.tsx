@@ -53,7 +53,7 @@ export function CoreAngleCard({ coreAngle }: { coreAngle: CoreAngle }) {
           </div>
         )}
         {!audience && !driver && isString && (
-          <p className="text-[11px] italic text-ink-500">
+          <p className="text-[11px] italic text-ink-700">
             Single-line angle â€” audience benefit / emotional driver not yet split out.
           </p>
         )}

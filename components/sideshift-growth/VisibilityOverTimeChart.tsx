@@ -26,10 +26,10 @@ export function VisibilityOverTimeChart() {
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="flex items-start justify-between mb-4 gap-4 flex-wrap">
         <div>
-          <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+          <h2 className="section-title font-display text-lg font-bold text-ink-900">
             Visibility Over Time
           </h2>
-          <p className="text-xs text-ink-500 mt-0.5">
+          <p className="text-xs text-ink-700 mt-0.5">
             12-week trend · current score{' '}
             <span className="font-semibold text-iris-600">84</span>
             <span className="text-emerald-600 ml-2 font-semibold">+22 since Mar</span>

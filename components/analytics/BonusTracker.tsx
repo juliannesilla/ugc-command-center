@@ -17,10 +17,10 @@ export function BonusThresholdsCard() {
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-4">
         {/* A.14m Stream 3 a11y fix: h3 → h2. T5 ADDITIVE: section-title. */}
-        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+        <h2 className="section-title font-display text-lg font-bold text-ink-900">
           Upcoming Bonus Thresholds
         </h2>
-        <p className="text-xs text-ink-500">Progress toward next milestone</p>
+        <p className="text-xs text-ink-700">Progress toward next milestone</p>
       </div>
       <ul className="flex flex-col gap-4">
         {BONUS_THRESHOLDS.map((b) => {
@@ -48,10 +48,10 @@ export function BonusTrackerByCampaign() {
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="mb-4">
         {/* A.14m Stream 3 a11y fix: h3 → h2. T5 ADDITIVE: section-title. */}
-        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+        <h2 className="section-title font-display text-lg font-bold text-ink-900">
           Bonus Tracker by Campaign
         </h2>
-        <p className="text-xs text-ink-500">Earned vs. pending vs. total target</p>
+        <p className="text-xs text-ink-700">Earned vs. pending vs. total target</p>
       </div>
       <ul className="flex flex-col gap-4">
         {BONUS_BY_CAMPAIGN.map((b) => {
@@ -62,9 +62,9 @@ export function BonusTrackerByCampaign() {
                 <span className="font-medium text-ink-900">{b.brand}</span>
                 <span className="tabular-nums text-ink-600 text-xs">
                   <span className="text-emerald-700 font-semibold">{formatMoney(b.earned)}</span>
-                  <span className="mx-1.5 text-ink-400">·</span>
+                  <span className="mx-1.5 text-ink-600">·</span>
                   <span className="text-orange-600">{formatMoney(b.pending)} pending</span>
-                  <span className="mx-1.5 text-ink-400">·</span>
+                  <span className="mx-1.5 text-ink-600">·</span>
                   <span>{formatMoney(b.total)} total</span>
                 </span>
               </div>

@@ -116,7 +116,7 @@ export function ReplyComposer({ conv }: Props) {
                 role="menu"
                 className="absolute right-0 mt-1.5 w-80 max-h-80 overflow-y-auto rounded-2xl bg-white shadow-soft ring-1 ring-cloud-200 z-10 p-1.5"
               >
-                <p className="px-3 pt-2 pb-1.5 text-[10px] uppercase tracking-[0.16em] text-ink-400">
+                <p className="px-3 pt-2 pb-1.5 text-[10px] uppercase tracking-[0.16em] text-ink-600">
                   12 templates · 09-outreach-templates.md
                 </p>
                 {REPLY_TEMPLATES.map((t) => (
@@ -159,7 +159,7 @@ export function ReplyComposer({ conv }: Props) {
                     className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-[12.5px] hover:bg-cloud-50 transition"
                   >
                     <span className="text-ink-700">{v.label}</span>
-                    <span className="font-mono text-[10.5px] text-ink-400">
+                    <span className="font-mono text-[10.5px] text-ink-600">
                       {`{{${v.key}}}`}
                     </span>
                   </button>
@@ -190,7 +190,7 @@ export function ReplyComposer({ conv }: Props) {
         value={body}
         onChange={(e) => setBody(e.target.value)}
         rows={12}
-        className="w-full resize-y bg-white px-5 py-4 font-body text-[14px] leading-relaxed text-ink-900 placeholder:text-ink-400 outline-none focus:bg-cloud-50/30 transition"
+        className="w-full resize-y bg-white px-5 py-4 font-body text-[14px] leading-relaxed text-ink-900 placeholder:text-ink-600 outline-none focus:bg-cloud-50/30 transition"
         placeholder="Write your reply…"
         spellCheck
       />
@@ -209,7 +209,7 @@ export function ReplyComposer({ conv }: Props) {
             <CheckCircle2 className="h-3 w-3" />
             {validatorLabel}
           </span>
-          <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-400">
+          <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-600">
             {wordCount} words
           </span>
         </div>
@@ -241,7 +241,7 @@ function ToolBtn({ icon, label }: { icon: React.ReactNode; label: string }) {
       type="button"
       title={label}
       aria-label={label}
-      className="grid h-7 w-7 place-items-center rounded-lg text-ink-500 hover:bg-cloud-100 hover:text-ink-900 transition"
+      className="grid h-7 w-7 place-items-center rounded-lg text-ink-700 hover:bg-cloud-100 hover:text-ink-900 transition"
     >
       {icon}
     </button>

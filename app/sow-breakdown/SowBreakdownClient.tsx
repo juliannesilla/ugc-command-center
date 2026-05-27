@@ -55,7 +55,7 @@ export default function SowBreakdownClient({
               <span className="grid h-9 w-9 place-items-center rounded-2xl bg-cloud-sunset/90 shadow-soft text-white">
                 <Workflow className="h-4 w-4" aria-hidden />
               </span>
-              <span className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-medium">
+              <span className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-medium">
                 {selectedBrand
                   ? `Now reviewing · ${selectedBrand}`
                   : `Contract review · ${chips.length} active SOWs`}
@@ -75,7 +75,7 @@ export default function SowBreakdownClient({
               &ldquo;The goal isn&rsquo;t to be perfect. It&rsquo;s to be better
               than yesterday.&rdquo;
             </p>
-            <footer className="mt-2 text-[11px] uppercase tracking-[0.16em] text-ink-500">
+            <footer className="mt-2 text-[11px] uppercase tracking-[0.16em] text-ink-700">
               Julz mantra · auto-applied
             </footer>
           </blockquote>
@@ -110,7 +110,7 @@ export default function SowBreakdownClient({
           className="hidden xl:block sticky top-24 space-y-4"
         >
           <div className="card-secondary bg-white/85 backdrop-blur ring-cloud-100">
-            <p className="section-subtitle uppercase tracking-[0.18em] text-ink-500 font-medium mb-2">
+            <p className="section-subtitle uppercase tracking-[0.18em] text-ink-700 font-medium mb-2">
               What this means for you
             </p>
             <h2 className="font-display text-lg text-ink-900 leading-tight mb-2">

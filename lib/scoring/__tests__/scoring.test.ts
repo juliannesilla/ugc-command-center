@@ -32,21 +32,14 @@ interface Expectation {
   nextMoveContains: string;
 }
 
+// Phase A.14u F5-STRIP-MOCKS (2026-05-27, Julz directive): pared from 6 to 1.
+// Was 6 expectations (parakeetai, goodie-ai, lotusshop, vilo, megprime-pay,
+// elf) — only ParakeetAI is a real instantiated campaign. The other 5 mock
+// campaigns were stripped from MOCK_CAMPAIGNS so their expectations would
+// always fail with "campaign not found" noise.
 const EXPECTATIONS: Expectation[] = [
   // ParakeetAI — spec L564 says "82% Ready"
   { campaign_id: "parakeetai", readiness_min: 60, readiness_max: 90, brandFit_min: 90, brandFit_max: 100, blockers_min: 0, missingInfo_min: 0, nextMoveContains: "ParakeetAI" },
-  // Goodie AI — spec L565 says "35% Ready, waiting on written brief"
-  { campaign_id: "goodie-ai", readiness_min: 20, readiness_max: 50, brandFit_min: 90, brandFit_max: 100, blockers_min: 1, missingInfo_min: 1, nextMoveContains: "Goodie" },
-  // Lotus Shop — spec L566 says "20% Ready"
-  { campaign_id: "lotusshop", readiness_min: 10, readiness_max: 40, brandFit_min: 25, brandFit_max: 35, blockers_min: 0, missingInfo_min: 0, nextMoveContains: "Lotus" },
-  // VILO — spec L567 says "45% Ready" (hand-set in mock). Computed value
-  // is lower because algorithmic checks require post-SOW-REVIEWED stages
-  // to score the script/shots/film/QA points. SOW RECEIVED stage = 25.
-  { campaign_id: "vilo", readiness_min: 20, readiness_max: 60, brandFit_min: 85, brandFit_max: 95, blockers_min: 0, missingInfo_min: 0, nextMoveContains: "VILO" },
-  // MegPrime — finance category, 2 blockers expected
-  { campaign_id: "megprime-pay", readiness_min: 10, readiness_max: 40, brandFit_min: 65, brandFit_max: 80, blockers_min: 1, missingInfo_min: 1, nextMoveContains: "MegPrime" },
-  // e.l.f. — beauty, in filming, no blockers
-  { campaign_id: "elf", readiness_min: 50, readiness_max: 90, brandFit_min: 45, brandFit_max: 60, blockers_min: 0, missingInfo_min: 0, nextMoveContains: "e.l.f." },
 ];
 
 interface Result {

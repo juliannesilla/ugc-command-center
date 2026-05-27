@@ -14,14 +14,14 @@ export function PortfolioReadyClips() {
         <h3 className="section-title text-[22px]">
           Portfolio-ready clips
         </h3>
-        <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-ink-700">
           Tag your best work
         </p>
       </div>
       {clips.length === 0 ? (
         <div className="rounded-3xl bg-white shadow-card ring-1 ring-cloud-100 px-5 py-8 text-center">
-          <PlayCircle className="h-5 w-5 text-ink-400 mx-auto" />
-          <p className="mt-2 text-[13px] text-ink-500">
+          <PlayCircle className="h-5 w-5 text-ink-600 mx-auto" />
+          <p className="mt-2 text-[13px] text-ink-700">
             No clips ready yet — finish a delivery to tag for portfolio.
           </p>
         </div>
@@ -55,7 +55,7 @@ export function PortfolioReadyClips() {
                 <p className="text-[13px] font-semibold text-ink-900 truncate">
                   {c.brand}
                 </p>
-                <p className="text-[11px] text-ink-500 truncate mt-0.5">
+                <p className="text-[11px] text-ink-700 truncate mt-0.5">
                   {c.product}
                 </p>
                 <button

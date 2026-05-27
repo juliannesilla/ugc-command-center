@@ -25,7 +25,7 @@ export function PipelineSnapshot() {
           </p>
         </div>
         <div className="text-right">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-ink-700 font-semibold">
             Total potential value
           </p>
           <p className="font-display text-3xl text-cloud-700 leading-none mt-1">

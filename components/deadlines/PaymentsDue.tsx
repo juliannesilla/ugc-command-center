@@ -20,7 +20,7 @@ export function PaymentsDue() {
           <li key={p.id} className="py-2 flex items-center gap-3">
             <div className="min-w-0 flex-1">
               <p className="text-[12.5px] font-semibold text-ink-900 leading-tight">{p.brand}</p>
-              <p className="text-[10.5px] text-ink-400 uppercase tracking-[0.12em]">
+              <p className="text-[10.5px] text-ink-600 uppercase tracking-[0.12em]">
                 {p.invoiceId} · {fmtDate(p.dueDate)}
               </p>
             </div>

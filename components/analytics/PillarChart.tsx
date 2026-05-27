@@ -30,10 +30,10 @@ export function PillarChart() {
   if (!PILLAR_DATA.length) {
     return (
       <div className="glass-card rounded-2xl p-6 shadow-card">
-        <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+        <h2 className="section-title font-display text-lg font-bold text-ink-900">
           Pillar performance
         </h2>
-        <p className="mt-2 text-sm text-ink-500">
+        <p className="mt-2 text-sm text-ink-700">
           No pillar data available yet — classify @geezjulz posts in the source
           spreadsheet to populate.
         </p>
@@ -46,10 +46,10 @@ export function PillarChart() {
       {/* CHART 1: Post count per pillar */}
       <div className="glass-card rounded-2xl p-6 shadow-card">
         <div className="mb-4">
-          <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+          <h2 className="section-title font-display text-lg font-bold text-ink-900">
             Posts per pillar
           </h2>
-          <p className="text-xs text-ink-500">
+          <p className="text-xs text-ink-700">
             How your {PILLAR_TOTALS.totalPosts} @geezjulz posts split across content pillars
           </p>
         </div>
@@ -115,10 +115,10 @@ export function PillarChart() {
       {/* CHART 2: Avg engagement per pillar */}
       <div className="glass-card rounded-2xl p-6 shadow-card">
         <div className="mb-4">
-          <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+          <h2 className="section-title font-display text-lg font-bold text-ink-900">
             Avg engagement per pillar
           </h2>
-          <p className="text-xs text-ink-500">
+          <p className="text-xs text-ink-700">
             (likes + comments + shares) ÷ posts — which pillars resonate hardest
           </p>
         </div>

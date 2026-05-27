@@ -20,7 +20,7 @@ export function QuickCapture({ onCapture }: { onCapture?: (text: string) => void
           if (e.key === 'Enter') submit();
         }}
         placeholder="Drop an idea here or type it out…"
-        className="flex-1 bg-transparent placeholder:text-ink-400 text-sm text-ink-900 outline-none"
+        className="flex-1 bg-transparent placeholder:text-ink-600 text-sm text-ink-900 outline-none"
       />
       <button
         type="button"

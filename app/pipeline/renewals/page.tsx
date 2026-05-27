@@ -103,7 +103,7 @@ export default function RenewalsPage() {
 
       <main className="flex-1 px-7 md:px-12 py-6 space-y-8">
         {/* Breadcrumb back */}
-        <div className="flex items-center gap-3 text-[12px] text-ink-500">
+        <div className="flex items-center gap-3 text-[12px] text-ink-700">
           <Link
             href="/pipeline/board"
             className="inline-flex items-center gap-1 hover:text-cloud-700 transition"
@@ -150,26 +150,26 @@ export default function RenewalsPage() {
             {/* Summary strip */}
             <section className="flex flex-wrap items-center gap-6 rounded-3xl border border-cloud-200 bg-white/70 px-6 py-4">
               <div>
-                <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-500 font-medium">
+                <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-700 font-medium">
                   Renewal-ready
                 </p>
                 <p className="mt-1 font-display text-2xl text-ink-900">
                   {renewals.length}
-                  <span className="ml-1 text-[13px] font-sans text-ink-500">
+                  <span className="ml-1 text-[13px] font-sans text-ink-700">
                     {renewals.length === 1 ? 'brand' : 'brands'}
                   </span>
                 </p>
               </div>
               <div className="h-10 w-px bg-cloud-200" aria-hidden />
               <div>
-                <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-500 font-medium">
+                <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-700 font-medium">
                   Lifetime value · prior payouts
                 </p>
                 <p className="mt-1 font-display text-2xl text-ink-900">
                   ${totalLifetimeValue.toLocaleString()}
                 </p>
               </div>
-              <div className="ml-auto text-[10.5px] uppercase tracking-[0.18em] text-ink-500">
+              <div className="ml-auto text-[10.5px] uppercase tracking-[0.18em] text-ink-700">
                 Sort: most recently paid first
               </div>
             </section>

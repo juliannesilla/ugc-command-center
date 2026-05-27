@@ -54,7 +54,7 @@ export function ProgressHero({
             >
               {percent}%
             </h2>
-            <span className="text-[12px] text-ink-500 font-medium">
+            <span className="text-[12px] text-ink-700 font-medium">
               of profile filled
             </span>
           </div>
@@ -87,7 +87,7 @@ export function ProgressHero({
             style={{ width: `${percent}%` }}
           />
         </div>
-        <div className="mt-2 flex items-center justify-between text-[11px] text-ink-500">
+        <div className="mt-2 flex items-center justify-between text-[11px] text-ink-700">
           <span className="inline-flex items-center gap-1.5 font-semibold uppercase tracking-[0.14em]">
             <Sparkles className="h-3.5 w-3.5 text-cloud-sunset" />
             {completeCount}/{totalCount} fields done

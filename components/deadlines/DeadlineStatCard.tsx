@@ -40,13 +40,13 @@ export function DeadlineStatCard({
         overduePulse && 'motion-safe:animate-pulse',
         t.accent,
       )} />
-      <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold">
+      <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-700 font-semibold">
         {label}
       </p>
       <p className={cn('mt-1 font-display text-[34px] leading-none tabular-nums', t.text)}>
         {value}
       </p>
-      {sub && <p className="mt-1 text-[11px] text-ink-500">{sub}</p>}
+      {sub && <p className="mt-1 text-[11px] text-ink-700">{sub}</p>}
       <a
         href={viewHref}
         className={cn(

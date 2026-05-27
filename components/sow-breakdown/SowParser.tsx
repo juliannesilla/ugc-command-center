@@ -180,7 +180,7 @@ export function SowParser({ className, defaultSlug = '' }: SowParserProps) {
                   autoComplete="off"
                   className={cn(
                     'mt-1.5 block w-full rounded-xl border bg-white px-4 py-2.5',
-                    'font-mono text-sm text-ink-900 placeholder:text-ink-400',
+                    'font-mono text-sm text-ink-900 placeholder:text-ink-600',
                     'focus:outline-none focus:ring-2',
                     slug && !slugValid
                       ? 'border-rose-300 focus:ring-rose-300/60'
@@ -255,7 +255,7 @@ export function SowParser({ className, defaultSlug = '' }: SowParserProps) {
                     }
                     className={cn(
                       'mt-1.5 block w-full rounded-xl border border-ink-900/12 bg-white px-4 py-3',
-                      'text-sm leading-6 text-ink-900 placeholder:text-ink-400',
+                      'text-sm leading-6 text-ink-900 placeholder:text-ink-600',
                       'focus:border-iris-500/60 focus:outline-none focus:ring-2 focus:ring-iris-500/40',
                     )}
                   />
@@ -278,7 +278,7 @@ export function SowParser({ className, defaultSlug = '' }: SowParserProps) {
                     autoComplete="off"
                     className={cn(
                       'mt-1.5 block w-full rounded-xl border border-ink-900/12 bg-white px-4 py-2.5',
-                      'font-mono text-xs text-ink-900 placeholder:text-ink-400',
+                      'font-mono text-xs text-ink-900 placeholder:text-ink-600',
                       'focus:border-iris-500/60 focus:outline-none focus:ring-2 focus:ring-iris-500/40',
                     )}
                   />
@@ -297,7 +297,7 @@ export function SowParser({ className, defaultSlug = '' }: SowParserProps) {
                   <span
                     className={cn(
                       'text-[11px] font-medium',
-                      ready ? 'text-emerald-600' : 'text-ink-400',
+                      ready ? 'text-emerald-600' : 'text-ink-600',
                     )}
                   >
                     {ready ? 'Ready to copy' : 'Fill slug + input first'}
@@ -310,11 +310,11 @@ export function SowParser({ className, defaultSlug = '' }: SowParserProps) {
                   )}
                 >
                   <pre className="overflow-x-auto px-5 py-4 font-mono text-[13px] leading-6 text-emerald-200">
-                    <span className="text-ink-400">$ </span>
+                    <span className="text-ink-600">$ </span>
                     {command}
                   </pre>
                   <div className="flex items-center justify-between border-t border-white/10 bg-ink-900/95 px-5 py-2.5">
-                    <span className="text-[11px] text-ink-400">
+                    <span className="text-[11px] text-ink-600">
                       Runs locally · needs <code className="text-ink-100">ANTHROPIC_API_KEY</code>
                     </span>
                     <button

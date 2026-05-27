@@ -170,7 +170,7 @@ export function ScriptProductionCard({
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-iris-500">
             Script &amp; Production
           </p>
-          <h3 className="font-display text-[22px] font-medium tracking-tight text-ink-900 mt-1 truncate">
+          <h3 className="font-display text-[22px] font-bold tracking-tight text-ink-900 mt-1 truncate">
             {campaign.brand}
           </h3>
           <p className="text-sm text-ink-600 mt-0.5 truncate">
@@ -179,7 +179,7 @@ export function ScriptProductionCard({
         </div>
         <div className="flex flex-col items-end gap-1.5 shrink-0">
           <StatusChip tone={stageTone}>{campaign.current_stage}</StatusChip>
-          <span className="inline-flex items-center gap-1 text-[10px] font-medium text-ink-500">
+          <span className="inline-flex items-center gap-1 text-[10px] font-medium text-ink-700">
             <Calendar className="h-3 w-3" aria-hidden="true" />
             Due {formatDueDate(campaign.due_date)}
           </span>
@@ -207,12 +207,12 @@ export function ScriptProductionCard({
             <h4 className="font-display text-[12px] font-semibold text-ink-900 uppercase tracking-[0.18em]">
               Core beats
             </h4>
-            <span className="text-[10px] font-medium text-ink-400 tabular-nums shrink-0">
+            <span className="text-[10px] font-medium text-ink-600 tabular-nums shrink-0">
               {beats.length} beat{beats.length === 1 ? "" : "s"}
             </span>
           </header>
           {beats.length === 0 ? (
-            <p className="text-[12px] text-ink-500 italic">
+            <p className="text-[12px] text-ink-700 italic">
               No script beats drafted yet.
             </p>
           ) : (
@@ -230,7 +230,7 @@ export function ScriptProductionCard({
                   >
                     {b.section}
                   </span>
-                  <span className="font-mono text-[10px] tabular-nums text-ink-400 mt-0.5 shrink-0">
+                  <span className="font-mono text-[10px] tabular-nums text-ink-600 mt-0.5 shrink-0">
                     {b.ts}
                   </span>
                   <span className="text-ink-800 flex-1 min-w-0">{b.line}</span>
@@ -254,7 +254,7 @@ export function ScriptProductionCard({
             </h4>
           </div>
           {campaign.required_length && (
-            <span className="text-[10px] text-ink-400">
+            <span className="text-[10px] text-ink-600">
               Target length: {campaign.required_length}
             </span>
           )}
@@ -286,7 +286,7 @@ export function ScriptProductionCard({
           // campaign, this fallback can be removed — ABRollChecklist
           // already renders its own empty-state per column.
           <div
-            className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-5 text-[12px] text-ink-500 italic"
+            className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-5 text-[12px] text-ink-700 italic"
             aria-label="A-Roll / B-Roll placeholder"
           >
             A-Roll / B-Roll checklist will populate once production data is
@@ -300,7 +300,7 @@ export function ScriptProductionCard({
           // TODO(A14I-2b): same as above — EditChecklist owns its own
           // empty state once data is wired across all campaigns.
           <div
-            className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-5 text-[12px] text-ink-500 italic"
+            className="rounded-3xl bg-white ring-1 ring-cloud-200 shadow-soft p-5 text-[12px] text-ink-700 italic"
             aria-label="Edit checklist placeholder"
           >
             Edit checklist will populate once post-production gates are
@@ -313,7 +313,7 @@ export function ScriptProductionCard({
       {production?.filmingStatus &&
         (production.filmingStatus.status ||
           production.filmingStatus.location) && (
-          <footer className="flex flex-wrap items-center gap-3 text-[11px] text-ink-500 pt-2 border-t border-cloud-100">
+          <footer className="flex flex-wrap items-center gap-3 text-[11px] text-ink-700 pt-2 border-t border-cloud-100">
             {production.filmingStatus.status && (
               <span className="inline-flex items-center gap-1">
                 <span className="h-1.5 w-1.5 rounded-full bg-iris-400" />

@@ -10,7 +10,7 @@ export function HookOptionsCard({ hooks }: { hooks: string[] }) {
           </span>
           <h3 className="font-display text-sm font-semibold text-ink-900">Hook Options</h3>
         </div>
-        <span className="text-[10.5px] font-medium text-ink-500">{hooks.length} drafted</span>
+        <span className="text-[10.5px] font-medium text-ink-700">{hooks.length} drafted</span>
       </header>
       <ol className="flex-1 space-y-2">
         {hooks.map((hook, i) => (

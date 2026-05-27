@@ -14,15 +14,15 @@ export function RecentBrandMessages() {
         <h3 className="section-title text-[22px]">
           Recent brand messages
         </h3>
-        <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-ink-700">
           Last 7 days
         </p>
       </div>
       <div className="rounded-3xl bg-white shadow-card ring-1 ring-cloud-100 overflow-hidden">
         {messages.length === 0 ? (
           <div className="px-5 py-8 text-center">
-            <Mail className="h-5 w-5 text-ink-400 mx-auto" />
-            <p className="mt-2 text-[13px] text-ink-500">
+            <Mail className="h-5 w-5 text-ink-600 mx-auto" />
+            <p className="mt-2 text-[13px] text-ink-700">
               No recent brand messages — inbox is clear.
             </p>
           </div>
@@ -41,10 +41,10 @@ export function RecentBrandMessages() {
                     <p className="text-[13.5px] font-semibold text-ink-900">
                       {m.brand}
                     </p>
-                    <span className="text-[11px] text-ink-500">
+                    <span className="text-[11px] text-ink-700">
                       · {m.contact}
                     </span>
-                    <span className="text-[11px] text-ink-400 ml-auto">
+                    <span className="text-[11px] text-ink-600 ml-auto">
                       {m.when}
                     </span>
                   </div>

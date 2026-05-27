@@ -40,7 +40,7 @@ const STATUS_TONE: Record<
   }
 > = {
   "not-started": {
-    pill: "bg-cloud-100 text-ink-500 ring-cloud-200",
+    pill: "bg-cloud-100 text-ink-700 ring-cloud-200",
     label: "Pending",
     indicator: Circle,
     indicatorClass: "text-cloud-300",
@@ -74,7 +74,7 @@ function EditRow({ item }: { item: ChecklistItem }) {
           {item.label}
         </div>
         {item.hint && (
-          <div className="text-[11px] text-ink-500 mt-0.5 leading-snug">
+          <div className="text-[11px] text-ink-700 mt-0.5 leading-snug">
             {item.hint}
           </div>
         )}
@@ -105,30 +105,30 @@ export function EditChecklist({ items, className }: EditChecklistProps) {
             className="h-4 w-4 text-iris-500 shrink-0"
             aria-hidden="true"
           />
-          <h3 className="font-display text-[15px] font-semibold text-ink-900">
+          <h3 className="font-display text-[15px] font-bold text-ink-900">
             Edit checklist
           </h3>
         </div>
         <div className="flex items-baseline gap-2 shrink-0">
           <span
-            className={`font-display text-base font-semibold tabular-nums ${
+            className={`font-display text-base font-bold tabular-nums ${
               pct >= 80
                 ? "text-emerald-700"
                 : pct >= 50
                 ? "text-amber-700"
-                : "text-ink-500"
+                : "text-ink-700"
             }`}
           >
             {total > 0 ? `${pct}%` : "—"}
           </span>
-          <span className="text-[10px] uppercase tracking-wide text-ink-400">
+          <span className="text-[10px] uppercase tracking-wide text-ink-600">
             cleared
           </span>
         </div>
       </header>
 
       {items.length === 0 ? (
-        <p className="px-3 py-4 text-[12px] text-ink-500 italic">
+        <p className="px-3 py-4 text-[12px] text-ink-700 italic">
           No post-production gates configured yet.
         </p>
       ) : (
@@ -139,7 +139,7 @@ export function EditChecklist({ items, className }: EditChecklistProps) {
         </ul>
       )}
 
-      <p className="mt-4 pt-3 border-t border-cloud-100 text-[11px] text-ink-500 leading-snug">
+      <p className="mt-4 pt-3 border-t border-cloud-100 text-[11px] text-ink-700 leading-snug">
         Gates cover color, audio mix, captions, FTC disclosure burn-in, music
         licensing, end card, and platform-spec dimensions. All must clear
         before a deliverable can move to QA.

@@ -14,8 +14,8 @@
 // carries the TL;DR / action context. CalendarGrid stays focused on the grid.
 //
 // Behavior:
-//   - Default month is derived from TODAY_ISO (2026-05-19 in mock) so the
-//     current month renders on first paint (May 2026).
+//   - Default month is derived from TODAY_ISO (lib/date-anchor — dynamic) so
+//     the current month renders on first paint.
 //   - < / > arrows step ±1 month; a "Today" pill jumps back to TODAY_ISO month.
 //   - Each cell shows date number, plus up to 3 type-colored dots when
 //     deadlines exist on that date. >3 deadlines render "+N" overflow.
@@ -191,7 +191,7 @@ export function CalendarGrid({ events, todayISO }: CalendarGridProps) {
             <h2 className="font-display text-[22px] tracking-tight text-ink-900">
               {monthLabel}
             </h2>
-            <span className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
+            <span className="text-[11px] uppercase tracking-[0.18em] text-ink-700">
               {events.length} deadlines tracked
             </span>
           </div>
@@ -228,7 +228,7 @@ export function CalendarGrid({ events, todayISO }: CalendarGridProps) {
           {DAY_LABELS.map(d => (
             <div
               key={d}
-              className="text-center text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold"
+              className="text-center text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold"
             >
               {d}
             </div>
@@ -274,7 +274,7 @@ export function CalendarGrid({ events, todayISO }: CalendarGridProps) {
                     {cell.d}
                   </span>
                   {sortedEvents.length > 0 && !cell.outside && (
-                    <span className="text-[9.5px] uppercase tracking-[0.14em] text-ink-400 font-semibold">
+                    <span className="text-[9.5px] uppercase tracking-[0.14em] text-ink-600 font-semibold">
                       {sortedEvents.length}
                     </span>
                   )}
@@ -287,7 +287,7 @@ export function CalendarGrid({ events, todayISO }: CalendarGridProps) {
                       <DeadlinePin key={ev.id} type={ev.type} size="sm" />
                     ))}
                     {overflow > 0 && (
-                      <span className="text-[9.5px] font-semibold text-ink-500 leading-none">
+                      <span className="text-[9.5px] font-semibold text-ink-700 leading-none">
                         +{overflow}
                       </span>
                     )}
@@ -299,7 +299,7 @@ export function CalendarGrid({ events, todayISO }: CalendarGridProps) {
         </div>
 
         {/* Legend */}
-        <div className="mt-5 pt-4 border-t border-cloud-100 flex flex-wrap items-center gap-3 text-[10.5px] text-ink-500">
+        <div className="mt-5 pt-4 border-t border-cloud-100 flex flex-wrap items-center gap-3 text-[10.5px] text-ink-700">
           <span className="uppercase tracking-[0.14em] font-semibold">Legend</span>
           <span className="inline-flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-orange-500" /> Filming
@@ -329,7 +329,7 @@ export function CalendarGrid({ events, todayISO }: CalendarGridProps) {
             <h3 className="font-display text-[15px] text-ink-900 tracking-tight">
               {formatLongDate(selectedISO)}
             </h3>
-            <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold">
+            <span className="text-[10.5px] uppercase tracking-[0.16em] text-ink-700 font-semibold">
               {selectedEvents.length === 0
                 ? 'Open day'
                 : `${selectedEvents.length} ${selectedEvents.length === 1 ? 'item' : 'items'}`}
@@ -337,8 +337,8 @@ export function CalendarGrid({ events, todayISO }: CalendarGridProps) {
           </div>
 
           {selectedEvents.length === 0 ? (
-            <div className="rounded-2xl bg-cloud-50/70 border border-dashed border-cloud-200 p-4 text-[12.5px] text-ink-500 flex items-start gap-2">
-              <Circle className="h-3.5 w-3.5 mt-0.5 text-ink-400 shrink-0" />
+            <div className="rounded-2xl bg-cloud-50/70 border border-dashed border-cloud-200 p-4 text-[12.5px] text-ink-700 flex items-start gap-2">
+              <Circle className="h-3.5 w-3.5 mt-0.5 text-ink-600 shrink-0" />
               <span>No deadlines on this day. Breathing room — use it.</span>
             </div>
           ) : (
@@ -369,7 +369,7 @@ export function CalendarGrid({ events, todayISO }: CalendarGridProps) {
                           {ev.title}
                         </div>
                         {ev.meta && (
-                          <div className="text-[11px] text-ink-500 truncate mt-0.5">
+                          <div className="text-[11px] text-ink-700 truncate mt-0.5">
                             {ev.meta}
                           </div>
                         )}
@@ -395,7 +395,7 @@ export function CalendarGrid({ events, todayISO }: CalendarGridProps) {
             </ul>
           )}
 
-          <p className="mt-4 text-[10.5px] uppercase tracking-[0.16em] text-ink-500 font-semibold">
+          <p className="mt-4 text-[10.5px] uppercase tracking-[0.16em] text-ink-700 font-semibold">
             Tap a day to expand · Click a row to open the campaign
           </p>
         </div>

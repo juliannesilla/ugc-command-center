@@ -96,13 +96,13 @@ export function ExistingCommentDots() {
                 style={{ left: `${c.x_pct}%`, top: `calc(${c.y_pct}% + 18px)` }}
               >
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[10px] uppercase tracking-[0.14em] text-ink-500 font-medium">
+                  <span className="text-[10px] uppercase tracking-[0.14em] text-ink-700 font-medium">
                     {c.priority} · {c.status.replace('_', ' ')}
                   </span>
                   <button
                     type="button"
                     onClick={() => setActiveThread(null)}
-                    className="text-ink-400 hover:text-ink-900 text-xs"
+                    className="text-ink-600 hover:text-ink-900 text-xs"
                     aria-label="Close thread"
                   >
                     ✕

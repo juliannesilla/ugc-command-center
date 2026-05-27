@@ -131,7 +131,7 @@ export function CreateCampaignWizard() {
                     ? 'bg-iris-100 text-iris-700 ring-1 ring-iris-300'
                     : isDone
                     ? 'bg-cloud-100 text-ink-700'
-                    : 'bg-cloud-50 text-ink-500',
+                    : 'bg-cloud-50 text-ink-700',
                 ].join(' ')}
               >
                 <Icon className="h-3.5 w-3.5" />
@@ -322,7 +322,7 @@ export function CreateCampaignWizard() {
                   'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-medium transition-colors',
                   canFinish
                     ? 'bg-iris-600 text-white hover:bg-iris-700'
-                    : 'bg-cloud-200 text-ink-400 cursor-not-allowed',
+                    : 'bg-cloud-200 text-ink-600 cursor-not-allowed',
                 ].join(' ')}
               >
                 {copied ? (
@@ -387,14 +387,14 @@ export function CreateCampaignWizard() {
           className={[
             'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors',
             step === 1
-              ? 'bg-cloud-100 text-ink-400 cursor-not-allowed'
+              ? 'bg-cloud-100 text-ink-600 cursor-not-allowed'
               : 'bg-cloud-100 text-ink-700 hover:bg-cloud-200',
           ].join(' ')}
         >
           <ArrowLeft className="h-4 w-4" />
           Back
         </button>
-        <div className="text-[11px] tracking-[0.1em] uppercase text-ink-500">
+        <div className="text-[11px] tracking-[0.1em] uppercase text-ink-700">
           Step {step} of 4
         </div>
         {step < 4 ? (
@@ -405,7 +405,7 @@ export function CreateCampaignWizard() {
             className={[
               'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors',
               (step === 1 && !step1Valid) || (step === 2 && !step2Valid)
-                ? 'bg-cloud-200 text-ink-400 cursor-not-allowed'
+                ? 'bg-cloud-200 text-ink-600 cursor-not-allowed'
                 : 'bg-iris-600 text-white hover:bg-iris-700',
             ].join(' ')}
           >
@@ -421,7 +421,7 @@ export function CreateCampaignWizard() {
               'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors',
               canFinish
                 ? 'bg-iris-600 text-white hover:bg-iris-700'
-                : 'bg-cloud-200 text-ink-400 cursor-not-allowed',
+                : 'bg-cloud-200 text-ink-600 cursor-not-allowed',
             ].join(' ')}
           >
             {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
@@ -438,7 +438,7 @@ export function CreateCampaignWizard() {
 // ──────────────────────────────────────────────────────────────────────────────
 
 const inputClass =
-  'w-full rounded-xl bg-cloud-50 ring-1 ring-cloud-200 px-4 py-2.5 text-[14px] text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-iris-400 focus:bg-white transition-colors';
+  'w-full rounded-xl bg-cloud-50 ring-1 ring-cloud-200 px-4 py-2.5 text-[14px] text-ink-900 placeholder:text-ink-600 focus:outline-none focus:ring-2 focus:ring-iris-400 focus:bg-white transition-colors';
 
 function FieldHeading({
   title,
@@ -481,7 +481,7 @@ function Field({
         {label}
       </label>
       {children}
-      {hint && <p className="text-[12px] text-ink-500">{hint}</p>}
+      {hint && <p className="text-[12px] text-ink-700">{hint}</p>}
     </div>
   );
 }
@@ -497,7 +497,7 @@ function SummaryRow({
 }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <dt className="text-[10px] tracking-[0.12em] uppercase text-ink-500">
+      <dt className="text-[10px] tracking-[0.12em] uppercase text-ink-700">
         {label}
       </dt>
       <dd

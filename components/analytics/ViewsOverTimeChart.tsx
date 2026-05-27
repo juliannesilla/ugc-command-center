@@ -23,10 +23,10 @@ export function ViewsOverTimeChart() {
       <div className="flex items-center justify-between mb-4">
         <div>
           {/* A.14m Stream 3 a11y fix: h3 → h2 (heading-order, h1 in page → h2 cards). T5 ADDITIVE: section-title. */}
-          <h2 className="section-title font-display text-lg font-semibold text-ink-900">
+          <h2 className="section-title font-display text-lg font-bold text-ink-900">
             Views Over Time
           </h2>
-          <p className="text-xs text-ink-500">Apr 6 – May 6, 2026</p>
+          <p className="text-xs text-ink-700">Apr 6 – May 6, 2026</p>
         </div>
         <div className="flex items-center gap-3 text-[11px] text-ink-600">
           <span className="inline-flex items-center gap-1.5">

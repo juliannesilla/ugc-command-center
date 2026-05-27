@@ -45,7 +45,7 @@ export function LeagueXpCard() {
               <span className="font-display text-4xl text-ink-900 leading-none tabular-nums">
                 {totalXP.toLocaleString()}
               </span>
-              <span className="text-[12px] text-ink-500 font-medium">XP earned</span>
+              <span className="text-[12px] text-ink-700 font-medium">XP earned</span>
             </div>
           </div>
           <span className="inline-flex items-center gap-1 rounded-full bg-cloud-sunset/10 px-2.5 py-1 text-[10.5px] uppercase tracking-[0.14em] font-semibold text-cloud-sunset ring-1 ring-cloud-sunset/20">
@@ -66,7 +66,7 @@ export function LeagueXpCard() {
               style={{ width: `${pct}%` }}
             />
           </div>
-          <div className="mt-1.5 flex items-center justify-between text-[10.5px] text-ink-500 tabular-nums">
+          <div className="mt-1.5 flex items-center justify-between text-[10.5px] text-ink-700 tabular-nums">
             <span>{league}</span>
             <span>{nextLeague}</span>
           </div>
@@ -74,7 +74,7 @@ export function LeagueXpCard() {
 
         {/* Boosters list */}
         <div className="mt-5">
-          <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-500 font-semibold mb-2.5">
+          <p className="text-[10.5px] uppercase tracking-[0.18em] text-ink-700 font-semibold mb-2.5">
             XP Boosters
           </p>
           <ul className="space-y-1.5">

@@ -138,10 +138,10 @@ export default async function AssetsPage({
       {/* Header: page title + "Open Asset Vault" link */}
       <section className="rise rise-1 mt-8 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="font-display text-[22px] font-medium tracking-tight text-ink-900">
+          <h2 className="font-display text-[22px] font-bold tracking-tight text-ink-900">
             Campaign Assets
           </h2>
-          <p className="mt-0.5 text-[12.5px] text-ink-500">
+          <p className="mt-0.5 text-[12.5px] text-ink-700">
             Files attached to this campaign · scoped view of the full{" "}
             <Link
               href="/assets"
@@ -215,18 +215,18 @@ export default async function AssetsPage({
       {/* Search + sort + view toggle */}
       <section className="rise rise-3 mt-3 flex flex-wrap items-center gap-2.5">
         <div className="relative min-w-[220px] flex-1">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-600" />
           <input
             type="search"
             placeholder={`Search ${campaign.brand} assets…`}
-            className="w-full rounded-2xl border border-cloud-200 bg-white/85 py-2.5 pl-9 pr-3 text-[13px] text-ink-900 placeholder:text-ink-400 transition focus:border-cloud-300 focus:outline-none focus:ring-2 focus:ring-cloud-300"
+            className="w-full rounded-2xl border border-cloud-200 bg-white/85 py-2.5 pl-9 pr-3 text-[13px] text-ink-900 placeholder:text-ink-600 transition focus:border-cloud-300 focus:outline-none focus:ring-2 focus:ring-cloud-300"
           />
         </div>
         <button
           type="button"
           className="inline-flex items-center gap-1.5 rounded-2xl border border-cloud-200 bg-white/85 px-3 py-2.5 text-[12.5px] font-semibold text-ink-700 transition hover:bg-cloud-50"
         >
-          Sort: Recently Added <ChevronDown className="h-3.5 w-3.5 text-ink-400" />
+          Sort: Recently Added <ChevronDown className="h-3.5 w-3.5 text-ink-600" />
         </button>
         <div className="flex rounded-2xl border border-cloud-200 bg-white/85 p-0.5">
           <button
@@ -238,7 +238,7 @@ export default async function AssetsPage({
           </button>
           <button
             type="button"
-            className="grid h-8 w-8 place-items-center rounded-xl text-ink-400 hover:bg-cloud-50"
+            className="grid h-8 w-8 place-items-center rounded-xl text-ink-600 hover:bg-cloud-50"
             aria-label="List view"
           >
             <List className="h-3.5 w-3.5" />
@@ -259,7 +259,7 @@ export default async function AssetsPage({
           {scriptAssets.length > 0 && (
             <section className="rise rise-4">
               <header className="mb-3 flex items-baseline justify-between">
-                <h3 className="font-display text-[16px] font-semibold text-ink-900">
+                <h3 className="font-display text-[16px] font-bold text-ink-900">
                   Script & Brief Files
                 </h3>
                 <StatusChip tone="iris">{scriptAssets.length} files</StatusChip>
@@ -280,7 +280,7 @@ export default async function AssetsPage({
           {shotAssets.length > 0 && (
             <section className="rise rise-5">
               <header className="mb-3 flex items-baseline justify-between">
-                <h3 className="font-display text-[16px] font-semibold text-ink-900">
+                <h3 className="font-display text-[16px] font-bold text-ink-900">
                   Shot Map · Planned Captures
                 </h3>
                 <StatusChip tone="pink">{shotAssets.length} scenes</StatusChip>
@@ -299,11 +299,11 @@ export default async function AssetsPage({
 
           {allAssets.length === 0 && (
             <section className="glass-card rounded-2xl p-10 text-center shadow-card">
-              <FileQuestion className="mx-auto h-8 w-8 text-ink-400" />
+              <FileQuestion className="mx-auto h-8 w-8 text-ink-600" />
               <p className="mt-3 text-[13.5px] font-semibold text-ink-700">
                 No assets attached yet
               </p>
-              <p className="mt-1 text-[12px] text-ink-500">
+              <p className="mt-1 text-[12px] text-ink-700">
                 Files will appear here as the campaign progresses.
               </p>
             </section>
@@ -416,15 +416,15 @@ function AssetThumbCard({
         <p className="truncate text-[13px] font-semibold leading-tight text-ink-900">
           {asset.name}
         </p>
-        <p className="mt-0.5 truncate text-[11px] text-ink-500">
+        <p className="mt-0.5 truncate text-[11px] text-ink-700">
           {campaignBrand}
           {asset.updated && (
-            <span className="text-ink-400"> · updated {asset.updated}</span>
+            <span className="text-ink-600"> · updated {asset.updated}</span>
           )}
         </p>
       </div>
       <div className="mt-2.5 flex items-center justify-between">
-        <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-400">
+        <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-600">
           {asset.type}
         </span>
         <button
@@ -473,7 +473,7 @@ function KpiCard({
       )}
     >
       <div className="flex items-center justify-between">
-        <p className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ink-500">
+        <p className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ink-700">
           {label}
         </p>
         <span
@@ -488,7 +488,7 @@ function KpiCard({
       <p className="mt-2 font-display text-[26px] leading-none tabular-nums text-ink-900">
         {value}
       </p>
-      <p className="mt-1 text-[11px] text-ink-500">{sub}</p>
+      <p className="mt-1 text-[11px] text-ink-700">{sub}</p>
     </div>
   );
 }
@@ -505,7 +505,7 @@ function ActionBtn({
       type="button"
       className="group flex w-full items-center gap-2 rounded-xl border border-ink-200 bg-white px-3 py-2 text-left text-[12.5px] font-semibold text-ink-800 transition hover:border-cloud-400 hover:bg-cloud-50/60"
     >
-      <span className="text-ink-500 transition group-hover:text-cloud-600">
+      <span className="text-ink-700 transition group-hover:text-cloud-600">
         {icon}
       </span>
       {label}
@@ -516,13 +516,13 @@ function ActionBtn({
 function ReadinessRow({ label, done }: { label: string; done: boolean }) {
   return (
     <li className="flex items-center justify-between">
-      <span className={cn("text-ink-800", done && "text-ink-500")}>{label}</span>
+      <span className={cn("text-ink-800", done && "text-ink-700")}>{label}</span>
       {done ? (
         <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
           <CheckCircle2 className="h-3 w-3" strokeWidth={2.5} />
         </span>
       ) : (
-        <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-ink-200/70 text-ink-500">
+        <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-ink-200/70 text-ink-700">
           <AlertTriangle className="h-2.5 w-2.5" strokeWidth={2.5} />
         </span>
       )}

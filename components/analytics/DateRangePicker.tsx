@@ -15,13 +15,13 @@ export function DateRangePicker() {
       >
         <Calendar className="h-3.5 w-3.5 text-iris-400" />
         <span>{CURRENT_PERIOD.label}</span>
-        <span className="text-ink-400">vs</span>
-        <span className="text-ink-500">{PREVIOUS_PERIOD.label}</span>
-        <ChevronDown className="h-3.5 w-3.5 text-ink-500" />
+        <span className="text-ink-600">vs</span>
+        <span className="text-ink-700">{PREVIOUS_PERIOD.label}</span>
+        <ChevronDown className="h-3.5 w-3.5 text-ink-700" />
       </button>
       {open && (
         <div className="absolute right-0 top-full mt-2 w-72 rounded-2xl bg-white shadow-soft ring-1 ring-cloud-200 p-3 z-20 text-sm">
-          <p className="text-[10.5px] font-semibold uppercase tracking-[0.1em] text-ink-500 mb-2">
+          <p className="text-[10.5px] font-semibold uppercase tracking-[0.1em] text-ink-700 mb-2">
             Compare
           </p>
           <ul className="flex flex-col gap-1">

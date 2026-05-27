@@ -37,7 +37,7 @@ export function WhatThisMeansSidebar({ summary }: { summary: MeansSummary }) {
               For My Deliverable
             </span>
           </h2>
-          <p className="mt-1 text-[11.5px] text-ink-500">
+          <p className="mt-1 text-[11.5px] text-ink-700">
             Translated from SOW into shoot-ready intent.
           </p>
         </div>
@@ -102,7 +102,7 @@ export function WhatThisMeansSidebar({ summary }: { summary: MeansSummary }) {
           <span className="flex items-center gap-2 text-[13px] font-semibold">
             <PenLine className="h-4 w-4" /> Add a Note
           </span>
-          <span className="text-ink-400 transition group-hover:translate-x-0.5">→</span>
+          <span className="text-ink-600 transition group-hover:translate-x-0.5">→</span>
         </button>
       </section>
 
@@ -116,7 +116,7 @@ export function WhatThisMeansSidebar({ summary }: { summary: MeansSummary }) {
             onClick={() => console.log("Download SOW")}
             className="group flex w-full items-center gap-2 rounded-xl border border-ink-200 bg-white px-3 py-2 text-left text-[12.5px] font-semibold text-ink-800 transition hover:border-cloud-400 hover:bg-cloud-50/60"
           >
-            <Download className="h-3.5 w-3.5 text-ink-500 transition group-hover:text-cloud-600" />
+            <Download className="h-3.5 w-3.5 text-ink-700 transition group-hover:text-cloud-600" />
             Download SOW
           </button>
           <button
@@ -124,7 +124,7 @@ export function WhatThisMeansSidebar({ summary }: { summary: MeansSummary }) {
             onClick={() => console.log("Share Campaign")}
             className="group flex w-full items-center gap-2 rounded-xl border border-ink-200 bg-white px-3 py-2 text-left text-[12.5px] font-semibold text-ink-800 transition hover:border-iris-300 hover:bg-iris-50/60"
           >
-            <Share2 className="h-3.5 w-3.5 text-ink-500 transition group-hover:text-iris-600" />
+            <Share2 className="h-3.5 w-3.5 text-ink-700 transition group-hover:text-iris-600" />
             Share Campaign
           </button>
           <button
@@ -139,7 +139,7 @@ export function WhatThisMeansSidebar({ summary }: { summary: MeansSummary }) {
           >
             <CheckCircle2
               className={`h-3.5 w-3.5 transition ${
-                completed ? "text-emerald-600" : "text-ink-500 group-hover:text-emerald-600"
+                completed ? "text-emerald-600" : "text-ink-700 group-hover:text-emerald-600"
               }`}
               strokeWidth={completed ? 3 : 2}
             />

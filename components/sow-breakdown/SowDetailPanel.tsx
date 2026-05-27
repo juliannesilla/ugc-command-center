@@ -62,7 +62,7 @@ function HealthDonut({ score }: { score: number }) {
       </svg>
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
         <span className="font-display text-xl leading-none text-ink-900">{clamped}</span>
-        <span className="text-[8.5px] uppercase tracking-[0.16em] text-ink-500 mt-0.5">Health</span>
+        <span className="text-[8.5px] uppercase tracking-[0.16em] text-ink-700 mt-0.5">Health</span>
       </div>
     </div>
   );
@@ -91,7 +91,7 @@ function formatBonus(b?: number | string): string {
 function Row({ label, value, mono = false }: { label: string; value: React.ReactNode; mono?: boolean }) {
   return (
     <div className="flex items-start justify-between gap-3 py-2 border-b border-iris-100 last:border-b-0">
-      <span className="text-[11px] uppercase tracking-[0.14em] text-ink-500 font-semibold pt-0.5">{label}</span>
+      <span className="text-[11px] uppercase tracking-[0.14em] text-ink-700 font-semibold pt-0.5">{label}</span>
       <span className={cn('text-right text-[13px] text-ink-900 font-medium', mono && 'font-mono tabular-nums')}>{value}</span>
     </div>
   );

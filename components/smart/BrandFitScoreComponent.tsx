@@ -118,7 +118,7 @@ function toneFor(score: number): { ring: string; bar: string; text: string } {
   if (score >= 75) return { ring: "ring-emerald-200", bar: "bg-emerald-500", text: "text-emerald-700" };
   if (score >= 50) return { ring: "ring-iris-200", bar: "bg-iris-500", text: "text-iris-700" };
   if (score >= 30) return { ring: "ring-amber-200", bar: "bg-amber-500", text: "text-amber-700" };
-  return { ring: "ring-cloud-200", bar: "bg-cloud-400", text: "text-ink-500" };
+  return { ring: "ring-cloud-200", bar: "bg-cloud-400", text: "text-ink-700" };
 }
 
 export function BrandFitScoreComponent({ campaign }: { campaign: Campaign }) {
@@ -134,7 +134,7 @@ export function BrandFitScoreComponent({ campaign }: { campaign: Campaign }) {
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-iris-500">
             Personal Brand Fit Score
           </p>
-          <h3 className="font-display text-lg font-semibold text-ink-900 mt-1">
+          <h3 className="font-display text-lg font-bold text-ink-900 mt-1">
             How well does this campaign fit your creator brand?
           </h3>
           <p className="text-xs text-ink-600 mt-1">
@@ -145,10 +145,10 @@ export function BrandFitScoreComponent({ campaign }: { campaign: Campaign }) {
           className={`flex flex-col items-end shrink-0 px-4 py-3 rounded-2xl ring-1 ${overallTone.ring} bg-white`}
           title={`Top niche: ${topNiche.label} at ${topNiche.score}% match. Drives much of the overall score.`}
         >
-          <p className={`font-display text-4xl font-semibold ${overallTone.text} leading-none`}>
-            {overall}<span className="text-base text-ink-400">%</span>
+          <p className={`font-display text-4xl font-bold ${overallTone.text} leading-none`}>
+            {overall}<span className="text-base text-ink-600">%</span>
           </p>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-ink-500 mt-1">
+          <p className="text-[10px] uppercase tracking-[0.18em] text-ink-700 mt-1">
             Overall fit
           </p>
         </div>

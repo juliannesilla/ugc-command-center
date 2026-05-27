@@ -31,6 +31,7 @@ import {
 } from "@/components/ui";
 import { MOCK_CAMPAIGNS } from "@/lib/mock-data/campaigns";
 import { RECENT_ACTIVITY } from "@/lib/mock-data/campaigns";
+import { pageEyebrow as makePageEyebrow, pulseEyebrow as makePulseEyebrow } from "@/lib/date-anchor";
 
 // Modular overview sections (E1 Wave 2 — components/overview/).
 // A.14s S1 — SmartDailyBrief: top-of-Overview triage cockpit reading
@@ -123,16 +124,9 @@ export default function OverviewPage() {
     },
   ];
 
-  // A.14u FIX 2026-05-27: dynamic date at build time (Julz caught "MAY 19" stale)
-  // gh-pages rebuilds on every push + daily cron, so this refreshes naturally.
-  const today = new Date();
-  const dayLong = today.toLocaleDateString("en-US", { weekday: "long" });
-  const dayShort = today.toLocaleDateString("en-US", { weekday: "short" });
-  const monthLong = today.toLocaleDateString("en-US", { month: "long" });
-  const monthShort = today.toLocaleDateString("en-US", { month: "short" });
-  const dayNum = today.getDate();
-  const pageEyebrow = `${dayLong} · ${monthLong} ${dayNum} · Creator Campaign HQ`;
-  const pulseEyebrow = `Today's pulse · ${dayShort} ${monthShort} ${dayNum}`;
+  // A.14u F2: single source of truth at lib/date-anchor (refreshes at build time).
+  const pageEyebrow = makePageEyebrow();
+  const pulseEyebrow = makePulseEyebrow();
 
   return (
     <>
@@ -176,7 +170,7 @@ export default function OverviewPage() {
                   </span>{" "}
                   need a yes/no by EOD or they cool off.
                 </p>
-                <p className="mt-3 text-[10.5px] uppercase tracking-[0.16em] text-ink-500">
+                <p className="mt-3 text-[10.5px] uppercase tracking-[0.16em] text-ink-700">
                   Synced 4 min ago · Wed 9:02am
                 </p>
               </div>
@@ -186,7 +180,7 @@ export default function OverviewPage() {
             <div className="card-secondary">
               <div className="flex items-center gap-2">
                 <Target className="h-4 w-4 text-cloud-600" />
-                <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+                <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-700 font-semibold">
                   Today&rsquo;s focus
                 </p>
               </div>
@@ -197,18 +191,18 @@ export default function OverviewPage() {
                 </li>
                 <li className="flex gap-2 leading-snug">
                   <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-iris-400 shrink-0" />
-                  <span>Push Goodie AI for written brief pre-call</span>
+                  <span>Film ParakeetAI hook variations + Parakeet panel screen-rec</span>
                 </li>
-                <li className="flex gap-2 leading-snug">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  <span>Film e.l.f. Glow mirror-test sequence</span>
+                <li className="flex gap-2 leading-snug text-ink-700">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-ink-300 shrink-0" />
+                  <span>Drop signed brand names in chat to add more campaigns</span>
                 </li>
               </ul>
             </div>
 
             {/* Quick Stats — mockup #05 right-rail card. */}
             <div className="card-secondary" data-today-hide>
-              <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+              <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-700 font-semibold">
                 Quick stats
               </p>
               <dl className="mt-3 space-y-2.5 text-[13px]">
@@ -235,33 +229,14 @@ export default function OverviewPage() {
             <div className="card-secondary" data-today-hide>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-cloud-600" />
-                <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-500 font-semibold">
+                <p className="text-[10.5px] uppercase tracking-[0.22em] text-ink-700 font-semibold">
                   Upcoming calls
                 </p>
               </div>
               <ul className="mt-3 divide-y divide-cloud-50">
-                <li className="py-2.5 first:pt-0">
-                  <p className="text-[13.5px] font-medium text-ink-900 leading-snug">
-                    Goodie AI — pre-brief call
-                  </p>
-                  <p className="text-[11px] text-ink-500 mt-0.5">
-                    Fri · 2:00pm PT · Zoom
-                  </p>
-                </li>
-                <li className="py-2.5">
-                  <p className="text-[13.5px] font-medium text-ink-900 leading-snug">
-                    MegPrime Pay — contract review
-                  </p>
-                  <p className="text-[11px] text-ink-500 mt-0.5">
-                    Mon · 11:30am PT
-                  </p>
-                </li>
-                <li className="py-2.5 last:pb-0">
-                  <p className="text-[13.5px] font-medium text-ink-900 leading-snug">
-                    VILO — kickoff
-                  </p>
-                  <p className="text-[11px] text-ink-500 mt-0.5">
-                    Tue · 10:00am PT
+                <li className="py-2.5 first:pt-0 last:pb-0">
+                  <p className="text-[13px] text-ink-700 leading-snug">
+                    No calls on the books yet. Drop a brand name + meeting time in chat to add one.
                   </p>
                 </li>
               </ul>
@@ -271,7 +246,7 @@ export default function OverviewPage() {
       >
         {/* Today Mode toggle bar — spec § 9 L806-L813. Client island; state in localStorage. */}
         <div className="rise rise-1 flex items-center justify-between gap-3 flex-wrap">
-          <p className="text-[12px] text-ink-500 leading-snug max-w-md">
+          <p className="text-[12px] text-ink-700 leading-snug max-w-md">
             <span data-today-only-label className="font-semibold text-iris-600">
               Today Mode is ON ·
             </span>{" "}
@@ -340,14 +315,14 @@ export default function OverviewPage() {
             <h3 className="section-title text-[22px]">
               Recent campaign activity
             </h3>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
+            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-700">
               Last 72 hours
             </p>
           </div>
           <div className="rounded-3xl bg-white shadow-card ring-1 ring-cloud-100 overflow-x-auto">
             <table className="w-full text-[13px] min-w-[480px]">
               <thead className="bg-cloud-soft text-left">
-                <tr className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500">
+                <tr className="text-[10.5px] uppercase tracking-[0.16em] text-ink-700">
                   <th className="px-5 py-3 font-semibold">When</th>
                   <th className="px-5 py-3 font-semibold">Brand</th>
                   <th className="px-5 py-3 font-semibold">Event</th>
@@ -355,25 +330,38 @@ export default function OverviewPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-cloud-50">
-                {RECENT_ACTIVITY.slice(0, 5).map((row) => (
-                  <tr
-                    key={row.id}
-                    className="hover:bg-cloud-50/60 transition"
-                  >
-                    <td className="px-5 py-3 text-ink-500 whitespace-nowrap">
-                      {row.when}
-                    </td>
-                    <td className="px-5 py-3 font-semibold text-ink-900 whitespace-nowrap">
-                      {row.brand}
-                    </td>
-                    <td className="px-5 py-3 text-ink-700">{row.event}</td>
-                    <td className="px-5 py-3">
-                      <StatusChip tone={stageToTone(row.stage)}>
-                        {row.stage}
-                      </StatusChip>
+                {RECENT_ACTIVITY.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan={4}
+                      className="px-5 py-8 text-center text-[13px] text-ink-700"
+                    >
+                      No recent activity. Drop signed brand names in chat to
+                      start the log — ParakeetAI is the only active campaign
+                      right now.
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  RECENT_ACTIVITY.slice(0, 5).map((row) => (
+                    <tr
+                      key={row.id}
+                      className="hover:bg-cloud-50/60 transition"
+                    >
+                      <td className="px-5 py-3 text-ink-700 whitespace-nowrap">
+                        {row.when}
+                      </td>
+                      <td className="px-5 py-3 font-semibold text-ink-900 whitespace-nowrap">
+                        {row.brand}
+                      </td>
+                      <td className="px-5 py-3 text-ink-700">{row.event}</td>
+                      <td className="px-5 py-3">
+                        <StatusChip tone={stageToTone(row.stage)}>
+                          {row.stage}
+                        </StatusChip>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

@@ -11,7 +11,7 @@ export function ToolsConnected() {
         <h3 className="section-title text-[22px]">
           Tools &amp; assets connected
         </h3>
-        <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-ink-700">
           {TOOLS_CONNECTED.length} sources
         </p>
       </div>

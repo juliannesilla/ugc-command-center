@@ -16,7 +16,7 @@ export function UpcomingFilmingDates() {
               <p className="text-[13px] font-semibold text-ink-900 leading-tight truncate">
                 {f.brand} — {f.campaign}
               </p>
-              <p className="text-[11px] text-ink-500 truncate">
+              <p className="text-[11px] text-ink-700 truncate">
                 {f.location ?? '—'}
               </p>
             </div>

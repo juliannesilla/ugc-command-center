@@ -29,7 +29,7 @@ export function UpcomingDeadlines() {
         <h3 className="section-title text-[22px]">
           Upcoming deadlines
         </h3>
-        <p className="text-[11px] uppercase tracking-[0.18em] text-ink-500">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-ink-700">
           Next 30 days
         </p>
       </div>
@@ -37,15 +37,15 @@ export function UpcomingDeadlines() {
       <div className="rounded-3xl bg-white shadow-card ring-1 ring-cloud-100 overflow-x-auto">
         {items.length === 0 ? (
           <div className="px-5 py-8 text-center">
-            <CalendarClock className="h-5 w-5 text-ink-400 mx-auto" />
-            <p className="mt-2 text-[13px] text-ink-500">
+            <CalendarClock className="h-5 w-5 text-ink-600 mx-auto" />
+            <p className="mt-2 text-[13px] text-ink-700">
               No deadlines in the next 30 days.
             </p>
           </div>
         ) : (
           <table className="w-full text-[13px] min-w-[520px]">
             <thead className="bg-cloud-soft text-left">
-              <tr className="text-[10.5px] uppercase tracking-[0.16em] text-ink-500">
+              <tr className="text-[10.5px] uppercase tracking-[0.16em] text-ink-700">
                 <th className="px-5 py-3 font-semibold">Due</th>
                 <th className="px-5 py-3 font-semibold">Brand</th>
                 <th className="px-5 py-3 font-semibold">Next action</th>
@@ -62,7 +62,7 @@ export function UpcomingDeadlines() {
                     <StatusChip tone={daysOutTone(it.daysOut)}>
                       {daysOutLabel(it.daysOut)}
                     </StatusChip>
-                    <p className="mt-1 text-[10.5px] text-ink-500">{it.date}</p>
+                    <p className="mt-1 text-[10.5px] text-ink-700">{it.date}</p>
                   </td>
                   <td className="px-5 py-3 font-semibold text-ink-900 whitespace-nowrap">
                     {it.brand}

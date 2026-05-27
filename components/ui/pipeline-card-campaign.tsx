@@ -60,7 +60,7 @@ function brandInitials(name: string) {
 function formatDueDate(iso?: string): { label: string; overdue: boolean } | null {
   if (!iso) return null;
   const d = new Date(iso);
-  const today = new Date('2026-05-20'); // matches MEMORY currentDate
+  const today = new Date(); // A.14u F2: dynamic anchor
   const overdue = d.getTime() < today.getTime();
   return {
     label: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
@@ -118,7 +118,7 @@ export function PipelineCardCampaign({ card }: { card: Campaign }) {
               className={cn('h-1.5 w-1.5 rounded-full shrink-0', priorityDot[card.priority])}
               title={`Priority: ${card.priority}`}
             />
-            <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-500 truncate flex-1">
+            <span className="text-[10.5px] uppercase tracking-[0.14em] text-ink-700 truncate flex-1">
               {card.brand}
             </span>
             {/* Indicators */}
@@ -174,7 +174,7 @@ export function PipelineCardCampaign({ card }: { card: Campaign }) {
           <span
             className={cn(
               'inline-flex items-center gap-1',
-              due.overdue ? 'text-rose-600 font-semibold' : 'text-ink-500',
+              due.overdue ? 'text-rose-600 font-semibold' : 'text-ink-700',
             )}
           >
             <Calendar className="h-3 w-3" />

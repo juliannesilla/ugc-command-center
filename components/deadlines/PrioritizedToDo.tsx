@@ -19,7 +19,7 @@ export function PrioritizedToDo() {
             <Circle className={cn('h-2.5 w-2.5 mt-1 shrink-0', dot[t.priority])} strokeWidth={0} />
             <div className="min-w-0 flex-1">
               <p className="text-[12.5px] text-ink-900 leading-snug">{t.label}</p>
-              <p className="text-[10.5px] uppercase tracking-[0.12em] text-ink-400 mt-0.5">
+              <p className="text-[10.5px] uppercase tracking-[0.12em] text-ink-600 mt-0.5">
                 {t.due} · {t.priority}
               </p>
             </div>
