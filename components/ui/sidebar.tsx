@@ -85,7 +85,7 @@ export const NAV_ENTRIES: NavEntry[] = [
   },
 
   // A.14k LOCK: Inbox stays TOP-LEVEL, not nested.
-  { label: 'Inbox', href: '/inbox', icon: MessageSquare },
+  { label: 'Feedback Hub', href: '/inbox', icon: MessageSquare },
 
   // Group 2 — Brand (3 children)
   {
@@ -203,7 +203,7 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
 
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto px-2 pb-4">
-        <ul className="space-y-0.5">
+        <ul className="space-y-1">
           {NAV_ENTRIES.map(entry => {
             // -------- LEAF (top-level link) --------
             if (!isGroup(entry)) {
@@ -216,7 +216,8 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
                     aria-current={active ? 'page' : undefined}
                     className={cn(
                       // A14L L3-G polish: 200ms ease-out (HIG), focus-visible ring, subtle translate-x on hover.
-                      'group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium font-display transition-all duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
+                      // A.14u F8: bolder weight + leading-relaxed + roomier py-3 per Julz request.
+                      'group relative flex items-center gap-3 rounded-xl px-3 py-3 text-[13px] font-bold font-display leading-relaxed tracking-tight transition-all duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
                       active
                         ? 'bg-cloud-100 text-cloud-800 shadow-card ring-1 ring-cloud-200/60'
                         : 'text-ink-600 hover:bg-cloud-50 hover:text-ink-900 hover:translate-x-[1px]',
@@ -261,10 +262,11 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
                   aria-expanded={open}
                   aria-controls={`nav-group-${entry.key}`}
                   className={cn(
-                    'group relative flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium font-display transition-all duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
+                    // A.14u F8: group headers slightly larger + uppercase tracking-wider for hierarchy clarity (refactoring-ui).
+                    'group relative flex w-full items-center gap-3 rounded-xl px-3 py-3 text-[13px] font-bold font-display leading-relaxed uppercase tracking-wider transition-all duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
                     groupActive
                       ? 'text-cloud-800 hover:bg-cloud-50'
-                      : 'text-ink-600 hover:bg-cloud-50 hover:text-ink-900 hover:translate-x-[1px]',
+                      : 'text-ink-500 hover:bg-cloud-50 hover:text-ink-900 hover:translate-x-[1px]',
                   )}
                 >
                   <Icon
@@ -296,7 +298,8 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
                             href={child.href}
                             aria-current={childActive ? 'page' : undefined}
                             className={cn(
-                              'group relative flex items-center gap-3 rounded-xl pl-9 pr-3 py-2 text-[12.5px] font-medium font-display transition-all duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
+                              // A.14u F8: child rows bold + leading-relaxed + py-2.5 for breath; remain visually subordinate to parent via smaller text + indent.
+                              'group relative flex items-center gap-3 rounded-xl pl-9 pr-3 py-2.5 text-[12.5px] font-bold font-display leading-relaxed tracking-tight transition-all duration-200 ease-out outline-none focus-visible:ring-2 focus-visible:ring-cloud-300 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
                               childActive
                                 ? 'bg-cloud-100 text-cloud-800 shadow-card ring-1 ring-cloud-200/60'
                                 : 'text-ink-500 hover:bg-cloud-50 hover:text-ink-900 hover:translate-x-[1px]',

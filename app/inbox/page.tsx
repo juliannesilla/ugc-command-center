@@ -18,9 +18,9 @@ import { InboxTable } from '@/components/comments/InboxTable';
 import { Inbox as InboxIcon, Sparkles } from 'lucide-react';
 
 export const metadata = {
-  title: 'Inbox · UGC | Campaign HQ',
+  title: 'Feedback Hub · UGC | Campaign HQ',
   description:
-    'Comment inbox — every piece of feedback Julz dropped on the dashboard, with status, PR, and resolved-commit tracking.',
+    'Feedback Hub — every piece of feedback Julz dropped on the dashboard, with status, PR, and resolved-commit tracking.',
 };
 
 export default function InboxPage() {
@@ -28,7 +28,7 @@ export default function InboxPage() {
     <>
       <Header
         pageEyebrow="Dashboard · Self-feedback queue"
-        pageTitle="Comment Inbox"
+        pageTitle="Feedback Hub"
       />
 
       <main className="px-7 md:px-12 py-6 -mt-24 lg:-mt-32 relative z-10 space-y-6">
@@ -48,7 +48,7 @@ export default function InboxPage() {
               Every comment, one queue
             </p>
           </div>
-          <h2 className="relative section-title">Comment Inbox</h2>
+          <h2 className="relative section-title">Feedback Hub</h2>
           <p className="relative section-subtitle max-w-2xl">
             Click any comment to triage. Use the floating button on any page to drop a new one.
             Filter by status, route, or priority. Bulk-resolve when a batch ships.
