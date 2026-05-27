@@ -17,6 +17,9 @@
     "poll-sideshift": "node scripts/poll-sideshift.mjs",
     "score-brand-fit": "node scripts/score-brand-fit.mjs",
     "ask": "node scripts/ask.mjs",
+    "draft-sideshift": "node scripts/draft-sideshift-replies.mjs",
+    "send-sideshift": "node scripts/send-sideshift-reply.mjs",
+    "process-comments": "node scripts/process-comments.mjs",
     "build:gh-pages-local": "node -e \"const fs=require('fs');if(fs.existsSync('app/api')){fs.renameSync('app/api','app/_api_tmp_for_local_gh_pages_build');}\" && (cross-env DEPLOY_TARGET=gh-pages next build || true) && node -e \"const fs=require('fs');if(fs.existsSync('app/_api_tmp_for_local_gh_pages_build')){fs.renameSync('app/_api_tmp_for_local_gh_pages_build','app/api');}\""
   },
   "dependencies": {

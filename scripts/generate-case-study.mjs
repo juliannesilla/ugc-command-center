@@ -23,7 +23,7 @@
  * Env:
  *   ANTHROPIC_API_KEY    required (unless --dry-run)
  *   MAX_DAILY_USD        default 5 (per A.14t T6 spec)
- *   ANTHROPIC_MODEL      default claude-opus-4-7-20260101
+ *   ANTHROPIC_MODEL      default claude-opus-4-7
  *
  * Usage:
  *   node scripts/generate-case-study.mjs --slug=brand-campaign
@@ -58,11 +58,11 @@ const OUTPUT_DIR = path.join(REPO_ROOT, 'scripts', 'cron-output');
 const SPEND_LEDGER = path.join(OUTPUT_DIR, 'case-study-spend.jsonl');
 
 const MAX_DAILY_USD = Number(process.env.MAX_DAILY_USD ?? 5);
-const MODEL = process.env.ANTHROPIC_MODEL ?? 'claude-opus-4-7-20260101';
+const MODEL = process.env.ANTHROPIC_MODEL ?? 'claude-opus-4-7';
 
 const PRICING = {
   'claude-opus-4-5-20250929':    { input: 15, output: 75 },
-  'claude-opus-4-7-20260101':    { input: 15, output: 75 },
+  'claude-opus-4-7':    { input: 15, output: 75 },
   'claude-sonnet-4-5-20250929':  { input: 3,  output: 15 },
   default:                       { input: 15, output: 75 },
 };
@@ -112,7 +112,7 @@ Flags:
 Env:
   ANTHROPIC_API_KEY   required for real runs
   MAX_DAILY_USD       default 5
-  ANTHROPIC_MODEL     default claude-opus-4-7-20260101
+  ANTHROPIC_MODEL     default claude-opus-4-7
 
 Reads (best-effort, missing files OK):
   UGC/<slug>/03-sow-breakdown.md

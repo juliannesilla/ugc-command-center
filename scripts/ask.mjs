@@ -26,7 +26,7 @@
  *
  * Env:
  *   ANTHROPIC_API_KEY   required for real runs
- *   ANTHROPIC_MODEL     default claude-opus-4-7-20260101
+ *   ANTHROPIC_MODEL     default claude-opus-4-7
  *   MAX_DAILY_USD       default 5 (T7 spec-locked)
  *   REPO_ROOT_OVERRIDE  default: derived from __dirname/..
  *
@@ -90,7 +90,7 @@ OPTIONAL
 ENV
   ANTHROPIC_API_KEY   Required for non-dry-run. If missing, script exits 0
                       with remediation steps (no crash).
-  ANTHROPIC_MODEL     Default: claude-opus-4-7-20260101
+  ANTHROPIC_MODEL     Default: claude-opus-4-7
   MAX_DAILY_USD       Default: 5  (script aborts if today's spend ≥ cap)
 
 DATA SOURCES (auto-loaded, cited inline in the system prompt)
@@ -120,7 +120,7 @@ if (ARGS.help) {
 
 const QUERY = (ARGS._[0] ?? '').trim();
 const MAX_DAILY_USD = Number(process.env.MAX_DAILY_USD ?? 5);
-const MODEL = process.env.ANTHROPIC_MODEL ?? 'claude-opus-4-7-20260101';
+const MODEL = process.env.ANTHROPIC_MODEL ?? 'claude-opus-4-7';
 
 const DATA_DIR = path.join(REPO_ROOT, 'data');
 const HISTORY_PATH = path.join(DATA_DIR, 'ask-history.jsonl');
@@ -139,7 +139,7 @@ const OUTREACH_PATH = path.join(UGC_ROOT, '_meta', '09-outreach-templates.md');
 // Pricing per 1M tokens — matches draft-sideshift-replies.mjs (HR-1: cite source).
 const PRICING = {
   'claude-opus-4-5-20250929':    { input: 15, output: 75 },
-  'claude-opus-4-7-20260101':    { input: 15, output: 75 },
+  'claude-opus-4-7':    { input: 15, output: 75 },
   'claude-sonnet-4-5-20250929':  { input: 3,  output: 15 },
   default:                       { input: 15, output: 75 },
 };

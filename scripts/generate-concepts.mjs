@@ -33,7 +33,7 @@
  *
  * Env:
  *   ANTHROPIC_API_KEY   required for real runs (gracefully exits 0 if missing)
- *   ANTHROPIC_MODEL     default claude-opus-4-7-20260101
+ *   ANTHROPIC_MODEL     default claude-opus-4-7
  *   MAX_DAILY_USD       default 5 (spec-locked per task)
  *   UGC_ROOT            default C:/Users/julia/OneDrive/Desktop/UGC
  *
@@ -103,7 +103,7 @@ OPTIONAL
 ENV
   ANTHROPIC_API_KEY    Required for non-dry-run. If missing, script exits 0
                        with a remediation hint (HR-10 honest fallback).
-  ANTHROPIC_MODEL      Default: claude-opus-4-7-20260101
+  ANTHROPIC_MODEL      Default: claude-opus-4-7
   MAX_DAILY_USD        Default: 5  (script aborts if today's spend ≥ cap)
   UGC_ROOT             Default: C:/Users/julia/OneDrive/Desktop/UGC
 
@@ -139,14 +139,14 @@ if (ARGS.help) {
 
 const UGC_ROOT = process.env.UGC_ROOT ?? 'C:/Users/julia/OneDrive/Desktop/UGC';
 const MAX_DAILY_USD = Number(process.env.MAX_DAILY_USD ?? 5);
-const MODEL = process.env.ANTHROPIC_MODEL ?? 'claude-opus-4-7-20260101';
+const MODEL = process.env.ANTHROPIC_MODEL ?? 'claude-opus-4-7';
 const SPEND_LEDGER = path.join(REPO_ROOT, 'scripts', 'cron-output', 'concept-gen-spend.jsonl');
 const RUN_ID = `${new Date().toISOString().replace(/[:.]/g, '-')}-${randomUUID().slice(0, 8)}`;
 
 // Pricing per 1M tokens — matches parse-sow.mjs (HR-1: cite source).
 const PRICING = {
   'claude-opus-4-5-20250929':    { input: 15, output: 75 },
-  'claude-opus-4-7-20260101':    { input: 15, output: 75 },
+  'claude-opus-4-7':    { input: 15, output: 75 },
   'claude-sonnet-4-5-20250929':  { input: 3,  output: 15 },
   default:                       { input: 15, output: 75 },
 };

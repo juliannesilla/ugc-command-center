@@ -27,7 +27,7 @@
  * Env:
  *   ANTHROPIC_API_KEY    required (unless --dry-run)
  *   MAX_DAILY_USD        default 15 (spec-locked)
- *   ANTHROPIC_MODEL      default claude-opus-4-7-20260101 (override via env)
+ *   ANTHROPIC_MODEL      default claude-opus-4-7 (override via env)
  *
  * Usage:
  *   node scripts/draft-sideshift-replies.mjs            # real run (needs API key)
@@ -58,12 +58,12 @@ const OUTREACH_TEMPLATES_PATH =
   'C:/Users/julia/OneDrive/Desktop/UGC/_meta/09-outreach-templates.md';
 
 const MAX_DAILY_USD = Number(process.env.MAX_DAILY_USD ?? 15);
-const MODEL = process.env.ANTHROPIC_MODEL ?? 'claude-opus-4-7-20260101';
+const MODEL = process.env.ANTHROPIC_MODEL ?? 'claude-opus-4-7';
 
 // Claude API pricing per 1M tokens (Opus 4.x tier as of 2026-05).
 const PRICING = {
   'claude-opus-4-5-20250929':    { input: 15, output: 75 },
-  'claude-opus-4-7-20260101':    { input: 15, output: 75 },
+  'claude-opus-4-7':    { input: 15, output: 75 },
   'claude-sonnet-4-5-20250929':  { input: 3,  output: 15 },
   default:                       { input: 15, output: 75 },
 };

@@ -16,7 +16,7 @@
  * Env:
  *   ANTHROPIC_API_KEY    required (unless --dry-run)
  *   MAX_DAILY_USD        default 30
- *   ANTHROPIC_MODEL      default claude-opus-4-7-20260101 (override via env)
+ *   ANTHROPIC_MODEL      default claude-opus-4-7 (override via env)
  *   GH_TOKEN             required for PR creation (unless --dry-run)
  *
  * Usage:
@@ -49,7 +49,7 @@ const MODEL = process.env.ANTHROPIC_MODEL ?? 'claude-opus-4-5-20250929';
 // Adjust if model env override targets a different tier.
 const PRICING = {
   'claude-opus-4-5-20250929':    { input: 15, output: 75 },
-  'claude-opus-4-7-20260101':    { input: 15, output: 75 },
+  'claude-opus-4-7':    { input: 15, output: 75 },
   'claude-sonnet-4-5-20250929':  { input: 3,  output: 15 },
   default:                       { input: 15, output: 75 },
 };
