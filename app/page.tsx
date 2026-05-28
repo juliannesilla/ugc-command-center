@@ -109,18 +109,20 @@ export default function OverviewPage() {
 
   return (
     <>
-      {/* Chrome strip preserved per HR-2 — brand mark + page eyebrow + avatar.
-          Header continues to render the deep-lavender hero (HR-27 brand lock);
-          HeroCinematic below is the content-area cinematic banner per #05. */}
-      <Header
-        pageEyebrow={pageEyebrow}
-        pageTitle="Good morning, Julianne."
-      />
+      {/* Chrome strip preserved per HR-2 — brand mark + read-only badge +
+          notif + avatar only. We INTENTIONALLY do not pass pageTitle or
+          pageEyebrow here because HeroCinematic below owns those slots per
+          mockup #05 (single headline, no duplication). The chrome's bottom
+          gradient still flows into the hero band via -mt-8 lift on
+          ContentArea so the composition reads as one continuous moment. */}
+      <Header />
 
-      {/* Negative -mt-8 pulls HeroCinematic up into the chrome bottom so the
-          composition reads as one continuous hero per mockup #05 (no gap
-          between chrome and content hero). */}
-      <ContentArea className="-mt-8">
+      {/* Heavy negative top-margin pulls HeroCinematic up INTO the chrome's
+          empty pb-36 lower zone so the cinematic photo replaces (rather than
+          stacks below) the chrome lavender. Without modifying Header (HR-2
+          preserve), this overlap is how we hit mockup #05's single-banner
+          composition. -mt-44 matches the chrome's lg:pb-44. */}
+      <ContentArea className="-mt-32 lg:-mt-44">
         {/* ─────────────── HERO BAND #1 — Cinematic photo-banner ─────────────── */}
         {/* Mockup #05 §1 hero photo + headline + mantra + KPI strip seamless. */}
         <HeroCinematic
