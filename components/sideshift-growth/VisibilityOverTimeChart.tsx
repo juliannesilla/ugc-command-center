@@ -20,6 +20,17 @@ import {
   CartesianGrid,
 } from 'recharts';
 import { VISIBILITY_OVER_TIME } from '@/lib/mock-data/sideshift-growth';
+import { buildVisibilityOverTime } from '@/lib/sideshift-growth/from-canonical';
+
+// A.14v Wave 2 TUFTE: real DARWIN-merged SideShift brand data.
+// Falls back to mock series only if the canonical pipeline is empty
+// (defensive — should never trigger with current 34-brand dataset).
+const LIVE_SERIES = buildVisibilityOverTime(12);
+const SERIES = LIVE_SERIES.length > 0 ? LIVE_SERIES : VISIBILITY_OVER_TIME;
+const CURRENT_SCORE = SERIES[SERIES.length - 1]?.score ?? 0;
+const FIRST_SCORE = SERIES[0]?.score ?? 0;
+const SCORE_DELTA = CURRENT_SCORE - FIRST_SCORE;
+const FIRST_MONTH = SERIES[0]?.week.split(' ')[0] ?? '';
 
 export function VisibilityOverTimeChart() {
   return (
@@ -31,8 +42,17 @@ export function VisibilityOverTimeChart() {
           </h2>
           <p className="text-xs text-ink-700 mt-0.5">
             12-week trend · current score{' '}
-            <span className="font-semibold text-iris-600">84</span>
-            <span className="text-emerald-600 ml-2 font-semibold">+22 since Mar</span>
+            <span className="font-semibold text-iris-600">{CURRENT_SCORE}</span>
+            {SCORE_DELTA !== 0 && (
+              <span
+                className={`ml-2 font-semibold ${
+                  SCORE_DELTA > 0 ? 'text-emerald-600' : 'text-rose-600'
+                }`}
+              >
+                {SCORE_DELTA > 0 ? '+' : ''}
+                {SCORE_DELTA} since {FIRST_MONTH}
+              </span>
+            )}
           </p>
         </div>
         <div className="flex items-center gap-3 text-[11px] text-ink-600">
@@ -45,7 +65,7 @@ export function VisibilityOverTimeChart() {
       <div className="h-56">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
-            data={VISIBILITY_OVER_TIME}
+            data={SERIES}
             margin={{ top: 8, right: 12, bottom: 4, left: -8 }}
           >
             <defs>
