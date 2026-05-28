@@ -28,12 +28,22 @@
 // HR-15 VERIFY ARTIFACT: build + screenshot the actual page, not just the source.
 // HR-37 NO force-dynamic on page routes for GH Pages static export.
 
-import { TrendingUp, Wallet, Inbox, PlayCircle, Check } from "lucide-react";
+import { TrendingUp, Wallet, Inbox, PlayCircle, Check, Sparkles } from "lucide-react";
+import Link from "next/link";
 import { Header } from "@/components/ui/header";
 import { ContentArea, StatStrip, type StatTile } from "@/components/ui";
 import { HeroCinematic } from "@/components/overview/HeroCinematic";
 import { SmartDailyBrief } from "@/components/overview/SmartDailyBrief";
 import { YourNextMove } from "@/components/overview/YourNextMove";
+// A.14y Wave 0.5 — JONY orphan-fix: remount 6 key feed sections below the
+// cinematic hero per Julz hybrid Option 3. Full 16-component surface lives at
+// /overview/full per HR-48 (no orphan promises without shipped home).
+import { PipelineSnapshot } from "@/components/overview/PipelineSnapshot";
+import { CampaignHealthSnapshot } from "@/components/overview/CampaignHealthSnapshot";
+import { FocusThisWeek } from "@/components/overview/FocusThisWeek";
+import { UpcomingDeadlines } from "@/components/overview/UpcomingDeadlines";
+import { RecentBrandMessages } from "@/components/overview/RecentBrandMessages";
+import { PaymentsSnapshot } from "@/components/overview/PaymentsSnapshot";
 import { MOCK_CAMPAIGNS } from "@/lib/mock-data/campaigns";
 import {
   pageEyebrow as makePageEyebrow,
@@ -146,12 +156,37 @@ export default function OverviewPage() {
             most pipeline value. */}
         <YourNextMove />
 
-        {/* SINGLE-VIEWPORT MANDATE — nothing below the fold by design.
-            Prior modular feed sections (PipelineSnapshot, CampaignHealthSnapshot,
-            FocusThisWeek, RecentBrandMessages, UpcomingDeadlines, PaymentsSnapshot,
-            ToolsConnected, PortfolioReadyClips, RecentActivity) still exist as
-            components under components/overview/ — they're mounted on dedicated
-            sub-routes or a future /overview/full expansion, NOT on this hero. */}
+        {/* ─────────────── A.14y Wave 0.5 — REMOUNTED smart-insights surface ─────────────── */}
+        {/* Julz directive 2026-05-28: "what happened to my overview with smart
+            insights on the dashboard??? ... 3 [hybrid] + why tf did he orphan it?"
+            JONY's "single viewport mandate" stripped these to 0 + promised
+            /overview/full route that was never built. Per Julz hybrid Option 3:
+            6 key sections remount HERE below the cinematic hero; full 16 + per-
+            campaign smart engines + draft generator live at /overview/full.
+            HR-48 enforced: no orphan promises without shipped home.
+            HR-49 enforced: all sections read canonical via LINUS V8A wire-up. */}
+        <section className="mt-12 space-y-12">
+          <PipelineSnapshot />
+          <CampaignHealthSnapshot />
+          <FocusThisWeek />
+          <UpcomingDeadlines />
+          <RecentBrandMessages />
+          <PaymentsSnapshot />
+
+          {/* Link to expanded dashboard with the remaining 10 surfaces. */}
+          <div className="flex justify-center pt-4 pb-12">
+            <Link
+              href="/overview/full"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-iris-100 hover:bg-iris-200 ring-1 ring-iris-300/40 text-iris-900 font-medium transition-colors"
+            >
+              <Sparkles className="h-4 w-4" />
+              <span>Open expanded dashboard</span>
+              <span className="text-xs ink-500 ml-1">
+                · Tools Connected · Portfolio · 8 smart engines · Draft generator
+              </span>
+            </Link>
+          </div>
+        </section>
       </ContentArea>
     </>
   );

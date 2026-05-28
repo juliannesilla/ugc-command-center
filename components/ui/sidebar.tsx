@@ -68,6 +68,10 @@ const isGroup = (e: NavEntry): e is NavGroup =>
 // PRESERVE per HR-2: Inbox stays top-level (A.14k Leave-feedback lock).
 export const NAV_ENTRIES: NavEntry[] = [
   { label: 'Overview', href: '/', icon: LayoutDashboard },
+  // A.14y Wave 0.5 — JONY orphan-fix: dedicated Expanded Dashboard nav entry
+  // mounts the 16 components JONY's A.14v rebuild orphaned. Per HR-48 (no
+  // orphan promises without shipped home) this nav + the route ship together.
+  { label: 'Expanded Dashboard', href: '/overview/full', icon: Sparkles },
 
   // Group 1 — Pipeline (6 children)
   {
