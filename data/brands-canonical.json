@@ -8,27 +8,36 @@
     ],
     "pipeline_source": [
       "sideshift",
-      "gmail-direct"
+      "gmail-direct",
+      "linear"
     ],
     "contract_signed": true,
     "contract_signed_at": "2026-05-26",
     "contract_link": "Contract Agreement - MWM.AI.pdf (188.1 kB)",
     "status": "signed",
     "dashboard_visible": true,
-    "payment_amount_usd": null,
-    "payment_terms_days": null,
+    "payment_amount_usd": 50,
+    "payment_terms_days": 30,
     "bonus_amount_usd": null,
     "payment_terms_note": "$50 retainer every 5 approved posts",
     "deliverables": [
       {
-        "type": "video",
+        "platform": "TikTok",
         "count": 5,
-        "platforms": [
-          "TikTok",
-          "Instagram Reels",
-          "YouTube Shorts"
-        ],
-        "frequency": "5-post retainer cycle"
+        "format": "vertical-1080x1920",
+        "cadence": "per_retainer_cycle"
+      },
+      {
+        "platform": "Instagram Reels",
+        "count": 5,
+        "format": "cross-post",
+        "cadence": "per_retainer_cycle"
+      },
+      {
+        "platform": "YouTube Shorts",
+        "count": 5,
+        "format": "cross-post",
+        "cadence": "per_retainer_cycle"
       }
     ],
     "deadlines": {
@@ -43,7 +52,7 @@
       "role": "campaign manager",
       "channel": "sideshift"
     },
-    "last_msg_at": "2026-05-26",
+    "last_msg_at": "2026-05-28",
     "last_msg_direction": "julz",
     "awaiting_julz": true,
     "awaiting_julz_action": "map GTM content strategy + first batch of campaign posts (committed May 27)",
@@ -53,25 +62,49 @@
       "sideshift": {
         "row": 1,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbPF6Rmma2TRmjUrE1rV3"
+        "channel_id": "recruit:feed_1CbPF6Rmma2TRmjUrE1rV3",
+        "last_seen": "2026-05-26"
       },
       "gmail": {
         "thread_id": "19e5efd78f23ac1d",
-        "row": 7
+        "row": 7,
+        "last_seen": "2026-05-25T11:55:29Z"
       },
-      "linear": null
+      "linear": {
+        "issue_id": "JUL-26",
+        "url": "https://linear.app/julianne/issue/JUL-26/mwmai-tiktok-ig-reels-youtube-shorts-retainer",
+        "status": "In Progress",
+        "created_by": "HOLMES (A.14v Wave 2)",
+        "last_seen": "2026-05-28T02:22:49.055Z"
+      }
     },
     "conflicts": [],
     "linear_status_drift": false,
-    "auto_fix_recommended": [
+    "auto_fix_recommended": [],
+    "auto_fix_resolved": [
       {
         "action": "create_linear_issue",
-        "command": "save_issue",
-        "target": "MWM.ai campaign hub w/ 13-stage checklist",
-        "justification": "signed contract not in Linear; needs tracking"
+        "resolved_at": "2026-05-28T02:22:49Z",
+        "issue_id": "JUL-26",
+        "resolver": "HOLMES"
       }
     ],
-    "notes": "NEW signed contract per OPRAH. Contact 'Alicia' may be same as MyCal Alicia (HR-flagged)."
+    "notes": "NEW signed contract per OPRAH. Contact 'Alicia' may be same as MyCal Alicia (HR-flagged). Linear issue JUL-26 created by HOLMES per DARWIN auto-fix queue. HOLMES-V2 (2026-05-27): attempted Chrome MCP PDF extraction → blocked by SideShift visibility-gated conversation panel (tab is background-hidden in browser); same HR-10 unblock applies as Phobaxx — Julz to download Contract Agreement - MWM.AI.pdf from SideShift to local disk, then re-spawn HOLMES-V3.",
+    "holmes_v2_probe_2026-05-27": "V2 also attempted MWM.ai PDF extraction via Chrome MCP. Same root cause as Phobaxx row: SideShift right pane requires foregrounded tab; Chrome MCP cannot foreground. Browser attach + click registered, conversation never loaded. UNBLOCK: Julz to download Contract Agreement - MWM.AI.pdf (188.1 kB) from SideShift chat → C:/Users/julia/Downloads/ → re-spawn HOLMES-V3.",
+    "payment_total_potential": null,
+    "payment_timing": "per_5_approved_posts",
+    "cycle_days": 30,
+    "contract_status": "signed",
+    "awaiting_brand_action": "Send video length spec + tone guide + usage rights window",
+    "fit_score": 7,
+    "honest_concerns": [
+      "video_length_not_specified",
+      "tone_guide_pending",
+      "usage_rights_pending",
+      "Alicia_identity_overlap_with_MyCal"
+    ],
+    "last_processed_by": "CLAUDE-A14Y-W06C",
+    "last_processed_at": "2026-05-28T22:57:28.564Z"
   },
   {
     "brand_id": "phobaxx",
@@ -80,7 +113,8 @@
       "Phobaxx"
     ],
     "pipeline_source": [
-      "sideshift"
+      "sideshift",
+      "linear"
     ],
     "contract_signed": true,
     "contract_signed_at": "2026-05-26",
@@ -88,15 +122,15 @@
     "status": "signed",
     "dashboard_visible": true,
     "payment_amount_usd": null,
-    "payment_terms_days": null,
+    "payment_terms_days": 30,
     "bonus_amount_usd": null,
     "payment_terms_note": "30 total posts | 30 posts per month | 2 deliverables; $ amount inside PDF — HR-10 unresolved",
     "deliverables": [
       {
-        "type": "video",
+        "platform": "TikTok+Reels+Shorts",
         "count": 30,
-        "frequency": "30/month",
-        "style": "organic, curiosity-driven, authentic, native"
+        "format": "organic-native",
+        "cadence": "monthly_30_posts"
       }
     ],
     "deadlines": {
@@ -111,7 +145,7 @@
       "role": "contact",
       "channel": "sideshift"
     },
-    "last_msg_at": "2026-05-26",
+    "last_msg_at": "2026-05-28",
     "last_msg_direction": "julz",
     "awaiting_julz": true,
     "awaiting_julz_action": "start mapping GTM content strategy May 27; awaiting clarification on 30 posts video-only vs photo/carousel",
@@ -121,10 +155,17 @@
       "sideshift": {
         "row": 2,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbELTKMEjsTLHDfKhyCuS"
+        "channel_id": "recruit:feed_1CbELTKMEjsTLHDfKhyCuS",
+        "last_seen": "2026-05-26"
       },
       "gmail": null,
-      "linear": null
+      "linear": {
+        "issue_id": "JUL-27",
+        "url": "https://linear.app/julianne/issue/JUL-27/phobaxx-30-postsmonth-organic-native",
+        "status": "In Progress",
+        "created_by": "HOLMES (A.14v Wave 2)",
+        "last_seen": "2026-05-28T02:23:07.746Z"
+      }
     },
     "conflicts": [
       {
@@ -132,25 +173,46 @@
         "issue": "unknown — extract from Phobaxx PDF",
         "sources": [
           "sideshift row 2: 'unknown_extract_from_pdf'"
-        ]
+        ],
+        "status": "HR-10_unresolved",
+        "holmes_probe_2026-05-27": "PDF not on local disk (Glob C:/Users/julia/**/Phobaxx* + C:/Users/julia/Downloads/**/*Phobaxx* both empty). PDF lives on SideShift CDN as chat attachment; not accessible via Gmail (no Gmail thread exists for Phobaxx). Resolution: Julz to download PDF from SideShift chat → save to disk → re-spawn HOLMES.",
+        "holmes_v2_probe_2026-05-27": "V2 attempted Chrome MCP attach to Julz's authenticated SideShift session at https://app.sideshift.app/chat. Browser attach SUCCEEDED (deviceId 83693f55-56ed-4c1c-a70f-49a8d6c5c7c4, JULZ|PC). Phobaxx thread button found + clicked via 4 distinct mechanisms (React onClick prop, mouse click at viewport coords, JS dispatchEvent suite incl. PointerEvent+MouseEvent, fresh-navigation+click). Right pane never mounted — stays at placeholder 'Select a channel to start a conversation'. ROOT CAUSE IDENTIFIED via JS probe: document.visibilityState='hidden', document.hidden=true. Chrome MCP tabs operate in a non-foreground tab group; SideShift conversation panel does not bind Firebase channel listener when document is hidden. JS visibility spoof (Object.defineProperty document.hidden=false + visibilityState='visible' + visibilitychange dispatch + window focus event) did not unblock — chat-mount logic ran at app boot and panel is gated downstream. Channel-ID URL query (?channel=recruit%3Afeed_1CbELTKMEjsTLHDfKhyCuS) ignored by SideShift router. New MCP tab via tabs_create_mcp is ALSO hidden. ToolSearch confirmed no chrome-in-mcp tabs.focus/bringToFront tool. CONCLUSION: SideShift chat panel cannot be scraped via Chrome MCP without Julz manually foregrounding the tab in her browser. HR-43 candidate banked. UNBLOCK PATH: (a) Julz click SideShift tab in her browser window to foreground it; (b) click Phobaxx in DM list; (c) right-click → 'Save link as' on the Contract Agreement PDF (or click → browser PDF viewer → Ctrl+S); (d) save to C:/Users/julia/Downloads/Contract Agreement - Phobaxx.pdf; (e) re-spawn HOLMES-V3 to pdf-viewer:open + extract payment terms."
       }
     ],
     "linear_status_drift": false,
     "auto_fix_recommended": [
       {
-        "action": "create_linear_issue",
-        "command": "save_issue",
-        "target": "Phobaxx campaign hub w/ 13-stage checklist",
-        "justification": "signed contract not in Linear"
-      },
-      {
         "action": "extract_pdf_payment",
         "command": "read_pdf",
         "target": "Contract Agreement - Phobaxx.pdf",
-        "justification": "resolve unknown payment_amount"
+        "justification": "resolve unknown payment_amount",
+        "blocked_by": "PDF not on local disk; HR-10 unresolved per HOLMES 2026-05-27",
+        "v2_status": "HR-10_persists_after_chrome_mcp_attempt; SideShift visibility-gated conversation panel cannot mount in background tab"
       }
     ],
-    "notes": "NEW signed contract per OPRAH."
+    "auto_fix_resolved": [
+      {
+        "action": "create_linear_issue",
+        "resolved_at": "2026-05-28T02:23:07Z",
+        "issue_id": "JUL-27",
+        "resolver": "HOLMES"
+      }
+    ],
+    "notes": "NEW signed contract per OPRAH. Linear issue JUL-27 created by HOLMES per DARWIN auto-fix queue. Phobaxx PDF payment extraction blocked HR-10 (PDF not on disk). HOLMES-V2 (2026-05-27) confirmed Chrome MCP path also blocked by SideShift visibility-gating; HR-43 candidate banked for HR-38 NO-DEFER enforcement clarity.",
+    "payment_total_potential": null,
+    "payment_timing": "monthly_30_posts",
+    "cycle_days": 30,
+    "contract_status": "signed",
+    "awaiting_brand_action": "Confirm video-only vs photo/carousel split + send payment $ amount",
+    "fit_score": 6,
+    "honest_concerns": [
+      "payment_amount_blocked_pending_PDF",
+      "video_vs_photo_mix_unclear",
+      "high_volume_30_posts_month_sustainability",
+      "usage_rights_pending"
+    ],
+    "last_processed_by": "CLAUDE-A14Y-W06C",
+    "last_processed_at": "2026-05-28T22:57:28.564Z"
   },
   {
     "brand_id": "mycal-ai",
@@ -207,7 +269,8 @@
       "sideshift": {
         "row": 3,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbC9wUNoYfXnUz8tH8mo8"
+        "channel_id": "recruit:feed_1CbC9wUNoYfXnUz8tH8mo8",
+        "last_seen": "2026-05-26"
       },
       "gmail": {
         "thread_id": "19e64d2e67dde35c",
@@ -285,7 +348,8 @@
       "sideshift": {
         "row": 4,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb4pXT6qGwDDU1WvzdEhj"
+        "channel_id": "recruit:feed_1Cb4pXT6qGwDDU1WvzdEhj",
+        "last_seen": "2026-05-27"
       },
       "gmail": {
         "thread_id": "19e6ad6208b99098",
@@ -340,12 +404,14 @@
       "sideshift": {
         "row": 5,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb43nqLf5fofNx6k1ku68"
+        "channel_id": "recruit:feed_1Cb43nqLf5fofNx6k1ku68",
+        "last_seen": "2026-05-27"
       },
       "gmail": {
         "thread_id": "19e3134354a33c08",
         "row": 6,
-        "brief": "Notion: https://www.notion.so/Make-..."
+        "brief": "Notion: https://www.notion.so/Make-...",
+        "last_seen": "2026-05-16T14:32:45Z"
       },
       "linear": null
     },
@@ -397,11 +463,13 @@
       "sideshift": {
         "row": 6,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbTAeShuvpneZAKrpx62y"
+        "channel_id": "recruit:feed_1CbTAeShuvpneZAKrpx62y",
+        "last_seen": "2026-05-27"
       },
       "gmail": {
         "thread_id": "19e69a9720f51a9d",
-        "row": 15
+        "row": 15,
+        "last_seen": "2026-05-27T13:39:32Z"
       },
       "linear": null
     },
@@ -469,7 +537,8 @@
         "thread_id": "19e6434764b89d66",
         "row": 3,
         "second_thread": "19e6a1604aca6dfd",
-        "second_row": 13
+        "second_row": 13,
+        "last_seen": "2026-05-26T12:13:40Z"
       },
       "linear": null
     },
@@ -520,11 +589,13 @@
       "sideshift": {
         "row": 8,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbTg98XjMKdjQMH81mVVT"
+        "channel_id": "recruit:feed_1CbTg98XjMKdjQMH81mVVT",
+        "last_seen": "2026-05-27"
       },
       "gmail": {
         "thread_id": "19e6b0b8e7364da6",
-        "row": 14
+        "row": 14,
+        "last_seen": "2026-05-27T20:06:19Z"
       },
       "linear": null
     },
@@ -575,7 +646,8 @@
       "sideshift": {
         "row": 9,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbN8SuJXTDcz7oEcojuAD"
+        "channel_id": "recruit:feed_1CbN8SuJXTDcz7oEcojuAD",
+        "last_seen": "2026-05-27"
       },
       "gmail": null,
       "linear": null
@@ -635,7 +707,8 @@
       "sideshift": {
         "row": 10,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbSmjdbqcSKg3o6q2QY6x"
+        "channel_id": "recruit:feed_1CbSmjdbqcSKg3o6q2QY6x",
+        "last_seen": "2026-05-27"
       },
       "gmail": null,
       "linear": null
@@ -691,7 +764,8 @@
       "sideshift": {
         "row": 11,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbDDuDTc9oE2uZKZmzYLz"
+        "channel_id": "recruit:feed_1CbDDuDTc9oE2uZKZmzYLz",
+        "last_seen": "2026-05-26"
       },
       "gmail": null,
       "linear": null
@@ -742,7 +816,8 @@
       "sideshift": {
         "row": 12,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbEgLdc6wKSHv4Z8P49fe"
+        "channel_id": "recruit:feed_1CbEgLdc6wKSHv4Z8P49fe",
+        "last_seen": "2026-05-26"
       },
       "gmail": null,
       "linear": null
@@ -801,13 +876,15 @@
       "sideshift": {
         "row": 13,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbRuuEhdy6zPMWgAnZrZ9"
+        "channel_id": "recruit:feed_1CbRuuEhdy6zPMWgAnZrZ9",
+        "last_seen": "2026-05-26"
       },
       "gmail": {
         "thread_id": "19e664019186fc3b",
         "row": 21,
         "second_thread": "19e66630f7ecb3ac",
-        "second_row": 20
+        "second_row": 20,
+        "last_seen": "2026-05-26T21:45:36Z"
       },
       "linear": null
     },
@@ -858,11 +935,13 @@
       "sideshift": {
         "row": 14,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb6jZBYNKPgMa2LxaNKTX"
+        "channel_id": "recruit:feed_1Cb6jZBYNKPgMa2LxaNKTX",
+        "last_seen": "2026-05-26"
       },
       "gmail": {
         "thread_id": "19e3215506ed1d61",
-        "row": 17
+        "row": 17,
+        "last_seen": "2026-05-16T18:38:38Z"
       },
       "linear": null
     },
@@ -875,7 +954,8 @@
     "brand_id": "veed",
     "brand_name_canonical": "Veed.io",
     "aliases": [
-      "Veed.io"
+      "Veed.io",
+      "veed-io"
     ],
     "pipeline_source": [
       "sideshift"
@@ -883,13 +963,33 @@
     "contract_signed": false,
     "contract_signed_at": null,
     "contract_link": null,
-    "status": "in_negotiation",
+    "status": "prospect_terms_known_contract_pending",
     "dashboard_visible": true,
-    "payment_amount_usd": null,
-    "payment_terms_days": null,
-    "bonus_amount_usd": null,
-    "payment_terms_note": "not yet disclosed",
-    "deliverables": [],
+    "payment_amount_usd": 650,
+    "payment_terms_days": 30,
+    "bonus_amount_usd": 100,
+    "payment_terms_note": "Base $650 (60 TikTok originals); +$100 bonus for cross-post to IG + YouTube. Payment after 60 deliverables completed.",
+    "deliverables": [
+      {
+        "platform": "TikTok",
+        "count": 60,
+        "format": "talking-head",
+        "duration_sec": 30,
+        "cadence": "twice_daily"
+      },
+      {
+        "platform": "Instagram",
+        "count": 60,
+        "format": "repost",
+        "duration_sec": 30
+      },
+      {
+        "platform": "YouTube",
+        "count": 60,
+        "format": "repost",
+        "duration_sec": 30
+      }
+    ],
     "deadlines": {
       "filming_by": null,
       "submission_by": null,
@@ -902,17 +1002,18 @@
       "role": "campaign manager",
       "channel": "sideshift"
     },
-    "last_msg_at": "2026-05-26",
+    "last_msg_at": "2026-05-28T17:40:00Z",
     "last_msg_direction": "julz",
     "awaiting_julz": true,
-    "awaiting_julz_action": "discovery call Wed May 27 at 10:40 AM PDT with Mahathi",
+    "awaiting_julz_action": "Reply to SideShift thread with 1 reference talking-head video link + TikTok handle + IG handle",
     "awaiting_julz_since": "2026-05-26",
     "urgency": "P0",
     "sources": {
       "sideshift": {
         "row": 15,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb5vADuTZA9e4S9QDzVWv"
+        "channel_id": "recruit:feed_1Cb5vADuTZA9e4S9QDzVWv",
+        "last_seen": "2026-05-26"
       },
       "gmail": null,
       "linear": null
@@ -920,7 +1021,21 @@
     "conflicts": [],
     "linear_status_drift": false,
     "auto_fix_recommended": [],
-    "notes": ""
+    "notes": "",
+    "payment_total_potential": 750,
+    "payment_timing": "after_60_deliverables",
+    "cycle_days": 30,
+    "contract_status": "pending_pdf_from_brand",
+    "awaiting_brand_action": "Send contract PDF via SideShift",
+    "otter_transcript_url": "https://otter.ai/u/PMUzNsM5ZwFGTEGO4xuILsg7iqg",
+    "fit_score": 9,
+    "honest_concerns": [
+      "high_volume_180_posts_30d",
+      "payment_back_loaded",
+      "contract_not_signed"
+    ],
+    "last_processed_by": "JOAN",
+    "last_processed_at": "2026-05-28T22:00:00Z"
   },
   {
     "brand_id": "megprime-pay",
@@ -965,13 +1080,15 @@
       "sideshift": {
         "row": 16,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb4XNzd283pPuNhUCrE91"
+        "channel_id": "recruit:feed_1Cb4XNzd283pPuNhUCrE91",
+        "last_seen": "2026-05-26"
       },
       "gmail": {
         "thread_id": "19e461b234a76422",
         "row": 2,
         "second_thread": "19e65752adef9d53",
-        "second_row": 22
+        "second_row": 22,
+        "last_seen": "2026-05-26T18:03:57Z"
       },
       "linear": null
     },
@@ -1022,11 +1139,13 @@
       "sideshift": {
         "row": 17,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbRN9PXDguhriZCGhYpiR"
+        "channel_id": "recruit:feed_1CbRN9PXDguhriZCGhYpiR",
+        "last_seen": "2026-05-26"
       },
       "gmail": {
         "thread_id": "19e64c2d3a06cc9a",
-        "row": 11
+        "row": 11,
+        "last_seen": "2026-05-26T14:49:09Z"
       },
       "linear": null
     },
@@ -1078,11 +1197,13 @@
       "sideshift": {
         "row": 18,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbDZ1zuiNxvY6bnPqKFpk"
+        "channel_id": "recruit:feed_1CbDZ1zuiNxvY6bnPqKFpk",
+        "last_seen": "2026-05-26"
       },
       "gmail": {
         "thread_id": "19e44a13416f583d",
-        "row": 9
+        "row": 9,
+        "last_seen": "2026-05-20T09:04:35Z"
       },
       "linear": null
     },
@@ -1133,11 +1254,13 @@
       "sideshift": {
         "row": 19,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbE8JsbJ77TCoxtDoSMST"
+        "channel_id": "recruit:feed_1CbE8JsbJ77TCoxtDoSMST",
+        "last_seen": "2026-05-26"
       },
       "gmail": {
         "thread_id": "19e4b208ef69e6f8",
-        "row": 12
+        "row": 12,
+        "last_seen": "2026-05-21T15:21:25Z"
       },
       "linear": null
     },
@@ -1192,7 +1315,8 @@
       "sideshift": {
         "row": 20,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb4Trzar8hpiw9oF8yzqL"
+        "channel_id": "recruit:feed_1Cb4Trzar8hpiw9oF8yzqL",
+        "last_seen": "2026-05-22"
       },
       "gmail": null,
       "linear": null
@@ -1244,7 +1368,8 @@
       "sideshift": {
         "row": 21,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb6Nyvm6CYcRC7gKU6Wi2"
+        "channel_id": "recruit:feed_1Cb6Nyvm6CYcRC7gKU6Wi2",
+        "last_seen": "2026-05-20"
       },
       "gmail": null,
       "linear": null
@@ -1295,7 +1420,7 @@
       "role": "founder",
       "channel": "sideshift"
     },
-    "last_msg_at": "2026-05-19",
+    "last_msg_at": "2026-05-20T05:03:15Z",
     "last_msg_direction": "brand",
     "awaiting_julz": true,
     "awaiting_julz_action": "respond to Omar (founder) — Julz was SELECTED",
@@ -1305,11 +1430,13 @@
       "sideshift": {
         "row": 22,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbDEcYq2ZnhJ8ugM4zDew"
+        "channel_id": "recruit:feed_1CbDEcYq2ZnhJ8ugM4zDew",
+        "last_seen": "2026-05-19"
       },
       "gmail": {
         "thread_id": "19e43c43e307913b",
-        "row": 8
+        "row": 8,
+        "last_seen": "2026-05-20T05:03:15Z"
       },
       "linear": null
     },
@@ -1359,7 +1486,8 @@
       "sideshift": {
         "row": 23,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb5Q2D4tBAGS5q1RhH2G5"
+        "channel_id": "recruit:feed_1Cb5Q2D4tBAGS5q1RhH2G5",
+        "last_seen": "2026-05-19"
       },
       "gmail": null,
       "linear": null
@@ -1419,7 +1547,8 @@
       "sideshift": {
         "row": 24,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb58vEYjE2dAmge316NGN"
+        "channel_id": "recruit:feed_1Cb58vEYjE2dAmge316NGN",
+        "last_seen": "2026-05-19"
       },
       "gmail": {
         "thread_id": "19e42f51da3d3e67",
@@ -1483,7 +1612,8 @@
       "sideshift": {
         "row": 25,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb4FYPgM4ujhdorZNd3MA"
+        "channel_id": "recruit:feed_1Cb4FYPgM4ujhdorZNd3MA",
+        "last_seen": "2026-05-19"
       },
       "gmail": null,
       "linear": null
@@ -1534,7 +1664,8 @@
       "sideshift": {
         "row": 26,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbCoLAFg5r6eVbnvzFtLm"
+        "channel_id": "recruit:feed_1CbCoLAFg5r6eVbnvzFtLm",
+        "last_seen": "2026-05-19"
       },
       "gmail": null,
       "linear": null
@@ -1638,7 +1769,8 @@
       "sideshift": {
         "row": 28,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbAmwKuY8GEQzicLEbfGE"
+        "channel_id": "recruit:feed_1CbAmwKuY8GEQzicLEbfGE",
+        "last_seen": "2026-05-19"
       },
       "gmail": null,
       "linear": null
@@ -1689,7 +1821,8 @@
       "sideshift": {
         "row": 29,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb6xEh5R8BMdi9zoMpuya"
+        "channel_id": "recruit:feed_1Cb6xEh5R8BMdi9zoMpuya",
+        "last_seen": "2026-05-19"
       },
       "gmail": null,
       "linear": null
@@ -1746,7 +1879,8 @@
       "sideshift": {
         "row": 30,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1CbALcXJraNq2d6hgfLPTH"
+        "channel_id": "recruit:feed_1CbALcXJraNq2d6hgfLPTH",
+        "last_seen": "2026-05-19"
       },
       "gmail": null,
       "linear": null
@@ -1798,7 +1932,8 @@
       "sideshift": {
         "row": 31,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb3c2LZpqmFE4YQf8snDD"
+        "channel_id": "recruit:feed_1Cb3c2LZpqmFE4YQf8snDD",
+        "last_seen": "2026-05-19"
       },
       "gmail": null,
       "linear": null
@@ -1849,7 +1984,8 @@
       "sideshift": {
         "row": 32,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb3DvF56j5Ya4SMN9qip3"
+        "channel_id": "recruit:feed_1Cb3DvF56j5Ya4SMN9qip3",
+        "last_seen": "2026-05-17"
       },
       "gmail": null,
       "linear": null
@@ -1902,11 +2038,13 @@
       "sideshift": {
         "row": 33,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb4pwVb3HD1fkTfGxL2Lj"
+        "channel_id": "recruit:feed_1Cb4pwVb3HD1fkTfGxL2Lj",
+        "last_seen": "2026-05-15"
       },
       "gmail": {
         "thread_id": "19e2ce54509a86cf",
-        "row": 39
+        "row": 39,
+        "last_seen": "2026-05-15T18:28:03Z"
       },
       "linear": null
     },
@@ -1923,7 +2061,8 @@
     ],
     "pipeline_source": [
       "sideshift",
-      "linear-direct"
+      "linear-direct",
+      "linear"
     ],
     "contract_signed": true,
     "contract_signed_at": "2026-05-16",
@@ -1931,20 +2070,19 @@
     "status": "submitted",
     "dashboard_visible": true,
     "payment_amount_usd": 25,
-    "payment_terms_days": null,
-    "bonus_amount_usd": 300,
+    "payment_terms_days": 30,
+    "bonus_amount_usd": 100,
     "payment_terms_note": "$25 base + up to $100 per 100K views (uncapped) + optional $300 guaranteed first-week 5-video add-on",
     "deliverables": [
       {
-        "type": "video",
+        "platform": "TikTok+Reels+Shorts",
         "count": 1,
-        "dimensions": "1080x1920",
+        "format": "talking-head",
         "duration_sec": [
           30,
           90
         ],
-        "format": "talking-head",
-        "platform": "TikTok/Reels/Shorts"
+        "dimensions": "1080x1920"
       }
     ],
     "deadlines": {
@@ -1959,7 +2097,7 @@
       "role": "campaign manager",
       "channel": "sideshift"
     },
-    "last_msg_at": "2026-05-15",
+    "last_msg_at": "2026-05-28",
     "last_msg_direction": "julz",
     "awaiting_julz": false,
     "awaiting_julz_action": null,
@@ -1969,34 +2107,55 @@
       "sideshift": {
         "row": 34,
         "thread_url": "https://app.sideshift.app/chat",
-        "channel_id": "recruit:feed_1Cb2WKJGwdhaj4fjxVCaA3"
+        "channel_id": "recruit:feed_1Cb2WKJGwdhaj4fjxVCaA3",
+        "last_seen": "2026-05-15"
       },
       "gmail": null,
       "linear": {
         "issue_id": "JUL-25",
         "row": 1,
-        "url": "https://linear.app/julianne/issue/JUL-25/parakeetai-talking-head-first-instantiated-campaign-hub"
+        "url": "https://linear.app/julianne/issue/JUL-25/parakeetai-talking-head-first-instantiated-campaign-hub",
+        "status": "Done",
+        "completed_at": "2026-05-28T02:22:15Z",
+        "advanced_by": "HOLMES (A.14v Wave 2)",
+        "last_seen": "2026-05-28T02:22:15.624Z"
       }
     },
     "conflicts": [
       {
         "field": "status",
-        "issue": "Linear status=Backlog but stage 13/13 checked + submission already happened — Linear status was never advanced",
+        "issue": "Linear status=Backlog but stage 13/13 checked + submission already happened",
         "sources": [
           "linear row 1"
-        ]
+        ],
+        "status": "resolved",
+        "resolved_at": "2026-05-28T02:22:15Z",
+        "resolver": "HOLMES"
       }
     ],
-    "linear_status_drift": true,
-    "auto_fix_recommended": [
+    "linear_status_drift": false,
+    "auto_fix_recommended": [],
+    "auto_fix_resolved": [
       {
         "action": "advance_linear_status",
-        "command": "save_issue",
-        "target": "JUL-25 status: Backlog → Done/Closed",
-        "justification": "ADA-caught drift — Linear says Backlog but campaign 13/13 stages complete + submitted"
+        "resolved_at": "2026-05-28T02:22:15Z",
+        "new_status": "Done",
+        "resolver": "HOLMES"
       }
     ],
-    "notes": "FIRST instantiated campaign hub. Documented as gold-standard reference. SideShift jobs link: https://sideshift.app/jobs/fzugjPr8vlBjYaNsBdCS"
+    "notes": "FIRST instantiated campaign hub. Documented as gold-standard reference. SideShift jobs link: https://sideshift.app/jobs/fzugjPr8vlBjYaNsBdCS. Status drift resolved by HOLMES 2026-05-28: Backlog → Done.",
+    "payment_total_potential": 425,
+    "payment_timing": "base_immediate_bonus_per_100k_views",
+    "cycle_days": 7,
+    "contract_status": "signed",
+    "awaiting_brand_action": "Confirm acceptance of $300 first-week 5-video add-on",
+    "fit_score": 10,
+    "honest_concerns": [
+      "bonus_uncapped_requires_view_tracking",
+      "optional_300_addon_needs_decision"
+    ],
+    "last_processed_by": "CLAUDE-A14Y-W06C",
+    "last_processed_at": "2026-05-28T22:57:28.564Z"
   },
   {
     "brand_id": "elizaveta-leonova-tbd",
@@ -2009,7 +2168,7 @@
     ],
     "contract_signed": false,
     "contract_signed_at": null,
-    "contract_link": "https://docs.google.com/document/d/1Z9enmIO2z4rqnPk5ljNCz8HZi9DUIW7...",
+    "contract_link": "https://docs.google.com/document/d/1Z9enmIO2z4rqnPk5ljNCz8HZi9DUIW7... (TRUNCATED by SideShift Gmail relay)",
     "status": "intake",
     "dashboard_visible": true,
     "payment_amount_usd": null,
@@ -2041,7 +2200,7 @@
     "last_msg_at": "2026-05-21",
     "last_msg_direction": "brand",
     "awaiting_julz": true,
-    "awaiting_julz_action": "open GDoc brief, extract brand identity + payment, respond",
+    "awaiting_julz_action": "open SideShift chat to retrieve full GDoc URL (Gmail relay truncates at '...')",
     "awaiting_julz_since": "2026-05-21",
     "urgency": "P1",
     "sources": {
@@ -2049,17 +2208,21 @@
       "gmail": {
         "thread_id": "19e458e600b209f9",
         "row": 5,
-        "brief": "GDoc"
+        "brief": "GDoc",
+        "relay_truncated": true,
+        "relay_url_partial": "1Z9enmIO2z4rqnPk5ljNCz8HZi9DUIW7"
       },
       "linear": null
     },
     "conflicts": [
       {
         "field": "brand_name",
-        "issue": "contact name only; brand identity inside GDoc — needs read",
+        "issue": "contact name only; brand identity inside GDoc",
         "sources": [
           "gmail row 5"
-        ]
+        ],
+        "status": "HR-10_unresolved",
+        "holmes_probe_2026-05-27": "SideShift Gmail-relay truncates GDoc URL at '...' (only 28-char prefix available, real Drive IDs are 33+ chars). Tried mcp__9cc5a874-...__read_file_content with prefix: 'Entity not found.' Drive search by 'Elizaveta'+'Leonova': no matches (GDoc shared FROM Elizaveta's Drive, not OWNED by Julz, so not indexed). Resolution: Julz to open SideShift chat → click GDoc link → copy full URL → paste back."
       }
     ],
     "linear_status_drift": false,
@@ -2067,11 +2230,12 @@
       {
         "action": "open_gdoc",
         "command": "read_gdoc",
-        "target": "https://docs.google.com/document/d/1Z9enmIO2z4rqnPk5ljNCz8HZi9DUIW7...",
-        "justification": "resolve brand identity + payment"
+        "target": "FULL GDoc URL (currently truncated by SideShift relay)",
+        "justification": "resolve brand identity + payment",
+        "blocked_by": "SideShift Gmail-relay truncation; HR-10 unresolved per HOLMES 2026-05-27"
       }
     ],
-    "notes": "High-volume brief (30 vids x 3 platforms)."
+    "notes": "High-volume brief (30 vids x 3 platforms). Elizaveta sent the brief via SideShift in-app chat; Gmail relay only forwards a truncated preview of the GDoc URL."
   },
   {
     "brand_id": "alicia-wang-tbd",
@@ -2196,7 +2360,9 @@
           33,
           34,
           35
-        ]
+        ],
+        "thread_id": "19e6a7dd17f2822c",
+        "last_seen": "2026-05-27T17:31:29Z"
       },
       "linear": null
     },
@@ -2261,7 +2427,9 @@
           25,
           26,
           27
-        ]
+        ],
+        "thread_id": "19e07bfba611ddc1",
+        "last_seen": "2026-05-08T13:21:05Z"
       },
       "linear": null
     },
@@ -2298,14 +2466,21 @@
     ],
     "contract_signed": false,
     "contract_signed_at": null,
-    "contract_link": null,
-    "status": "intake",
+    "contract_link": "https://forms.gle/h6XGHLrCXunjzx436 (Google Form application — not a contract)",
+    "status": "intake_apply_to_qualify",
     "dashboard_visible": true,
     "payment_amount_usd": null,
     "payment_terms_days": null,
     "bonus_amount_usd": null,
-    "payment_terms_note": "PAID — amount truncated in snippet",
-    "deliverables": [],
+    "payment_terms_note": "Tiered by follower count — agency does NOT disclose specific $ until application accepted. Mass-blast recruitment offer, not individualized.",
+    "deliverables": [
+      {
+        "type": "video",
+        "platform": "Instagram Reels or TikTok (either accepted)",
+        "content": "Skincare review",
+        "note": "min 10K+ followers required on at least one platform"
+      }
+    ],
     "deadlines": {
       "filming_by": null,
       "submission_by": null,
@@ -2315,34 +2490,37 @@
     "key_contact": {
       "name": "Bazzaal",
       "email": "marketing@bazzaal.com",
-      "role": "agency",
+      "role": "agency (connects influencers with Korean beauty brands)",
       "channel": "direct email"
     },
     "last_msg_at": "2026-04-14",
     "last_msg_direction": "brand",
     "awaiting_julz": true,
-    "awaiting_julz_action": "respond — rare direct-to-inbox paid brief, K-beauty",
+    "awaiting_julz_action": "decide whether to apply via Google Form (https://forms.gle/h6XGHLrCXunjzx436); 43+ days awaiting",
     "awaiting_julz_since": "2026-04-14",
-    "urgency": "P1",
+    "urgency": "P2",
     "sources": {
       "sideshift": null,
       "gmail": {
         "thread_id": "19d8c562599270a0",
-        "row": 36
+        "row": 36,
+        "full_thread_extracted_by": "HOLMES 2026-05-27",
+        "last_seen": "2026-04-14T14:06:00Z"
       },
       "linear": null
     },
     "conflicts": [],
     "linear_status_drift": false,
-    "auto_fix_recommended": [
+    "auto_fix_recommended": [],
+    "auto_fix_resolved": [
       {
         "action": "open_gmail_thread",
-        "command": "get_thread",
-        "target": "19d8c562599270a0",
-        "justification": "extract full payment + scope from non-truncated body"
+        "resolved_at": "2026-05-27",
+        "resolver": "HOLMES",
+        "finding": "NOT truncated payment $ — agency uses tiered-by-follower-count model with no public $ amounts. Application required via Google Form. Geo-eligibility: USA / UK / Australia / NZ. Min follower threshold: 10K+ on IG or TikTok."
       }
     ],
-    "notes": "RBG flag: rare DIRECT email (not via SideShift). 43+ days awaiting Julz response — risk of staleness."
+    "notes": "RBG flag: rare DIRECT email (not via SideShift). HOLMES extracted full Gmail thread 2026-05-27: this is NOT a per-creator paid brief — it's a recruitment blast inviting Julz to apply via Google Form. Brand: Pyunkang Yul (Korean Eastern-Medicine skincare). Min: 10K followers IG or TikTok. Geos: USA/UK/AU/NZ. Reclassified P1 → P2: decision-only, no $ on the table."
   },
   {
     "brand_id": "nomysh-skyjam",
@@ -2387,7 +2565,8 @@
       "sideshift": null,
       "gmail": {
         "thread_id": "19e3cde4790f0494",
-        "row": 37
+        "row": 37,
+        "last_seen": "2026-05-18T20:54:20Z"
       },
       "linear": null
     },
@@ -2439,7 +2618,8 @@
       "sideshift": null,
       "gmail": {
         "thread_id": "19d58d920883d4b6",
-        "row": 38
+        "row": 38,
+        "last_seen": "2026-04-04T14:15:17Z"
       },
       "linear": null
     },
@@ -2447,5 +2627,215 @@
     "linear_status_drift": false,
     "auto_fix_recommended": [],
     "notes": "Affiliate network invite, not classic UGC."
+  },
+  {
+    "brand_id": "bolt-new-impressions",
+    "brand_name_canonical": "The Impressions Corporation (Bolt.new)",
+    "aliases": [
+      "The Impressions Corporation (Bolt.new)"
+    ],
+    "pipeline_source": [
+      "sideshift"
+    ],
+    "contract_signed": false,
+    "contract_signed_at": null,
+    "contract_link": null,
+    "status": "unknown",
+    "dashboard_visible": false,
+    "auto_created_by_norma": true,
+    "payment_amount_usd": null,
+    "payment_terms_days": null,
+    "bonus_amount_usd": null,
+    "payment_terms_note": "not_disclosed_until_program_accepted",
+    "deliverables": [
+      {
+        "type": "sample_video",
+        "count": 1,
+        "platform": "TikTok-style",
+        "format": "hook + product demo Bolt.new",
+        "extras": "create own format = bonus points"
+      }
+    ],
+    "deadlines": {
+      "filming_by": null,
+      "submission_by": null,
+      "payment_by": null
+    },
+    "do_not_say": [],
+    "key_contact": {
+      "name": "Larine Georgi",
+      "email": null,
+      "role": null,
+      "channel": "sideshift"
+    },
+    "last_msg_at": "2026-05-27",
+    "last_msg_direction": "julz",
+    "awaiting_julz": false,
+    "awaiting_julz_action": null,
+    "awaiting_julz_since": null,
+    "urgency": "P2",
+    "sources": {
+      "sideshift": {
+        "thread_url": "https://app.sideshift.app/chat",
+        "channel_id": "recruit:feed_1CbRAHeDQzZQmcFxovjqK7",
+        "last_seen": "2026-05-27"
+      }
+    },
+    "conflicts": [],
+    "linear_status_drift": false,
+    "auto_fix_recommended": [],
+    "auto_fix_resolved": [],
+    "notes": "Auto-created by NORMA merge-canonical.mjs at 2026-05-28T06:19:44.361Z."
+  },
+  {
+    "brand_id": "lollapaloozalab-fureverdock",
+    "brand_name_canonical": "Lollapaloozalab (FureverDock / Desktop Pet)",
+    "aliases": [
+      "Lollapaloozalab (FureverDock / Desktop Pet)"
+    ],
+    "pipeline_source": [
+      "sideshift"
+    ],
+    "contract_signed": false,
+    "contract_signed_at": null,
+    "contract_link": null,
+    "status": "unknown",
+    "dashboard_visible": false,
+    "auto_created_by_norma": true,
+    "payment_amount_usd": null,
+    "payment_terms_days": null,
+    "bonus_amount_usd": null,
+    "payment_terms_note": "unknown",
+    "deliverables": [],
+    "deadlines": {
+      "filming_by": null,
+      "submission_by": null,
+      "payment_by": null
+    },
+    "do_not_say": [],
+    "key_contact": {
+      "name": "unknown",
+      "email": null,
+      "role": null,
+      "channel": "sideshift"
+    },
+    "last_msg_at": "2026-05-19",
+    "last_msg_direction": "julz",
+    "awaiting_julz": false,
+    "awaiting_julz_action": null,
+    "awaiting_julz_since": null,
+    "urgency": "P2",
+    "sources": {
+      "sideshift": {
+        "thread_url": "https://app.sideshift.app/chat",
+        "channel_id": "recruit:feed_1CbBoYD8MLuEKTBcrUgsuw",
+        "last_seen": "2026-05-19"
+      }
+    },
+    "conflicts": [],
+    "linear_status_drift": false,
+    "auto_fix_recommended": [],
+    "auto_fix_resolved": [],
+    "notes": "Auto-created by NORMA merge-canonical.mjs at 2026-05-28T06:19:44.369Z."
+  },
+  {
+    "brand_id": "iris-kim",
+    "brand_name_canonical": "Iris Kim (UGC posting brand)",
+    "aliases": [
+      "Iris Kim (UGC posting brand)"
+    ],
+    "pipeline_source": [
+      "gmail-direct"
+    ],
+    "contract_signed": false,
+    "contract_signed_at": null,
+    "contract_link": null,
+    "status": "unknown",
+    "dashboard_visible": false,
+    "auto_created_by_norma": true,
+    "payment_amount_usd": null,
+    "payment_terms_days": null,
+    "bonus_amount_usd": null,
+    "payment_terms_note": null,
+    "deliverables": [],
+    "deadlines": {
+      "filming_by": null,
+      "submission_by": null,
+      "payment_by": null
+    },
+    "do_not_say": [],
+    "key_contact": {
+      "name": null,
+      "email": "notifications@mail.sideshift.app",
+      "role": null,
+      "channel": "gmail"
+    },
+    "last_msg_at": "2026-05-26T23:17:09Z",
+    "last_msg_direction": null,
+    "awaiting_julz": false,
+    "awaiting_julz_action": null,
+    "awaiting_julz_since": null,
+    "urgency": "P2",
+    "sources": {
+      "gmail": {
+        "thread_id": "19e66630f7ecb3ac",
+        "last_seen": "2026-05-26T23:17:09Z"
+      }
+    },
+    "conflicts": [],
+    "linear_status_drift": false,
+    "auto_fix_recommended": [],
+    "auto_fix_resolved": [],
+    "notes": "Auto-created by NORMA merge-canonical.mjs at 2026-05-28T06:19:44.370Z."
+  },
+  {
+    "brand_id": "shubhechha",
+    "brand_name_canonical": "Shubhechha (recurring contact)",
+    "aliases": [
+      "Shubhechha (recurring contact)"
+    ],
+    "pipeline_source": [
+      "gmail-direct"
+    ],
+    "contract_signed": false,
+    "contract_signed_at": null,
+    "contract_link": null,
+    "status": "unknown",
+    "dashboard_visible": false,
+    "auto_created_by_norma": true,
+    "payment_amount_usd": null,
+    "payment_terms_days": null,
+    "bonus_amount_usd": null,
+    "payment_terms_note": null,
+    "deliverables": [],
+    "deadlines": {
+      "filming_by": null,
+      "submission_by": null,
+      "payment_by": null
+    },
+    "do_not_say": [],
+    "key_contact": {
+      "name": null,
+      "email": "notifications@mail.sideshift.app",
+      "role": null,
+      "channel": "gmail"
+    },
+    "last_msg_at": "2026-05-27T19:07:58Z",
+    "last_msg_direction": null,
+    "awaiting_julz": false,
+    "awaiting_julz_action": null,
+    "awaiting_julz_since": null,
+    "urgency": "P2",
+    "sources": {
+      "gmail": {
+        "thread_id": "19e6ad6208b99098",
+        "last_seen": "2026-05-27T19:07:58Z"
+      }
+    },
+    "conflicts": [],
+    "linear_status_drift": false,
+    "auto_fix_recommended": [],
+    "auto_fix_resolved": [],
+    "notes": "Auto-created by NORMA merge-canonical.mjs at 2026-05-28T06:19:44.370Z."
   }
 ]

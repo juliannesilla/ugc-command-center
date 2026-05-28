@@ -19,16 +19,21 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import { CheckCircle2, AlertCircle, Circle, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { sowData, campaigns, type CampaignSlug } from '@/lib/mock-data/campaigns';
+import {
+  MOCK_CAMPAIGNS,
+  getCampaignDisplayMeta,
+  getSowRequirements,
+  type CampaignSlug,
+  type CampaignMeta,
+  type SowRequirementRow,
+} from '@/lib/mock-data/campaigns';
 
-type SowRequirement = {
-  key: string;
-  label: string;
-  detail: string;
-  means: string;
-  status: 'complete' | 'incomplete' | 'blocked';
-  source: string;
-};
+// A.14y Wave 0.6.B: Replaced direct sowData / campaigns lookups with
+// canonical-derived helpers. ALL canonical brands now render real SOW data,
+// not just ParakeetAI. Source: Julz, 2026-05-28 ("these are not clickable.
+// UI is weird. none of my signed contracts are processed into SOW breakdown").
+
+type SowRequirement = SowRequirementRow;
 
 type StatusTone = {
   pill: string;
@@ -134,12 +139,12 @@ function ReadinessDonut({ score }: { score: number }) {
   );
 }
 
-function formatPayment(meta: (typeof campaigns)[CampaignSlug]) {
+function formatPayment(meta: CampaignMeta) {
   if (meta.payment.total > 0) return `$${meta.payment.total.toLocaleString()}`;
   return 'TBD';
 }
 
-function formatWindow(meta: (typeof campaigns)[CampaignSlug]) {
+function formatWindow(meta: CampaignMeta) {
   const start = new Date(meta.startDate).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -170,15 +175,18 @@ export function SowBreakdownTable({
 }: SowBreakdownTableProps) {
   const renderSlugs = useMemo<CampaignSlug[]>(() => {
     if (slugs && slugs.length > 0) return slugs;
-    return Object.keys(sowData) as CampaignSlug[];
+    // A.14y Wave 0.6.B: default to ALL canonical brands, not just hardcoded
+    // sowData keys (was always = ['parakeetai']).
+    return MOCK_CAMPAIGNS.filter((c) => c.status !== 'archived').map(
+      (c) => c.campaign_id,
+    );
   }, [slugs]);
 
   return (
     <div className="space-y-8">
       {renderSlugs.map((slug) => {
-        const meta = campaigns[slug];
-        const sow = sowData[slug] as { requirements: SowRequirement[] };
-        const requirements = sow?.requirements ?? [];
+        const meta = getCampaignDisplayMeta(slug);
+        const requirements = getSowRequirements(slug);
         if (!meta || requirements.length === 0) return null;
 
         const completed = requirements.filter((r) => r.status === 'complete').length;

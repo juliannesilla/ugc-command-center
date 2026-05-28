@@ -19,10 +19,12 @@
 
 import { PageHeader } from '@/components/ui';
 import type { CampaignSelectorChip } from '@/components/ui';
-import { MOCK_CAMPAIGNS, campaigns as campaignMeta } from '@/lib/mock-data/campaigns';
-import type { CampaignSlug } from '@/lib/mock-data/campaigns';
+import { MOCK_CAMPAIGNS, getCampaignDisplayMeta } from '@/lib/mock-data/campaigns';
 import { getReadinessScore } from '@/lib/scoring';
 import SowBreakdownClient from './SowBreakdownClient';
+// A.14y Wave 0.6.B: use canonical-derived meta helper (covers all brands,
+// not just ParakeetAI). Source: Julz 2026-05-28 "none of my signed contracts
+// are processed into SOW breakdown".
 
 export const metadata = {
   title: 'SOW Breakdown · UGC | Campaign HQ',
@@ -36,7 +38,7 @@ export default function SowBreakdownPage() {
   const active = MOCK_CAMPAIGNS.filter((c) => c.status !== 'archived');
 
   const chips: CampaignSelectorChip[] = active.map((c) => {
-    const meta = campaignMeta[c.campaign_id as CampaignSlug];
+    const meta = getCampaignDisplayMeta(c.campaign_id);
     return {
       slug: c.campaign_id,
       brand: meta?.brand ?? c.brand,
@@ -45,16 +47,16 @@ export default function SowBreakdownPage() {
     };
   });
 
-  const readinessByCampaign = MOCK_CAMPAIGNS.reduce<Partial<Record<CampaignSlug, number>>>(
+  const readinessByCampaign = MOCK_CAMPAIGNS.reduce<Record<string, number>>(
     (acc, c) => {
-      acc[c.campaign_id as CampaignSlug] = getReadinessScore(c);
+      acc[c.campaign_id] = getReadinessScore(c);
       return acc;
     },
     {},
   );
 
   const brandBySlug = active.reduce<Record<string, string>>((acc, c) => {
-    acc[c.campaign_id] = campaignMeta[c.campaign_id as CampaignSlug]?.brand ?? c.brand;
+    acc[c.campaign_id] = getCampaignDisplayMeta(c.campaign_id)?.brand ?? c.brand;
     return acc;
   }, {});
 

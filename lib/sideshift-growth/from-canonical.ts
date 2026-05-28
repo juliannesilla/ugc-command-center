@@ -74,7 +74,16 @@ export function loadSideShiftBrands(): BrandRow[] {
  * Returns 'YYYY-MM-DD'. Treats input as UTC midnight to avoid TZ drift.
  */
 function weekStartUTC(isoDate: string): Date {
-  const d = new Date(`${isoDate}T00:00:00Z`);
+  // A.14y Wave 0.6.B fix: handle both date-only (`2026-05-26`) and full
+  // ISO strings (`2026-05-26T17:40:00Z`). Prior code blindly appended
+  // `T00:00:00Z` which broke full ISO inputs from JOAN's enriched rows.
+  const datePart = isoDate.length > 10 ? isoDate.slice(0, 10) : isoDate;
+  const d = new Date(`${datePart}T00:00:00Z`);
+  if (isNaN(d.getTime())) {
+    // Fallback to today if input is malformed (HR-10 ACCESS HONESTY — chart
+    // continues to render instead of crashing the whole route).
+    return new Date(new Date().toISOString().slice(0, 10) + 'T00:00:00Z');
+  }
   const dow = d.getUTCDay(); // 0 = Sun, 1 = Mon, ...
   const offsetToMon = (dow + 6) % 7;
   const monday = new Date(d);

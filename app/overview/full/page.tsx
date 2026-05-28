@@ -130,13 +130,13 @@ export default function OverviewFullPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {topActive.map((c) => (
               <div
-                key={c.id}
+                key={c.campaign_id}
                 className="card-secondary space-y-4 p-6 rounded-3xl"
               >
                 <div className="space-y-1">
                   <h3 className="font-display text-lg ink-900">{c.brand}</h3>
                   <p className="text-xs ink-500 uppercase tracking-wide">
-                    {c.name} · {c.current_stage}
+                    {c.campaign_name} · {c.current_stage}
                   </p>
                 </div>
 
@@ -160,7 +160,7 @@ export default function OverviewFullPage() {
             <h2 className="section-title text-[22px]">Draft a brand reply</h2>
             <p className="section-subtitle">
               For: <span className="font-medium">{topAwaitingJulz.brand}</span>{" "}
-              — {topAwaitingJulz.name}
+              — {topAwaitingJulz.campaign_name}
             </p>
             <ResponseDraftGenerator campaign={topAwaitingJulz} />
           </section>

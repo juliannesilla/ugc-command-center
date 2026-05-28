@@ -250,9 +250,16 @@ export default function PaymentsPage() {
                 number: c.value,
                 label: c.label,
                 sub: c.sub,
-                // StatStrip palette doesn't include 'yellow' — fold it onto peach
-                // (the next-warmest tone) so the 8-card row stays visually varied.
-                accent: c.accent === 'yellow' ? 'peach' : c.accent,
+                // StatStrip palette diverges from StatCard: no 'yellow', no 'ink'.
+                // Fold yellow→peach (next-warmest) and ink→cloud (neutral) so the
+                // 8-card row stays visually varied. A.14y Wave 0.6.B closes the
+                // pre-existing TS error on this map.
+                accent:
+                  c.accent === 'yellow'
+                    ? 'peach'
+                    : c.accent === 'ink'
+                      ? 'cloud'
+                      : c.accent,
               }))}
             />
 
