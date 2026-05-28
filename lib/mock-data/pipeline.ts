@@ -1,5 +1,22 @@
-// Mock pipeline data — 38 SideShift-style opportunities (per Phase B-prep).
-// TODO(D-5): replace with Linear API fetch via lib/data-sync/linear.ts.
+// Pipeline cards — derived from `data/brands-canonical.json` (the same
+// snapshot LINUS V8A baked for `from-canonical.ts`).
+//
+// Phase A.14v V8B (GRACE / Wave 2, 2026-05-27): stripped the 38-row synthetic
+// generator that fabricated Glossier/Ouai/Rare Beauty/Drunk Elephant/Caraway/
+// etc. — none of those are real Julz campaigns. Per Julz, A.14u F5: "if it is
+// not a real campaign, then take it off the dashboard."
+//
+// MOCK_PIPELINE now reads the same 37 dashboard-visible canonical brand rows
+// that drive the Database view + the Board view, projected into the legacy
+// `PipelineCard` shape so any pre-A.14e caller (analytics tile, retired
+// widget) keeps compiling. Board page itself stopped consuming MOCK_PIPELINE
+// in A.14e Wave 2 — it now sources from MOCK_CAMPAIGNS directly.
+//
+// PipelineStage / Health / PipelineCard types preserved verbatim (HR-2
+// PRESERVE INTENT) — only the data behind them changed.
+
+import { loadAllCanonical } from '@/lib/mock-data/campaigns/from-canonical';
+import type { Campaign, CampaignStage } from '@/lib/types/campaign';
 
 export type PipelineStage =
   | 'NEW LEAD'
@@ -52,76 +69,113 @@ export interface PipelineCard {
   source: 'SideShift' | 'Outbound' | 'Inbound' | 'Referral';
 }
 
-const today = new Date(); // A.14u F2: dynamic anchor
-const addDays = (n: number) => {
-  const d = new Date(today);
-  d.setDate(d.getDate() + n);
-  return d.toISOString().slice(0, 10);
-};
+// ───────────────────────────────────────────────────────────────────────────
+// Canonical → PipelineCard projection
+// ───────────────────────────────────────────────────────────────────────────
 
-const brands = [
-  'Glossier', 'Ouai', 'Rare Beauty', 'Drunk Elephant', 'Caraway', 'Our Place',
-  'Brooklinen', 'Allbirds', 'Hydrow', 'Whoop', 'Headspace', 'Calm',
-  'Function of Beauty', 'Olipop', 'Poppi', 'Liquid Death', 'Chamberlain Coffee',
-  'Magic Spoon', 'AG1', 'Ritual', 'Care/of', 'Hims', 'Hers', 'Nurx',
-  'Roman', 'Quip', 'Bite', 'Hello', 'Native', 'Dr. Squatch',
-  'Manscaped', 'Bombas', 'Allbirds', 'Rothy\'s', 'Birdies', 'Mejuri',
-  'Aurate', 'Catbird',
-];
-
-const stages: PipelineStage[] = [
-  'NEW LEAD','NEW LEAD','NEW LEAD',
-  'RESPONDED','RESPONDED','RESPONDED',
-  'WAITING ON BRAND','WAITING ON BRAND',
-  'SOW RECEIVED','SOW RECEIVED','SOW RECEIVED',
-  'SOW REVIEWED','SOW REVIEWED',
-  'STRATEGY READY','STRATEGY READY',
-  'SCRIPT READY','SCRIPT READY',
-  'FILMING','FILMING','FILMING',
-  'EDITING','EDITING',
-  'QA','QA',
-  'SUBMITTED','SUBMITTED',
-  'ACCEPTED','ACCEPTED',
-  'POSTED','POSTED','POSTED',
-  'PAID','PAID',
-  'ARCHIVED','ARCHIVED','ARCHIVED','ARCHIVED','ARCHIVED',
-];
-
-function makeCard(i: number): PipelineCard {
-  const brand = brands[i % brands.length];
-  const stage = stages[i % stages.length];
-  const baseValue = [2500, 3200, 4000, 4500, 5200, 6000, 7500, 8200, 9500, 12000][i % 10];
-  const days = (i * 7) % 18;
-  const healthRoll = (i * 3 + 1) % 10;
-  const health: Health = healthRoll < 5 ? 'green' : healthRoll < 7 ? 'yellow' : healthRoll < 9 ? 'orange' : 'red';
-  const platform = (['TikTok', 'IG Reels', 'YouTube', 'Multi'] as const)[i % 4];
-  const source = (['SideShift', 'Outbound', 'Inbound', 'Referral'] as const)[i % 4];
-  return {
-    id: `UGC-${(100 + i).toString()}`,
-    brand,
-    campaign: `${brand} — ${platform === 'Multi' ? 'Cross-channel' : platform} ${['Spring', 'Summer', 'Launch', 'Refresh'][i % 4]}`,
-    stage,
-    value: baseValue,
-    deadline: addDays(-2 + ((i * 5) % 21)),
-    health,
-    daysInStage: days,
-    platform,
-    owner: 'Julz',
-    source,
-  };
+/** Collapse the 18-stage `CampaignStage` workflow onto the legacy 15-stage
+ *  `PipelineStage` set this module exported pre-A.14e. */
+function compressStage(s: CampaignStage): PipelineStage {
+  if (s === 'APPLIED' || s === 'BRAND REPLIED' || s === 'CALL SCHEDULED') return 'NEW LEAD';
+  if (s === 'INVOICED') return 'SUBMITTED';
+  return s as PipelineStage;
 }
 
-export const MOCK_PIPELINE: PipelineCard[] = Array.from({ length: 38 }, (_, i) => makeCard(i));
+/** canonical row `urgency` + `last_msg_at` → traffic-light health. */
+function deriveHealth(urgency: string | undefined, lastMsgAt: string | null, today: Date): Health {
+  if (urgency === 'P0') return 'red';
+  if (urgency === 'P1') return 'orange';
+  if (!lastMsgAt) return 'yellow';
+  const days = Math.floor((today.getTime() - new Date(lastMsgAt).getTime()) / 86_400_000);
+  if (days > 14) return 'orange';
+  if (days > 7) return 'yellow';
+  return 'green';
+}
 
-export function totalPipelineValue(cards = MOCK_PIPELINE) {
+/** canonical first-platform from deliverables → legacy platform enum. */
+function derivePlatform(deliverables: Array<{ platform?: string; platforms?: string[] }>): PipelineCard['platform'] {
+  const platforms = deliverables
+    .flatMap(d => (d.platforms ?? (d.platform ? [d.platform] : [])))
+    .map(p => p.toLowerCase());
+  if (platforms.length === 0) return 'TikTok';
+  if (platforms.length > 1) return 'Multi';
+  if (platforms[0].includes('tiktok')) return 'TikTok';
+  if (platforms[0].includes('reel') || platforms[0].includes('instagram')) return 'IG Reels';
+  if (platforms[0].includes('youtube') || platforms[0].includes('shorts')) return 'YouTube';
+  return 'TikTok';
+}
+
+/** canonical `pipeline_source[0]` → legacy source enum. */
+function deriveSource(pipelineSource: string[]): PipelineCard['source'] {
+  const first = (pipelineSource[0] ?? '').toLowerCase();
+  if (first.includes('sideshift')) return 'SideShift';
+  if (first.includes('referral')) return 'Referral';
+  if (first.includes('inbound') || first.includes('brkfst') || first.includes('gmail')) return 'Inbound';
+  return 'Outbound';
+}
+
+/** Days since `last_msg_at` (or 0 if unknown). */
+function daysSince(iso: string | null, today: Date): number {
+  if (!iso) return 0;
+  return Math.max(0, Math.floor((today.getTime() - new Date(iso).getTime()) / 86_400_000));
+}
+
+function buildPipeline(): PipelineCard[] {
+  const today = new Date();
+  return loadAllCanonical()
+    .filter(row => row.dashboard_visible)
+    .map(row => {
+      const value =
+        (row.payment_amount_usd ?? 0) +
+        (typeof row.bonus_amount_usd === 'number' ? row.bonus_amount_usd : 0);
+      const stage = compressStage(legacyStageFromCanonical(row.status));
+      return {
+        id: row.brand_id,
+        brand: row.brand_name_canonical,
+        campaign: `${row.brand_name_canonical} — UGC Campaign`,
+        stage,
+        value,
+        deadline: row.deadlines.submission_by ?? row.deadlines.filming_by ?? undefined,
+        health: deriveHealth(row.urgency, row.last_msg_at, today),
+        daysInStage: daysSince(row.last_msg_at, today),
+        platform: derivePlatform(row.deliverables),
+        owner: 'Julz' as const,
+        source: deriveSource(row.pipeline_source),
+      };
+    });
+}
+
+/** Mirror of `from-canonical.ts > mapStage` so this file doesn't need to
+ *  import internal mapper. Kept in sync — single source of truth = canonical
+ *  status enum, both files map the same way. */
+function legacyStageFromCanonical(status: string): CampaignStage {
+  switch (status) {
+    case 'signed':                return 'SOW REVIEWED';
+    case 'submitted':             return 'SUBMITTED';
+    case 'paid':                  return 'PAID';
+    case 'contract_pending_julz': return 'SOW RECEIVED';
+    case 'awaiting_julz':         return 'BRAND REPLIED';
+    case 'in_negotiation':        return 'RESPONDED';
+    case 'intake':                return 'NEW LEAD';
+    case 'closed':                return 'ARCHIVED';
+    default:                      return 'NEW LEAD';
+  }
+}
+
+export const MOCK_PIPELINE: PipelineCard[] = buildPipeline();
+
+export function totalPipelineValue(cards: PipelineCard[] = MOCK_PIPELINE): number {
   return cards.reduce((sum, c) => sum + c.value, 0);
 }
 
-export function cardsByStage(stage: PipelineStage, cards = MOCK_PIPELINE) {
+export function cardsByStage(stage: PipelineStage, cards: PipelineCard[] = MOCK_PIPELINE): PipelineCard[] {
   return cards.filter(c => c.stage === stage);
 }
 
-export function topBrandsByValue(cards = MOCK_PIPELINE, limit = 5) {
+export function topBrandsByValue(
+  cards: PipelineCard[] = MOCK_PIPELINE,
+  limit = 5,
+): Array<{ brand: string; value: number }> {
   const m = new Map<string, number>();
   for (const c of cards) m.set(c.brand, (m.get(c.brand) ?? 0) + c.value);
   return Array.from(m.entries())
@@ -130,9 +184,16 @@ export function topBrandsByValue(cards = MOCK_PIPELINE, limit = 5) {
     .map(([brand, value]) => ({ brand, value }));
 }
 
-export function upcomingDeadlines(cards = MOCK_PIPELINE, limit = 5) {
+export function upcomingDeadlines(
+  cards: PipelineCard[] = MOCK_PIPELINE,
+  limit = 5,
+): PipelineCard[] {
   return [...cards]
     .filter(c => c.deadline)
     .sort((a, b) => (a.deadline! < b.deadline! ? -1 : 1))
     .slice(0, limit);
 }
+
+// `Campaign` import kept so type narrowing flows through if a future caller
+// re-projects MOCK_PIPELINE back into Campaign shape.
+export type { Campaign };

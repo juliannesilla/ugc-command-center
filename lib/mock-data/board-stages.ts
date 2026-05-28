@@ -5,10 +5,21 @@
 // INVOICED is kept as an interstitial between POSTED and PAID even though
 // the prompt skips it, because the existing dashboard tiles already track
 // invoicing — non-destructive extension per HR-2 PRESERVE INTENT.
-// Counts/values are the static snapshot displayed in the Kanban columns.
-// Real card-level data per stage is drawn from MOCK_PIPELINE in pipeline.ts.
+//
+// Phase A.14u F5 (2026-05-27): the 19-stage workflow array (NEW LEAD →
+// APPLIED → ... → ARCHIVED) is LOCKED. New stages can be added but never
+// reordered or renamed without bumping all consumers.
+//
+// Phase A.14v V8B (GRACE / Wave 2, 2026-05-27): the per-stage `count` +
+// `value` snapshot values are no longer hand-rolled fabrications. They are
+// now computed at build time from `data/brands-canonical.json` (via LINUS's
+// `loadDashboardCampaigns()`), so what shows above each kanban column
+// matches what's INSIDE the column. Same for `BOARD_TOTAL_VALUE`,
+// `BOARD_DONUT_SEGMENTS`, `BOARD_UPCOMING_DEADLINES`, and `BOARD_TOP_BRANDS`
+// — all derive from canonical instead of hardcoded Glossier/Caraway/Ouai.
 
-import type { CampaignStage } from '@/lib/types/campaign';
+import { loadDashboardCampaigns } from '@/lib/mock-data/campaigns/from-canonical';
+import type { Campaign, CampaignStage } from '@/lib/types/campaign';
 
 export interface BoardStageDef {
   stage: CampaignStage;
@@ -31,50 +42,128 @@ export interface BoardStageDef {
 // WAITING ON BRAND → CALL SCHEDULED → SOW RECEIVED → SOW REVIEWED →
 // STRATEGY READY → SCRIPT READY → FILMING → EDITING → QA → SUBMITTED →
 // ACCEPTED → POSTED → INVOICED → PAID → ARCHIVED.
-export const BOARD_STAGES: BoardStageDef[] = [
-  { stage: 'NEW LEAD',         count: 12, value: 18020, accent: 'pink'   },
-  { stage: 'APPLIED',          count: 5,  value: 9200,  accent: 'pink'   },
-  { stage: 'BRAND REPLIED',    count: 4,  value: 8400,  accent: 'pink'   },
-  { stage: 'RESPONDED',        count: 8,  value: 16300, accent: 'pink'   },
-  { stage: 'WAITING ON BRAND', count: 6,  value: 14750, accent: 'yellow' },
-  { stage: 'CALL SCHEDULED',   count: 3,  value: 7600,  accent: 'yellow' },
-  { stage: 'SOW RECEIVED',     count: 5,  value: 22600, accent: 'iris'   },
-  { stage: 'SOW REVIEWED',     count: 4,  value: 17800, accent: 'iris'   },
-  { stage: 'STRATEGY READY',   count: 4,  value: 14200, accent: 'iris'   },
-  { stage: 'SCRIPT READY',     count: 3,  value: 9200,  accent: 'peach'  },
-  { stage: 'FILMING',          count: 3,  value: 8700,  accent: 'orange' },
-  { stage: 'EDITING',          count: 4,  value: 11300, accent: 'orange' },
-  { stage: 'QA',               count: 3,  value: 6500,  accent: 'orange' },
-  { stage: 'SUBMITTED',        count: 3,  value: 8100,  accent: 'yellow' },
-  { stage: 'ACCEPTED',         count: 3,  value: 9300,  accent: 'green'  },
-  { stage: 'POSTED',           count: 4,  value: 13400, accent: 'green'  },
-  { stage: 'INVOICED',         count: 2,  value: 7200,  accent: 'green'  },
-  { stage: 'PAID',             count: 3,  value: 9800,  accent: 'green'  },
-  { stage: 'ARCHIVED',         count: 7,  value: 0,     accent: 'ink'    },
+// A.14u F5 LOCKED — stage list shape preserved.
+const STAGE_ACCENTS: ReadonlyArray<{ stage: CampaignStage; accent: BoardStageDef['accent'] }> = [
+  { stage: 'NEW LEAD',         accent: 'pink'   },
+  { stage: 'APPLIED',          accent: 'pink'   },
+  { stage: 'BRAND REPLIED',    accent: 'pink'   },
+  { stage: 'RESPONDED',        accent: 'pink'   },
+  { stage: 'WAITING ON BRAND', accent: 'yellow' },
+  { stage: 'CALL SCHEDULED',   accent: 'yellow' },
+  { stage: 'SOW RECEIVED',     accent: 'iris'   },
+  { stage: 'SOW REVIEWED',     accent: 'iris'   },
+  { stage: 'STRATEGY READY',   accent: 'iris'   },
+  { stage: 'SCRIPT READY',     accent: 'peach'  },
+  { stage: 'FILMING',          accent: 'orange' },
+  { stage: 'EDITING',          accent: 'orange' },
+  { stage: 'QA',               accent: 'orange' },
+  { stage: 'SUBMITTED',        accent: 'yellow' },
+  { stage: 'ACCEPTED',         accent: 'green'  },
+  { stage: 'POSTED',           accent: 'green'  },
+  { stage: 'INVOICED',         accent: 'green'  },
+  { stage: 'PAID',             accent: 'green'  },
+  { stage: 'ARCHIVED',         accent: 'ink'    },
 ];
 
-export const BOARD_TOTAL_VALUE = BOARD_STAGES.reduce((sum, s) => sum + s.value, 0);
-// = 193,720 per spec ($193,720 total).
+// Build-time canonical pull. Single read; reused across all derived exports.
+const DASHBOARD_CAMPAIGNS: Campaign[] = loadDashboardCampaigns();
+
+function campaignValue(c: Campaign): number {
+  return c.total_potential_value ?? c.base_pay ?? 0;
+}
+
+export const BOARD_STAGES: BoardStageDef[] = STAGE_ACCENTS.map(({ stage, accent }) => {
+  const matches = DASHBOARD_CAMPAIGNS.filter(c => c.current_stage === stage);
+  return {
+    stage,
+    count: matches.length,
+    value: matches.reduce((sum, c) => sum + campaignValue(c), 0),
+    accent,
+  };
+});
+
+// ───────────────────────────────────────────────────────────────────────────
+// Aggregates (drive the right-hand sidebar on /pipeline/board)
+// ───────────────────────────────────────────────────────────────────────────
+
+export const BOARD_TOTAL_VALUE = BOARD_STAGES
+  .filter(s => s.stage !== 'ARCHIVED')
+  .reduce((sum, s) => sum + s.value, 0);
+
+/** Donut groups stages into 4 funnel buckets so the chart stays readable. */
+function bucketValue(stages: CampaignStage[]): number {
+  return BOARD_STAGES
+    .filter(s => stages.includes(s.stage))
+    .reduce((sum, s) => sum + s.value, 0);
+}
 
 export const BOARD_DONUT_SEGMENTS = [
-  { name: 'Inbound / leads',  value: 18020 + 16300 + 14750,           color: '#FF6B9D' }, // 49,070
-  { name: 'SOW + strategy',   value: 22600 + 17800 + 14200,           color: '#9D6BFF' }, // 54,600
-  { name: 'Production',       value: 9200 + 8700 + 11300 + 6500,      color: '#FF9966' }, // 35,700
-  { name: 'Delivered / paid', value: 8100 + 9300 + 13400 + 9800,      color: '#22C55E' }, // 40,600
+  {
+    name: 'Inbound / leads',
+    value: bucketValue(['NEW LEAD', 'APPLIED', 'BRAND REPLIED', 'RESPONDED', 'WAITING ON BRAND', 'CALL SCHEDULED']),
+    color: '#FF6B9D',
+  },
+  {
+    name: 'SOW + strategy',
+    value: bucketValue(['SOW RECEIVED', 'SOW REVIEWED', 'STRATEGY READY']),
+    color: '#9D6BFF',
+  },
+  {
+    name: 'Production',
+    value: bucketValue(['SCRIPT READY', 'FILMING', 'EDITING', 'QA']),
+    color: '#FF9966',
+  },
+  {
+    name: 'Delivered / paid',
+    value: bucketValue(['SUBMITTED', 'ACCEPTED', 'POSTED', 'INVOICED', 'PAID']),
+    color: '#22C55E',
+  },
 ];
 
-export const BOARD_UPCOMING_DEADLINES = [
-  { brand: 'Glossier',       label: 'Submit v3 cut',     due: 'Today · 5pm',   tone: 'red'    as const },
-  { brand: 'Ouai',           label: 'Film 3-pack',       due: 'Today',         tone: 'orange' as const },
-  { brand: 'Caraway',        label: 'SOW revisions',     due: 'Fri',           tone: 'yellow' as const },
-  { brand: 'ParakeetAI',     label: 'SOW redline',       due: 'Fri',           tone: 'yellow' as const },
-  { brand: 'Rare Beauty',    label: 'Hook variants v2',  due: 'Mon',           tone: 'green'  as const },
-];
+// ───────────────────────────────────────────────────────────────────────────
+// Upcoming deadlines — 5 soonest non-archived campaigns with a `due_date`.
+// ───────────────────────────────────────────────────────────────────────────
 
-export const BOARD_TOP_BRANDS = [
-  { brand: 'Caraway',        value: 12500 },
-  { brand: 'Glossier',       value: 9800  },
-  { brand: 'ParakeetAI',     value: 8600  },
-  { brand: 'Drunk Elephant', value: 7400  },
-  { brand: 'Liquid Death',   value: 6900  },
-];
+function dueLabel(iso: string | undefined, today: Date): { due: string; tone: 'red' | 'orange' | 'yellow' | 'green' } {
+  if (!iso) return { due: 'TBD', tone: 'green' };
+  const dueDate = new Date(iso);
+  const days = Math.ceil((dueDate.getTime() - today.getTime()) / 86_400_000);
+  if (days < 0) return { due: `${Math.abs(days)}d overdue`, tone: 'red' };
+  if (days === 0) return { due: 'Today', tone: 'red' };
+  if (days === 1) return { due: 'Tomorrow', tone: 'orange' };
+  if (days < 7) return { due: dueDate.toLocaleDateString('en-US', { weekday: 'short' }), tone: 'yellow' };
+  return { due: iso.slice(5), tone: 'green' };
+}
+
+const _today = new Date();
+const _deadlineCandidates = DASHBOARD_CAMPAIGNS
+  .filter(c => c.status !== 'archived' && !!c.due_date)
+  .sort((a, b) => (a.due_date! < b.due_date! ? -1 : 1))
+  .slice(0, 5);
+
+export const BOARD_UPCOMING_DEADLINES = _deadlineCandidates.map(c => {
+  const { due, tone } = dueLabel(c.due_date, _today);
+  return {
+    brand: c.brand,
+    label: c.next_action,
+    due,
+    tone,
+  };
+});
+
+// ───────────────────────────────────────────────────────────────────────────
+// Top brands — 5 highest-value non-archived campaigns.
+// ───────────────────────────────────────────────────────────────────────────
+
+export const BOARD_TOP_BRANDS = (() => {
+  const byBrand = new Map<string, number>();
+  for (const c of DASHBOARD_CAMPAIGNS) {
+    if (c.status === 'archived') continue;
+    byBrand.set(c.brand, (byBrand.get(c.brand) ?? 0) + campaignValue(c));
+  }
+  return Array.from(byBrand.entries())
+    .filter(([, v]) => v > 0)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([brand, value]) => ({ brand, value }));
+})();
