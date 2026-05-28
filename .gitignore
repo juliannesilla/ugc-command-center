@@ -24,3 +24,6 @@ _meta/mockups/post-a14m-visual-diff-live/
 _meta/qa-reports/a14m-lighthouse/*.html
 _meta/qa-reports/a14m-lighthouse/*.json
 _meta/qa-reports/a14m-playwright/html-report/
+
+.tmp/
+
