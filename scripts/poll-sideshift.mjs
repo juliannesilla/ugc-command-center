@@ -678,6 +678,26 @@ async function main() {
 
   logger.info('poll-sideshift done', { runId: id, exitCode: 0 });
   await logger.flush();
+
+  // NORMA A.14v 2026-05-27: auto-fire merge-canonical.mjs after every poll so
+  // brands-canonical.jsonl (dashboard source-of-truth) stays in sync with
+  // sideshift-messages.jsonl deltas. Chained here so a single cron task covers
+  // both. Fail-soft: merge failure does not abort poll-sideshift's success.
+  try {
+    const { spawn } = await import('node:child_process');
+    const mergeScript = join(REPO_ROOT, 'scripts', 'merge-canonical.mjs');
+    if (existsSync(mergeScript)) {
+      await new Promise((res) => {
+        const child = spawn(process.execPath, [mergeScript, '--apply'], {
+          cwd: REPO_ROOT,
+          stdio: 'ignore',
+        });
+        child.on('close', () => res());
+        child.on('error', () => res());
+      });
+    }
+  } catch { /* fail-soft — merge errors don't break poll */ }
+
   return 0;
 }
 
