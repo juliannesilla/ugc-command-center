@@ -5,27 +5,29 @@
 // you re-engage to the original deliverable's payout, the more likely the
 // brand remembers ROI + has remaining budget for the quarter.
 //
+// Phase A.14v V8C (HAMILTON / Wave 2): rewrote to read REAL paid brands from
+// `data/brands-canonical.json` instead of computing from MOCK_PAYMENTS rows
+// (which derive paid_date = due_date, and most paid brands have null deadlines).
+//
 // Filter logic:
-//   - source = MOCK_PAYMENTS (canonical paid_date provenance — see
-//     lib/mock-data/payments.ts L152: paid_date = c.due_date when paid)
-//   - WHERE payment_status === 'paid' AND paid_date < today - 30 days
-//   - GROUP by campaign_id (dedupe multi-deliverable campaigns to one row)
-//   - SORT by paid_date DESC (most-recently-paid first — freshest memory)
+//   - source = loadAllCanonical() (DARWIN canonical brand list)
+//   - WHERE status === 'paid' AND last_msg_at provides best paid-date proxy
+//     (canonical doesn't store a discrete paid_at column; last_msg_at on a
+//      paid row reflects the most recent payment receipt notification)
+//   - AND days_since_last_msg > 30 (warm-renewal window per spec)
+//   - SORT by last_msg_at DESC (freshest memory first)
 //
-// Empty state today: NO campaigns in MOCK_CAMPAIGNS have payment_status='paid'
-// (all are pending/unknown — see lib/mock-data/campaigns/index.ts). That's
-// expected per HR-J PRESERVE INTENT: the route is the *infrastructure* — it
-// surfaces brands the second they tip into the >30d-paid window.
-//
-// Phase A.14t T3 — NEW route. T1 owns the sidebar nav entry in this wave;
-// this page is reachable via direct URL (/pipeline/renewals) until then.
+// Honest empty-state today: Monat (only canonical paid row, last_msg_at
+// 2026-05-08) is just 19 days past as of 2026-05-27 — NOT yet renewal-eligible.
+// Empty state is correct, surfaces the moment Monat tips past 30d (~ Jun 7).
 
 import Link from 'next/link';
 import { ArrowLeft, Sparkles } from 'lucide-react';
 import { Header } from '@/components/ui/header';
 import { PageHeader } from '@/components/ui/PageHeader';
-import { MOCK_PAYMENTS } from '@/lib/mock-data/payments';
+import { loadAllCanonical } from '@/lib/mock-data/campaigns/from-canonical';
 import { RenewalRow, type RenewalRowData } from '@/components/renewals/RenewalRow';
+import type { PaymentPlatform } from '@/lib/mock-data/payments';
 
 export const metadata = {
   title: 'Brand Renewals · UGC | Campaign HQ',
@@ -49,42 +51,45 @@ function daysSince(iso: string): number {
 }
 
 /**
- * Build one renewal row per paid campaign (deduped from per-deliverable
- * MOCK_PAYMENTS). Sum amount_received across deliverables. Pick the latest
- * paid_date as the "campaign paid_at."
+ * Heuristic — map canonical channel/source to PaymentPlatform display token.
+ * Monat is paid via MyPayQuicker (commission processor — closest existing
+ * token is "Bank Transfer" since none of our enum values match exactly).
+ */
+function inferPlatform(channel: string | null, sources: string[]): PaymentPlatform {
+  if (sources.includes('mypayquicker')) return 'Bank Transfer';
+  if (channel?.includes('sideshift') || sources.includes('sideshift')) return 'SideShift';
+  if (channel?.includes('email')) return 'PayPal';
+  return 'Unknown';
+}
+
+/**
+ * Build renewal rows from canonical paid brands. One row per brand_id.
  */
 function buildRenewals(): RenewalRowData[] {
-  const byCampaign = new Map<string, RenewalRowData>();
-
-  for (const p of MOCK_PAYMENTS) {
-    if (p.payment_status !== 'paid' || !p.paid_date) continue;
-    const days = daysSince(p.paid_date);
-    if (days <= 30) continue; // Not yet warm-renewal eligible.
-
-    const existing = byCampaign.get(p.campaign_id);
-    if (!existing) {
-      byCampaign.set(p.campaign_id, {
-        campaign_id: p.campaign_id,
-        brand: p.brand,
-        campaign_name: p.campaign_name,
-        paid_date: p.paid_date,
-        days_since_paid: days,
-        amount_received: p.amount_received ?? 0,
-        payment_platform: p.payment_platform,
-      });
-    } else {
-      existing.amount_received += p.amount_received ?? 0;
-      // Keep the latest paid_date if multi-deliverable.
-      if (p.paid_date > existing.paid_date) {
-        existing.paid_date = p.paid_date;
-        existing.days_since_paid = days;
-      }
-    }
-  }
-
-  return Array.from(byCampaign.values()).sort((a, b) =>
-    a.paid_date < b.paid_date ? 1 : a.paid_date > b.paid_date ? -1 : 0,
-  );
+  return loadAllCanonical()
+    .filter((r) => r.status === 'paid' && r.last_msg_at != null)
+    .map((r): RenewalRowData | null => {
+      const paid_date = r.last_msg_at as string;
+      const days_since_paid = daysSince(paid_date);
+      if (days_since_paid <= 30) return null; // not yet warm
+      return {
+        campaign_id: r.brand_id,
+        brand: r.brand_name_canonical,
+        campaign_name:
+          r.deliverables[0]?.type ?? (r.notes.slice(0, 60) || 'Prior campaign'),
+        paid_date,
+        days_since_paid,
+        amount_received: r.payment_amount_usd ?? 0,
+        payment_platform: inferPlatform(
+          r.key_contact.channel,
+          r.pipeline_source,
+        ),
+      };
+    })
+    .filter((row): row is RenewalRowData => row !== null)
+    .sort((a, b) =>
+      a.paid_date < b.paid_date ? 1 : a.paid_date > b.paid_date ? -1 : 0,
+    );
 }
 
 export default function RenewalsPage() {
@@ -134,9 +139,10 @@ export default function RenewalsPage() {
               No brands ready for renewal yet
             </h2>
             <p className="mt-2 max-w-md mx-auto text-[13px] text-ink-600 leading-relaxed">
-              Come back here after your first paid campaign closes. Once a
-              brand's payout date is more than 30 days behind you, they'll
-              surface here as a warm re-pitch lead.
+              Come back here after a paid campaign ages past 30 days. Today,
+              canonical shows Monat as the only paid brand and it's still
+              inside the fresh-payment window — they'll surface here once their
+              last payment tips past 30 days (early June).
             </p>
             <Link
               href="/pipeline/board"
