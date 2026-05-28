@@ -101,27 +101,31 @@
 
 ---
 
-## Conflict summary
+## Conflict summary (post-HOLMES Wave 2 execution, 2026-05-27)
 
-| ID | Brand | Severity | Auto-fixable | Owner |
-|---|---|---|---|---|
-| C1 | ParakeetAI | P0 | YES — Linear save_issue | Claude |
-| C2 | MyCal AI | P1 | NO — needs brand reply | Brand (Alicia) |
-| C3 | Astor | P2 | NO — needs Julz visual | Julz |
-| C4 | Monat Global | P3 | NO — categorization decision | Julz |
-| C5 | Phobaxx | P1 | YES — PDF parse | Claude |
-| C6 | Alicia recurrence | P3 | NO — observational | Julz / monitoring |
-| C7 | Brkfst | resolved | — | done |
-| C8 | Wand | resolved | — | done |
+| ID | Brand | Severity | Auto-fixable | Owner | Status |
+|---|---|---|---|---|---|
+| C1 | ParakeetAI | P0 | YES — Linear save_issue | Claude | ✅ RESOLVED by HOLMES — JUL-25 advanced Backlog → Done at 2026-05-28T02:22:15Z |
+| C2 | MyCal AI | P1 | NO — needs brand reply | Brand (Alicia) | 🟡 OPEN — Julz can nudge if stale |
+| C3 | Astor | P2 | NO — needs Julz visual | Julz | 🟡 OPEN — human visual verify |
+| C4 | Monat Global | P3 | NO — categorization decision | Julz | 🟡 OPEN — categorization pref |
+| C5 | Phobaxx | P1 | YES — PDF parse | Claude | 🔴 HR-10 UNRESOLVED by HOLMES — PDF not on local disk (SideShift CDN attachment only). Julz needs to download to unblock. |
+| C6 | Alicia recurrence | P3 | NO — observational | Julz / monitoring | 🟡 OPEN — observational |
+| C7 | Brkfst | resolved | — | done | ✅ |
+| C8 | Wand | resolved | — | done | ✅ |
 
-**Auto-fix queue (HR-38 compliant — no false-defer):**
+## HOLMES (A.14v Wave 2) execution log — 2026-05-27
 
-- C1 → Claude execute Linear status advance
-- C5 → Claude execute PDF read + extract
+**Auto-fixes shipped:**
 
-**True Julz-only items (HR-38 valid):**
+- ✅ **C1 — ParakeetAI JUL-25 status advance:** `Backlog → Done` via Linear save_issue. Comment posted (id `1d09bf07-7664-4d1f-8358-11c3573ff6f5`). Verified via independent get_issue → status="Done", statusType="completed", completedAt=2026-05-28T02:22:15.611Z.
+- ✅ **MWM.ai Linear issue:** Created JUL-26 ("MWM.ai — TikTok + IG Reels + YouTube Shorts retainer"), priority Urgent, state In Progress. 13-stage checklist mirrored from JUL-25. URL: https://linear.app/julianne/issue/JUL-26/mwmai-tiktok-ig-reels-youtube-shorts-retainer
+- ✅ **Phobaxx Linear issue:** Created JUL-27 ("Phobaxx — 30 posts/month organic native"), priority Urgent, state In Progress. 13-stage checklist mirrored from JUL-25; PDF-blocked items left unchecked with HR-10 reason. URL: https://linear.app/julianne/issue/JUL-27/phobaxx-30-postsmonth-organic-native
+- ✅ **Bazzaal Gmail thread (queue item 6):** Full thread extracted via Gmail MCP get_thread (thread 19d8c562599270a0). Finding: NOT a per-creator paid brief — it's a mass-blast recruitment offer requiring Google Form application (https://forms.gle/h6XGHLrCXunjzx436). Tiered-by-follower-count compensation; no public $ amounts. Min 10K followers IG/TikTok. Geos USA/UK/AU/NZ. Canonical row reclassified P1 → P2.
 
-- C2 → awaiting brand reply (Julz can nudge if stale)
-- C3 → human visual verification of SideShift thread
-- C4 → dashboard categorization preference
-- C6 → relationship-management observation
+**HR-10 honest blockers:**
+
+- 🔴 **C5 Phobaxx PDF (queue item 4):** SideShift CDN attachment. HOLMES Glob probes empty (`C:/Users/julia/**/Phobaxx*`, `C:/Users/julia/Downloads/**/*Phobaxx*`). No Gmail thread exists for Phobaxx. **Julz to-do:** download Phobaxx contract PDF from SideShift chat → save to local disk → re-spawn HOLMES.
+- 🔴 **Elizaveta Leonova GDoc (queue item 5):** SideShift Gmail-relay truncates URL at `...` (28-char prefix only). `read_file_content` with prefix → `Entity not found`. Drive search by sender → no matches. **Julz to-do:** open SideShift chat → click GDoc link → copy full URL → paste back.
+
+**Net auto-fix outcome:** 4 of 6 shipped, 2 HR-10 unresolved with clear unblock paths to Julz.
