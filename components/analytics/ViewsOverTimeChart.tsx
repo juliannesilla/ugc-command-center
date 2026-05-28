@@ -8,47 +8,60 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
-  Legend,
 } from 'recharts';
-import { VIEWS_OVER_TIME } from '@/lib/mock-data/analytics';
+// A.14v V9A FLORENCE: real @geezjulz TikTok data (42 posts) replaces mock.
+// CSV source has no views column — y-axis is engagement (likes+comments+shares).
+import { getViewsOverTime, getTikTokTotals } from '@/lib/analytics/from-tiktok-csv';
 
 function fmt(n: number) {
-  if (n >= 1000) return `${(n / 1000).toFixed(0)}K`;
+  if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
   return `${n}`;
 }
 
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function formatRange(start: string | undefined, end: string | undefined): string {
+  if (!start || !end) return '';
+  const fmtDate = (iso: string) => {
+    const [y, m, d] = iso.split('-').map((s) => parseInt(s, 10));
+    return `${MONTHS[m - 1]} ${d}, ${y}`;
+  };
+  return `${fmtDate(start)} – ${fmtDate(end)}`;
+}
+
 export function ViewsOverTimeChart() {
+  const data = getViewsOverTime();
+  const totals = getTikTokTotals();
+  const rangeLabel = formatRange(totals.dateRange?.start, totals.dateRange?.end);
   return (
     <div className="glass-card rounded-2xl p-6 shadow-card">
       <div className="flex items-center justify-between mb-4">
         <div>
           {/* A.14m Stream 3 a11y fix: h3 → h2 (heading-order, h1 in page → h2 cards). T5 ADDITIVE: section-title. */}
+          {/* A.14v V9A FLORENCE: honest title — CSV has no views column. */}
           <h2 className="section-title font-display text-lg font-bold text-ink-900">
-            Views Over Time
+            Engagement Over Time
           </h2>
-          <p className="text-xs text-ink-700">Apr 6 – May 6, 2026</p>
+          <p className="text-xs text-ink-700">
+            @geezjulz · {totals.posts} posts · {rangeLabel}
+          </p>
         </div>
         <div className="flex items-center gap-3 text-[11px] text-ink-600">
           <span className="inline-flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-cloud-500" />
-            This Period
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-iris-300" />
-            Previous Period
+            Likes + Comments + Shares
           </span>
         </div>
       </div>
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={VIEWS_OVER_TIME} margin={{ top: 8, right: 12, bottom: 4, left: -8 }}>
+          <LineChart data={data} margin={{ top: 8, right: 12, bottom: 4, left: -8 }}>
             <CartesianGrid stroke="rgba(157,107,255,0.08)" strokeDasharray="3 4" vertical={false} />
             <XAxis
               dataKey="date"
               tick={{ fontSize: 11, fill: '#7A6B8E' }}
               tickLine={false}
               axisLine={false}
-              interval={1}
+              interval={Math.max(0, Math.floor(data.length / 8) - 1)}
               tickMargin={8}
               dy={2}
             />
@@ -79,26 +92,17 @@ export function ViewsOverTimeChart() {
                 letterSpacing: '0.02em',
               }}
               itemStyle={{ color: '#1A1224', padding: 0 }}
-              formatter={(v: number) => fmt(v) + ' views'}
+              formatter={(v: number) => fmt(v) + ' engagement'}
             />
             <Line
               type="monotone"
               dataKey="current"
-              name="This Period"
+              name="Engagement"
               stroke="#FF6B9D"
               strokeWidth={2.5}
-              dot={false}
+              dot={{ r: 3, fill: '#FF6B9D', strokeWidth: 0 }}
               activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
-            />
-            <Line
-              type="monotone"
-              dataKey="previous"
-              name="Previous Period"
-              stroke="#B58CFF"
-              strokeWidth={2}
-              strokeDasharray="4 4"
-              dot={false}
-              activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }}
+              connectNulls
             />
           </LineChart>
         </ResponsiveContainer>

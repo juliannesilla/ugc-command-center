@@ -1,0 +1,448 @@
+{
+  "generatedAt": "2026-05-28T03:02:11.142Z",
+  "source": "julz-vault/01-WORK-CURRENT/social-media/tiktok_data_enhanced.csv",
+  "notes": [
+    "CSV has no views column — y-axis is engagement (likes + comments + shares).",
+    "Hook classifier is keyword-based on first ~80 chars of CAPTION.",
+    "previous-period series is null (only one period of data exists)."
+  ],
+  "totals": {
+    "posts": 42,
+    "likes": 8313,
+    "comments": 1845,
+    "shares": 0,
+    "engagement": 10158,
+    "dateRange": {
+      "start": "2025-03-05",
+      "end": "2025-07-15"
+    }
+  },
+  "viewsOverTime": [
+    {
+      "date": "Mar 05",
+      "isoDate": "2025-03-05",
+      "current": 16,
+      "previous": null,
+      "posts": 1,
+      "likes": 16,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "Mar 06",
+      "isoDate": "2025-03-06",
+      "current": 24,
+      "previous": null,
+      "posts": 1,
+      "likes": 20,
+      "comments": 4,
+      "shares": 0
+    },
+    {
+      "date": "Mar 07",
+      "isoDate": "2025-03-07",
+      "current": 19,
+      "previous": null,
+      "posts": 1,
+      "likes": 15,
+      "comments": 4,
+      "shares": 0
+    },
+    {
+      "date": "Mar 11",
+      "isoDate": "2025-03-11",
+      "current": 309,
+      "previous": null,
+      "posts": 2,
+      "likes": 301,
+      "comments": 8,
+      "shares": 0
+    },
+    {
+      "date": "Mar 12",
+      "isoDate": "2025-03-12",
+      "current": 63,
+      "previous": null,
+      "posts": 1,
+      "likes": 53,
+      "comments": 10,
+      "shares": 0
+    },
+    {
+      "date": "Mar 13",
+      "isoDate": "2025-03-13",
+      "current": 83,
+      "previous": null,
+      "posts": 1,
+      "likes": 74,
+      "comments": 9,
+      "shares": 0
+    },
+    {
+      "date": "Mar 19",
+      "isoDate": "2025-03-19",
+      "current": 82,
+      "previous": null,
+      "posts": 1,
+      "likes": 70,
+      "comments": 12,
+      "shares": 0
+    },
+    {
+      "date": "Mar 20",
+      "isoDate": "2025-03-20",
+      "current": 121,
+      "previous": null,
+      "posts": 1,
+      "likes": 117,
+      "comments": 4,
+      "shares": 0
+    },
+    {
+      "date": "Mar 21",
+      "isoDate": "2025-03-21",
+      "current": 179,
+      "previous": null,
+      "posts": 1,
+      "likes": 157,
+      "comments": 22,
+      "shares": 0
+    },
+    {
+      "date": "Mar 25",
+      "isoDate": "2025-03-25",
+      "current": 91,
+      "previous": null,
+      "posts": 1,
+      "likes": 78,
+      "comments": 13,
+      "shares": 0
+    },
+    {
+      "date": "Apr 01",
+      "isoDate": "2025-04-01",
+      "current": 4647,
+      "previous": null,
+      "posts": 1,
+      "likes": 3643,
+      "comments": 1004,
+      "shares": 0
+    },
+    {
+      "date": "Apr 03",
+      "isoDate": "2025-04-03",
+      "current": 247,
+      "previous": null,
+      "posts": 2,
+      "likes": 203,
+      "comments": 44,
+      "shares": 0
+    },
+    {
+      "date": "Apr 05",
+      "isoDate": "2025-04-05",
+      "current": 74,
+      "previous": null,
+      "posts": 1,
+      "likes": 62,
+      "comments": 12,
+      "shares": 0
+    },
+    {
+      "date": "Apr 07",
+      "isoDate": "2025-04-07",
+      "current": 263,
+      "previous": null,
+      "posts": 1,
+      "likes": 163,
+      "comments": 100,
+      "shares": 0
+    },
+    {
+      "date": "Apr 09",
+      "isoDate": "2025-04-09",
+      "current": 74,
+      "previous": null,
+      "posts": 1,
+      "likes": 68,
+      "comments": 6,
+      "shares": 0
+    },
+    {
+      "date": "Apr 10",
+      "isoDate": "2025-04-10",
+      "current": 167,
+      "previous": null,
+      "posts": 1,
+      "likes": 149,
+      "comments": 18,
+      "shares": 0
+    },
+    {
+      "date": "Apr 11",
+      "isoDate": "2025-04-11",
+      "current": 114,
+      "previous": null,
+      "posts": 1,
+      "likes": 96,
+      "comments": 18,
+      "shares": 0
+    },
+    {
+      "date": "Apr 14",
+      "isoDate": "2025-04-14",
+      "current": 145,
+      "previous": null,
+      "posts": 1,
+      "likes": 107,
+      "comments": 38,
+      "shares": 0
+    },
+    {
+      "date": "Apr 15",
+      "isoDate": "2025-04-15",
+      "current": 164,
+      "previous": null,
+      "posts": 1,
+      "likes": 127,
+      "comments": 37,
+      "shares": 0
+    },
+    {
+      "date": "Apr 17",
+      "isoDate": "2025-04-17",
+      "current": 169,
+      "previous": null,
+      "posts": 2,
+      "likes": 140,
+      "comments": 29,
+      "shares": 0
+    },
+    {
+      "date": "Apr 22",
+      "isoDate": "2025-04-22",
+      "current": 174,
+      "previous": null,
+      "posts": 2,
+      "likes": 150,
+      "comments": 24,
+      "shares": 0
+    },
+    {
+      "date": "Apr 24",
+      "isoDate": "2025-04-24",
+      "current": 150,
+      "previous": null,
+      "posts": 2,
+      "likes": 128,
+      "comments": 22,
+      "shares": 0
+    },
+    {
+      "date": "Apr 25",
+      "isoDate": "2025-04-25",
+      "current": 292,
+      "previous": null,
+      "posts": 1,
+      "likes": 202,
+      "comments": 90,
+      "shares": 0
+    },
+    {
+      "date": "Apr 29",
+      "isoDate": "2025-04-29",
+      "current": 396,
+      "previous": null,
+      "posts": 1,
+      "likes": 263,
+      "comments": 133,
+      "shares": 0
+    },
+    {
+      "date": "May 01",
+      "isoDate": "2025-05-01",
+      "current": 154,
+      "previous": null,
+      "posts": 1,
+      "likes": 126,
+      "comments": 28,
+      "shares": 0
+    },
+    {
+      "date": "May 06",
+      "isoDate": "2025-05-06",
+      "current": 56,
+      "previous": null,
+      "posts": 1,
+      "likes": 48,
+      "comments": 8,
+      "shares": 0
+    },
+    {
+      "date": "May 08",
+      "isoDate": "2025-05-08",
+      "current": 41,
+      "previous": null,
+      "posts": 1,
+      "likes": 36,
+      "comments": 5,
+      "shares": 0
+    },
+    {
+      "date": "Jun 11",
+      "isoDate": "2025-06-11",
+      "current": 14,
+      "previous": null,
+      "posts": 1,
+      "likes": 13,
+      "comments": 1,
+      "shares": 0
+    },
+    {
+      "date": "Jun 17",
+      "isoDate": "2025-06-17",
+      "current": 235,
+      "previous": null,
+      "posts": 1,
+      "likes": 216,
+      "comments": 19,
+      "shares": 0
+    },
+    {
+      "date": "Jun 18",
+      "isoDate": "2025-06-18",
+      "current": 71,
+      "previous": null,
+      "posts": 1,
+      "likes": 58,
+      "comments": 13,
+      "shares": 0
+    },
+    {
+      "date": "Jun 19",
+      "isoDate": "2025-06-19",
+      "current": 65,
+      "previous": null,
+      "posts": 1,
+      "likes": 64,
+      "comments": 1,
+      "shares": 0
+    },
+    {
+      "date": "Jun 25",
+      "isoDate": "2025-06-25",
+      "current": 550,
+      "previous": null,
+      "posts": 1,
+      "likes": 498,
+      "comments": 52,
+      "shares": 0
+    },
+    {
+      "date": "Jul 01",
+      "isoDate": "2025-07-01",
+      "current": 160,
+      "previous": null,
+      "posts": 1,
+      "likes": 151,
+      "comments": 9,
+      "shares": 0
+    },
+    {
+      "date": "Jul 02",
+      "isoDate": "2025-07-02",
+      "current": 139,
+      "previous": null,
+      "posts": 1,
+      "likes": 108,
+      "comments": 31,
+      "shares": 0
+    },
+    {
+      "date": "Jul 03",
+      "isoDate": "2025-07-03",
+      "current": 46,
+      "previous": null,
+      "posts": 1,
+      "likes": 44,
+      "comments": 2,
+      "shares": 0
+    },
+    {
+      "date": "Jul 08",
+      "isoDate": "2025-07-08",
+      "current": 419,
+      "previous": null,
+      "posts": 1,
+      "likes": 408,
+      "comments": 11,
+      "shares": 0
+    },
+    {
+      "date": "Jul 15",
+      "isoDate": "2025-07-15",
+      "current": 145,
+      "previous": null,
+      "posts": 1,
+      "likes": 141,
+      "comments": 4,
+      "shares": 0
+    }
+  ],
+  "hookPerformance": [
+    {
+      "id": "save",
+      "label": "Save / CTA hook",
+      "posts": 3,
+      "avgEngagement": 346.7,
+      "avgLikes": 321.3,
+      "avgComments": 25.3,
+      "totalEngagement": 1040
+    },
+    {
+      "id": "declarative",
+      "label": "Declarative / Other",
+      "posts": 30,
+      "avgEngagement": 270.7,
+      "avgLikes": 218.9,
+      "avgComments": 51.8,
+      "totalEngagement": 8121
+    },
+    {
+      "id": "vulnerable",
+      "label": "Vulnerable / POV",
+      "posts": 1,
+      "avgEngagement": 145,
+      "avgLikes": 107,
+      "avgComments": 38,
+      "totalEngagement": 145
+    },
+    {
+      "id": "question",
+      "label": "Question hook",
+      "posts": 4,
+      "avgEngagement": 142.8,
+      "avgLikes": 108,
+      "avgComments": 34.8,
+      "totalEngagement": 571
+    },
+    {
+      "id": "story",
+      "label": "Storytime",
+      "posts": 3,
+      "avgEngagement": 78.3,
+      "avgLikes": 66.7,
+      "avgComments": 11.7,
+      "totalEngagement": 235
+    },
+    {
+      "id": "relatable",
+      "label": "Relatable statement",
+      "posts": 1,
+      "avgEngagement": 46,
+      "avgLikes": 44,
+      "avgComments": 2,
+      "totalEngagement": 46
+    }
+  ]
+}
