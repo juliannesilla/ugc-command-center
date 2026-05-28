@@ -51,6 +51,11 @@ import {
   paidThisMonth,
   needsInvoicing,
 } from '@/components/payments/payment-aggregates';
+// A.14v V9B (YELLEN / Wave 2): money-flow charts wired to canonical brand
+// data via lib/payments/from-canonical.ts. Drop-in above the per-payment
+// table so the donut + bar reflect the truth (Monat $54.40 paid, MWM +
+// Phobaxx signed-but-unclear, 14 brands awaiting contract).
+import { PaymentCharts } from '@/components/payments/payment-charts';
 
 // ── Payment status pill colors (spec — Task 8 aesthetic) ───────────────────
 const PAYMENT_TONE: Record<PaymentStatus, ChipTone> = {
@@ -250,6 +255,12 @@ export default function PaymentsPage() {
                 accent: c.accent === 'yellow' ? 'peach' : c.accent,
               }))}
             />
+
+            {/* ============ MONEY-FLOW CHARTS (YELLEN A.14v V9B) ============
+                Donut (status mix) + horizontal bar (top brands by potential).
+                Reads canonical pipeline directly via lib/payments/from-canonical.
+                Honest empties per HR-10 — Monat $54.40 is the only paid row. */}
+            <PaymentCharts />
 
 
             {/* ============ FILTER CHIPS + PLATFORM/BRAND DROPDOWNS ============ */}
