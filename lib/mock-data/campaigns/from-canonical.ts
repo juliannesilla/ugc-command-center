@@ -48,6 +48,13 @@ interface CanonicalDeliverable {
   duration_sec?: number[];
   format?: string;
   note?: string;
+  /**
+   * Non-standard per-deliverable performance bonus (the Astor pattern).
+   * Astor canonical: `deliverables[0].cpm_bonus = "$1/1000 views"`. Surfaced
+   * by mapBonusPotential when no row-level bonus_amount_usd / bonus note.
+   */
+  cpm_bonus?: string;
+  pay_per_video?: number;
 }
 
 interface CanonicalContact {
@@ -193,8 +200,23 @@ function mapProductCategory(row: CanonicalBrandRow): ProductCategory {
  *
  * Catch (Julz 2026-05-28): live URL showed MWM "15 × vertical_video"
  * when canonical has 5 originals + 5 IG reposts + 5 YT reposts = 5 unique.
+ *
+ * A.14y Wave 0.9 fix (LINUS) — empty-deliverables honesty. Source: Wave 0.8
+ * ELON-T2 closeout item 8 (`A14Y-W0.8.C-deliverable-fallback` deferred-P2)
+ * + Julz 2026-05-29 brief. An EMPTY `deliverables[]` array previously fell
+ * through to `|| 1`, so Megprime Pay + Lotus Shop rendered a fake
+ * "1 × vertical_video" on the SOW Breakdown UI when NOTHING is specified.
+ * That's a dishonest default. Return `0` for a genuinely-empty array — the
+ * SOW consumer's `if (deliverable_count && > 0)` guard then routes it to the
+ * "Not yet specified" row (status `blocked` for signed brands, `incomplete`
+ * for prospects). Brands with REAL deliverables are unaffected: a non-empty
+ * array still floors to ≥1 (a listed-but-zero-count deliverable = real work).
  */
 function mapDeliverableCount(row: CanonicalBrandRow): number {
+  // Honest empty signal — no deliverables specified yet. Distinct from a
+  // populated array whose counts happen to parse to 0 (that floors to 1 below).
+  if (row.deliverables.length === 0) return 0;
+
   let independentSum = 0;
   let crossPostMax = 0;
 
@@ -264,6 +286,16 @@ function mapBasePay(row: CanonicalBrandRow): number | undefined {
  * Bonus row on the SOW Breakdown UI. Catch (Julz 2026-05-28): Phobaxx Bonus
  * was rendering "30 total posts | 30 posts per month | 2 deliverables; $ amount
  * inside PDF — HR-10 unresolved" which is structure terms, not bonus.
+ *
+ * A.14y Wave 0.9 fix (LINUS) — surface the non-standard per-deliverable
+ * `cpm_bonus` field (the Astor pattern). Source: Wave 0.8 ELON-T2 closeout
+ * item 8 (`A14Y-W0.8.C-astor-cpm` deferred-P2) + Julz 2026-05-29 brief.
+ * Astor canonical nests it on the deliverable, NOT the row:
+ * `deliverables[0].cpm_bonus = "$1/1000 views"`. Verified by reading
+ * data/brands-canonical.jsonl (scan found cpm_bonus only at deliverable
+ * level — row-level is undefined). Precedence: numeric row bonus →
+ * bonus-keyword note → deliverable cpm_bonus → undefined. Existing
+ * bonus_amount_usd / payment_terms_note brands are unaffected.
  */
 function mapBonusPotential(row: CanonicalBrandRow): number | string | undefined {
   if (row.bonus_amount_usd != null) {
@@ -272,6 +304,12 @@ function mapBonusPotential(row: CanonicalBrandRow): number | string | undefined 
   const note = row.payment_terms_note ?? "";
   if (note && /\b(bonus|upside|kicker|extra|incentive)\b/i.test(note)) {
     return note;
+  }
+  // Astor pattern — per-deliverable CPM bonus (e.g. "$1/1000 views").
+  for (const d of row.deliverables) {
+    if (typeof d.cpm_bonus === "string" && d.cpm_bonus.trim().length > 0) {
+      return d.cpm_bonus.trim();
+    }
   }
   return undefined;
 }
