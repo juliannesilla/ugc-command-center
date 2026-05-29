@@ -72,6 +72,40 @@ const ENRICH = {
     ],
   },
 
+  'lovable': {
+    contract_status: 'prospect_terms_known_contract_pending',
+    awaiting_brand_action: 'Send full SOW + competitor exclusivity carve-out vs Bolt.new',
+    fit_score: 9,
+    honest_concerns: [
+      'Bolt_new_sequencing_G18_conflict',
+      'category_exclusivity_carve_out_needed',
+      'full_comp_terms_pending',
+    ],
+  },
+
+  'hunch': {
+    contract_status: 'prospect_pre_call',
+    awaiting_brand_action: 'Provide call slot OR send counter-offer terms',
+    fit_score: 4,
+    honest_concerns: [
+      'hook_replication_voice_conflict',
+      'identity_bleed_risk_to_geezjulz',
+      'low_pay_relative_to_brand_safety_risk',
+    ],
+  },
+
+  'mycal-ai': {
+    contract_status: 'prospect_terms_known_contract_pending',
+    awaiting_brand_action: 'Reconcile $25 vs $300/$1000 payment conflict + confirm Alicia identity',
+    fit_score: 8,
+    honest_concerns: [
+      'payment_conflict_25_vs_300_1000',
+      'Alicia_identity_overlap_with_MWM_HR-23',
+      'wellness_category_no_weight_loss_claims',
+      'no_body_shots_no_medical_advice',
+    ],
+  },
+
   'parakeetai': {
     deliverables: [
       { platform: 'TikTok+Reels+Shorts', count: 1, format: 'talking-head', duration_sec: [30, 90], dimensions: '1080x1920' },
