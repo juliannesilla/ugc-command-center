@@ -490,6 +490,127 @@ function deriveRequirementsFromCanonical(
     source: "canonical",
   });
 
+  // ─── A.14y Wave 0.9 (HOLMES-V3) — net-new contract-clause rows ──────────────
+  // Extracted from the signed PDFs and surfaced from the raw canonical row
+  // (`rawCanonical`) so the SOW Breakdown table renders the REAL executable
+  // terms (HR-50 — the merge isn't "done" until the term is visible). Brands
+  // without these clauses fall through to `missingTone` ("Needs work" pre-sign,
+  // "Blocked" once signed) — an honest signal, not a fake value (HR-49).
+
+  // 15. Usage Rights (scope)
+  const ur = rawCanonical?.usage_rights;
+  rows.push({
+    key: "usage_rights",
+    label: "Usage Rights",
+    detail: ur?.scope ?? "Not specified",
+    means: ur?.scope
+      ? `Brand may: ${ur.scope}. Anything beyond is renegotiated in writing.`
+      : "Confirm how the brand may use your content (organic / paid / whitelisting) before posting.",
+    status: ur?.scope ? "complete" : missingTone,
+    source: "SOW PDF",
+  });
+
+  // 16. Usage Window
+  rows.push({
+    key: "usage_window",
+    label: "Usage Window",
+    detail: ur?.window ?? "Not specified",
+    means: ur?.window
+      ? `Your content is licensed to the brand for: ${ur.window}.`
+      : "Confirm how long the brand can keep using your content (perpetual vs. fixed term).",
+    status: ur?.window ? "complete" : missingTone,
+    source: "SOW PDF",
+  });
+
+  // 17. Exclusivity
+  const excl = rawCanonical?.exclusivity;
+  rows.push({
+    key: "exclusivity",
+    label: "Exclusivity",
+    detail: excl ?? "None — non-exclusive",
+    means: excl
+      ? `Category / competitor restriction applies: ${excl}.`
+      : "Non-exclusive — you're free to work with other (incl. competing) brands.",
+    status: "complete",
+    source: "SOW PDF",
+  });
+
+  // 18. Revision Policy
+  const rev = rawCanonical?.revision_policy;
+  rows.push({
+    key: "revision_policy",
+    label: "Revision Policy",
+    detail: rev ?? "Not specified in contract",
+    means: rev
+      ? `Revision terms: ${rev}.`
+      : "Contract is silent on revisions — confirm free-revision rounds in writing before filming.",
+    status: rev ? "complete" : missingTone,
+    source: "SOW PDF",
+  });
+
+  // 19. Kill Fee
+  const killNum = rawCanonical?.kill_fee_usd;
+  const killNote = rawCanonical?.kill_fee_note;
+  rows.push({
+    key: "kill_fee",
+    label: "Kill Fee",
+    detail:
+      typeof killNum === "number"
+        ? `$${killNum.toLocaleString()}`
+        : killNote
+          ? "None (see terms)"
+          : "Not specified",
+    means:
+      killNote ??
+      (typeof killNum === "number"
+        ? "Paid if the brand cancels mid-production."
+        : "No kill-fee clause — clarify cancellation pay before committing production time."),
+    status: typeof killNum === "number" || killNote ? "complete" : missingTone,
+    source: "SOW PDF",
+  });
+
+  // 20. FTC / Disclosure
+  const ftc = rawCanonical?.ftc_disclosure;
+  rows.push({
+    key: "ftc_disclosure",
+    label: "FTC / Disclosure",
+    detail: ftc ?? "Not specified",
+    means: ftc
+      ? `Compliance required: ${ftc}.`
+      : "Confirm required #ad / paid-partnership disclosure to stay FTC-compliant.",
+    status: ftc ? "complete" : missingTone,
+    source: "SOW PDF",
+  });
+
+  // 21. Termination
+  const term = rawCanonical?.termination;
+  rows.push({
+    key: "termination",
+    label: "Termination",
+    detail: term
+      ? `For cause, ${term.cure_days ?? "?"}-day cure${term.for_convenience ? " + for convenience" : ""}`
+      : "Not specified",
+    means: term
+      ? `Either party may terminate for material breach with a ${term.cure_days ?? "?"}-business-day cure window. ${term.immediate_suspension ? `Immediate suspension for: ${term.immediate_suspension}.` : ""}`
+      : "Confirm notice period + termination rights before signing.",
+    status: term ? "complete" : missingTone,
+    source: "SOW PDF",
+  });
+
+  // 22. Do-Not-Say / Brand Safety
+  const dns = rawCanonical?.do_not_say ?? [];
+  rows.push({
+    key: "do_not_say",
+    label: "Do-Not-Say / Brand Safety",
+    detail: dns.length > 0 ? dns.join("; ") : "None specified",
+    means:
+      dns.length > 0
+        ? "Banned claims / off-limits language — keep these out of every script + caption."
+        : "No explicit do-not-say list — still apply FTC + platform-policy common sense.",
+    status: dns.length > 0 ? "complete" : "incomplete",
+    source: "SOW PDF",
+  });
+
   return rows;
 }
 

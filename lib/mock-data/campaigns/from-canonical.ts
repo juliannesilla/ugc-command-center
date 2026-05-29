@@ -99,6 +99,31 @@ interface CanonicalBrandRow {
   linear_status_drift: boolean;
   auto_fix_recommended: unknown[];
   notes: string;
+
+  // A.14y Wave 0.9 (HOLMES-V3) — net-new clause fields extracted from the
+  // signed UGC contract PDFs (MWM 7pp / Phobaxx 5pp). Optional so the other
+  // ~43 rows that lack them are unaffected. Surfaced as SOW requirement rows
+  // by `deriveRequirementsFromCanonical` in lib/mock-data/campaigns/index.ts.
+  usage_rights?: {
+    scope?: string;
+    window?: string;
+    channels?: string[];
+    exclusivity?: boolean;
+    source_quote?: string;
+  } | null;
+  revision_policy?: string | null;
+  kill_fee_usd?: number | null;
+  kill_fee_note?: string | null;
+  ftc_disclosure?: string | null;
+  exclusivity?: string | null;
+  termination?: {
+    for_cause?: boolean;
+    cure_days?: number;
+    for_convenience?: boolean;
+    immediate_suspension?: string;
+    survival?: string;
+    source_quote?: string;
+  } | null;
 }
 
 // ───────────────────────────────────────────────────────────────────────────

@@ -13,39 +13,60 @@
     ],
     "contract_signed": true,
     "contract_signed_at": "2026-05-26",
-    "contract_link": "Contract Agreement - MWM.AI.pdf (188.1 kB)",
+    "contract_link": "Contract Agreement - MWM.AI.pdf (188.1 kB) -- verified local MWM.AI-signed.pdf, 7pp, 188059 B, extracted 2026-05-29 HOLMES-V3 (SideShift Doc T13N5ClgTehuFdAmqP4G)",
     "status": "signed",
     "dashboard_visible": true,
     "payment_amount_usd": 50,
-    "payment_terms_days": 30,
-    "bonus_amount_usd": null,
-    "payment_terms_note": "$50 retainer every 5 approved posts",
+    "payment_terms_days": null,
+    "bonus_amount_usd": 150,
+    "payment_terms_note": "$50 fixed per 5 approved posts + CPM $0.50/$0.75/$1.00 per 1K views by tier (0-10K / 10K-150K / 150K+), $250/post cap, 15-day view window, 2K-view minimum",
     "deliverables": [
       {
         "platform": "TikTok",
         "count": 5,
         "format": "vertical-1080x1920",
-        "cadence": "per_retainer_cycle"
+        "cadence": "per_retainer_cycle",
+        "duration_sec": [
+          15,
+          60
+        ],
+        "aspect": "9:16"
       },
       {
         "platform": "Instagram Reels",
         "count": 5,
         "format": "cross-post",
-        "cadence": "per_retainer_cycle"
+        "cadence": "per_retainer_cycle",
+        "duration_sec": [
+          15,
+          60
+        ],
+        "aspect": "9:16"
       },
       {
         "platform": "YouTube Shorts",
         "count": 5,
         "format": "cross-post",
-        "cadence": "per_retainer_cycle"
+        "cadence": "per_retainer_cycle",
+        "duration_sec": [
+          15,
+          60
+        ],
+        "aspect": "9:16"
       }
     ],
     "deadlines": {
       "filming_by": null,
       "submission_by": null,
-      "payment_by": null
+      "payment_by": null,
+      "keep_public_days": 90
     },
-    "do_not_say": [],
+    "do_not_say": [
+      "Don't say it's free (it's not)",
+      "No scripted or stiff delivery",
+      "No studio / ring-light setup -- natural light, iPhone, casual",
+      "Don't promise specific income amounts"
+    ],
     "key_contact": {
       "name": "Alicia",
       "email": null,
@@ -78,7 +99,17 @@
         "last_seen": "2026-05-28T02:22:49.055Z"
       }
     },
-    "conflicts": [],
+    "conflicts": [
+      {
+        "field": "payment_terms_days",
+        "issue": "canonical=30 but signed PDF defines a post-based cycle (5 approved posts), not a NET-N calendar term",
+        "sources": [
+          "HOLMES-V3 PDF extraction 2026-05-29 -- quote: 'A payment cycle completes when 5 deliverables are submitted and approved.'"
+        ],
+        "status": "resolved_by_pdf_2026-05-29",
+        "resolver": "HOLMES-V3"
+      }
+    ],
     "linear_status_drift": false,
     "auto_fix_recommended": [],
     "auto_fix_resolved": [
@@ -95,16 +126,36 @@
     "payment_timing": "per_5_approved_posts",
     "cycle_days": 30,
     "contract_status": "signed",
-    "awaiting_brand_action": "Send video length spec + tone guide + usage rights window",
+    "awaiting_brand_action": null,
     "fit_score": 7,
     "honest_concerns": [
-      "video_length_not_specified",
-      "tone_guide_pending",
-      "usage_rights_pending",
-      "Alicia_identity_overlap_with_MyCal"
+      "Alicia_identity_overlap_with_MyCal",
+      "revision_policy_not_in_contract"
     ],
-    "last_processed_by": "CLAUDE-A14Y-W06C",
-    "last_processed_at": "2026-05-29T00:43:32.664Z"
+    "last_processed_by": "HOLMES-V3",
+    "last_processed_at": "2026-05-29T18:07:53.000Z",
+    "usage_rights": {
+      "scope": "non-exclusive, royalty-free, worldwide; repost + amplify on Company-controlled channels",
+      "window": "Campaign Term + reasonable recap period",
+      "channels": [
+        "Company-controlled channels"
+      ],
+      "exclusivity": false,
+      "source_quote": "non-exclusive, royalty-free, worldwide license to use, repost, and amplify Deliverables on Company-controlled channels"
+    },
+    "revision_policy": null,
+    "kill_fee_usd": null,
+    "kill_fee_note": "No kill fee. Performance-based pay forfeited + fixed base may be proportionally reduced if a post is removed before 90 days.",
+    "ftc_disclosure": "Must comply with FTC endorsement guidelines, advertising standards, and platform policies; edit/remove on Company reasonable request",
+    "exclusivity": null,
+    "termination": {
+      "for_cause": true,
+      "cure_days": 5,
+      "for_convenience": false,
+      "immediate_suspension": "brand-safety / illegal / material deviation from agreed Deliverables",
+      "survival": "confidentiality + usage rights survive termination",
+      "source_quote": "materially breaches any obligation and fails to cure such breach within five (5) business days after receipt of notice"
+    }
   },
   {
     "brand_id": "phobaxx",
@@ -117,28 +168,32 @@
       "linear"
     ],
     "contract_signed": true,
-    "contract_signed_at": "2026-05-26",
-    "contract_link": "Contract Agreement - Phobaxx.pdf (153.1 kB)",
+    "contract_signed_at": "2026-05-20",
+    "contract_link": "Contract Agreement - Phobaxx.pdf (153.1 kB) -- verified local Phobaxx-signed.pdf, 5pp, 153057 B, extracted 2026-05-29 HOLMES-V3 (SideShift Doc KijEgrGdY6ZRelEmFQIF)",
     "status": "signed",
     "dashboard_visible": true,
-    "payment_amount_usd": null,
-    "payment_terms_days": 30,
-    "bonus_amount_usd": null,
-    "payment_terms_note": "30 total posts | 30 posts per month | 2 deliverables; $ amount inside PDF — HR-10 unresolved",
+    "payment_amount_usd": 450,
+    "payment_terms_days": null,
+    "bonus_amount_usd": 450,
+    "payment_terms_note": "$450 fixed per 30 approved posts + per-Deliverable bonuses ($50@50K, $100@100K, $450@500K views), aggregate-view basis, 30-day view window",
     "deliverables": [
       {
-        "platform": "TikTok+Reels+Shorts",
+        "platform": "TikTok + Instagram",
         "count": 30,
         "format": "organic-native",
-        "cadence": "monthly_30_posts"
+        "cadence": "per_30_post_cycle",
+        "note": "daily content; download + try Phobaxx on iOS first; no YouTube in this contract"
       }
     ],
     "deadlines": {
       "filming_by": null,
       "submission_by": null,
-      "payment_by": null
+      "payment_by": null,
+      "keep_public_days": 90
     },
-    "do_not_say": [],
+    "do_not_say": [
+      "Posts should feel like normal posts, not paid advertisements"
+    ],
     "key_contact": {
       "name": "Jayson",
       "email": null,
@@ -174,45 +229,74 @@
         "sources": [
           "sideshift row 2: 'unknown_extract_from_pdf'"
         ],
-        "status": "HR-10_unresolved",
+        "status": "resolved_by_pdf_2026-05-29",
         "holmes_probe_2026-05-27": "PDF not on local disk (Glob C:/Users/julia/**/Phobaxx* + C:/Users/julia/Downloads/**/*Phobaxx* both empty). PDF lives on SideShift CDN as chat attachment; not accessible via Gmail (no Gmail thread exists for Phobaxx). Resolution: Julz to download PDF from SideShift chat → save to disk → re-spawn HOLMES.",
-        "holmes_v2_probe_2026-05-27": "V2 attempted Chrome MCP attach to Julz's authenticated SideShift session at https://app.sideshift.app/chat. Browser attach SUCCEEDED (deviceId 83693f55-56ed-4c1c-a70f-49a8d6c5c7c4, JULZ|PC). Phobaxx thread button found + clicked via 4 distinct mechanisms (React onClick prop, mouse click at viewport coords, JS dispatchEvent suite incl. PointerEvent+MouseEvent, fresh-navigation+click). Right pane never mounted — stays at placeholder 'Select a channel to start a conversation'. ROOT CAUSE IDENTIFIED via JS probe: document.visibilityState='hidden', document.hidden=true. Chrome MCP tabs operate in a non-foreground tab group; SideShift conversation panel does not bind Firebase channel listener when document is hidden. JS visibility spoof (Object.defineProperty document.hidden=false + visibilityState='visible' + visibilitychange dispatch + window focus event) did not unblock — chat-mount logic ran at app boot and panel is gated downstream. Channel-ID URL query (?channel=recruit%3Afeed_1CbELTKMEjsTLHDfKhyCuS) ignored by SideShift router. New MCP tab via tabs_create_mcp is ALSO hidden. ToolSearch confirmed no chrome-in-mcp tabs.focus/bringToFront tool. CONCLUSION: SideShift chat panel cannot be scraped via Chrome MCP without Julz manually foregrounding the tab in her browser. HR-43 candidate banked. UNBLOCK PATH: (a) Julz click SideShift tab in her browser window to foreground it; (b) click Phobaxx in DM list; (c) right-click → 'Save link as' on the Contract Agreement PDF (or click → browser PDF viewer → Ctrl+S); (d) save to C:/Users/julia/Downloads/Contract Agreement - Phobaxx.pdf; (e) re-spawn HOLMES-V3 to pdf-viewer:open + extract payment terms."
+        "holmes_v2_probe_2026-05-27": "V2 attempted Chrome MCP attach to Julz's authenticated SideShift session at https://app.sideshift.app/chat. Browser attach SUCCEEDED (deviceId 83693f55-56ed-4c1c-a70f-49a8d6c5c7c4, JULZ|PC). Phobaxx thread button found + clicked via 4 distinct mechanisms (React onClick prop, mouse click at viewport coords, JS dispatchEvent suite incl. PointerEvent+MouseEvent, fresh-navigation+click). Right pane never mounted — stays at placeholder 'Select a channel to start a conversation'. ROOT CAUSE IDENTIFIED via JS probe: document.visibilityState='hidden', document.hidden=true. Chrome MCP tabs operate in a non-foreground tab group; SideShift conversation panel does not bind Firebase channel listener when document is hidden. JS visibility spoof (Object.defineProperty document.hidden=false + visibilityState='visible' + visibilitychange dispatch + window focus event) did not unblock — chat-mount logic ran at app boot and panel is gated downstream. Channel-ID URL query (?channel=recruit%3Afeed_1CbELTKMEjsTLHDfKhyCuS) ignored by SideShift router. New MCP tab via tabs_create_mcp is ALSO hidden. ToolSearch confirmed no chrome-in-mcp tabs.focus/bringToFront tool. CONCLUSION: SideShift chat panel cannot be scraped via Chrome MCP without Julz manually foregrounding the tab in her browser. HR-43 candidate banked. UNBLOCK PATH: (a) Julz click SideShift tab in her browser window to foreground it; (b) click Phobaxx in DM list; (c) right-click → 'Save link as' on the Contract Agreement PDF (or click → browser PDF viewer → Ctrl+S); (d) save to C:/Users/julia/Downloads/Contract Agreement - Phobaxx.pdf; (e) re-spawn HOLMES-V3 to pdf-viewer:open + extract payment terms.",
+        "resolution": "$450 -- 'Fixed compensation: $450.00 paid after every 30 posts delivered.'",
+        "resolver": "HOLMES-V3"
+      },
+      {
+        "field": "deliverables.platform",
+        "issue": "canonical='TikTok+Reels+Shorts' but signed PDF lists only TikTok + Instagram (no YouTube)",
+        "sources": [
+          "HOLMES-V3 PDF extraction 2026-05-29 -- quote: 'Required platforms: Tiktok, Instagram.'"
+        ],
+        "status": "resolved_by_pdf_2026-05-29",
+        "resolver": "HOLMES-V3"
       }
     ],
     "linear_status_drift": false,
-    "auto_fix_recommended": [
-      {
-        "action": "extract_pdf_payment",
-        "command": "read_pdf",
-        "target": "Contract Agreement - Phobaxx.pdf",
-        "justification": "resolve unknown payment_amount",
-        "blocked_by": "PDF not on local disk; HR-10 unresolved per HOLMES 2026-05-27",
-        "v2_status": "HR-10_persists_after_chrome_mcp_attempt; SideShift visibility-gated conversation panel cannot mount in background tab"
-      }
-    ],
+    "auto_fix_recommended": [],
     "auto_fix_resolved": [
       {
         "action": "create_linear_issue",
         "resolved_at": "2026-05-28T02:23:07Z",
         "issue_id": "JUL-27",
         "resolver": "HOLMES"
+      },
+      {
+        "action": "extract_pdf_payment",
+        "resolved_at": "2026-05-29T18:07:53.000Z",
+        "resolver": "HOLMES-V3",
+        "result": "payment_amount_usd=450"
       }
     ],
     "notes": "NEW signed contract per OPRAH. Linear issue JUL-27 created by HOLMES per DARWIN auto-fix queue. Phobaxx PDF payment extraction blocked HR-10 (PDF not on disk). HOLMES-V2 (2026-05-27) confirmed Chrome MCP path also blocked by SideShift visibility-gating; HR-43 candidate banked for HR-38 NO-DEFER enforcement clarity.",
     "payment_total_potential": null,
-    "payment_timing": "monthly_30_posts",
+    "payment_timing": "per_30_approved_posts",
     "cycle_days": 30,
     "contract_status": "signed",
-    "awaiting_brand_action": "Confirm video-only vs photo/carousel split + send payment $ amount",
+    "awaiting_brand_action": null,
     "fit_score": 6,
     "honest_concerns": [
-      "payment_amount_blocked_pending_PDF",
-      "video_vs_photo_mix_unclear",
       "high_volume_30_posts_month_sustainability",
-      "usage_rights_pending"
+      "video_length_not_in_contract",
+      "revision_policy_not_in_contract"
     ],
-    "last_processed_by": "CLAUDE-A14Y-W06C",
-    "last_processed_at": "2026-05-29T00:43:32.664Z"
+    "last_processed_by": "HOLMES-V3",
+    "last_processed_at": "2026-05-29T18:07:53.000Z",
+    "usage_rights": {
+      "scope": "non-exclusive, royalty-free, worldwide; repost + amplify on Company-controlled channels",
+      "window": "Campaign Term + reasonable recap period",
+      "channels": [
+        "Company-controlled channels"
+      ],
+      "exclusivity": false,
+      "source_quote": "non-exclusive, royalty-free, worldwide license to use, repost, and amplify Deliverables on Company-controlled channels"
+    },
+    "revision_policy": null,
+    "kill_fee_usd": null,
+    "kill_fee_note": "No kill fee. Performance-based pay forfeited + fixed base may be proportionally reduced if a post is removed before 90 days.",
+    "ftc_disclosure": "Must comply with FTC endorsement guidelines, advertising standards, and platform policies; edit/remove on Company reasonable request",
+    "exclusivity": null,
+    "termination": {
+      "for_cause": true,
+      "cure_days": 5,
+      "for_convenience": false,
+      "immediate_suspension": "brand-safety / illegal / material deviation from agreed Deliverables",
+      "survival": "confidentiality + usage rights survive termination",
+      "source_quote": "materially breaches any obligation and fails to cure such breach within five (5) business days after receipt of notice"
+    }
   },
   {
     "brand_id": "mycal-ai",
