@@ -23,6 +23,7 @@ import {
   MOCK_CAMPAIGNS,
   getCampaignDisplayMeta,
   getSowRequirements,
+  sowData,
   type CampaignSlug,
   type CampaignMeta,
   type SowRequirementRow,
@@ -250,23 +251,26 @@ export function SowBreakdownTable({
                   <p className="text-[11.5px] text-ink-700 tabular-nums">
                     {completed}/{total} fields complete
                   </p>
-                  {/* Open SOW drill-down — routes to L1's NEW slug page.
-                      microinteractions: subtle arrow translate on hover,
-                      iris ring focus ring per Apple HIG focus contract. */}
-                  {/* A.14m M2 a11y fix: label-content-name-mismatch — visible
-                      text "Open SOW" must appear in aria-label so screen
-                      reader users hear what visual users see. */}
-                  <Link
-                    href={`/sow-breakdown/${slug}`}
-                    aria-label={`Open SOW for ${meta.brand}`}
-                    className="group/open mt-1.5 inline-flex items-center gap-1 rounded-full bg-iris-50/80 hover:bg-iris-100 active:bg-iris-200/80 text-iris-600 hover:text-iris-700 ring-1 ring-iris-200/80 hover:ring-iris-300 px-2.5 py-1 text-[11px] font-semibold tracking-tight transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none"
-                  >
-                    Open SOW
-                    <ArrowUpRight
-                      className="h-3 w-3 transition-transform duration-200 ease-out group-hover/open:translate-x-0.5 group-hover/open:-translate-y-0.5 motion-reduce:transition-none"
-                      aria-hidden
-                    />
-                  </Link>
+                  {/* Open SOW drill-down — only render for brands with a
+                      hand-curated sowData entry (currently ParakeetAI). Other
+                      brands route to a 404 because [slug]/page.tsx uses
+                      generateStaticParams keyed off sowData. A.14y Wave 0.8.B
+                      catch — Chrome MCP audit showed Open SOW → 404 for
+                      MWM/Phobaxx/Veed/etc. (HR-4 SMALLEST: hide rather than
+                      route to dead-end). */}
+                  {sowData[slug] ? (
+                    <Link
+                      href={`/sow-breakdown/${slug}`}
+                      aria-label={`Open SOW for ${meta.brand}`}
+                      className="group/open mt-1.5 inline-flex items-center gap-1 rounded-full bg-iris-50/80 hover:bg-iris-100 active:bg-iris-200/80 text-iris-600 hover:text-iris-700 ring-1 ring-iris-200/80 hover:ring-iris-300 px-2.5 py-1 text-[11px] font-semibold tracking-tight transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none"
+                    >
+                      Open SOW
+                      <ArrowUpRight
+                        className="h-3 w-3 transition-transform duration-200 ease-out group-hover/open:translate-x-0.5 group-hover/open:-translate-y-0.5 motion-reduce:transition-none"
+                        aria-hidden
+                      />
+                    </Link>
+                  ) : null}
                 </div>
                 {/* Polished readiness donut — SVG arc replaces the legacy
                     flat pill. Falls back to the legacy tone scale for any
