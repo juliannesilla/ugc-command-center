@@ -15,7 +15,7 @@ import parakeetaiSow from "./parakeetai/sow.json";
 import parakeetaiScript from "./parakeetai/script.json";
 import parakeetaiProduction from "./parakeetai/production.json";
 
-import { loadDashboardCampaigns } from "./from-canonical";
+import { loadDashboardCampaigns, loadAllCanonical } from "./from-canonical";
 
 import type { Campaign } from "@/lib/types/campaign";
 
@@ -252,15 +252,58 @@ function deriveRequirementsFromCanonical(
   const signed = row.relationship_status === "Active Collaboration";
   const missingTone = signed ? "blocked" : "incomplete";
 
+  // A.14y Wave 0.7 fix: look up the raw canonical row to access the original
+  // `deliverables[]` array so we can render platform-mix detail strings
+  // (e.g., "5 vertical-1080x1920, cross-posted to TikTok + IG Reels + YouTube
+  // Shorts") instead of the bare aggregate count.
+  const rawCanonical = loadAllCanonical().find((r) => r.brand_id === row.campaign_id);
+  const rawDeliverables = rawCanonical?.deliverables ?? [];
+
+  // Build a detail string that reflects what's actually in canonical.
+  const formatDeliverableDetail = (): string => {
+    if (rawDeliverables.length === 0) {
+      return row.deliverable_count && row.deliverable_count > 0
+        ? `${row.deliverable_count} × ${row.required_format ?? "video"}`
+        : "Not yet specified";
+    }
+    // Group by format vs. cross-post: master count + repost destinations.
+    const platforms: string[] = [];
+    const reposts: string[] = [];
+    let masterCount = row.deliverable_count;
+    let masterFormat: string | undefined;
+    for (const d of rawDeliverables) {
+      const fmt = (d.format ?? "").toLowerCase();
+      const isReuse =
+        fmt.includes("cross-post") || fmt === "repost" || fmt.includes("crosspost");
+      const platform = d.platform ?? "platform";
+      if (isReuse) {
+        reposts.push(platform);
+      } else {
+        platforms.push(platform);
+        if (typeof d.count === "number") masterCount = d.count;
+        if (d.format && !masterFormat) masterFormat = d.format;
+      }
+    }
+    const formatLabel = masterFormat ?? row.required_format ?? "video";
+    if (reposts.length > 0 && platforms.length > 0) {
+      return `${masterCount} ${formatLabel} on ${platforms.join(" + ")} → cross-posted to ${reposts.join(" + ")}`;
+    }
+    if (platforms.length > 0) {
+      return `${masterCount} ${formatLabel} on ${platforms.join(" + ")}`;
+    }
+    return `${masterCount} × ${formatLabel}`;
+  };
+
   const rows: SowRequirementRow[] = [];
 
-  // 1. Deliverables — count + format
+  // 1. Deliverables — count + format + platform mix
   if (row.deliverable_count && row.deliverable_count > 0) {
+    const detail = formatDeliverableDetail();
     rows.push({
       key: "deliverables",
       label: "Deliverables",
-      detail: `${row.deliverable_count} × ${row.required_format ?? "video"}`,
-      means: `You owe ${row.deliverable_count} ${row.required_format ?? "video"} asset${row.deliverable_count > 1 ? "s" : ""} to ${row.brand}.`,
+      detail,
+      means: `You owe ${row.deliverable_count} unique ${row.required_format ?? "video"} asset${row.deliverable_count > 1 ? "s" : ""} to ${row.brand}.`,
       status: "complete",
       source: "canonical",
     });
@@ -312,13 +355,19 @@ function deriveRequirementsFromCanonical(
   });
 
   // 5. Base Pay
+  // A.14y Wave 0.7: append payment_terms_note as structure context in `means`
+  // so retainer terms (e.g., "$50 per 5 approved posts") aren't lost. We
+  // intentionally drop them from the Bonus row to avoid HR-49 confusion.
+  const paymentTermsNote = rawCanonical?.payment_terms_note ?? "";
   rows.push({
     key: "base_pay",
     label: "Payment — Base",
     detail: typeof row.base_pay === "number" && row.base_pay > 0
       ? `$${row.base_pay.toLocaleString()}`
       : "TBD",
-    means: "Guaranteed payment regardless of performance.",
+    means: paymentTermsNote
+      ? `Structure: ${paymentTermsNote}`
+      : "Guaranteed payment regardless of performance.",
     status: typeof row.base_pay === "number" && row.base_pay > 0 ? "complete" : missingTone,
     source: "canonical",
   });

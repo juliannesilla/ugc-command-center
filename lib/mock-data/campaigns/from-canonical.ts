@@ -181,19 +181,52 @@ function mapProductCategory(row: CanonicalBrandRow): ProductCategory {
   return "software";
 }
 
-/** Deliverable count — sum across all canonical.deliverables[].count. */
+/**
+ * Deliverable count — A.14y Wave 0.7 fix.
+ *
+ * Counts UNIQUE creative assets, not platforms. Cross-post / repost
+ * deliverables share the same master, so they should NOT be summed.
+ *
+ * Heuristic: take the MAX count across deliverables whose format is
+ * `cross-post`, `repost`, or `cross-platform` (these reuse the same asset).
+ * Sum the rest (e.g., 5 talking-head + 3 carousel = 8 distinct assets).
+ *
+ * Catch (Julz 2026-05-28): live URL showed MWM "15 × vertical_video"
+ * when canonical has 5 originals + 5 IG reposts + 5 YT reposts = 5 unique.
+ */
 function mapDeliverableCount(row: CanonicalBrandRow): number {
-  let total = 0;
+  let independentSum = 0;
+  let crossPostMax = 0;
+
+  const parseCount = (raw: number | string | undefined): number => {
+    if (typeof raw === "number") return raw;
+    if (typeof raw === "string") {
+      const m = raw.match(/(\d+)/);
+      return m ? parseInt(m[1], 10) : 1;
+    }
+    return 1;
+  };
+
   for (const d of row.deliverables) {
-    if (typeof d.count === "number") total += d.count;
-    else if (typeof d.count === "string") {
-      const m = d.count.match(/(\d+)/);
-      if (m) total += parseInt(m[1], 10);
-      else total += 1;
+    const count = parseCount(d.count);
+    const fmt = (d.format ?? "").toLowerCase();
+    const isReuse =
+      fmt.includes("cross-post") ||
+      fmt.includes("crosspost") ||
+      fmt === "repost" ||
+      fmt.includes("cross-platform");
+
+    if (isReuse) {
+      crossPostMax = Math.max(crossPostMax, count);
     } else {
-      total += 1;
+      independentSum += count;
     }
   }
+
+  // If everything is cross-post, the master count IS the deliverable count.
+  // If we have BOTH originals and cross-posts, take max so the master count
+  // wins (cross-posts are duplicates of one of the originals).
+  const total = Math.max(independentSum, crossPostMax);
   return total || 1;
 }
 
@@ -222,12 +255,24 @@ function mapBasePay(row: CanonicalBrandRow): number | undefined {
   return row.payment_amount_usd ?? undefined;
 }
 
-/** Structured bonus from canonical.bonus_amount_usd + note (spec row 21). */
+/**
+ * Structured bonus from canonical.bonus_amount_usd + note (spec row 21).
+ *
+ * A.14y Wave 0.7 fix: prefer numeric bonus when present. Fall back to
+ * payment_terms_note ONLY when the note describes a bonus (contains "bonus"
+ * keyword) — otherwise the note is general payment terms and bleeds into the
+ * Bonus row on the SOW Breakdown UI. Catch (Julz 2026-05-28): Phobaxx Bonus
+ * was rendering "30 total posts | 30 posts per month | 2 deliverables; $ amount
+ * inside PDF — HR-10 unresolved" which is structure terms, not bonus.
+ */
 function mapBonusPotential(row: CanonicalBrandRow): number | string | undefined {
-  if (row.bonus_amount_usd != null && !row.payment_terms_note) {
+  if (row.bonus_amount_usd != null) {
     return row.bonus_amount_usd;
   }
-  if (row.payment_terms_note) return row.payment_terms_note;
+  const note = row.payment_terms_note ?? "";
+  if (note && /\b(bonus|upside|kicker|extra|incentive)\b/i.test(note)) {
+    return note;
+  }
   return undefined;
 }
 
