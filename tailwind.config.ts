@@ -38,13 +38,15 @@ const config: Config = {
           300: '#D6C7F2',
           500: '#B49BE6',
         },
+        // A.AA Wave 3 readability ("so hard to see"): ink-400/500/600 darkened for
+        // stronger AA contrast everywhere muted text + icons are used. 700-900 unchanged.
         ink: {
           900: '#1A1224',
           800: '#2C1F3D',
           700: '#3E2F52',
-          600: '#5A4A6E',
-          500: '#7A6B8E',
-          400: '#9E91B0',
+          600: '#4C3D63', // was #5A4A6E — ~AA on white
+          500: '#665778', // was #7A6B8E — readable muted (~5:1)
+          400: '#8A7DA2', // was #9E91B0 — icons/subtle still legible
           300: '#C9BFD6',
         },
         chip: {

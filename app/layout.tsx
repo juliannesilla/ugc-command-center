@@ -8,6 +8,7 @@
 import type { Metadata } from 'next';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { Sidebar } from '@/components/ui/sidebar';
+import { MobileNav } from '@/components/ui/MobileNav';
 import { CommentModeProvider } from '@/components/comments/CommentModeProvider.local';
 import { CommentModeToggle } from '@/components/comments/CommentModeToggle';
 import { ExistingCommentDots } from '@/components/comments/ExistingCommentDots';
@@ -40,6 +41,8 @@ export default function RootLayout({
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body className="font-body bg-cloud-soft min-h-screen text-ink-900">
         <CommentModeProvider>
+          {/* A.AA Wave 3 — mobile top bar + drawer (md:hidden). Desktop uses <Sidebar/>. */}
+          <MobileNav />
           <div className="flex min-h-screen">
             <Sidebar />
             <main className="flex-1 min-w-0 flex flex-col">
