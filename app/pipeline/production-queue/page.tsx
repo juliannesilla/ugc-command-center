@@ -138,10 +138,10 @@ export default function ProductionQueuePage() {
               </p>
             </div>
 
-            {/* Mockup #03: tighter 13-col film/edit lane — gap-4 lg:gap-5
-                matches the board view and reads as a single workflow funnel
-                rather than disconnected lanes. */}
-            <div className="flex gap-4 lg:gap-5 items-start min-w-max">
+            {/* A.14z Wave B de-cramp: gap-4 lg:gap-5 → gap-5 lg:gap-6 xl:gap-7
+                so the 13-stage funnel gains lane separation on desktop.
+                HR-27 PRESERVE: chrome untouched. */}
+            <div className="flex gap-5 lg:gap-6 xl:gap-7 items-start min-w-max">
               {byStatus.map(({ status, deliverables }) => (
                 <ProductionQueueColumn
                   key={status}

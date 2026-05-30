@@ -1,0 +1,33 @@
+{
+  "productionStage": 1,
+  "shotMap": [],
+  "brollChecklist": [
+    { "id": "br-1", "label": "Screen recording: multi-tab workflow (4 tabs open)", "done": false },
+    { "id": "br-2", "label": "Screen recording: MWM.ai workspace at create.mwm.ai", "done": false },
+    { "id": "br-3", "label": "Desk wide-shot — natural light, no ring-light (brand requirement)", "done": false },
+    { "id": "br-4", "label": "Hands on keyboard — casual setup", "done": false },
+    { "id": "br-5", "label": "Phone or laptop with final export visible", "done": false }
+  ],
+  "talkingHeadChecklist": [
+    { "id": "th-1", "label": "Hook delivered dry + slightly exasperated (<4 seconds)", "done": false },
+    { "id": "th-2", "label": "Four-tool stack named naturally (ChatGPT, image gen, CapCut)", "done": false },
+    { "id": "th-3", "label": "MWM.ai URL (create.mwm.ai) said clearly — let viewer catch it", "done": false },
+    { "id": "th-4", "label": "Verdict line: 'workspace, not a strategist' — confident, not selling", "done": false },
+    { "id": "th-5", "label": "CTA: soft, almost throwaway — 'worth a look' not 'GO NOW'", "done": false },
+    { "id": "th-6", "label": "#mwmai hashtag in caption — confirmed from canonical", "done": false }
+  ],
+  "editChecklist": [
+    { "id": "ed-1", "label": "Hook cut in first 3 seconds", "done": false },
+    { "id": "ed-2", "label": "Multi-tab screen recording timed to spoken cue", "done": false },
+    { "id": "ed-3", "label": "MWM.ai workspace cutaway timed to URL mention", "done": false },
+    { "id": "ed-4", "label": "Captions — native-style font, no caps-lock", "done": false },
+    { "id": "ed-5", "label": "Audio clean, room-tone normalize", "done": false },
+    { "id": "ed-6", "label": "Export vertical 1080x1920 (TikTok + IG Reels + YouTube Shorts)", "done": false },
+    { "id": "ed-7", "label": "Cross-post ready: 3 platform exports (TikTok / IG Reels / YT Shorts)", "done": false }
+  ],
+  "filmingStatus": {
+    "status": "Not started",
+    "scheduledAt": null,
+    "location": "Home — natural light, iPhone, casual (no studio / ring-light per MWM brand rules)"
+  }
+}

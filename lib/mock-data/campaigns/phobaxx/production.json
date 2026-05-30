@@ -1,0 +1,31 @@
+{
+  "productionStage": 1,
+  "shotMap": [],
+  "brollChecklist": [
+    { "id": "br-1", "label": "Download + try Phobaxx on iOS first (brand requirement)", "done": false },
+    { "id": "br-2", "label": "Day-1 setup shot — introducing the challenge", "done": false },
+    { "id": "br-3", "label": "Daily B-roll: the one small sustainability action for that day", "done": false },
+    { "id": "br-4", "label": "Natural-light handheld iPhone (no ring-light / studio setup)", "done": false },
+    { "id": "br-5", "label": "Day-30 verdict shot — honest outcome", "done": false }
+  ],
+  "talkingHeadChecklist": [
+    { "id": "th-1", "label": "Hook: frustration with preachy sustainability content — relatable, not preachy", "done": false },
+    { "id": "th-2", "label": "Self-intro: 'fully median at this' — credibility via honesty, not credentials", "done": false },
+    { "id": "th-3", "label": "Pre-commit to honesty: 'if it doesn't work I'll tell you that'", "done": false },
+    { "id": "th-4", "label": "Phobaxx name-drop + one-liner product def (post-G21 trial)", "done": false },
+    { "id": "th-5", "label": "Soft CTA: 'follow along IF…' not 'you have to follow'", "done": false }
+  ],
+  "editChecklist": [
+    { "id": "ed-1", "label": "Hook cut under 5 seconds", "done": false },
+    { "id": "ed-2", "label": "Pacing: voice-memo natural, not scripted — conversational filler OK", "done": false },
+    { "id": "ed-3", "label": "Captions — native-style font", "done": false },
+    { "id": "ed-4", "label": "Audio clean", "done": false },
+    { "id": "ed-5", "label": "Export vertical 1080x1920 (TikTok + Instagram — no YouTube this contract)", "done": false },
+    { "id": "ed-6", "label": "Feels like a normal post, not a paid ad (brand requirement)", "done": false }
+  ],
+  "filmingStatus": {
+    "status": "Pending G21 trial — must try Phobaxx on iOS before filming Day-1",
+    "scheduledAt": null,
+    "location": "Home / daily locations — natural, casual, iPhone"
+  }
+}

@@ -15,6 +15,15 @@ import parakeetaiSow from "./parakeetai/sow.json";
 import parakeetaiScript from "./parakeetai/script.json";
 import parakeetaiProduction from "./parakeetai/production.json";
 
+// A.14z Wave C — wire real script + production data for signed brands.
+// Script content derived from canonical 08-script.md files on disk
+// (sideshift-mwm-ai/08-script.md, sideshift-phobaxx/08-script.md).
+// No mock/placeholder data (HR-49). G21-gated lines preserved verbatim.
+import mwmAiScript from "./mwm-ai/script.json";
+import mwmAiProduction from "./mwm-ai/production.json";
+import phobaxxScript from "./phobaxx/script.json";
+import phobaxxProduction from "./phobaxx/production.json";
+
 import { loadDashboardCampaigns, loadAllCanonical } from "./from-canonical";
 
 import type { Campaign } from "@/lib/types/campaign";
@@ -82,10 +91,18 @@ export const sowData: Record<string, typeof parakeetaiSow> = {
 
 export const scriptData: Record<string, typeof parakeetaiScript> = {
   parakeetai: parakeetaiScript,
+  // A.14z Wave C: real script data for signed brands (HR-49 — no mock data).
+  // Content sourced from UGC/sideshift-mwm-ai/08-script.md (~8.4K) and
+  // UGC/sideshift-phobaxx/08-script.md (~12K) read at build time as JSON.
+  "mwm-ai": mwmAiScript as unknown as typeof parakeetaiScript,
+  phobaxx: phobaxxScript as unknown as typeof parakeetaiScript,
 };
 
 export const productionData: Record<string, typeof parakeetaiProduction> = {
   parakeetai: parakeetaiProduction,
+  // A.14z Wave C: real production tracking data for signed brands (HR-49).
+  "mwm-ai": mwmAiProduction as unknown as typeof parakeetaiProduction,
+  phobaxx: phobaxxProduction as unknown as typeof parakeetaiProduction,
 };
 
 export function getCampaign(slug: string): CampaignMeta | null {

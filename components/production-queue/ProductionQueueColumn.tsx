@@ -41,10 +41,10 @@ export function ProductionQueueColumn({
   const stripeKey = getStripe(status);
 
   return (
-    // Mockup #03 + A.14n Wave 2b: w-64 column lines up with /pipeline/board
-    // density and exposes more lanes per viewport. p-4 cards container stays
-    // (M4-B + A.14i lock — HR-2 PRESERVE).
-    <section className="w-64 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 flex flex-col max-h-[78vh]">
+    // A.14z Wave B de-cramp: w-64 base → w-64 lg:w-72 xl:w-80 so lanes
+    // breathe on desktop without shrinking the 13-col scroll on small screens.
+    // HR-27 PRESERVE: lavender/iris chrome, gradients, fonts, structure unchanged.
+    <section className="w-64 lg:w-72 xl:w-80 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 flex flex-col max-h-[78vh]">
       {/* column header */}
       <header className="relative px-3.5 pt-4 pb-3 border-b border-cloud-50">
         <span className={cn('absolute inset-x-3.5 top-0 h-1 rounded-b-full', accentBar[stripeKey])} />
@@ -59,7 +59,7 @@ export function ProductionQueueColumn({
       </header>
 
       {/* cards */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-5 lg:p-6 space-y-5 lg:space-y-6">
         {deliverables.length > 0 ? (
           deliverables.map((d) => (
             <ProductionQueueCard key={d.key} deliverable={d} />

@@ -66,7 +66,7 @@ export function ProductionQueueCard({ deliverable }: { deliverable: DeliverableC
         )}
       />
 
-      <div className="p-4 space-y-2.5">
+      <div className="p-5 lg:p-6 space-y-3 lg:space-y-4">
         {/* Header — brand + product + format pill */}
         <header className="space-y-1">
           <div className="flex items-start justify-between gap-2">

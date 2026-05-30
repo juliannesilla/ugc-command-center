@@ -100,10 +100,10 @@ export default function PipelineBoardPage() {
             </div>
           </div>
 
-          {/* Mockup #14: tighter column gap so the 19-stage funnel reads as
-              one continuous board, not loose cards. gap-4 lg:gap-5 keeps
-              breathing room without stretching the row. */}
-          <div className="px-7 md:px-12 flex gap-4 lg:gap-5 items-start min-w-max">
+          {/* A.14z Wave B de-cramp: gap-4 lg:gap-5 → gap-5 lg:gap-6 xl:gap-7
+              so the 19-stage funnel gains lane separation on desktop.
+              HR-27 PRESERVE: lavender/iris chrome + fonts + structure untouched. */}
+          <div className="px-7 md:px-12 flex gap-5 lg:gap-6 xl:gap-7 items-start min-w-max">
             {BOARD_STAGES.map(stageDef => {
               const cards = sortCampaignsForColumn(
                 visibleCampaigns.filter(c => c.current_stage === stageDef.stage),
@@ -121,11 +121,9 @@ export default function PipelineBoardPage() {
               return (
                 <section
                   key={stageDef.stage}
-                  // Mockup #14 + #23: w-64 columns lined up tight, multiple
-                  // cards visible per column. Slightly narrower than the
-                  // legacy w-72 to land closer to the mockup's 8-col density
-                  // at 1440px viewport.
-                  className="group/col w-64 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 hover:ring-cloud-200 hover:bg-white/85 transition-[box-shadow,background-color,border-color] duration-200 ease-out flex flex-col max-h-[78vh]"
+                  // A.14z Wave B de-cramp: w-64 → w-64 lg:w-72 xl:w-80.
+                  // HR-27 PRESERVE: gradients, ring, transition unchanged.
+                  className="group/col w-64 lg:w-72 xl:w-80 shrink-0 rounded-3xl bg-white/75 backdrop-blur-sm shadow-card ring-1 ring-cloud-100 hover:ring-cloud-200 hover:bg-white/85 transition-[box-shadow,background-color,border-color] duration-200 ease-out flex flex-col max-h-[78vh]"
                 >
                   {/* column header */}
                   <header className="relative px-3.5 pt-4 pb-3 border-b border-cloud-50">
@@ -144,7 +142,7 @@ export default function PipelineBoardPage() {
                   </header>
 
                   {/* cards */}
-                  <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                  <div className="flex-1 overflow-y-auto p-5 lg:p-6 space-y-5 lg:space-y-6">
                     {cards.length > 0 ? (
                       cards.map(card => (
                         <PipelineCardCampaign key={card.campaign_id} card={card} />

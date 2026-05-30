@@ -92,7 +92,7 @@ export function PipelineCardCampaign({ card }: { card: Campaign }) {
 
   return (
     <article
-      className="group relative rounded-2xl bg-white p-3 shadow-card ring-1 ring-cloud-100 hover:ring-cloud-300 hover:shadow-soft motion-safe:hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 ease-out cursor-grab active:cursor-grabbing active:scale-[0.99]"
+      className="group relative rounded-2xl bg-white p-4 lg:p-5 shadow-card ring-1 ring-cloud-100 hover:ring-cloud-300 hover:shadow-soft motion-safe:hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 ease-out cursor-grab active:cursor-grabbing active:scale-[0.99]"
       title={hoverDetail || undefined}
     >
       {/* Drag handle affordance — surfaces on hover for DnD discoverability (microinteractions / Apple HIG) */}

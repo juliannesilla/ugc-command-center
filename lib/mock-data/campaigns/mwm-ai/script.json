@@ -1,0 +1,33 @@
+{
+  "hooks": [
+    "I tried making this whole TikTok in one tab instead of four. It worked. I'm annoyed.",
+    "My content stack is four tabs. I rebuilt it inside one AI tool. Verdict in 30 seconds.",
+    "I review AI tools for a living. This one didn't waste my time.",
+    "If your AI workflow is six tabs and three logins, this video is for you.",
+    "AI tool reviewed honestly. Yes that's the whole hook."
+  ],
+  "coreAngle": "Creator-marketer who runs a multi-tool content stack (ChatGPT + image gen + CapCut + captions) consolidates it inside MWM.ai — one tab instead of four. Honest verdict: it's a workspace, not a miracle. If you know what you're making, it shaves real time.",
+  "scriptDraft": [
+    { "ts": "00:00", "section": "HOOK", "line": "I tried making this whole TikTok in one tab instead of four. It worked. I'm annoyed." },
+    { "ts": "00:04", "section": "INTRO", "line": "Normally my content stack is ChatGPT for the script, an image gen tab for thumbnails, CapCut for the edit, and at least one more tool for voice or captions. That's four logins, four subscriptions, four context-switches per post." },
+    { "ts": "00:16", "section": "BODY", "line": "So I gave MWM.ai a real task — same one I'd do on a normal Friday — and made it run inside one tab." },
+    { "ts": "00:22", "section": "BODY", "line": "It's an AI creator workspace at create.mwm.ai. Bundles the script, the visuals, and the edit-ready output into one surface. Not magic. Just one tab instead of four." },
+    { "ts": "00:34", "section": "BODY", "line": "Where it actually helps: idea-to-export is faster. Where it doesn't: you still have to know what you're making — it's a workspace, not a strategist." },
+    { "ts": "00:44", "section": "CTA", "line": "If your stack is leaking subscriptions and tabs, link's in bio. Worth thirty minutes of your time to see if it consolidates yours too. #mwmai" }
+  ],
+  "ctas": {
+    "primary": "Link's create.mwm.ai if you want to test it yourself.",
+    "secondary": "If your stack is leaking subscriptions, worth thirty minutes — create.mwm.ai.",
+    "tertiary": "Worth a look if you're tired of context-switching across four tools — create.mwm.ai."
+  },
+  "notes": [
+    "Banned: 'It REPLACES ChatGPT / Midjourney / CapCut' — use 'consolidates' not 'replaces'.",
+    "Banned: 'It's better than [specific competitor]' — frame as 'different lane'.",
+    "Banned: 'This is THE AI tool' — too hype-bro.",
+    "Target runtime: 45-55 sec sweet spot (pending Alicia confirmation).",
+    "Hashtag #mwmai + link create.mwm.ai confirmed from canonical must_include."
+  ],
+  "assets": [
+    { "name": "Contract Agreement - MWM.AI.pdf", "type": "pdf", "updated": "2026-05-26" }
+  ]
+}

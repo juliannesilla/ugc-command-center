@@ -1,0 +1,33 @@
+{
+  "hooks": [
+    "Sustainability content on TikTok is one of two things: a girl with a perfectly aesthetic pantry, or someone yelling at me about my coffee cup. I'm doing this challenge for 30 days because I wanted a third option.",
+    "I make UGC for a living, which means I see every brand frame sustainability badly. So when one of them asked me to actually do a 30-day challenge, I went in fully skeptical.",
+    "I'm not a sustainability girlie. I recycle when I remember. I drive an old car. I order takeout. And I just signed up for a 30-day challenge to see what happens.",
+    "Day 1 of doing something I have zero qualifications for: a 30-day sustainability challenge as someone who is fully median at this.",
+    "Climate content makes me feel either guilty or fake-inspired, and I'm tired of both. So I'm trying a 30-day thing — out loud, on camera, without pretending I'm transformed."
+  ],
+  "coreAngle": "Creator-marketer who is 'fully median' at sustainability does Phobaxx 30-day challenge — posting the honest version including the days she forgets, doesn't believe in it, and the days something actually clicks. Anti-preachy, anti-aesthetic-pantry framing.",
+  "scriptDraft": [
+    { "ts": "00:00", "section": "HOOK", "line": "Sustainability content on TikTok is one of two things: a girl with a perfectly aesthetic pantry, or someone yelling at me about my coffee cup. I'm doing this for 30 days because I wanted a third option." },
+    { "ts": "00:10", "section": "INTRO", "line": "I'm not a sustainability person. I'm a creator-marketer who tried a 30-day challenge to see if structured habit-building actually changes anything when you're starting from average." },
+    { "ts": "00:20", "section": "BODY", "line": "The product is Phobaxx. [Fill after G21 trial: one-liner product definition — what it literally is after hands-on trial]." },
+    { "ts": "00:26", "section": "BODY", "line": "Here's the thing — I'm going to post every day for 30 days. The honest version. The days I forget. The days I don't believe in this. The days something actually clicks. All of it." },
+    { "ts": "00:38", "section": "CTA", "line": "If you're climate-curious and tired of preachy content, follow along. If at the end I don't think this worked, I'll tell you that too." }
+  ],
+  "ctas": {
+    "primary": "Follow along for the full 30 days — I'll tell you if it doesn't work.",
+    "secondary": "If you're tired of either the aesthetic-pantry camp or the guilt-trip camp, this one's for you.",
+    "tertiary": "Day 1 of 30. TikTok + Instagram. #phobaxx"
+  },
+  "notes": [
+    "G21 gate: Day-1 script LOCK requires hands-on trial before replacing [TRIAL-GATED] placeholder lines.",
+    "Banned (category): 'save the planet' / '100% sustainable' / 'guaranteed' / 'completely plastic-free' / 'zero waste forever' / 'you have to do this'.",
+    "Banned (brand-specific): posts should feel like normal posts, not paid advertisements (Phobaxx PDF).",
+    "30 posts/month on TikTok + Instagram (no YouTube in this contract per HOLMES-V3 PDF extraction).",
+    "Length per post: 20-40s daily diary, 45-60s for Day-1 manifesto and Day-30 verdict.",
+    "Payment: $450 per 30 approved posts + per-deliverable bonuses ($50@50K, $100@100K, $450@500K views)."
+  ],
+  "assets": [
+    { "name": "Contract Agreement - Phobaxx.pdf", "type": "pdf", "updated": "2026-05-20" }
+  ]
+}
