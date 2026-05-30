@@ -40,6 +40,7 @@ import {
   CalendarClock,
   Image as ImageIcon,
   Palette,
+  ClipboardCheck,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 // A14J-C3 atomic edit: import comment-mode hook for live badge count.
@@ -72,6 +73,8 @@ export const NAV_ENTRIES: NavEntry[] = [
   // mounts the 16 components JONY's A.14v rebuild orphaned. Per HR-48 (no
   // orphan promises without shipped home) this nav + the route ship together.
   { label: 'Expanded Dashboard', href: '/overview/full', icon: Sparkles },
+  // A.AA Wave 7 — team initiative / approval board (HR-55).
+  { label: 'Approvals', href: '/initiatives', icon: ClipboardCheck },
 
   // Group 1 — Pipeline (6 children)
   {
