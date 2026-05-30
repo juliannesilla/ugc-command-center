@@ -9,17 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Sunset / cloud palette
+        // A.AA recolor (HR-27 lavender/iris lock): `cloud` ramp recolored pink -> lavender/periwinkle.
+        // Name retained intentionally to avoid a 150-file class rename (HR-3/HR-4); every existing
+        // `cloud-*` usage now renders lavender. Pink fully demoted per Julz "match the inspo".
         cloud: {
-          50:  '#FFF5FA',
-          100: '#FFE5F0',
-          200: '#FFC9DF',
-          300: '#FFA3C7',
-          400: '#FF7DAE',
-          500: '#FF6B9D', // primary pink
-          600: '#E84C82',
-          700: '#C2376A',
-          800: '#9C2255', // AA contrast on cloud-100 bg (~6.1:1)
+          50:  '#F4F3FE',
+          100: '#E9E6FC',
+          200: '#D3CCF7',
+          300: '#B4A8F0',
+          400: '#9A89E8',
+          500: '#7C6BDC', // primary lavender (was hot pink #FF6B9D)
+          600: '#6451C4',
+          700: '#503FA1',
+          800: '#3E2F7E', // AA contrast on cloud-100 bg
         },
         iris: {
           50:  '#F5F0FF',
@@ -30,10 +32,11 @@ const config: Config = {
           500: '#8649F2',
           600: '#6C2FD1',
         },
+        // A.AA: peach demoted to a soft lilac so no warm-pink/orange clashes with lavender/iris.
         peach: {
-          100: '#FFE8D6',
-          300: '#FFC29A',
-          500: '#FF9966',
+          100: '#F1ECFB',
+          300: '#D6C7F2',
+          500: '#B49BE6',
         },
         ink: {
           900: '#1A1224',
@@ -71,17 +74,17 @@ const config: Config = {
         'hero':     '-0.022em',
       },
       boxShadow: {
-        soft: '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(255,107,157,0.10)',
-        card: '0 4px 16px -4px rgba(157,107,255,0.10)',
-        glow: '0 0 32px rgba(255,107,157,0.35)',
+        soft: '0 8px 24px -8px rgba(124,107,220,0.20), 0 2px 6px -2px rgba(157,107,255,0.10)',
+        card: '0 4px 16px -4px rgba(124,107,220,0.12)',
+        glow: '0 0 32px rgba(124,107,220,0.32)',
         // A14L L3-G additive — larger card elevation for hover-lift / modal-like surfaces.
-        'card-lg': '0 12px 32px -8px rgba(157,107,255,0.18), 0 4px 12px -4px rgba(255,107,157,0.12)',
+        'card-lg': '0 12px 32px -8px rgba(124,107,220,0.20), 0 4px 12px -4px rgba(157,107,255,0.12)',
         // A14L L3-G additive — soft inset glow for active nav-item / focus rings.
-        'ring-soft': '0 0 0 3px rgba(255,201,223,0.55)',
+        'ring-soft': '0 0 0 3px rgba(180,160,245,0.55)',
       },
       backgroundImage: {
-        'cloud-sunset': 'linear-gradient(120deg, #FFB6D5 0%, #FFA3C7 22%, #C8A4FF 55%, #9D6BFF 100%)',
-        'cloud-soft':   'linear-gradient(135deg, #FFE5F0 0%, #F5F0FF 60%, #EADCFF 100%)',
+        'cloud-sunset': 'linear-gradient(120deg, #CFC7FF 0%, #B3A6FB 24%, #9D6BFF 60%, #7C4DE0 100%)',
+        'cloud-soft':   'linear-gradient(135deg, #ECE8FF 0%, #F5F0FF 55%, #E3DAFF 100%)',
         'iris-soft':    'linear-gradient(135deg, #F5F0FF 0%, #EADCFF 55%, #D4B8FF 100%)',
         'grain': "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
       },

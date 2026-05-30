@@ -45,7 +45,7 @@ export function AssetHealthDonut() {
       <div className="mt-4 flex items-center gap-4">
         <div className="relative shrink-0">
           <svg viewBox="0 0 128 128" className="h-32 w-32">
-            <circle cx="64" cy="64" r={R} fill="none" stroke="#FFE5F0" strokeWidth="14" />
+            <circle cx="64" cy="64" r={R} fill="none" stroke="#E9E6FC" strokeWidth="14" />
             {arcs}
           </svg>
           <div className="absolute inset-0 grid place-items-center">

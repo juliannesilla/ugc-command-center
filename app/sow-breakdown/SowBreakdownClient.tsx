@@ -45,7 +45,7 @@ export default function SowBreakdownClient({
           className="absolute inset-0 opacity-60 pointer-events-none"
           style={{
             background:
-              'radial-gradient(60% 80% at 100% 0%, rgba(255,201,223,0.55) 0%, rgba(255,255,255,0) 60%), radial-gradient(50% 70% at 0% 100%, rgba(212,184,255,0.45) 0%, rgba(255,255,255,0) 60%)',
+              'radial-gradient(60% 80% at 100% 0%, rgba(180,160,245,0.55) 0%, rgba(255,255,255,0) 60%), radial-gradient(50% 70% at 0% 100%, rgba(212,184,255,0.45) 0%, rgba(255,255,255,0) 60%)',
           }}
           aria-hidden
         />

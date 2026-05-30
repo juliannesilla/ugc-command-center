@@ -18,7 +18,7 @@ import {
 import { PILLAR_DATA, PILLAR_TOTALS } from '@/lib/mock-data/pillars';
 
 const PILLAR_FILLS = [
-  '#FF6B9D', // signal pink — top performer
+  '#7C6BDC', // signal pink — top performer
   '#9D6BFF', // iris purple
   '#6BD4FF', // sky
   '#FFB36B', // peach
@@ -91,7 +91,7 @@ export function PillarChart() {
                   fontSize: 12,
                   padding: '8px 12px',
                   boxShadow:
-                    '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(255,107,157,0.10)',
+                    '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(124,107,220,0.10)',
                 }}
                 labelStyle={{
                   color: '#5A4A6E',
@@ -160,7 +160,7 @@ export function PillarChart() {
                   fontSize: 12,
                   padding: '8px 12px',
                   boxShadow:
-                    '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(255,107,157,0.10)',
+                    '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(124,107,220,0.10)',
                 }}
                 labelStyle={{
                   color: '#5A4A6E',
@@ -179,7 +179,7 @@ export function PillarChart() {
               <Bar
                 dataKey="avgLikes"
                 name="Avg likes"
-                fill="#FF6B9D"
+                fill="#7C6BDC"
                 radius={[0, 6, 6, 0]}
               />
               <Bar

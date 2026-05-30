@@ -168,7 +168,7 @@ export function SowDetailHero({ campaign }: { campaign: CampaignMeta }) {
           className="h-2.5 w-full overflow-hidden rounded-full bg-cloud-50 ring-1 ring-cloud-100"
         >
           <div
-            className="h-full rounded-full bg-cloud-sunset shadow-[0_0_12px_rgba(255,107,157,0.45)] transition-[width] duration-700 ease-out"
+            className="h-full rounded-full bg-cloud-sunset shadow-[0_0_12px_rgba(124,107,220,0.45)] transition-[width] duration-700 ease-out"
             style={{ width: `${pct}%` }}
           />
         </div>

@@ -66,7 +66,7 @@ export function HookPerformanceBars() {
                 borderRadius: 14,
                 fontSize: 12,
                 padding: '8px 12px',
-                boxShadow: '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(255,107,157,0.10)',
+                boxShadow: '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(124,107,220,0.10)',
               }}
               labelStyle={{
                 color: '#5A4A6E',
@@ -86,7 +86,7 @@ export function HookPerformanceBars() {
               iconType="circle"
               iconSize={8}
             />
-            <Bar dataKey="avgEngagement" name="Avg engagement / post" fill="#FF6B9D" radius={[0, 6, 6, 0]} />
+            <Bar dataKey="avgEngagement" name="Avg engagement / post" fill="#7C6BDC" radius={[0, 6, 6, 0]} />
             <Bar dataKey="avgLikes" name="Avg likes / post" fill="#9D6BFF" radius={[0, 6, 6, 0]} />
           </BarChart>
         </ResponsiveContainer>

@@ -38,7 +38,7 @@ export function PortfolioReadyClips() {
               <div
                 className="aspect-video relative grid place-items-center"
                 style={{
-                  background: `linear-gradient(135deg, ${c.thumbnailAccent} 0%, #FFF5FA 100%)`,
+                  background: `linear-gradient(135deg, ${c.thumbnailAccent} 0%, #F4F3FE 100%)`,
                 }}
               >
                 <PlayCircle className="h-8 w-8 text-white drop-shadow-md transition-transform duration-200 ease-out group-hover:scale-110" />

@@ -84,7 +84,7 @@ export function PaymentsStatusDonut() {
                     fontSize: 12,
                     padding: '8px 12px',
                     boxShadow:
-                      '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(255,107,157,0.10)',
+                      '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(124,107,220,0.10)',
                   }}
                   formatter={(value: number, _name: string, item) => {
                     // item.payload has the slice's amount + label
@@ -212,7 +212,7 @@ export function TopBrandsByPotentialBar() {
                   fontSize: 12,
                   padding: '8px 12px',
                   boxShadow:
-                    '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(255,107,157,0.10)',
+                    '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(124,107,220,0.10)',
                 }}
                 formatter={(v: number) => [formatMoney(v), 'Potential']}
               />

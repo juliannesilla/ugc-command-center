@@ -70,8 +70,8 @@ export function VisibilityOverTimeChart() {
           >
             <defs>
               <linearGradient id="visibilityFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#FF6B9D" stopOpacity={0.32} />
-                <stop offset="100%" stopColor="#FF6B9D" stopOpacity={0.02} />
+                <stop offset="0%" stopColor="#7C6BDC" stopOpacity={0.32} />
+                <stop offset="100%" stopColor="#7C6BDC" stopOpacity={0.02} />
               </linearGradient>
             </defs>
             <CartesianGrid
@@ -108,7 +108,7 @@ export function VisibilityOverTimeChart() {
                 fontSize: 12,
                 padding: '8px 12px',
                 boxShadow:
-                  '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(255,107,157,0.10)',
+                  '0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(124,107,220,0.10)',
               }}
               labelStyle={{
                 color: '#5A4A6E',
@@ -124,7 +124,7 @@ export function VisibilityOverTimeChart() {
               type="monotone"
               dataKey="score"
               name="Visibility Score"
-              stroke="#FF6B9D"
+              stroke="#7C6BDC"
               strokeWidth={2.5}
               fill="url(#visibilityFill)"
               activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}

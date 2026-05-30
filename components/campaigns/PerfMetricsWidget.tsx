@@ -186,7 +186,7 @@ export function PerfMetricsWidget({ campaignSlug }: { campaignSlug: string }) {
                       fontSize: 12,
                       padding: "8px 12px",
                       boxShadow:
-                        "0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(255,107,157,0.10)",
+                        "0 8px 24px -8px rgba(157,107,255,0.18), 0 2px 6px -2px rgba(124,107,220,0.10)",
                     }}
                     labelStyle={{
                       color: "#5A4A6E",
@@ -206,7 +206,7 @@ export function PerfMetricsWidget({ campaignSlug }: { campaignSlug: string }) {
                     type="monotone"
                     dataKey="views"
                     name="Views"
-                    stroke="#FF6B9D"
+                    stroke="#7C6BDC"
                     strokeWidth={2.5}
                     dot={{ r: 3, strokeWidth: 2, stroke: "#fff" }}
                     activeDot={{ r: 5, strokeWidth: 2, stroke: "#fff" }}

@@ -232,7 +232,7 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
                     {active && (
                       <span
                         aria-hidden="true"
-                        className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-cloud-sunset shadow-[0_0_8px_rgba(255,107,157,0.45)]"
+                        className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-cloud-sunset shadow-[0_0_8px_rgba(124,107,220,0.45)]"
                       />
                     )}
                     <Icon
@@ -314,7 +314,7 @@ export function Sidebar({ onCollapse }: { onCollapse?: () => void }) {
                             {childActive && (
                               <span
                                 aria-hidden="true"
-                                className="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-[3px] rounded-r-full bg-cloud-sunset shadow-[0_0_8px_rgba(255,107,157,0.45)]"
+                                className="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-[3px] rounded-r-full bg-cloud-sunset shadow-[0_0_8px_rgba(124,107,220,0.45)]"
                               />
                             )}
                             <ChildIcon

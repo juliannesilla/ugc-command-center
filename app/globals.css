@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #FFF8FC;
+  --background: #FAF9FF;
   --foreground: #1A1224;
 }
 
@@ -19,7 +19,7 @@ body {
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #FFC9DF, #D4B8FF);
+  background: linear-gradient(180deg, #CFC7FF, #B58CFF);
   border-radius: 9999px;
 }
 
@@ -27,9 +27,9 @@ body {
 .header-cloud {
   background-image:
     radial-gradient(120% 90% at 18% 22%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 55%),
-    radial-gradient(85% 65% at 88% 14%, rgba(255,213,194,0.8) 0%, rgba(255,213,194,0) 60%),
-    radial-gradient(95% 75% at 75% 92%, rgba(157,107,255,0.55) 0%, rgba(157,107,255,0) 60%),
-    linear-gradient(118deg, #FFB6D5 0%, #FFA3C7 24%, #E0B9FF 58%, #9D6BFF 100%);
+    radial-gradient(85% 65% at 88% 14%, rgba(201,194,255,0.85) 0%, rgba(201,194,255,0) 60%),
+    radial-gradient(95% 75% at 75% 92%, rgba(124,77,224,0.55) 0%, rgba(124,77,224,0) 60%),
+    linear-gradient(118deg, #C9C2FF 0%, #B3A6FB 26%, #9D6BFF 62%, #7C4DE0 100%);
   position: relative;
   isolation: isolate;
 }
@@ -79,11 +79,11 @@ body {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 197, 224, 0.45);
+  border: 1px solid rgba(157, 107, 255, 0.28);
 }
 
 /* Selection */
-::selection { background: #FFC9DF; color: #1A1224; }
+::selection { background: #D4B8FF; color: #1A1224; }
 
 /* ─── Today Mode (spec § 9 L806-L813) ─────────────────────────────────────
    Toggle in components/ui/today-mode-toggle.tsx sets data-today-mode="on"
