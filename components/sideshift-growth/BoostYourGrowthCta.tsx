@@ -16,7 +16,7 @@ export function BoostYourGrowthCta() {
   return (
     <section
       aria-labelledby="boost-growth-heading"
-      className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-cloud-sunset via-pink-400 to-iris-400 px-7 py-7 shadow-card"
+      className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-cloud-sunset via-cloud-400 to-iris-400 px-7 py-7 shadow-card"
     >
       <span
         aria-hidden

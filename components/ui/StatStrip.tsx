@@ -30,7 +30,7 @@ export interface StatStripProps {
 
 const ACCENT_CHIP: Record<NonNullable<StatTile["accent"]>, string> = {
   iris: "bg-iris-50 text-iris-600 ring-iris-100",
-  pink: "bg-pink-50 text-pink-600 ring-pink-100",
+  pink: "bg-cloud-50 text-cloud-600 ring-cloud-100",
   orange: "bg-orange-50 text-orange-600 ring-orange-100",
   peach: "bg-amber-50 text-amber-600 ring-amber-100",
   green: "bg-emerald-50 text-emerald-600 ring-emerald-100",

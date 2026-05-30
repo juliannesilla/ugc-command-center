@@ -62,7 +62,7 @@ export function LeagueXpCard() {
               aria-valuemax={100}
               aria-valuenow={pct}
               aria-label={`${totalXP} of ${totalForLevel} XP to ${nextLeague} league`}
-              className="h-full rounded-full bg-gradient-to-r from-iris-400 via-cloud-sunset to-pink-400 transition-[width] duration-700 ease-out"
+              className="h-full rounded-full bg-gradient-to-r from-iris-400 via-cloud-sunset to-cloud-400 transition-[width] duration-700 ease-out"
               style={{ width: `${pct}%` }}
             />
           </div>

@@ -209,7 +209,7 @@ export function SmartDailyBrief() {
 
   const toneRing: Record<typeof tiles[number]["tone"], string> = {
     iris: "ring-iris-200/70 bg-iris-50/40 text-iris-700",
-    pink: "ring-pink-200/70 bg-pink-50/40 text-pink-700",
+    pink: "ring-cloud-200/70 bg-cloud-50/40 text-cloud-700",
     cloud: "ring-cloud-200/70 bg-cloud-50/60 text-cloud-700",
     orange: "ring-peach-200/70 bg-peach-50/50 text-peach-700",
   };
@@ -221,7 +221,7 @@ export function SmartDailyBrief() {
     >
       {/* Atmospheric wash — cloud/iris gradient, no flat fill */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-iris-50 via-white to-pink-50/60"
+        className="absolute inset-0 bg-gradient-to-br from-iris-50 via-white to-cloud-50/60"
         aria-hidden
       />
       <div

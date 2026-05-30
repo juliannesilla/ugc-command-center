@@ -33,7 +33,7 @@ const GRADIENTS: Record<HeroBandGradient, string> = {
     "bg-gradient-to-br from-iris-100 via-cloud-100 to-iris-200",
   // Sunset/pink-cloud variant for marketing-skewed routes
   "pink-cloud":
-    "bg-gradient-to-br from-pink-50 via-cloud-100 to-cloud-sunset",
+    "bg-gradient-to-br from-cloud-50 via-cloud-100 to-cloud-sunset",
   // Transparent — when parent provides its own surface (no double-stacking)
   none: "",
 };

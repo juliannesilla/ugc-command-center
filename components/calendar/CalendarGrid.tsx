@@ -314,7 +314,7 @@ export function CalendarGrid({ events, todayISO }: CalendarGridProps) {
             <span className="h-2 w-2 rounded-full bg-iris-500" /> Call · SOW · Script · Edit
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-pink-500" /> Response
+            <span className="h-2 w-2 rounded-full bg-iris-500" /> Response
           </span>
           <span className="inline-flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-ink-400" /> Follow-up

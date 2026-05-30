@@ -86,7 +86,7 @@ export function DeadlineTimelineView({ events }: Props) {
                 className={cn(
                   "h-2.5 w-2.5 rounded-full ring-4 ring-white relative z-10",
                   label === "Overdue" ? "bg-red-500"
-                  : label === "Today" ? "bg-pink-500"
+                  : label === "Today" ? "bg-iris-500"
                   : label.startsWith("Tomorrow") ? "bg-orange-500"
                   : "bg-iris-400",
                 )}

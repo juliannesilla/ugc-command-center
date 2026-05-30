@@ -2,7 +2,7 @@ import { BEST_VIDEOS } from '@/lib/mock-data/analytics';
 
 const platformTone: Record<string, string> = {
   TikTok: 'bg-rose-50 text-rose-700 ring-rose-200',
-  Reels:  'bg-fuchsia-50 text-fuchsia-700 ring-fuchsia-200',
+  Reels:  'bg-iris-50 text-iris-700 ring-iris-200',
   Shorts: 'bg-orange-50 text-orange-700 ring-orange-200',
 };
 

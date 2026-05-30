@@ -57,7 +57,7 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
           'text-sm font-medium text-ink-900',
           'shadow-[0_1px_2px_rgba(15,23,42,0.06)]',
           'transition hover:-translate-y-px hover:shadow-[0_8px_24px_-12px_rgba(236,72,153,0.45)]',
-          'hover:border-fuchsia-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-500/60',
+          'hover:border-iris-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-500/60',
         )}
       >
         <span aria-hidden className="text-base leading-none">🎬</span>
@@ -90,7 +90,7 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
           >
             <header className="flex items-start justify-between gap-4 border-b border-ink-900/8 px-7 py-6">
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-fuchsia-500">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-iris-500">
                   A.14t · Stage 7
                 </p>
                 <h2 id="concept-gen-title" className="mt-1 font-display text-2xl text-ink-900">
@@ -108,7 +108,7 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
                 className={cn(
                   'shrink-0 rounded-full border border-ink-900/10 bg-white p-2',
                   'text-ink-700 transition hover:bg-ink-100 hover:text-ink-900',
-                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-500/60',
+                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-iris-500/60',
                 )}
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
@@ -127,11 +127,11 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
               <section
                 aria-label="What to do right now"
                 className={cn(
-                  'mb-6 rounded-2xl border border-fuchsia-500/20 bg-fuchsia-50/60 p-4',
+                  'mb-6 rounded-2xl border border-iris-500/20 bg-iris-50/60 p-4',
                   'text-sm text-ink-900',
                 )}
               >
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-fuchsia-500">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-iris-500">
                   What to do right now
                 </p>
                 <ol className="mt-2 space-y-1.5 pl-4 [list-style:decimal]">
@@ -160,7 +160,7 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
                     'focus:outline-none focus:ring-2',
                     slug && !slugValid
                       ? 'border-rose-300 focus:ring-rose-300/60'
-                      : 'border-ink-900/12 focus:border-fuchsia-500/60 focus:ring-fuchsia-500/40',
+                      : 'border-ink-900/12 focus:border-iris-500/60 focus:ring-iris-500/40',
                   )}
                 />
                 <span className="mt-1.5 block text-xs text-ink-700">
@@ -194,7 +194,7 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
                 <div
                   className={cn(
                     'mt-2 overflow-hidden rounded-2xl border bg-ink-900',
-                    ready ? 'border-fuchsia-500/40' : 'border-ink-900',
+                    ready ? 'border-iris-500/40' : 'border-ink-900',
                   )}
                 >
                   <pre className="overflow-x-auto px-5 py-4 font-mono text-[13px] leading-6 text-emerald-200">
@@ -212,7 +212,7 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
                       className={cn(
                         'rounded-full px-3.5 py-1.5 text-[11px] font-medium transition',
                         ready
-                          ? 'bg-white text-ink-900 hover:bg-fuchsia-50'
+                          ? 'bg-white text-ink-900 hover:bg-iris-50'
                           : 'cursor-not-allowed bg-white/20 text-white/60',
                       )}
                     >
@@ -276,7 +276,7 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
                 </h3>
                 <ol className="mt-2 space-y-3 text-sm text-ink-900">
                   <li className="flex gap-3">
-                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fuchsia-500 text-[11px] font-semibold text-white">
+                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-iris-500 text-[11px] font-semibold text-white">
                       1
                     </span>
                     <div>
@@ -286,7 +286,7 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
                     </div>
                   </li>
                   <li className="flex gap-3">
-                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fuchsia-500 text-[11px] font-semibold text-white">
+                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-iris-500 text-[11px] font-semibold text-white">
                       2
                     </span>
                     <div>
@@ -297,13 +297,13 @@ export function ConceptGenButton({ className, defaultSlug = '' }: ConceptGenButt
                     </div>
                   </li>
                   <li className="flex gap-3">
-                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fuchsia-500 text-[11px] font-semibold text-white">
+                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-iris-500 text-[11px] font-semibold text-white">
                       3
                     </span>
                     <div>Paste the command above and run it. ~30-60 sec end-to-end.</div>
                   </li>
                   <li className="flex gap-3">
-                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fuchsia-500 text-[11px] font-semibold text-white">
+                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-iris-500 text-[11px] font-semibold text-white">
                       4
                     </span>
                     <div>

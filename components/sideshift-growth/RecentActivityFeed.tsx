@@ -34,7 +34,7 @@ const KIND_TONE: Record<ActivityEvent['kind'], string> = {
   invite:   'bg-iris-50 text-iris-600 ring-iris-100',
   accepted: 'bg-emerald-50 text-emerald-600 ring-emerald-100',
   verified: 'bg-cloud-50 text-cloud-700 ring-cloud-100',
-  payout:   'bg-pink-50 text-pink-600 ring-pink-100',
+  payout:   'bg-cloud-50 text-cloud-600 ring-cloud-100',
   review:   'bg-amber-50 text-amber-600 ring-amber-100',
 };
 

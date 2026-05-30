@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils';
 import { TOP_PERFORMING_NICHES } from '@/lib/mock-data/sideshift-growth';
 
 const BAR_COLOR: Record<number, string> = {
-  0: 'from-cloud-sunset to-pink-400',
+  0: 'from-cloud-sunset to-cloud-400',
   1: 'from-iris-400 to-iris-500',
   2: 'from-iris-300 to-iris-400',
   3: 'from-peach-300 to-peach-400',

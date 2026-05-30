@@ -24,7 +24,7 @@ export function VisibilityScoreCard() {
     >
       <span
         aria-hidden
-        className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-pink-200/40 blur-3xl"
+        className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-cloud-200/40 blur-3xl"
       />
 
       <div className="relative z-10 flex-1 flex flex-col">
@@ -62,7 +62,7 @@ export function VisibilityScoreCard() {
             {[62, 64, 67, 65, 70, 72, 75, 76, 78, 80, 82, 84].map((v, i) => (
               <div
                 key={i}
-                className="flex-1 rounded-sm bg-gradient-to-t from-pink-300 to-cloud-sunset opacity-80"
+                className="flex-1 rounded-sm bg-gradient-to-t from-cloud-300 to-cloud-sunset opacity-80"
                 style={{ height: `${(v - 50) * 1.8}%` }}
               />
             ))}

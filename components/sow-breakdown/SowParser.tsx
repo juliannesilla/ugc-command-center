@@ -84,7 +84,7 @@ export function SowParser({ className, defaultSlug = '' }: SowParserProps) {
       >
         <span
           aria-hidden
-          className="inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-br from-iris-500 to-fuchsia-500"
+          className="inline-block h-1.5 w-1.5 rounded-full bg-gradient-to-br from-iris-500 to-iris-500"
         />
         Parse SOW
       </button>
