@@ -9,6 +9,7 @@ import type { Metadata } from 'next';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { Sidebar } from '@/components/ui/sidebar';
 import { MobileNav } from '@/components/ui/MobileNav';
+import { AgentDock } from '@/components/agent/AgentDock';
 import { CommentModeProvider } from '@/components/comments/CommentModeProvider.local';
 import { CommentModeToggle } from '@/components/comments/CommentModeToggle';
 import { ExistingCommentDots } from '@/components/comments/ExistingCommentDots';
@@ -54,6 +55,8 @@ export default function RootLayout({
             <ExistingCommentDots />
             <CommentModeToggle />
           </div>
+          {/* A.AA Wave 1c — global context-aware "Ask ELON" dock, present on every route */}
+          <AgentDock />
         </CommentModeProvider>
       </body>
     </html>
