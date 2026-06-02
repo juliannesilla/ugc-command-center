@@ -41,6 +41,7 @@ import {
   Image as ImageIcon,
   Palette,
   ClipboardCheck,
+  Users,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 // A14J-C3 atomic edit: import comment-mode hook for live badge count.
@@ -75,6 +76,8 @@ export const NAV_ENTRIES: NavEntry[] = [
   { label: 'Expanded Dashboard', href: '/overview/full', icon: Sparkles },
   // A.AA Wave 7 — team initiative / approval board (HR-55).
   { label: 'Approvals', href: '/initiatives', icon: ClipboardCheck },
+  // A.AA Wave 5 — accounts & deal sources.
+  { label: 'Accounts', href: '/accounts', icon: Users },
 
   // Group 1 — Pipeline (6 children)
   {
