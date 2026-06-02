@@ -41,12 +41,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body className="font-body bg-cloud-soft min-h-screen text-ink-900">
+        {/* A.AA Wave 8 a11y — skip-to-content (WCAG 2.4.1 Bypass Blocks) */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-iris-500 focus:px-4 focus:py-2 focus:text-[13px] focus:font-semibold focus:text-white focus:shadow-card-lg"
+        >
+          Skip to content
+        </a>
         <CommentModeProvider>
           {/* A.AA Wave 3 — mobile top bar + drawer (md:hidden). Desktop uses <Sidebar/>. */}
           <MobileNav />
           <div className="flex min-h-screen">
             <Sidebar />
-            <main className="flex-1 min-w-0 flex flex-col">
+            <main id="main-content" tabIndex={-1} className="flex-1 min-w-0 flex flex-col outline-none">
               {children}
             </main>
           </div>
