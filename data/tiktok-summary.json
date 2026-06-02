@@ -1,0 +1,127 @@
+{
+  "_generated": "import-real-data.mjs",
+  "source": "julz-vault tiktok_data_enhanced.csv (REAL @geezjulz)",
+  "total_posts": 42,
+  "likes": 8313,
+  "comments": 1845,
+  "shares": 0,
+  "avg_engagement_per_post": 242,
+  "by_pillar": [
+    {
+      "pillar": "WFH | corporate marketing girlie",
+      "posts": 14,
+      "likes": 5557,
+      "comments": 1379,
+      "shares": 0
+    },
+    {
+      "pillar": "Unclassified",
+      "posts": 20,
+      "likes": 2170,
+      "comments": 365,
+      "shares": 0
+    },
+    {
+      "pillar": "home: organization | decor",
+      "posts": 3,
+      "likes": 235,
+      "comments": 62,
+      "shares": 0
+    },
+    {
+      "pillar": "eldest daughter series",
+      "posts": 3,
+      "likes": 207,
+      "comments": 18,
+      "shares": 0
+    },
+    {
+      "pillar": "motivational quotes | mindset",
+      "posts": 1,
+      "likes": 74,
+      "comments": 9,
+      "shares": 0
+    },
+    {
+      "pillar": "home: cleaning | decluttering",
+      "posts": 1,
+      "likes": 70,
+      "comments": 12,
+      "shares": 0
+    }
+  ],
+  "top_posts": [
+    {
+      "post_id": "7488492986809175342",
+      "caption": "here for the long game… looking for my tribe 🥹🫵🏽 #contentcreatorsoftiktok #de",
+      "likes": 3643,
+      "comments": 1004,
+      "shares": 0,
+      "pillar": "WFH | corporate marketing girlie",
+      "url": "https://www.tiktok.com/@geezjulz/video/7488492986809175342"
+    },
+    {
+      "post_id": "7519929691646512439",
+      "caption": "Hands down one of the best things we did in Hawaii. ☺️🌺🌊🐚 Wealth isn’t always",
+      "likes": 498,
+      "comments": 52,
+      "shares": 0,
+      "pillar": "WFH | corporate marketing girlie",
+      "url": "https://www.tiktok.com/@geezjulz/video/7519929691646512439"
+    },
+    {
+      "post_id": "7524742790736088375",
+      "caption": "The goal was never to earn their pride. It was always to break the pattern. To h",
+      "likes": 408,
+      "comments": 11,
+      "shares": 0,
+      "pillar": "WFH | corporate marketing girlie",
+      "url": "https://www.tiktok.com/@geezjulz/video/7524742790736088375"
+    },
+    {
+      "post_id": "7498867811834645806",
+      "caption": "couldn’t have done it without YOU🫵🏽🫶🏼 from the bottom of my heart, THANK YOU",
+      "likes": 263,
+      "comments": 133,
+      "shares": 0,
+      "pillar": "WFH | corporate marketing girlie",
+      "url": "https://www.tiktok.com/@geezjulz/video/7498867811834645806"
+    },
+    {
+      "post_id": "7480356429417729323",
+      "caption": "I’ve loved Jhene Aiko since early high school days 😭🦋 #jheneaiko #magichourtou",
+      "likes": 229,
+      "comments": 2,
+      "shares": 0,
+      "pillar": "Unclassified",
+      "url": "https://www.tiktok.com/@geezjulz/video/7480356429417729323"
+    },
+    {
+      "post_id": "7516949611022404919",
+      "caption": "it’s quite literally unmatched. 🥹😭 #dogmomlife #cutedogdogloversoftiktok #bord",
+      "likes": 216,
+      "comments": 19,
+      "shares": 0,
+      "pillar": "Unclassified",
+      "url": "https://www.tiktok.com/@geezjulz/video/7516949611022404919"
+    },
+    {
+      "post_id": "7497305719134244142",
+      "caption": "A girl can dream LOL #microinfluencer #contentcreation #fyp",
+      "likes": 202,
+      "comments": 90,
+      "shares": 0,
+      "pillar": "Unclassified",
+      "url": "https://www.tiktok.com/@geezjulz/video/7497305719134244142"
+    },
+    {
+      "post_id": "7490700638809083178",
+      "caption": "at the end of the day… what do I have to lose? 🥰 #lasvegascontentcreator #roadt",
+      "likes": 163,
+      "comments": 100,
+      "shares": 0,
+      "pillar": "WFH | corporate marketing girlie",
+      "url": "https://www.tiktok.com/@geezjulz/video/7490700638809083178"
+    }
+  ]
+}
