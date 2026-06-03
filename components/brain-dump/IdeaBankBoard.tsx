@@ -116,6 +116,16 @@ export function IdeaBankBoard() {
         </div>
       </div>
 
+      {/* Honest empty state (HR-49): no captured ideas yet. */}
+      {cards.length === 0 && (
+        <div className="mb-4 rounded-2xl border border-dashed border-cloud-200 bg-cloud-50/40 px-4 py-6 text-center">
+          <p className="text-sm font-semibold text-ink-800">Your idea bank is empty</p>
+          <p className="text-xs text-ink-600 mt-1">
+            Capture a hook in the box above and it&apos;ll land in the right column. Drag to organize.
+          </p>
+        </div>
+      )}
+
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
           {BOARD_COLUMNS.map((col) => (
@@ -124,7 +134,7 @@ export function IdeaBankBoard() {
               id={col.id}
               label={col.label}
               emoji={col.emoji}
-              count={col.count}
+              count={cards.filter((c) => c.columnId === col.id).length}
               cards={cards.filter((c) => c.columnId === col.id)}
             />
           ))}

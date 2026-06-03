@@ -2,6 +2,22 @@ import { Sparkles, Bookmark } from 'lucide-react';
 import { BEST_NEW_IDEA } from '@/lib/mock-data/brain-dump';
 
 export function BestNewIdeaCard() {
+  // Honest-empty (HR-49): no captured ideas yet → no "best" idea to surface.
+  if (!BEST_NEW_IDEA) {
+    return (
+      <div className="card-secondary rounded-3xl bg-gradient-to-br from-cloud-200/60 via-iris-100/60 to-peach-100/50 ring-1 ring-cloud-200 p-5 shadow-soft">
+        <div className="flex items-center gap-1.5 mb-3">
+          <Sparkles className="h-4 w-4 text-iris-500" />
+          <h4 className="text-sm font-semibold text-ink-900">Best New Idea</h4>
+        </div>
+        <p className="text-[12.5px] leading-relaxed text-ink-700">
+          Nothing captured yet. Drop a hook in the capture box above and your most
+          promising idea will surface here.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="card-secondary rounded-3xl bg-gradient-to-br from-cloud-200/60 via-iris-100/60 to-peach-100/50 ring-1 ring-cloud-200 p-5 shadow-soft">
       <div className="flex items-center justify-between mb-3">

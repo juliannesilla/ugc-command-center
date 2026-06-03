@@ -17,7 +17,7 @@ import path from 'node:path';
 import { PageHeader } from '@/components/ui';
 import { StatusChip } from '@/components/ui/status-chip';
 import { formatMoney } from '@/lib/utils';
-import { Globe, Mail, ShoppingBag, Youtube, Users, Eye, Heart, TrendingUp } from 'lucide-react';
+import { Globe, Mail, ShoppingBag, Youtube, Users, Heart, MessageCircle, Clapperboard } from 'lucide-react';
 import { POSTING_ACCOUNTS, campaignsForAccount } from '@/lib/mock-data/accounts';
 
 type Brand = {
@@ -120,9 +120,9 @@ export default async function AccountsPage() {
                   <span className="text-[11px] text-ink-600">{acc.handle}</span>
                 </div>
                 <div className="mt-2 flex items-center gap-3 text-[12px] text-ink-700">
-                  <span className="inline-flex items-center gap-1"><Eye className="h-3.5 w-3.5 text-ink-500" />{acc.views30d}</span>
-                  <span className="inline-flex items-center gap-1"><Heart className="h-3.5 w-3.5 text-ink-500" />{acc.engagement}</span>
-                  <span className="inline-flex items-center gap-1"><TrendingUp className="h-3.5 w-3.5 text-ink-500" />{acc.followersDelta}</span>
+                  <span className="inline-flex items-center gap-1"><Clapperboard className="h-3.5 w-3.5 text-ink-500" />{acc.posts} posts</span>
+                  <span className="inline-flex items-center gap-1"><Heart className="h-3.5 w-3.5 text-ink-500" />{acc.likes}</span>
+                  <span className="inline-flex items-center gap-1"><MessageCircle className="h-3.5 w-3.5 text-ink-500" />{acc.comments}</span>
                 </div>
                 <p className="mt-2 text-[12px] text-ink-600">{linked.length} campaign{linked.length === 1 ? '' : 's'} posting here</p>
               </div>

@@ -6,6 +6,7 @@
 // platform breakdown). Campaign↔account links are DERIVED from each canonical
 // campaign's deliverable platform string (HR-49: canonical-derived, not new mock).
 
+import summary from '@/data/tiktok-summary.json';
 import { MOCK_CAMPAIGNS } from '@/lib/mock-data/campaigns';
 
 export type PostingAccount = {
@@ -14,17 +15,33 @@ export type PostingAccount = {
   handle: string;
   /** how the canonical deliverable string names this platform */
   match: string;
-  followersDelta: string;
-  views30d: string;
-  engagement: string;
+  posts: string;
+  likes: string;
+  comments: string;
   status: 'active' | 'paused';
 };
 
-// Source: analytics.ts platform breakdown (@geezjulz). Single handle across channels.
+/** Compact number -> "8.3K" / "1,845". Honest formatter, no rounding lies. */
+function compact(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1000).toFixed(1)}K`;
+  return n.toLocaleString();
+}
+
+// REAL @geezjulz TikTok aggregates from data/tiktok-summary.json. TikTok is Julz's
+// only connected channel with real data; Instagram/YouTube intentionally omitted
+// (no real data -- HR-49, never fabricated).
 export const POSTING_ACCOUNTS: PostingAccount[] = [
-  { id: 'tiktok',    platform: 'TikTok',    handle: '@geezjulz', match: 'tiktok', followersDelta: '+1,842', views30d: '748K', engagement: '5.6%', status: 'active' },
-  { id: 'instagram', platform: 'Instagram', handle: '@geezjulz', match: 'reels',  followersDelta: '+912',   views30d: '312K', engagement: '4.2%', status: 'active' },
-  { id: 'youtube',   platform: 'YouTube',   handle: '@geezjulz', match: 'shorts', followersDelta: '+436',   views30d: '182K', engagement: '3.8%', status: 'active' },
+  {
+    id: 'tiktok',
+    platform: 'TikTok',
+    handle: '@geezjulz',
+    match: 'tiktok',
+    posts: String(summary.total_posts ?? 0),
+    likes: compact(Number(summary.likes ?? 0)),
+    comments: compact(Number(summary.comments ?? 0)),
+    status: 'active',
+  },
 ];
 
 type LinkedCampaign = { brand: string; status: string; stage?: string };

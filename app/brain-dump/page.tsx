@@ -35,19 +35,21 @@ export default function BrainDumpPage() {
       />
 
       <section className="px-7 md:px-12 -mt-8 pb-20 flex flex-col gap-6 lg:gap-8">
-        {/* Top stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 rise rise-1">
-          {BRAIN_STATS.map((s) => (
-            <StatCardWithDelta
-              key={s.id}
-              label={s.label}
-              value={s.value}
-              delta={s.delta}
-              deltaTone="positive"
-              sublabel="vs last week"
-            />
-          ))}
-        </div>
+        {/* Top stats — only when there is real captured activity (HR-49 honest-empty) */}
+        {BRAIN_STATS.length > 0 && (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 rise rise-1">
+            {BRAIN_STATS.map((s) => (
+              <StatCardWithDelta
+                key={s.id}
+                label={s.label}
+                value={s.value}
+                delta={s.delta}
+                deltaTone="positive"
+                sublabel="vs last week"
+              />
+            ))}
+          </div>
+        )}
 
         {/* Quick capture + smart chips */}
         <div className="flex flex-col gap-3 rise rise-2 sticky top-6 z-10">

@@ -1,4 +1,21 @@
-// Mock data for Brain Dump / Hook Bank page (mockup #13).
+// Brain Dump / Hook Bank — capture-tool data layer.
+//
+// 2026-06-03 HR-49 NO MOCK DATA + HR-10 ACCESS HONESTY (Julz: "NO MOCK DATA
+// ANYMORE"): this module was previously a fabricated mockup dataset — fake
+// "47 hooks captured this week", invented skincare/collagen hook texts Julz
+// never wrote, "captured 2h ago", and "used 14×" pattern-usage counts that
+// implied tracked activity that never happened.
+//
+// The Hook Bank has NO persisted capture store yet (QuickCapture is not wired
+// to a backend), so the HONEST state is empty. Every "your activity" array
+// below is emitted empty; the page + components render genuine empty states
+// ("nothing captured yet") instead of fabricated samples. Drag-and-drop and
+// capture still work — the board fills as Julz actually captures ideas.
+//
+// KEPT (pure UI scaffolding, not fabricated data):
+//   - SMART_CHIPS         → idea-type filter buttons (Pain Point Hook, POV, …)
+//   - BOARD_COLUMNS       → column labels/emojis (counts now derive from real cards)
+//   - IDEA_TO_SCRIPT_STEPS→ the "how the converter works" explainer steps
 
 export interface BrainStat {
   id: string;
@@ -7,12 +24,8 @@ export interface BrainStat {
   delta: string;
 }
 
-export const BRAIN_STATS: BrainStat[] = [
-  { id: 's1', label: 'HOOKS CAPTURED THIS WEEK', value: '47', delta: '+18' },
-  { id: 's2', label: 'TOP SAVED ANGLES',         value: '12', delta: '+4'  },
-  { id: 's3', label: 'WINNING PATTERNS',         value: '23', delta: '+6'  },
-  { id: 's4', label: 'IDEAS→SCRIPTS',            value: '9',  delta: '+3'  },
-];
+// Honest-empty: no capture store yet, so no real stats to show.
+export const BRAIN_STATS: BrainStat[] = [];
 
 export interface IdeaChip {
   id: string;
@@ -21,6 +34,7 @@ export interface IdeaChip {
   shuffle?: boolean;
 }
 
+// UI scaffolding — idea-type quick-filters, not fabricated data.
 export const SMART_CHIPS: IdeaChip[] = [
   { id: 'pain',      label: 'Pain Point Hook',   icon: '🎯' },
   { id: 'beforeaft', label: 'Before/After',      icon: '🔄' },
@@ -56,52 +70,19 @@ export interface BoardColumn {
   count: number;
 }
 
+// Column scaffolding. `count` is a fallback only — the board derives live counts
+// from the real card distribution (0 until Julz captures ideas).
 export const BOARD_COLUMNS: BoardColumn[] = [
-  { id: 'hooks',    label: 'Hook Ideas',         emoji: '🎣', count: 12 },
-  { id: 'angles',   label: 'Personal Stories',   emoji: '🎤', count: 8  },
-  { id: 'phrases',  label: 'Reusable Phrases',   emoji: '💬', count: 10 },
-  { id: 'broll',    label: 'B-Roll Ideas',       emoji: '🎬', count: 9  },
-  { id: 'prompts',  label: 'Story Patterns',     emoji: '📝', count: 7  },
-  { id: 'patterns', label: 'Winning Patterns',   emoji: '🏆', count: 6  },
+  { id: 'hooks',    label: 'Hook Ideas',         emoji: '🎣', count: 0 },
+  { id: 'angles',   label: 'Personal Stories',   emoji: '🎤', count: 0 },
+  { id: 'phrases',  label: 'Reusable Phrases',   emoji: '💬', count: 0 },
+  { id: 'broll',    label: 'B-Roll Ideas',       emoji: '🎬', count: 0 },
+  { id: 'prompts',  label: 'Story Patterns',     emoji: '📝', count: 0 },
+  { id: 'patterns', label: 'Winning Patterns',   emoji: '🏆', count: 0 },
 ];
 
-export const INITIAL_CARDS: IdeaCard[] = [
-  // Hooks (4 visible)
-  { id: 'h1', columnId: 'hooks',   text: 'POV: you keep forgetting to take your collagen until you see results',                isNew: true,  tag: 'POV' },
-  { id: 'h2', columnId: 'hooks',   text: '3 things I wish I knew before starting my skincare routine',                          starred: true },
-  { id: 'h3', columnId: 'hooks',   text: 'Wait — you\'re still doing it that way? Let me show you the easier version',         tag: 'Demo' },
-  { id: 'h4', columnId: 'hooks',   text: 'The product that quietly fixed my dehydrated skin in 2 weeks',                       },
-
-  // Angles (4 visible)
-  { id: 'a1', columnId: 'angles',  text: 'Recovering perfectionist who finally accepted "good enough"',                         starred: true },
-  { id: 'a2', columnId: 'angles',  text: 'Bay Area girlie who travels w/ 3 carry-ons because skincare',                          },
-  { id: 'a3', columnId: 'angles',  text: 'Tired of being told to "just love yourself" — let\'s talk routines',                  isNew: true },
-  { id: 'a4', columnId: 'angles',  text: 'Marketing nerd who reverse-engineers her own content',                                 },
-
-  // Phrases (4 visible)
-  { id: 'p1', columnId: 'phrases', text: '"Let me break this down for you real quick"',                                          },
-  { id: 'p2', columnId: 'phrases', text: '"Game changer."',                                                                       },
-  { id: 'p3', columnId: 'phrases', text: '"The messy middle is where growth happens."',                                          starred: true },
-  { id: 'p4', columnId: 'phrases', text: '"Do this, not that."',                                                                  },
-
-  // B-Roll (4 visible)
-  { id: 'br1', columnId: 'broll',  text: 'Slow-pour shot of supplement into glass at golden hour',                               },
-  { id: 'br2', columnId: 'broll',  text: 'Hands applying serum, close-up macro',                                                  starred: true },
-  { id: 'br3', columnId: 'broll',  text: 'Walk-and-talk through SF Marina at sunset',                                            isNew: true },
-  { id: 'br4', columnId: 'broll',  text: 'Time-lapse of morning routine across mirror',                                          },
-
-  // Prompts (4 visible)
-  { id: 'sp1', columnId: 'prompts', text: 'The moment I realized perfectionism was costing me clients',                          },
-  { id: 'sp2', columnId: 'prompts', text: 'When I finally stopped overthinking my UGC scripts',                                  starred: true },
-  { id: 'sp3', columnId: 'prompts', text: 'Why I almost quit content (and what changed)',                                        },
-  { id: 'sp4', columnId: 'prompts', text: 'The brand deal that taught me to negotiate harder',                                   isNew: true },
-
-  // Patterns (4 visible)
-  { id: 'pt1', columnId: 'patterns', text: 'Hook → Story → Tip → CTA',                                                            },
-  { id: 'pt2', columnId: 'patterns', text: 'Before → Process → After → Result',                                                    starred: true },
-  { id: 'pt3', columnId: 'patterns', text: 'Problem → Agitate → Solution → Proof',                                                 },
-  { id: 'pt4', columnId: 'patterns', text: 'Relatable Hook → Value → CTA',                                                          },
-];
+// Honest-empty: the board starts empty and fills as ideas are captured.
+export const INITIAL_CARDS: IdeaCard[] = [];
 
 export interface BestNewIdea {
   id: string;
@@ -111,13 +92,8 @@ export interface BestNewIdea {
   badge?: string;
 }
 
-export const BEST_NEW_IDEA: BestNewIdea = {
-  id: 'best',
-  text: 'POV: You\'re still doing it the hard way when there\'s an easier solution',
-  chips: ['Hook Idea', 'POV/Relatable'],
-  capturedAgo: '2h ago',
-  badge: 'Most Potential',
-};
+// Honest-empty: no captured ideas yet → no "best" idea to surface.
+export const BEST_NEW_IDEA: BestNewIdea | null = null;
 
 export interface IdeaToScriptItem {
   id: string;
@@ -125,13 +101,8 @@ export interface IdeaToScriptItem {
   chip: string;
 }
 
-export const IDEAS_TO_SCRIPTS: IdeaToScriptItem[] = [
-  { id: 'is1', text: 'POV: you keep forgetting to take your collagen until you see results',  chip: 'POV' },
-  { id: 'is2', text: '3 things I wish I knew before starting my skincare routine',            chip: 'List/Tips' },
-  { id: 'is3', text: 'The product that quietly fixed my dehydrated skin in 2 weeks',          chip: 'Storytime' },
-  { id: 'is4', text: 'Bay Area girlie who travels w/ 3 carry-ons because skincare',           chip: 'Angle' },
-  { id: 'is5', text: 'Wait — you\'re still doing it that way? Easier version inside',          chip: 'Hook' },
-];
+// Honest-empty: populated from real captured ideas once they exist.
+export const IDEAS_TO_SCRIPTS: IdeaToScriptItem[] = [];
 
 export interface ReusablePattern {
   id: string;
@@ -139,27 +110,16 @@ export interface ReusablePattern {
   used: number;
 }
 
-export const REUSABLE_PATTERNS: ReusablePattern[] = [
-  { id: 'rp1', pattern: 'Hook → Story → Tip → CTA',           used: 14 },
-  { id: 'rp2', pattern: 'Before → Process → After → Result',  used: 11 },
-  { id: 'rp3', pattern: 'Problem → Agitate → Solution → Proof', used: 9 },
-  { id: 'rp4', pattern: 'Relatable Hook → Value → CTA',       used: 7 },
-];
+// Honest-empty: usage counts require real tracked activity (none yet).
+export const REUSABLE_PATTERNS: ReusablePattern[] = [];
 
-export const CONTENT_PATTERN_LIBRARY: ReusablePattern[] = [
-  { id: 'cp1', pattern: 'Open w/ visual disruption · cut at 0.8s', used: 22 },
-  { id: 'cp2', pattern: 'Pause + lean-in before reveal',           used: 17 },
-  { id: 'cp3', pattern: 'Voiceover + on-screen text mismatch',     used: 14 },
-  { id: 'cp4', pattern: 'Trail off + cut to result',                used: 10 },
-];
+// Honest-empty: same — no fabricated "× used" counts.
+export const CONTENT_PATTERN_LIBRARY: ReusablePattern[] = [];
 
-export const REUSABLE_PHRASES = [
-  '"Let me break this down for you real quick"',
-  '"Game changer."',
-  '"The messy middle is where growth happens."',
-  '"Do this, not that."',
-];
+// Honest-empty: phrases vault fills from Julz's own saved phrases.
+export const REUSABLE_PHRASES: string[] = [];
 
+// UI scaffolding — explains how the Idea→Script converter works. Not data.
 export const IDEA_TO_SCRIPT_STEPS = [
   { id: 1, label: 'Select idea from your bank' },
   { id: 2, label: 'AI structures it into a hook + flow' },

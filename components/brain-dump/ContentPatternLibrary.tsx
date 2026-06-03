@@ -9,21 +9,24 @@ export function ContentPatternLibrary() {
           <BookMarked className="h-4 w-4 text-iris-400" />
           <h4 className="section-title text-sm font-semibold text-ink-900">Content Pattern Library</h4>
         </div>
-        <button className="text-xs font-semibold text-iris-500 hover:text-iris-600">
-          View All →
-        </button>
       </div>
-      <ul className="flex flex-col gap-2">
-        {CONTENT_PATTERN_LIBRARY.map((p) => (
-          <li
-            key={p.id}
-            className="flex items-center justify-between rounded-xl bg-white/70 ring-1 ring-cloud-100 px-3 py-2 text-xs"
-          >
-            <span className="font-medium text-ink-800">{p.pattern}</span>
-            <span className="tabular-nums text-ink-700">{p.used}x</span>
-          </li>
-        ))}
-      </ul>
+      {CONTENT_PATTERN_LIBRARY.length === 0 ? (
+        <p className="text-xs italic text-ink-600 py-2">
+          Empty for now &mdash; patterns you save will collect here for quick reuse.
+        </p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {CONTENT_PATTERN_LIBRARY.map((p) => (
+            <li
+              key={p.id}
+              className="flex items-center justify-between rounded-xl bg-white/70 ring-1 ring-cloud-100 px-3 py-2 text-xs"
+            >
+              <span className="font-medium text-ink-800">{p.pattern}</span>
+              <span className="tabular-nums text-ink-700">{p.used}x</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

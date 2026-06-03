@@ -8,16 +8,22 @@ export function ReusablePhrasesVault() {
         <Quote className="h-4 w-4 text-iris-400" />
         <h4 className="section-title text-sm font-semibold text-ink-900">Reusable Phrases Vault</h4>
       </div>
-      <ul className="flex flex-col gap-2">
-        {REUSABLE_PHRASES.map((phrase, i) => (
-          <li
-            key={i}
-            className="rounded-xl bg-gradient-to-r from-cloud-50 to-iris-50 ring-1 ring-cloud-100 px-3 py-2 text-xs italic text-ink-800"
-          >
-            {phrase}
-          </li>
-        ))}
-      </ul>
+      {REUSABLE_PHRASES.length === 0 ? (
+        <p className="text-xs italic text-ink-600 py-2">
+          No saved phrases yet &mdash; lines you reuse across scripts will live here.
+        </p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {REUSABLE_PHRASES.map((phrase, i) => (
+            <li
+              key={i}
+              className="rounded-xl bg-gradient-to-r from-cloud-50 to-iris-50 ring-1 ring-cloud-100 px-3 py-2 text-xs italic text-ink-800"
+            >
+              {phrase}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
