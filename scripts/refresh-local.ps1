@@ -4,7 +4,8 @@
 # scores new threads, merges canonical, regenerates JSON, and pushes to main ONLY
 # on a data delta -> Vercel auto-redeploys.
 #
-# One-time setup (Julz): node scripts/poll-sideshift.mjs --setup  (sign in once)
+# One-time setup (Julz): node scripts/poll-sideshift.mjs
+node scripts/dedup-sideshift.mjs --setup  (sign in once)
 # Register task:        see scripts/register-refresh-task.ps1  (or run this file manually)
 
 $ErrorActionPreference = 'Continue'
@@ -14,6 +15,7 @@ Set-Location $repo
 Write-Output ("[refresh-local] start " + (Get-Date -Format s))
 
 node scripts/poll-sideshift.mjs
+node scripts/dedup-sideshift.mjs
 node scripts/score-brand-fit.mjs
 node scripts/merge-canonical.mjs --apply
 node scripts/jsonl-to-json.mjs
