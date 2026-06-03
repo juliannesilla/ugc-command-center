@@ -51,35 +51,25 @@ export interface PaymentRow {
   notes?: string;
 }
 
+// NORMA A.AB (HR-49 / HR-10): stripped fake-brand slug keys (elf, lotusshop,
+// vilo, goodie-ai, megprime-pay) that A.14e seeded here. They never matched a
+// real canonical `campaign_id`, so every real campaign already fell through to
+// the honest `?? "Unknown"` / `?? false` / `?? due_date` defaults below — these
+// maps were inert fake-brand residue. Only the real signed brand `parakeetai`
+// keeps a curated value (SideShift = its confirmed payout channel). All other
+// platform/submit/invoice facts come from canonical or honest-empty defaults.
+// Adding a real campaign_id key here as facts are confirmed remains supported.
+
 /** Map campaign_id → platform. Backfilled from outreach context. */
 const PLATFORM_BY_CAMPAIGN: Record<string, PaymentPlatform> = {
   parakeetai: "SideShift",
-  elf: "PayPal",
-  lotusshop: "PayPal",
-  "goodie-ai": "Unknown",
-  "megprime-pay": "Stripe",
-  vilo: "PayPal",
 };
 
 /** Map campaign_id → submitted date (when deliverable went to brand). */
-const SUBMITTED_BY_CAMPAIGN: Record<string, string | undefined> = {
-  parakeetai: undefined, // still SCRIPT READY
-  elf: undefined,        // still FILMING
-  lotusshop: undefined,  // SOW RECEIVED
-  "goodie-ai": undefined,
-  "megprime-pay": undefined,
-  vilo: undefined,
-};
+const SUBMITTED_BY_CAMPAIGN: Record<string, string | undefined> = {};
 
 /** Map campaign_id → invoice-sent flag. */
-const INVOICE_SENT: Record<string, boolean> = {
-  parakeetai: false,
-  elf: false,
-  lotusshop: false,
-  "goodie-ai": false,
-  "megprime-pay": false,
-  vilo: false,
-};
+const INVOICE_SENT: Record<string, boolean> = {};
 
 /** Per-deliverable label given a campaign + 1-indexed slot. */
 function deliverableLabel(c: Campaign, idx: number): string {

@@ -1,8 +1,57 @@
-// Mock analytics data for Analytics / Performance page (mockup #11).
-// All metrics are realistic UGC creator benchmarks:
-//  - TikTok eng rate: 5–15% · IG Reels: 3–8% · YT Shorts: 3–6%
-//  - Brand-deal conversion: 1–5% · UTM/link CTR: 2–8%
+// A.AA ANALYTICS-REAL (TUFTE / B1): this module was historically a hard-coded
+// MOCK dataset (66 posts, 1.2M views, $2,845 earned, fictional brands). It is
+// now rewired to compute EVERY export from the REAL @geezjulz TikTok data.
+//
+// SOURCE: data/tiktok-summary.json + data/tiktok-posts.json (42 real posts,
+//   imported from julz-vault tiktok_data_enhanced.csv), surfaced through the
+//   typed adapter lib/analytics/from-tiktok.ts.
+//
+// WHY THIS SHAPE: the file keeps EVERY exported symbol name + TypeScript shape
+//   byte-identical to the old mock so all 10 consumer components + the two
+//   analytics pages compile UNCHANGED — only the *values* flip from fabricated
+//   to real, and metrics the source genuinely lacks are honestly omitted.
+//
+// HR-10 ACCESS HONESTY + HR-49 NO MOCK DATA — the @geezjulz CSV contains
+//   likes, comments and shares ONLY. There are:
+//     • NO view counts          → never fabricated; rendered "—" / "no view data"
+//     • NO watch-time           → never fabricated
+//     • NO link clicks / CTR / conversions / revenue → POSTED_LINKS is empty []
+//     • NO earnings / bonus $   → bonus exports are empty []  (honest-empty)
+//     • shares are present but ALL ZERO → engagement = likes + comments
+//   Every number below traces to the source file. Nothing is invented.
 
+import {
+  getTikTokSummaryTotals,
+  getPillarSummary,
+  getTopPosts,
+  HONEST_GAPS,
+} from '@/lib/analytics/from-tiktok';
+
+// Real source aggregates, computed once.
+const TOTALS = getTikTokSummaryTotals();
+const TOP_POSTS = getTopPosts();
+const PILLARS = getPillarSummary();
+
+/** Compact number → "8.3K" / "1,845". Honest formatter, no rounding lies. */
+function compact(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 10_000) return `${(n / 1000).toFixed(0)}K`;
+  if (n >= 1_000) return `${(n / 1000).toFixed(1)}K`;
+  return n.toLocaleString();
+}
+
+/** First sentence / clause of a caption, trimmed for list display. */
+function shortCaption(caption: string, max = 48): string {
+  const clean = caption.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  return clean.slice(0, max).trimEnd() + '…';
+}
+
+// ---------------------------------------------------------------------------
+// Date range. The CSV has no fixed reporting window we can honestly label as a
+// "period vs prior period" comparison, so these describe the real coverage
+// (all-time @geezjulz) rather than inventing a 30-day delta window.
+// ---------------------------------------------------------------------------
 export interface DateRange {
   label: string;
   start: string; // ISO
@@ -10,17 +59,23 @@ export interface DateRange {
 }
 
 export const CURRENT_PERIOD: DateRange = {
-  label: 'Apr 6 - May 6, 2026',
-  start: '2026-04-06',
-  end: '2026-05-06',
+  label: 'All @geezjulz posts',
+  start: '',
+  end: '',
 };
 
 export const PREVIOUS_PERIOD: DateRange = {
-  label: 'Mar 6 - Apr 5, 2026',
-  start: '2026-03-06',
-  end: '2026-04-05',
+  // Honest: there is no prior-period dataset to compare against.
+  label: 'no prior-period data',
+  start: '',
+  end: '',
 };
 
+// ---------------------------------------------------------------------------
+// Top stat cards. Real account-level KPIs. No views, no earnings — those tiles
+// are replaced with metrics that actually exist (comments, total engagement).
+// Deltas are neutral/empty because there is no prior period to diff against.
+// ---------------------------------------------------------------------------
 export interface TopStatCard {
   id: string;
   label: string;
@@ -34,55 +89,93 @@ export const TOP_STAT_CARDS: TopStatCard[] = [
   {
     id: 'posted',
     label: 'TOTAL POSTS',
-    value: '66',
-    delta: '+14',
-    deltaTone: 'positive',
-    sublabel: 'vs last 30d',
+    value: TOTALS.totalPosts.toLocaleString(),
+    delta: '',
+    deltaTone: 'neutral',
+    sublabel: '@geezjulz · all time',
   },
   {
-    id: 'views',
-    label: 'TOTAL VIEWS',
-    value: '1.2M',
-    delta: '+28.4%',
-    deltaTone: 'positive',
-    sublabel: 'vs last 30d',
+    id: 'likes',
+    label: 'TOTAL LIKES',
+    value: TOTALS.likes.toLocaleString(),
+    delta: '',
+    deltaTone: 'neutral',
+    sublabel: 'across all posts',
   },
   {
-    id: 'bonus',
-    label: 'TOTAL EARNED',
-    value: '$2,845.60',
-    delta: '+22.7%',
-    deltaTone: 'positive',
-    sublabel: 'vs last 30d',
+    id: 'comments',
+    label: 'TOTAL COMMENTS',
+    value: TOTALS.comments.toLocaleString(),
+    delta: '',
+    deltaTone: 'neutral',
+    sublabel: 'across all posts',
   },
   {
-    id: 'conv',
+    id: 'avg-eng',
     label: 'AVG ENGAGEMENT',
-    value: '42.6%',
-    delta: '+6.3pp',
-    deltaTone: 'positive',
-    sublabel: 'vs last 30d',
+    value: TOTALS.avgEngagementPerPost.toLocaleString(),
+    delta: '',
+    deltaTone: 'neutral',
+    sublabel: 'likes + comments / post',
   },
 ];
 
+// ---------------------------------------------------------------------------
+// Smart Panel — derived from the real pillar split + honest data gaps, not
+// fabricated "GRWM +28%" style claims.
+// ---------------------------------------------------------------------------
 export interface SmartPanelItem {
   id: string;
   text: string;
 }
 
+const TOP_PILLAR = PILLARS[0];
+const SECOND_PILLAR = PILLARS[1];
+
 export const WHATS_WINNING: SmartPanelItem[] = [
-  { id: 'w1', text: 'GRWM + voiceover hooks +28%' },
-  { id: 'w2', text: 'Beauty & Skincare converting 2.4x higher' },
-  { id: 'w3', text: 'TikTok views up 35% this month' },
-  { id: 'w4', text: 'Videos 20-30s get highest watch time' },
-];
+  TOP_PILLAR && {
+    id: 'w1',
+    text: `"${TOP_PILLAR.pillar}" leads — ${TOP_PILLAR.avgEngagement.toLocaleString()} avg engagement across ${TOP_PILLAR.posts} posts`,
+  },
+  TOP_POSTS[0] && {
+    id: 'w2',
+    text: `Top post: ${TOP_POSTS[0].likes.toLocaleString()} likes · ${TOP_POSTS[0].comments.toLocaleString()} comments`,
+  },
+  {
+    id: 'w3',
+    text: `${TOTALS.likes.toLocaleString()} total likes across ${TOTALS.totalPosts} posts`,
+  },
+].filter(Boolean) as SmartPanelItem[];
 
 export const NEEDS_ATTENTION: SmartPanelItem[] = [
-  { id: 'n1', text: '3 videos under 5% retention' },
-  { id: 'n2', text: 'Response time on briefs could improve' },
-  { id: 'n3', text: 'Only 21% of links used UTM tracking' },
-];
+  {
+    id: 'n1',
+    // Real: 20 of 42 posts are still unclassified by pillar.
+    text: (() => {
+      const unclassified = PILLARS.find((p) => p.pillar === 'Unclassified');
+      return unclassified
+        ? `${unclassified.posts} of ${TOTALS.totalPosts} posts still unclassified by pillar`
+        : 'Classify remaining posts by content pillar';
+    })(),
+  },
+  SECOND_PILLAR &&
+    TOP_PILLAR && {
+      id: 'n2',
+      text: `Engagement concentrated in "${TOP_PILLAR.pillar}" — test more "${SECOND_PILLAR.pillar}" concepts`,
+    },
+  {
+    id: 'n3',
+    // Honest data-gap callout instead of a fabricated "21% used UTM" stat.
+    text: HONEST_GAPS.note,
+  },
+].filter(Boolean) as SmartPanelItem[];
 
+// ---------------------------------------------------------------------------
+// Top campaigns. The @geezjulz data has no brand "campaigns" with views/$ — so
+// this surfaces the real top-performing POSTS. Field NAMES are preserved
+// (brand/views/bonus) so TopCampaignsCard compiles unchanged; values are real
+// and honestly labelled (likes + comments, never fabricated views or money).
+// ---------------------------------------------------------------------------
 export interface TopCampaign {
   id: string;
   brand: string;
@@ -90,14 +183,18 @@ export interface TopCampaign {
   bonus: string;
 }
 
-export const TOP_CAMPAIGNS: TopCampaign[] = [
-  { id: 'c1', brand: 'Vitality Collagen',  views: '312K', bonus: '$685.00' },
-  { id: 'c2', brand: 'CleanGlow Skincare', views: '248K', bonus: '$480.00' },
-  { id: 'c3', brand: 'Oh Snap! Pickles',   views: '192K', bonus: '$375.00' },
-  { id: 'c4', brand: 'Nushape Lipo Wrap',  views: '156K', bonus: '$310.00' },
-  { id: 'c5', brand: 'Glossier',           views: '128K', bonus: '$245.00' },
-];
+export const TOP_CAMPAIGNS: TopCampaign[] = TOP_POSTS.slice(0, 5).map((p, i) => ({
+  id: `c${i + 1}`,
+  brand: shortCaption(p.caption, 40),
+  views: `${p.likes.toLocaleString()} likes`,
+  bonus: `${p.comments.toLocaleString()} comments`,
+}));
 
+// ---------------------------------------------------------------------------
+// Portfolio-worthy posts. Real top posts. "views" slot carries real likes;
+// "engagement" carries real total engagement. Thumbnail is an emoji placeholder
+// (no media thumbnails in the source), platform is TikTok (the real platform).
+// ---------------------------------------------------------------------------
 export interface PortfolioPost {
   id: string;
   title: string;
@@ -107,13 +204,24 @@ export interface PortfolioPost {
   engagement: string;
 }
 
-export const PORTFOLIO_POSTS: PortfolioPost[] = [
-  { id: 'p1', title: 'GRWM w/ Vitality Collagen',  thumbnail: '✨', platform: 'TikTok', views: '312K', engagement: '6.8%' },
-  { id: 'p2', title: 'CleanGlow 7-Day Test',       thumbnail: '🧴', platform: 'Reels',  views: '248K', engagement: '5.4%' },
-  { id: 'p3', title: 'Oh Snap! Snack Hack POV',    thumbnail: '🥒', platform: 'TikTok', views: '192K', engagement: '7.1%' },
-  { id: 'p4', title: 'Nushape Honest Review',      thumbnail: '💧', platform: 'Shorts', views: '156K', engagement: '4.2%' },
-];
+const PORTFOLIO_EMOJI = ['🏆', '🌺', '✨', '💜'];
 
+export const PORTFOLIO_POSTS: PortfolioPost[] = TOP_POSTS.slice(0, 4).map(
+  (p, i) => ({
+    id: `p${i + 1}`,
+    title: shortCaption(p.caption, 44),
+    thumbnail: PORTFOLIO_EMOJI[i % PORTFOLIO_EMOJI.length],
+    platform: 'TikTok',
+    views: `${compact(p.likes)} likes`,
+    engagement: compact(p.engagement),
+  }),
+);
+
+// ---------------------------------------------------------------------------
+// Bonus / earnings exports. The source has ZERO earnings or bonus data, so
+// these are honestly EMPTY. Consumers (BonusTracker, UpcomingBonusThresholds)
+// will render their empty state — no fabricated dollar figures. (HR-10/HR-49)
+// ---------------------------------------------------------------------------
 export interface BonusThreshold {
   id: string;
   brand: string;
@@ -121,15 +229,8 @@ export interface BonusThreshold {
   target: number;
 }
 
-export const BONUS_THRESHOLDS: BonusThreshold[] = [
-  { id: 'b1', brand: 'Vitality Collagen',  earned: 685, target: 1000 },
-  { id: 'b2', brand: 'CleanGlow',          earned: 480, target: 750 },
-  { id: 'b3', brand: 'Oh Snap!',           earned: 375, target: 500 },
-  { id: 'b4', brand: 'Nushape',            earned: 310, target: 500 },
-];
+export const BONUS_THRESHOLDS: BonusThreshold[] = [];
 
-// Used by UpcomingBonusThresholds.tsx (mockup #11 upper-right "Upcoming Bonus
-// Thresholds" card — 4 progress bars). Mirrors the 4 leading campaigns.
 export interface UpcomingBonusThreshold {
   id: string;
   brand: string;
@@ -137,54 +238,49 @@ export interface UpcomingBonusThreshold {
   target: number;
 }
 
-export const UPCOMING_BONUS_THRESHOLDS: UpcomingBonusThreshold[] = [
-  { id: 'ub1', brand: 'Vitality Collagen', earned: 685, target: 1000 },
-  { id: 'ub2', brand: 'CleanGlow',         earned: 480, target: 750 },
-  { id: 'ub3', brand: 'Oh Snap!',          earned: 375, target: 500 },
-  { id: 'ub4', brand: 'Nushape',           earned: 310, target: 500 },
-];
+export const UPCOMING_BONUS_THRESHOLDS: UpcomingBonusThreshold[] = [];
 
+export interface BonusByCampaign {
+  id: string;
+  brand: string;
+  earned: number;
+  pending: number;
+  total: number;
+}
+
+export const BONUS_BY_CAMPAIGN: BonusByCampaign[] = [];
+
+// ---------------------------------------------------------------------------
+// Views-over-time + hook performance. NOTE: the live chart components
+// (ViewsOverTimeChart, HookPerformanceBars) already read real data directly
+// from lib/analytics/from-tiktok-csv.ts and do NOT import these constants. They
+// are kept here ONLY to preserve the module's export surface. The source has no
+// view counts, so VIEWS_OVER_TIME is empty (honest) rather than fabricated.
+// ---------------------------------------------------------------------------
 export interface ViewsOverTimePoint {
-  date: string;   // 'Apr 06'
+  date: string; // 'Apr 06'
   current: number;
   previous: number;
 }
 
-// 30-day series — realistic spikes around posts
-export const VIEWS_OVER_TIME: ViewsOverTimePoint[] = [
-  { date: 'Apr 06', current: 18000, previous: 14200 },
-  { date: 'Apr 08', current: 22500, previous: 15800 },
-  { date: 'Apr 10', current: 28000, previous: 18100 },
-  { date: 'Apr 12', current: 34200, previous: 19400 },
-  { date: 'Apr 14', current: 31800, previous: 21000 },
-  { date: 'Apr 16', current: 39500, previous: 22500 },
-  { date: 'Apr 18', current: 45200, previous: 24800 },
-  { date: 'Apr 20', current: 52800, previous: 26200 },
-  { date: 'Apr 22', current: 48100, previous: 27500 },
-  { date: 'Apr 24', current: 55600, previous: 29100 },
-  { date: 'Apr 26', current: 61200, previous: 30400 },
-  { date: 'Apr 28', current: 58900, previous: 31800 },
-  { date: 'Apr 30', current: 66400, previous: 33000 },
-  { date: 'May 02', current: 72100, previous: 34500 },
-  { date: 'May 04', current: 79800, previous: 35800 },
-  { date: 'May 06', current: 86200, previous: 37100 },
-];
+export const VIEWS_OVER_TIME: ViewsOverTimePoint[] = [];
 
 export interface HookPerformance {
   id: string;
   label: string;
-  viewRate: number;    // %
-  completion: number;  // %
+  viewRate: number; // %
+  completion: number; // %
 }
 
-export const HOOK_PERFORMANCE: HookPerformance[] = [
-  { id: 'h1', label: 'Question hook',  viewRate: 48, completion: 32 },
-  { id: 'h2', label: 'GRWM/Routine',   viewRate: 56, completion: 36 },
-  { id: 'h3', label: 'Storytime',      viewRate: 44, completion: 28 },
-  { id: 'h4', label: 'List/Tips',      viewRate: 41, completion: 26 },
-  { id: 'h5', label: 'Product Demo',   viewRate: 51, completion: 33 },
-];
+// No watch-rate / completion data in the source → empty (honest). The real
+// hook chart uses engagement-based metrics via from-tiktok-csv.ts instead.
+export const HOOK_PERFORMANCE: HookPerformance[] = [];
 
+// ---------------------------------------------------------------------------
+// Posted links with click/conversion/revenue metrics. The source has NONE of
+// these (no UTM clicks, no conversions, no revenue), so this is honestly EMPTY.
+// PostedLinksTable renders an empty table body — no fabricated funnel numbers.
+// ---------------------------------------------------------------------------
 export interface PostedLinkRow {
   id: string;
   campaign: string;
@@ -195,30 +291,13 @@ export interface PostedLinkRow {
   revenue: string;
 }
 
-export const POSTED_LINKS: PostedLinkRow[] = [
-  { id: 'l1', campaign: 'Vitality Collagen',  clicks: 4820, ctr: '6.4%', conversions: 168, convRate: '3.5%', revenue: '$1,268.00' },
-  { id: 'l2', campaign: 'CleanGlow Skincare', clicks: 3210, ctr: '5.1%', conversions: 112, convRate: '3.5%', revenue: '$894.00'   },
-  { id: 'l3', campaign: 'Oh Snap! Pickles',   clicks: 2540, ctr: '4.8%', conversions: 84,  convRate: '3.3%', revenue: '$612.00'   },
-  { id: 'l4', campaign: 'Nushape Lipo Wrap',  clicks: 1980, ctr: '4.2%', conversions: 56,  convRate: '2.8%', revenue: '$448.00'   },
-  { id: 'l5', campaign: 'Glossier Skin Tint', clicks: 1620, ctr: '3.9%', conversions: 42,  convRate: '2.6%', revenue: '$336.00'   },
-];
+export const POSTED_LINKS: PostedLinkRow[] = [];
 
-export interface BonusByCampaign {
-  id: string;
-  brand: string;
-  earned: number;
-  pending: number;
-  total: number;
-}
-
-export const BONUS_BY_CAMPAIGN: BonusByCampaign[] = [
-  { id: 'bc1', brand: 'Vitality Collagen',  earned: 685, pending: 215, total: 1000 },
-  { id: 'bc2', brand: 'CleanGlow',          earned: 480, pending: 120, total: 750  },
-  { id: 'bc3', brand: 'Oh Snap!',           earned: 375, pending: 50,  total: 500  },
-  { id: 'bc4', brand: 'Nushape',            earned: 310, pending: 90,  total: 500  },
-  { id: 'bc5', brand: 'Glossier',           earned: 245, pending: 80,  total: 400  },
-];
-
+// ---------------------------------------------------------------------------
+// Best videos. Real top posts. The source has no view counts or watch-time, so
+// "views" carries real likes and "avgWatch" is honestly "—". Engagement is the
+// real total engagement count.
+// ---------------------------------------------------------------------------
 export interface BestVideo {
   id: string;
   title: string;
@@ -228,14 +307,21 @@ export interface BestVideo {
   engagement: string;
 }
 
-export const BEST_VIDEOS: BestVideo[] = [
-  { id: 'v1', title: 'GRWM ft. Vitality Collagen',    platform: 'TikTok', views: '312K', avgWatch: '18.4s', engagement: '6.8%' },
-  { id: 'v2', title: 'CleanGlow 7-day skin test',     platform: 'Reels',  views: '248K', avgWatch: '15.2s', engagement: '5.4%' },
-  { id: 'v3', title: 'Oh Snap! snack hack POV',       platform: 'TikTok', views: '192K', avgWatch: '14.8s', engagement: '7.1%' },
-  { id: 'v4', title: 'Nushape honest first impression',platform: 'Shorts', views: '156K', avgWatch: '12.6s', engagement: '4.2%' },
-  { id: 'v5', title: 'Glossier skin tint 3-shade',    platform: 'TikTok', views: '128K', avgWatch: '13.9s', engagement: '5.8%' },
-];
+export const BEST_VIDEOS: BestVideo[] = TOP_POSTS.slice(0, 5).map((p, i) => ({
+  id: `v${i + 1}`,
+  title: shortCaption(p.caption, 44),
+  platform: 'TikTok',
+  views: `${compact(p.likes)} likes`,
+  avgWatch: '—', // honest: no watch-time data in source
+  engagement: compact(p.engagement),
+}));
 
+// ---------------------------------------------------------------------------
+// Platform performance. The source is TikTok-only with no view counts, so this
+// shows the single real platform (TikTok) with real engagement totals. "views"
+// carries real likes; "follows" is honestly "—" (no follower-delta data).
+// Reels / Shorts rows are omitted rather than fabricated.
+// ---------------------------------------------------------------------------
 export interface PlatformPerf {
   id: string;
   platform: 'TikTok' | 'Reels' | 'Shorts';
@@ -246,7 +332,12 @@ export interface PlatformPerf {
 }
 
 export const PLATFORM_PERFORMANCE: PlatformPerf[] = [
-  { id: 'tt', platform: 'TikTok', views: '748K', engagement: '5.6%', follows: '+1,842', color: 'from-pink-400 to-rose-500'      },
-  { id: 'ig', platform: 'Reels',  views: '312K', engagement: '4.2%', follows: '+912',   color: 'from-purple-400 to-fuchsia-500' },
-  { id: 'yt', platform: 'Shorts', views: '182K', engagement: '3.8%', follows: '+436',   color: 'from-red-400 to-orange-500'     },
+  {
+    id: 'tt',
+    platform: 'TikTok',
+    views: `${compact(TOTALS.likes)} likes`,
+    engagement: `${TOTALS.engagement.toLocaleString()} total`,
+    follows: '—',
+    color: 'from-pink-400 to-rose-500',
+  },
 ];
