@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fbrand-responses\u002F[id]","\u002Fcampaigns\u002F[slug]","\u002Fcampaigns\u002F[slug]\u002Fassets","\u002Fcampaigns\u002F[slug]\u002Fproduction","\u002Fcampaigns\u002F[slug]\u002Fsow","\u002Fsow-breakdown\u002F[slug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
