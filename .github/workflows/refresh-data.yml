@@ -1,84 +1,67 @@
 name: refresh-data
 
-# Cron every 15 min: rebuild + redeploy. Today this is redundant with deploy.yml
-# (mock-data only). When D-5 live tokens land, uncomment the rsync step below
-# to mirror UGC workspace BEFORE rebuild — that's when this becomes useful.
-#
-# ⚠️ DATA ISOLATION GUARDRAIL
-# This workflow MUST NEVER sync from:
-#   - OneDrive/Desktop/julz-vault/
-#   - juliannesilla.github.io/julz-command-center/
-#   - any *financial*, *household*, *identity-theft*, *post-hdmz*, *RJ* paths
-# Allowed source: OneDrive/Desktop/UGC/** only.
-#
-# ⚠️ DISABLED 2026-05-20 (Phase A.14c), rewritten 2026-05-21 (Phase A.14e Wave 8 prep)
-# Strategy: npm + peaceiris/actions-gh-pages → gh-pages branch (matches deploy.yml)
-# Re-enable checklist:
-#   (1) Set GitHub Actions secrets: LINEAR_API_TOKEN + N8N_API_TOKEN + UGC_SOURCE
-#   (2) Uncomment the "Mirror UGC workspace" rsync step below
-#   (3) Uncomment the schedule + push triggers below
-#   (4) Optionally add UGC_PASSWORD_HASH secret if password gate is reactivated
+# Part A — Cloud 24/7 auto-refresh (Sprint 1). Polls token-auth sources, merges
+# canonical, and pushes to main ONLY on data delta -> Vercel auto-redeploys.
+# SideShift is NOT here (login-gated, no browser in cloud) -> handled by the local
+# Windows task (scripts/refresh-local.ps1). Schedule-only triggers => no commit loop.
 
 on:
   workflow_dispatch:
-  # ── Re-enable when D-5 live data is wired (see checklist above) ──
-  # schedule:
-  #   - cron: '*/15 * * * *'
-  # push:
-  #   branches: [main]
+  schedule:
+    - cron: '*/15 * * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: pages-deploy
-  cancel-in-progress: true
+  group: refresh-data
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  refresh:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      # TODO(D-5 live swap): once UGC tokens exist, uncomment rsync step + add
-      # env block above with LINEAR_API_TOKEN / N8N_API_TOKEN / UGC_SOURCE.
-      # - name: Mirror UGC workspace (allowed paths only)
-      #   run: |
-      #     mkdir -p data/ugc-mirror
-      #     rsync -av --delete \
-      #       --include='**/*.md' --include='**/*.json' \
-      #       --exclude='*financial*' --exclude='*household*' \
-      #       --exclude='*identity-theft*' --exclude='*post-hdmz*' \
-      #       --exclude='*RJ*' --exclude='julz-vault/' \
-      #       "${{ secrets.UGC_SOURCE }}/" data/ugc-mirror/
-
-      - name: Install dependencies
+      - name: Install deps
         run: npm install --legacy-peer-deps --no-audit --no-fund
 
-      - name: Build (static export)
-        run: npm run build
+      - name: Poll Linear pipeline (graceful NEEDS-SECRETS exit if unset)
+        run: node scripts/poll-linear-pipeline.mjs || echo "linear poll non-fatal"
         env:
-          NODE_ENV: production
-          # NEXT_PUBLIC_UGC_PASSWORD_HASH: ${{ secrets.UGC_PASSWORD_HASH }}
-          # UGC_PASSWORD_HASH: ${{ secrets.UGC_PASSWORD_HASH }}
+          LINEAR_API_TOKEN: ${{ secrets.LINEAR_API_TOKEN }}
+          LINEAR_PROJECT_NAME: UGC Pipeline
 
-      - name: Add .nojekyll
-        run: touch out/.nojekyll
+      - name: Poll Gmail brand inbox (graceful NEEDS-SECRETS exit if unset)
+        run: node scripts/poll-gmail-brand.mjs || echo "gmail poll non-fatal"
+        env:
+          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+          GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
 
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          publish_branch: gh-pages
-          force_orphan: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'refresh-data: ${{ github.sha }}'
+      - name: Merge canonical (delta-merge, --apply)
+        run: node scripts/merge-canonical.mjs --apply || echo "merge non-fatal"
+
+      - name: Regenerate JSON the app imports
+        run: node scripts/jsonl-to-json.mjs || echo "json regen non-fatal"
+
+      - name: Commit + push ONLY on data delta (Vercel redeploys)
+        run: |
+          if [ -n "$(git status --porcelain data/)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/
+            git commit -m "refresh-data: auto-poll (cloud)"
+            git push origin main
+            echo "pushed data delta -> Vercel will redeploy"
+          else
+            echo "no data delta - nothing to push"
+          fi
