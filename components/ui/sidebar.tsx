@@ -42,6 +42,7 @@ import {
   Palette,
   ClipboardCheck,
   Users,
+  Send,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 // A14J-C3 atomic edit: import comment-mode hook for live badge count.
@@ -78,6 +79,8 @@ export const NAV_ENTRIES: NavEntry[] = [
   { label: 'Approvals', href: '/initiatives', icon: ClipboardCheck },
   // A.AA Wave 5 — accounts & deal sources.
   { label: 'Accounts', href: '/accounts', icon: Users },
+  // A.AA Wave B7 — send-ready message drafts to review + copy.
+  { label: 'Drafts', href: '/drafts', icon: Send },
 
   // Group 1 — Pipeline (6 children)
   {

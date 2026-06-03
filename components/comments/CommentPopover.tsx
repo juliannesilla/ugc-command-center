@@ -19,6 +19,7 @@ import { usePathname } from 'next/navigation';
 import { Send } from 'lucide-react';
 import { useCommentMode } from './CommentModeProvider.local';
 import type { CommentDraft, CommentPriority, CommentRecord } from './types';
+import { buildFeedbackIssueUrl } from '@/lib/comments/github-feedback';
 import { cn } from '@/lib/utils';
 
 export interface CommentPopoverProps {
@@ -102,8 +103,15 @@ export function CommentPopover({ clientX, clientY, target, onClose }: CommentPop
     // flips to 'vercel' and POST resumes.
     const deployTarget = process.env.NEXT_PUBLIC_DEPLOY_TARGET ?? 'gh-pages';
     if (deployTarget === 'gh-pages') {
-      // localStorage-only mode — show ephemeral success in console for debug
-      // and close. Comment stays in optimistic state visible in /inbox.
+      // A.AA Wave B6 — static site has no server, so persist + REACH ELON via a
+      // GitHub Issue (permanent, timestamped, readable via `gh`, shown live in the
+      // Feedback Hub). The optimistic row already gives instant local feedback;
+      // opening the pre-filled issue lets Julz submit it in one click.
+      try {
+        window.open(buildFeedbackIssueUrl(draft), '_blank', 'noopener');
+      } catch {
+        /* popup blocked — optimistic row still persists locally */
+      }
       onClose();
       setSubmitting(false);
       return;

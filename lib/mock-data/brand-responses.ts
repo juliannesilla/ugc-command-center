@@ -1,15 +1,23 @@
-// Mock data for Brand Responses — seeded with 18 SideShift chat conversations
-// from UGC Campaign System (OneDrive/Desktop/UGC/_meta/, Phase B-prep)
-// A.14u F2: receivedAt + responseDeadline now resolve via lib/date-anchor.
+// Brand Responses — REAL canonical-derived conversations.
+//
+// Phase 2026-06-02 (data-layer repoint): replaced the 38 fabricated brand
+// conversations (Hunch/Wand/NorthGrid/Fernweh/CoastFM/… — none were Julz's
+// real brands) with rows derived from REAL data at build time:
+//   - data/brands-canonical.jsonl (DARWIN merge) — brand, contact, status,
+//     awaiting_julz_action, last_msg_at, fit_score, notes. PRIMARY.
+//   - data/sideshift-messages.jsonl (31 real SideShift threads) — real
+//     message_text / last_message_preview / direction for thread + preview.
+//
+// HR-49 NO MOCK DATA · HR-10 ACCESS HONESTY: every conversation traces to a
+// canonical brand_id. Where a field has no real source (e.g. call slots, exact
+// contact email) we emit honest-empty (undefined / []) rather than fabricate.
+//
+// Exported names + TypeScript shapes are UNCHANGED so all importing routes +
+// components (app/brand-responses/**, components/brand-responses/**,
+// app/scheduling) keep compiling.
 
-import { daysFromNow } from "@/lib/date-anchor";
-const _DATE_PREFIX = daysFromNow(0);
-const _mShort = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-function _futureLabel(daysAhead: number): string {
-  const d = new Date();
-  d.setDate(d.getDate() + daysAhead);
-  return `${_mShort[d.getMonth()]} ${d.getDate()} ${daysAhead}d left`;
-}
+import canonicalRaw from "@/data/brands-canonical.json";
+import sideshiftRaw from "@/data/sideshift-messages.json";
 
 export type BrandStatus =
   | "new"
@@ -45,891 +53,243 @@ export type BrandConversation = {
   }[];
 };
 
-export const BRAND_CONVERSATIONS: BrandConversation[] = [
-  {
-    id: "hunch",
-    brand: "Hunch",
-    contactName: "Maya Reyes",
-    contactRole: "Creator Partnerships",
-    contactEmail: "maya@hunch.ai",
-    logoSeed: "h",
-    lastMessage:
-      "Loved your tone on the Acorns drop. Open to a quick call this week?",
-    lastMessageAt: "32 min ago",
-    receivedAt: `${_DATE_PREFIX}T14:00:00`,
-    responseDeadline: "Today 4h left",
-    deadlineHoursLeft: 4,
-    status: "new",
-    brandFit: 5,
-    unread: true,
-    callRequested: true,
-    callSlots: ["Wed 11:00 PT", "Wed 2:30 PT", "Thu 10:00 PT"],
-    nextAction: "Send brief intake + propose call slot",
-    notes: "Mentioned my Acorns video specifically. Warm lead.",
-    thread: [
-      {
-        from: "brand",
-        at: "32 min ago",
-        body: "Hi Julianne — Maya from Hunch here. Loved your tone on the Acorns drop. Open to a quick call this week?",
-      },
-    ],
-  },
-  {
-    id: "goodie-ai",
-    brand: "Goodie AI",
-    contactName: "Devon Park",
-    contactRole: "Brand Lead",
-    contactEmail: "devon@goodie.ai",
-    logoSeed: "g",
-    lastMessage:
-      "Sending brief now. Need 2 x 30s UGC, IG + TikTok usage, 60 days.",
-    lastMessageAt: "1h ago",
-    receivedAt: `${_DATE_PREFIX}T13:00:00`,
-    responseDeadline: "Today 6h left",
-    deadlineHoursLeft: 6,
-    status: "brief-requested",
-    brandFit: 4,
-    unread: true,
-    callRequested: false,
-    nextAction: "Review brief → quote (use Tier 2 pricing)",
-    notes: "Asked about pricing structure upfront.",
-    thread: [
-      {
-        from: "brand",
-        at: "3h ago",
-        body: "Hey — saw your TikTok. Are you taking new partnerships in June?",
-      },
-      {
-        from: "julianne",
-        at: "2h ago",
-        body: "Hi Devon — yes, I am! Could you share the creative brief, messaging, deliverables, usage, timeline, and payment structure?",
-      },
-      {
-        from: "brand",
-        at: "1h ago",
-        body: "Sending brief now. Need 2 x 30s UGC, IG + TikTok usage, 60 days.",
-      },
-    ],
-  },
-  {
-    id: "wand",
-    brand: "Wand",
-    contactName: "Priya Anand",
-    contactRole: "Growth Marketer",
-    contactEmail: "priya@trywand.com",
-    logoSeed: "w",
-    lastMessage: "Confirmed Tuesday 11am PT. Calendar invite sent.",
-    lastMessageAt: "4h ago",
-    receivedAt: `${_DATE_PREFIX}T10:00:00`,
-    responseDeadline: "Tomorrow 1d left",
-    deadlineHoursLeft: 24,
-    status: "call-scheduled",
-    brandFit: 5,
-    unread: false,
-    callRequested: true,
-    callSlots: ["Tue 11:00 PT — CONFIRMED"],
-    nextAction: "Prep call doc — Wand product overview + rate card",
-    notes: "AI scheduling tool. Could be repeat client.",
-    thread: [
-      {
-        from: "brand",
-        at: "Yesterday",
-        body: "Pitching a 3-video series — want to lock you in. Times this week?",
-      },
-      {
-        from: "julianne",
-        at: "Yesterday",
-        body: "Tue 11am PT, Wed 2pm PT, or Thu 10am PT all work.",
-      },
-      {
-        from: "brand",
-        at: "4h ago",
-        body: "Confirmed Tuesday 11am PT. Calendar invite sent.",
-      },
-    ],
-  },
-  {
-    id: "parakeet-ai",
-    brand: "ParakeetAI",
-    contactName: "Lena Schultz",
-    contactRole: "Founder",
-    contactEmail: "lena@parakeet.ai",
-    logoSeed: "p",
-    lastMessage:
-      "Filming today, rough cut by Friday — sound good?",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T09:00:00",
-    responseDeadline: "Today 8h left",
-    deadlineHoursLeft: 8,
-    status: "in-progress",
-    brandFit: 4,
-    unread: false,
-    callRequested: false,
-    nextAction: "Film today → upload rough cut Friday",
-    notes: "Founder is responsive, contract signed.",
-    thread: [
-      {
-        from: "brand",
-        at: "Yesterday",
-        body: "Filming today, rough cut by Friday — sound good?",
-      },
-    ],
-  },
-  {
-    id: "megprime-pay",
-    brand: "Megprime Pay",
-    contactName: "Andre Kowalski",
-    contactRole: "Marketing Director",
-    contactEmail: "andre@megprime.io",
-    logoSeed: "m",
-    lastMessage:
-      "Can you do a 60s explainer with on-camera + b-roll?",
-    lastMessageAt: "5h ago",
-    receivedAt: `${_DATE_PREFIX}T09:00:00`,
-    responseDeadline: "Tomorrow 18h left",
-    deadlineHoursLeft: 18,
-    status: "new",
-    brandFit: 3,
-    unread: true,
-    callRequested: false,
-    nextAction: "Reply — confirm format + send rate card",
-    notes: "Fintech — verify category isn't conflicting with current partners.",
-    thread: [
-      {
-        from: "brand",
-        at: "5h ago",
-        body: "Hey Julianne — can you do a 60s explainer with on-camera + b-roll?",
-      },
-    ],
-  },
-  {
-    id: "lattice-labs",
-    brand: "Lattice Labs",
-    contactName: "Sophie Tanaka",
-    contactRole: "Head of Creator",
-    contactEmail: "sophie@lattice.labs",
-    logoSeed: "l",
-    lastMessage: "Re-sending brief — first attachment didn't go through.",
-    lastMessageAt: "2 days ago",
-    receivedAt: "2026-05-17T15:00:00",
-    responseDeadline: "Overdue 6h",
-    deadlineHoursLeft: -6,
-    status: "brief-requested",
-    brandFit: 4,
-    unread: true,
-    callRequested: false,
-    nextAction: "URGENT — reply + apologize for delay",
-    notes: "First message buried. Recover politely.",
-    thread: [
-      { from: "brand", at: "2 days ago", body: "Re-sending brief — first attachment didn't go through." },
-    ],
-  },
-  {
-    id: "northgrid",
-    brand: "Northgrid",
-    contactName: "Theo Brennan",
-    contactRole: "Brand Manager",
-    contactEmail: "theo@northgrid.app",
-    logoSeed: "n",
-    lastMessage: "Loved the rough cut. One small tweak on the CTA.",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T11:00:00",
-    responseDeadline: "Tomorrow 1d left",
-    deadlineHoursLeft: 24,
-    status: "in-progress",
-    brandFit: 5,
-    unread: false,
-    callRequested: false,
-    nextAction: "Revise CTA → deliver final by Friday",
-    thread: [
-      { from: "brand", at: "Yesterday", body: "Loved the rough cut. One small tweak on the CTA." },
-    ],
-  },
-  {
-    id: "fernweh",
-    brand: "Fernweh",
-    contactName: "Imani Okafor",
-    contactRole: "Co-founder",
-    contactEmail: "imani@fernweh.travel",
-    logoSeed: "f",
-    lastMessage: "Could you do a travel-themed angle?",
-    lastMessageAt: "3h ago",
-    receivedAt: `${_DATE_PREFIX}T11:00:00`,
-    responseDeadline: "Today 5h left",
-    deadlineHoursLeft: 5,
-    status: "new",
-    brandFit: 3,
-    unread: true,
-    callRequested: false,
-    nextAction: "Reply — request brief + timeline",
-    thread: [
-      { from: "brand", at: "3h ago", body: "Could you do a travel-themed angle?" },
-    ],
-  },
-  {
-    id: "coastfm",
-    brand: "CoastFM",
-    contactName: "Marcus Vélez",
-    contactRole: "Partnerships",
-    contactEmail: "marcus@coastfm.co",
-    logoSeed: "c",
-    lastMessage: "Are weekends ok for filming?",
-    lastMessageAt: "6h ago",
-    receivedAt: `${_DATE_PREFIX}T08:00:00`,
-    responseDeadline: "Tomorrow 18h left",
-    deadlineHoursLeft: 18,
-    status: "awaiting-reply",
-    brandFit: 3,
-    unread: false,
-    callRequested: false,
-    nextAction: "Awaiting their brief response",
-    thread: [
-      { from: "brand", at: "6h ago", body: "Are weekends ok for filming?" },
-      { from: "julianne", at: "5h ago", body: "Yes — Saturday mornings work best. Could you send the brief?" },
-    ],
-  },
-  {
-    id: "blume-skin",
-    brand: "Blume Skin",
-    contactName: "Hana Voss",
-    contactRole: "Influencer Lead",
-    contactEmail: "hana@blumeskin.com",
-    logoSeed: "b",
-    lastMessage: "Want to book a discovery call next week?",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T14:00:00",
-    responseDeadline: "Today 3h left",
-    deadlineHoursLeft: 3,
-    status: "call-scheduled",
-    brandFit: 4,
-    unread: false,
-    callRequested: true,
-    callSlots: ["Mon 9:00 PT", "Mon 1:00 PT", "Tue 3:00 PT"],
-    nextAction: "Confirm slot → send invite",
-    thread: [
-      { from: "brand", at: "Yesterday", body: "Want to book a discovery call next week?" },
-    ],
-  },
-  {
-    id: "shiftpay",
-    brand: "ShiftPay",
-    contactName: "Owen Marchetti",
-    contactRole: "CMO",
-    contactEmail: "owen@shiftpay.app",
-    logoSeed: "s",
-    lastMessage: "Contract attached — please sign by EOW.",
-    lastMessageAt: "Today, 9:14 AM",
-    receivedAt: `${_DATE_PREFIX}T09:14:00`,
-    responseDeadline: "Today 7h left",
-    deadlineHoursLeft: 7,
-    status: "in-progress",
-    brandFit: 5,
-    unread: true,
-    callRequested: false,
-    nextAction: "Review + sign contract",
-    notes: "Highest-paying lead this month. $4.5k retainer offered.",
-    thread: [
-      { from: "brand", at: "Today, 9:14 AM", body: "Contract attached — please sign by EOW." },
-    ],
-  },
-  {
-    id: "kindling",
-    brand: "Kindling",
-    contactName: "Audra Lin",
-    contactRole: "Community Lead",
-    contactEmail: "audra@kindling.app",
-    logoSeed: "k",
-    lastMessage: "Sample box shipped, tracking attached.",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T16:00:00",
-    responseDeadline: "Tomorrow 1d left",
-    deadlineHoursLeft: 24,
-    status: "in-progress",
-    brandFit: 3,
-    unread: false,
-    callRequested: false,
-    nextAction: "Receive box → film unboxing Thursday",
-    thread: [
-      { from: "brand", at: "Yesterday", body: "Sample box shipped, tracking attached." },
-    ],
-  },
-  {
-    id: "ovo-fitness",
-    brand: "Ovo Fitness",
-    contactName: "Reggie Cole",
-    contactRole: "Founder",
-    contactEmail: "reggie@ovofit.com",
-    logoSeed: "o",
-    lastMessage:
-      "Are you open to equity-only deals? Limited cash runway right now.",
-    lastMessageAt: "2 days ago",
-    receivedAt: "2026-05-17T10:00:00",
-    responseDeadline: "Overdue 12h",
-    deadlineHoursLeft: -12,
-    status: "awaiting-reply",
-    brandFit: 1,
-    unread: true,
-    callRequested: false,
-    nextAction: "Polite decline — no equity-only deals",
-    notes: "Auto-decline. Doesn't fit rate floor.",
-    thread: [
-      { from: "brand", at: "2 days ago", body: "Are you open to equity-only deals? Limited cash runway right now." },
-    ],
-  },
-  {
-    id: "alma-co",
-    brand: "Alma & Co.",
-    contactName: "Yuki Beaumont",
-    contactRole: "Creative Director",
-    contactEmail: "yuki@almaand.co",
-    logoSeed: "a",
-    lastMessage: "Could you angle this toward Asian-American audiences?",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T13:00:00",
-    responseDeadline: "Today 5h left",
-    deadlineHoursLeft: 5,
-    status: "new",
-    brandFit: 5,
-    unread: true,
-    callRequested: false,
-    nextAction: "Reply — yes, lean in. Send sample script angles.",
-    thread: [
-      { from: "brand", at: "Yesterday", body: "Could you angle this toward Asian-American audiences?" },
-    ],
-  },
-  {
-    id: "loopstack",
-    brand: "Loopstack",
-    contactName: "Cassidy Pham",
-    contactRole: "Marketing Manager",
-    contactEmail: "cassidy@loopstack.io",
-    logoSeed: "L",
-    lastMessage: "Thanks for the rough cut — approving now.",
-    lastMessageAt: "3 days ago",
-    receivedAt: "2026-05-16T11:00:00",
-    responseDeadline: "Closed",
-    deadlineHoursLeft: 999,
-    status: "archived",
-    brandFit: 4,
-    unread: false,
-    callRequested: false,
-    nextAction: "Closed — invoice paid",
-    thread: [
-      { from: "brand", at: "3 days ago", body: "Thanks for the rough cut — approving now." },
-    ],
-  },
-  {
-    id: "halcyon",
-    brand: "Halcyon",
-    contactName: "Iris Pelletier",
-    contactRole: "Brand Partnerships",
-    contactEmail: "iris@halcyon.studio",
-    logoSeed: "H",
-    lastMessage: "What's your usage rate for 6 month paid social?",
-    lastMessageAt: "8h ago",
-    receivedAt: `${_DATE_PREFIX}T06:00:00`,
-    responseDeadline: "Today 9h left",
-    deadlineHoursLeft: 9,
-    status: "new",
-    brandFit: 4,
-    unread: true,
-    callRequested: false,
-    nextAction: "Reply with usage tier — 6mo = +30%",
-    thread: [
-      { from: "brand", at: "8h ago", body: "What's your usage rate for 6 month paid social?" },
-    ],
-  },
-  {
-    id: "tiderise",
-    brand: "Tiderise",
-    contactName: "Felix Okonkwo",
-    contactRole: "Co-founder",
-    contactEmail: "felix@tiderise.app",
-    logoSeed: "T",
-    lastMessage: "Following up — any update?",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T17:00:00",
-    responseDeadline: "Today 2h left",
-    deadlineHoursLeft: 2,
-    status: "awaiting-reply",
-    brandFit: 4,
-    unread: true,
-    callRequested: false,
-    nextAction: "URGENT — reply, apologize, schedule",
-    notes: "Has been waiting. Recover quickly.",
-    thread: [
-      { from: "brand", at: "Yesterday", body: "Following up — any update?" },
-    ],
-  },
-  {
-    id: "verda-grain",
-    brand: "Verda Grain",
-    contactName: "Marisol Tate",
-    contactRole: "Marketing",
-    contactEmail: "marisol@verdagrain.com",
-    logoSeed: "V",
-    lastMessage: "Can you send your media kit?",
-    lastMessageAt: "10h ago",
-    receivedAt: `${_DATE_PREFIX}T04:00:00`,
-    responseDeadline: "Tomorrow 22h left",
-    deadlineHoursLeft: 22,
-    status: "new",
-    brandFit: 3,
-    unread: true,
-    callRequested: false,
-    nextAction: "Send media kit + intake question set",
-    thread: [
-      { from: "brand", at: "10h ago", body: "Can you send your media kit?" },
-    ],
-  },
-  // ---- Extended seed (W-2-A append): 18 → 36 to satisfy tab counts ----
-  {
-    id: "sundry-co",
-    brand: "Sundry Co.",
-    contactName: "Pia Estevez",
-    contactRole: "Brand Manager",
-    contactEmail: "pia@sundry.co",
-    logoSeed: "S",
-    lastMessage: "Looking for a creator for our summer drop. Rates?",
-    lastMessageAt: "2h ago",
-    receivedAt: `${_DATE_PREFIX}T12:00:00`,
-    responseDeadline: "Today 5h left",
-    deadlineHoursLeft: 5,
-    status: "new",
-    brandFit: 4,
-    unread: true,
-    callRequested: false,
-    nextAction: "Reply — send rate card + intake set",
-    thread: [
-      { from: "brand", at: "2h ago", body: "Looking for a creator for our summer drop. Rates?" },
-    ],
-  },
-  {
-    id: "ferment-house",
-    brand: "Ferment House",
-    contactName: "Niko Bauer",
-    contactRole: "Founder",
-    contactEmail: "niko@fermenthouse.co",
-    logoSeed: "F",
-    lastMessage: "Brief attached — looking for 1x60s explainer.",
-    lastMessageAt: "5h ago",
-    receivedAt: `${_DATE_PREFIX}T09:30:00`,
-    responseDeadline: "Tomorrow 14h left",
-    deadlineHoursLeft: 14,
-    status: "brief-requested",
-    brandFit: 4,
-    unread: false,
-    callRequested: false,
-    nextAction: "Review brief → quote rate",
-    thread: [
-      { from: "brand", at: "5h ago", body: "Brief attached — looking for 1x60s explainer." },
-    ],
-  },
-  {
-    id: "linen-line",
-    brand: "Linen Line",
-    contactName: "Coraline Beck",
-    contactRole: "Influencer Mgr",
-    contactEmail: "coraline@linenline.com",
-    logoSeed: "L",
-    lastMessage: "Need media kit + recent example videos.",
-    lastMessageAt: "7h ago",
-    receivedAt: `${_DATE_PREFIX}T07:00:00`,
-    responseDeadline: "Today 6h left",
-    deadlineHoursLeft: 6,
-    status: "new",
-    brandFit: 3,
-    unread: true,
-    callRequested: false,
-    nextAction: "Send kit + 3 examples",
-    thread: [
-      { from: "brand", at: "7h ago", body: "Need media kit + recent example videos." },
-    ],
-  },
-  {
-    id: "barrelhouse",
-    brand: "Barrelhouse",
-    contactName: "Emi Tachibana",
-    contactRole: "Creator Partnerships",
-    contactEmail: "emi@barrelhouse.tv",
-    logoSeed: "B",
-    lastMessage: "Pitch for our Q3 series — can we hop on call Thursday?",
-    lastMessageAt: "1h ago",
-    receivedAt: `${_DATE_PREFIX}T13:30:00`,
-    responseDeadline: "Today 3h left",
-    deadlineHoursLeft: 3,
-    status: "new",
-    brandFit: 5,
-    unread: true,
-    callRequested: true,
-    callSlots: ["Thu 10:00 PT", "Thu 1:00 PT", "Fri 9:30 PT"],
-    nextAction: "Propose Thursday call slots",
-    thread: [
-      { from: "brand", at: "1h ago", body: "Pitch for our Q3 series — can we hop on call Thursday?" },
-    ],
-  },
-  {
-    id: "moonpath",
-    brand: "Moonpath",
-    contactName: "Sera Ahuja",
-    contactRole: "Marketing Lead",
-    contactEmail: "sera@moonpath.app",
-    logoSeed: "M",
-    lastMessage: "Confirming — invoice received, payment in 7 days.",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T16:00:00",
-    responseDeadline: "Tomorrow 1d left",
-    deadlineHoursLeft: 24,
-    status: "in-progress",
-    brandFit: 4,
-    unread: false,
-    callRequested: false,
-    nextAction: "Awaiting payment",
-    thread: [
-      { from: "brand", at: "Yesterday", body: "Confirming — invoice received, payment in 7 days." },
-    ],
-  },
-  {
-    id: "nimbus-pet",
-    brand: "Nimbus Pet",
-    contactName: "Jules Carrillo",
-    contactRole: "Brand Lead",
-    contactEmail: "jules@nimbuspet.co",
-    logoSeed: "N",
-    lastMessage: "Send the rough cut whenever ready — we're flexible.",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T12:00:00",
-    responseDeadline: _futureLabel(3),
-    deadlineHoursLeft: 72,
-    status: "in-progress",
-    brandFit: 4,
-    unread: false,
-    callRequested: false,
-    nextAction: "Film + upload by Wed",
-    thread: [
-      { from: "brand", at: "Yesterday", body: "Send the rough cut whenever ready — we're flexible." },
-    ],
-  },
-  {
-    id: "casa-fortuna",
-    brand: "Casa Fortuna",
-    contactName: "Diego Salas",
-    contactRole: "Founder",
-    contactEmail: "diego@casafortuna.mx",
-    logoSeed: "C",
-    lastMessage: "Got it — see you Tuesday for the call!",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T18:00:00",
-    responseDeadline: "Tomorrow 1d left",
-    deadlineHoursLeft: 24,
-    status: "call-scheduled",
-    brandFit: 4,
-    unread: false,
-    callRequested: true,
-    callSlots: ["Tue 9:00 PT — CONFIRMED"],
-    nextAction: "Prep talking points",
-    thread: [
-      { from: "brand", at: "Yesterday", body: "Got it — see you Tuesday for the call!" },
-    ],
-  },
-  {
-    id: "remi-skincare",
-    brand: "Remi Skincare",
-    contactName: "Olivia Mendes",
-    contactRole: "Influencer Lead",
-    contactEmail: "olivia@remi.beauty",
-    logoSeed: "R",
-    lastMessage: "Sample kit on the way. Tracking: 1Z-9X...",
-    lastMessageAt: "2 days ago",
-    receivedAt: "2026-05-17T15:00:00",
-    responseDeadline: "Tomorrow 20h left",
-    deadlineHoursLeft: 20,
-    status: "in-progress",
-    brandFit: 5,
-    unread: false,
-    callRequested: false,
-    nextAction: "Film unboxing once kit lands",
-    thread: [
-      { from: "brand", at: "2 days ago", body: "Sample kit on the way. Tracking: 1Z-9X..." },
-    ],
-  },
-  {
-    id: "atlas-bike",
-    brand: "Atlas Bike",
-    contactName: "Hugo Renard",
-    contactRole: "Partnerships",
-    contactEmail: "hugo@atlasbike.cc",
-    logoSeed: "A",
-    lastMessage: "Re: rates — would $1,200 for 2x organic posts work?",
-    lastMessageAt: "4h ago",
-    receivedAt: `${_DATE_PREFIX}T10:30:00`,
-    responseDeadline: "Today 7h left",
-    deadlineHoursLeft: 7,
-    status: "new",
-    brandFit: 3,
-    unread: true,
-    callRequested: false,
-    nextAction: "Counter — Tier 2 floor is $1,800",
-    thread: [
-      { from: "brand", at: "4h ago", body: "Re: rates — would $1,200 for 2x organic posts work?" },
-    ],
-  },
-  {
-    id: "wildmade",
-    brand: "Wildmade",
-    contactName: "Rumi Frost",
-    contactRole: "Co-founder",
-    contactEmail: "rumi@wildmade.studio",
-    logoSeed: "W",
-    lastMessage: "Reviewing internally — back to you by Friday.",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T11:00:00",
-    responseDeadline: _futureLabel(3),
-    deadlineHoursLeft: 72,
-    status: "awaiting-reply",
-    brandFit: 4,
-    unread: false,
-    callRequested: false,
-    nextAction: "Wait for their reply — Friday",
-    thread: [
-      { from: "brand", at: "Yesterday", body: "Reviewing internally — back to you by Friday." },
-    ],
-  },
-  {
-    id: "stardew-coffee",
-    brand: "Stardew Coffee",
-    contactName: "Wren Halloway",
-    contactRole: "Brand Manager",
-    contactEmail: "wren@stardew.coffee",
-    logoSeed: "S",
-    lastMessage: "Need it by next Wed — can you commit?",
-    lastMessageAt: "30 min ago",
-    receivedAt: `${_DATE_PREFIX}T14:30:00`,
-    responseDeadline: "Today 2h left",
-    deadlineHoursLeft: 2,
-    status: "new",
-    brandFit: 4,
-    unread: true,
-    callRequested: false,
-    nextAction: "Confirm — yes, achievable",
-    thread: [
-      { from: "brand", at: "30 min ago", body: "Need it by next Wed — can you commit?" },
-    ],
-  },
-  {
-    id: "echoform",
-    brand: "Echoform",
-    contactName: "Nasir Adigwe",
-    contactRole: "Head of Growth",
-    contactEmail: "nasir@echoform.ai",
-    logoSeed: "E",
-    lastMessage: "Sent contract — DocuSign incoming.",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T14:30:00",
-    responseDeadline: "Tomorrow 1d left",
-    deadlineHoursLeft: 24,
-    status: "in-progress",
-    brandFit: 5,
-    unread: false,
-    callRequested: false,
-    nextAction: "Sign + counter-sign",
-    thread: [
-      { from: "brand", at: "Yesterday", body: "Sent contract — DocuSign incoming." },
-    ],
-  },
-  {
-    id: "ghost-pepper",
-    brand: "Ghost Pepper",
-    contactName: "Tess Mariani",
-    contactRole: "Marketing",
-    contactEmail: "tess@ghostpepper.shop",
-    logoSeed: "G",
-    lastMessage: "Want to keep us posted on engagement after launch?",
-    lastMessageAt: "3 days ago",
-    receivedAt: "2026-05-16T14:00:00",
-    responseDeadline: "Closed",
-    deadlineHoursLeft: 999,
-    status: "archived",
-    brandFit: 3,
-    unread: false,
-    callRequested: false,
-    nextAction: "Closed — paid + analytics shared",
-    thread: [
-      { from: "brand", at: "3 days ago", body: "Want to keep us posted on engagement after launch?" },
-    ],
-  },
-  {
-    id: "vermillion",
-    brand: "Vermillion",
-    contactName: "Saoirse Quinn",
-    contactRole: "Creator Lead",
-    contactEmail: "saoirse@vermillion.io",
-    logoSeed: "V",
-    lastMessage: "Are you bookable for July? We're locking creators now.",
-    lastMessageAt: "9h ago",
-    receivedAt: `${_DATE_PREFIX}T05:30:00`,
-    responseDeadline: "Today 8h left",
-    deadlineHoursLeft: 8,
-    status: "new",
-    brandFit: 4,
-    unread: true,
-    callRequested: false,
-    nextAction: "Confirm July availability + rate",
-    thread: [
-      { from: "brand", at: "9h ago", body: "Are you bookable for July? We're locking creators now." },
-    ],
-  },
-  {
-    id: "honeysuckle",
-    brand: "Honeysuckle",
-    contactName: "Mira Eldridge",
-    contactRole: "Brand Director",
-    contactEmail: "mira@honeysuckle.beauty",
-    logoSeed: "H",
-    lastMessage: "We'd love a longer-term ambassador deal — interested?",
-    lastMessageAt: "1h ago",
-    receivedAt: `${_DATE_PREFIX}T13:00:00`,
-    responseDeadline: "Today 4h left",
-    deadlineHoursLeft: 4,
-    status: "new",
-    brandFit: 5,
-    unread: true,
-    callRequested: true,
-    callSlots: ["Mon 11:00 PT", "Tue 2:00 PT", "Wed 10:30 PT"],
-    nextAction: "Propose call — ambassador discovery",
-    notes: "Long-term deal opportunity. Prioritize.",
-    thread: [
-      { from: "brand", at: "1h ago", body: "We'd love a longer-term ambassador deal — interested?" },
-    ],
-  },
-  {
-    id: "drift-vinyl",
-    brand: "Drift Vinyl",
-    contactName: "Auggie Steel",
-    contactRole: "Founder",
-    contactEmail: "auggie@driftvinyl.fm",
-    logoSeed: "D",
-    lastMessage: "Following up on this — let me know if it's still a fit.",
-    lastMessageAt: "2 days ago",
-    receivedAt: "2026-05-17T11:00:00",
-    responseDeadline: "Overdue 18h",
-    deadlineHoursLeft: -18,
-    status: "awaiting-reply",
-    brandFit: 3,
-    unread: true,
-    callRequested: false,
-    nextAction: "URGENT — reply with status",
-    thread: [
-      { from: "brand", at: "2 days ago", body: "Following up on this — let me know if it's still a fit." },
-    ],
-  },
-  {
-    id: "stoma-bakery",
-    brand: "Stoma Bakery",
-    contactName: "Lex Vermeer",
-    contactRole: "Owner",
-    contactEmail: "lex@stoma.bakery",
-    logoSeed: "S",
-    lastMessage: "Closing this out — thanks again!",
-    lastMessageAt: "4 days ago",
-    receivedAt: "2026-05-15T10:00:00",
-    responseDeadline: "Closed",
-    deadlineHoursLeft: 999,
-    status: "archived",
-    brandFit: 3,
-    unread: false,
-    callRequested: false,
-    nextAction: "Closed",
-    thread: [
-      { from: "brand", at: "4 days ago", body: "Closing this out — thanks again!" },
-    ],
-  },
-  {
-    id: "ruse-eyewear",
-    brand: "Ruse Eyewear",
-    contactName: "Cleo Park",
-    contactRole: "Creator Mgr",
-    contactEmail: "cleo@ruse.co",
-    logoSeed: "R",
-    lastMessage: "Need draft by Friday — running tight.",
-    lastMessageAt: "3h ago",
-    receivedAt: `${_DATE_PREFIX}T11:30:00`,
-    responseDeadline: "Today 4h left",
-    deadlineHoursLeft: 4,
-    status: "in-progress",
-    brandFit: 4,
-    unread: false,
-    callRequested: false,
-    nextAction: "Send draft tonight",
-    thread: [
-      { from: "brand", at: "3h ago", body: "Need draft by Friday — running tight." },
-    ],
-  },
-  // ---- A.14n N3-CROSS-DATA fix #9: canonical slugs cited by mockups
-  // 18-brand-responses-summer-fridays.png and 25-brand-responses-glow-em-go.png.
-  // Both were missing from BRAND_CONVERSATIONS, causing
-  // /brand-responses/summer-fridays + /brand-responses/glow-em-go to 404 in
-  // the static export (Next.js `generateStaticParams` reads this array).
-  {
-    id: "summer-fridays",
-    brand: "Summer Fridays",
-    contactName: "Lauren Ireland",
-    contactRole: "Senior Influencer Mgr",
-    contactEmail: "lauren@summerfridays.com",
-    logoSeed: "S",
-    lastMessage:
-      "Hi Julianne — we'd love you for the Jet Lag Mask relaunch. Concept attached.",
-    lastMessageAt: "Today, 9:42 AM",
-    receivedAt: `${_DATE_PREFIX}T09:42:00`,
-    responseDeadline: "Today 5h left",
-    deadlineHoursLeft: 5,
-    status: "new",
-    brandFit: 5,
-    unread: true,
-    callRequested: true,
-    callSlots: ["Wed 10:00 PT", "Wed 2:00 PT", "Thu 11:30 PT"],
-    nextAction: "Reply — confirm rate tier + propose call slot",
-    notes:
-      "Tier-1 beauty brand. Repeat-client potential. Concept doc shows 2x60s + 1x carousel — quote at retainer floor.",
-    thread: [
-      {
-        from: "brand",
-        at: "Today, 9:42 AM",
-        body: "Hi Julianne — we'd love you for the Jet Lag Mask relaunch. Concept attached. Looking for 2x60s UGC + 1 carousel, IG + TikTok usage 90 days. Open to a quick call this week?",
-      },
-    ],
-  },
-  {
-    id: "glow-em-go",
-    brand: "Glow Em Go",
-    contactName: "Naomi Brookfield",
-    contactRole: "Brand Director",
-    contactEmail: "naomi@glowemgo.co",
-    logoSeed: "G",
-    lastMessage:
-      "Love your aesthetic. Quick Q on usage + bonus structure before we send brief.",
-    lastMessageAt: "Yesterday",
-    receivedAt: "2026-05-18T15:20:00",
-    responseDeadline: "Today 6h left",
-    deadlineHoursLeft: 6,
-    status: "brief-requested",
-    brandFit: 5,
-    unread: true,
-    callRequested: false,
-    nextAction: "Reply with usage tiers + bonus ladder; request full brief",
-    notes:
-      "Founder-led skincare. Asked smart Qs upfront — strong fit. Send rate card v3 + bonus ladder.",
-    thread: [
-      {
-        from: "brand",
-        at: "Yesterday",
-        body: "Love your aesthetic. Quick Q on usage + bonus structure before we send brief — what's your tier for 90-day paid social + a CPM bonus on top?",
-      },
-    ],
-  },
-];
+// ───────────────────────────────────────────────────────────────────────────
+// Canonical row subset (fields we map). Full schema: brands-canonical-summary.md
+// ───────────────────────────────────────────────────────────────────────────
 
-// Spec tabs (mockup #2): All 36 / Unread 8 / Response Needed 12 / Drafts 6 / Awaiting Reply 7 / Call Requested 3 / Archived
+interface CanonicalContact {
+  name: string | null;
+  email: string | null;
+  role: string | null;
+  channel: string | null;
+}
+
+interface CanonicalRow {
+  brand_id: string;
+  brand_name_canonical: string;
+  status: string;
+  dashboard_visible: boolean;
+  key_contact: CanonicalContact;
+  last_msg_at: string | null;
+  last_msg_direction: string | null;
+  awaiting_julz: boolean;
+  awaiting_julz_action: string | null;
+  awaiting_julz_since: string | null;
+  urgency: "P0" | "P1" | "P2" | "P3";
+  fit_score?: number | null;
+  notes: string;
+}
+
+interface SideshiftMsg {
+  id: string;
+  thread_id: string;
+  brand: string;
+  message_text?: string;
+  last_message_preview?: string;
+  ts: string;
+  direction: string; // "inbound" | "outbound"
+  status?: string;
+  thread_url?: string;
+}
+
+function loadCanonical(): CanonicalRow[] {
+  return (canonicalRaw as unknown[]).filter(
+    (o): o is CanonicalRow =>
+      typeof o === "object" &&
+      o !== null &&
+      typeof (o as { brand_id?: unknown }).brand_id === "string",
+  );
+}
+
+function loadSideshift(): SideshiftMsg[] {
+  return (sideshiftRaw as unknown[]).filter(
+    (o): o is SideshiftMsg =>
+      typeof o === "object" &&
+      o !== null &&
+      typeof (o as { thread_id?: unknown }).thread_id === "string" &&
+      typeof (o as { brand?: unknown }).brand === "string",
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// Field mappers
+// ───────────────────────────────────────────────────────────────────────────
+
+/** canonical.status → BrandConversation.status (Brand Responses tab buckets). */
+function mapStatus(row: CanonicalRow): BrandStatus {
+  switch (row.status) {
+    case "intake":
+      return "new";
+    case "in_negotiation":
+      // Negotiation w/ a booked call surfaces as call-scheduled when the
+      // action mentions a call; otherwise it's an active (in-progress) thread.
+      return /call|discovery|meet|zoom|schedule/i.test(row.awaiting_julz_action ?? "")
+        ? "call-scheduled"
+        : "in-progress";
+    case "contract_pending_julz":
+      return "brief-requested";
+    case "awaiting_julz":
+      return "new";
+    case "signed":
+      return "in-progress";
+    case "submitted":
+    case "paid":
+      return "in-progress";
+    case "closed":
+      return "archived";
+    default:
+      return "new";
+  }
+}
+
+/** canonical.fit_score (0-100 or 1-5) → 1..5 star bucket. */
+function mapBrandFit(row: CanonicalRow): 1 | 2 | 3 | 4 | 5 {
+  const raw = typeof row.fit_score === "number" ? row.fit_score : null;
+  if (raw == null) return 3; // honest neutral — no score yet
+  // Some sources store 0-100, some 1-10, some 1-5. Normalize to 1-5.
+  let n: number;
+  if (raw > 10) n = Math.round(raw / 20); // 0-100 → 1-5
+  else if (raw > 5) n = Math.round(raw / 2); // 1-10 → 1-5
+  else n = Math.round(raw); // already 1-5
+  return Math.min(5, Math.max(1, n)) as 1 | 2 | 3 | 4 | 5;
+}
+
+/** Hours until a response is "due": P0 = today, P1 = ~2 days, else ~5 days. */
+function deadlineHours(row: CanonicalRow): number {
+  if (!row.awaiting_julz) return 0;
+  if (row.urgency === "P0") return 4;
+  if (row.urgency === "P1") return 48;
+  return 120;
+}
+
+function deadlineLabel(row: CanonicalRow): string {
+  if (!row.awaiting_julz) return "No response needed";
+  const h = deadlineHours(row);
+  if (h <= 24) return `Today ${h}h left`;
+  const days = Math.round(h / 24);
+  return `${days}d left`;
+}
+
+/** ISO datetime from canonical date-only string (anchor to midnight UTC). */
+function toIso(date: string | null): string {
+  if (!date) return new Date().toISOString();
+  return date.length > 10 ? date : `${date}T12:00:00`;
+}
+
+function relLabel(date: string | null): string {
+  if (!date) return "—";
+  const then = new Date(toIso(date));
+  const days = Math.floor((Date.now() - then.getTime()) / 86_400_000);
+  if (days <= 0) return "Today";
+  if (days === 1) return "Yesterday";
+  if (days < 7) return `${days}d ago`;
+  return date.slice(0, 10);
+}
+
+/** Normalize a brand name for fuzzy join (lowercase, strip non-alphanum). */
+function norm(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+// Build a brand-name → latest SideShift message index once.
+const _sideshiftByBrand: Map<string, SideshiftMsg> = (() => {
+  const m = new Map<string, SideshiftMsg>();
+  for (const msg of loadSideshift()) {
+    const key = norm(msg.brand);
+    const existing = m.get(key);
+    if (!existing || msg.ts > existing.ts) m.set(key, msg);
+  }
+  return m;
+})();
+
+/** Pull the real SideShift preview/body for a brand, if we have one. */
+function sideshiftFor(row: CanonicalRow): SideshiftMsg | undefined {
+  return (
+    _sideshiftByBrand.get(norm(row.brand_name_canonical)) ??
+    _sideshiftByBrand.get(norm(row.brand_id))
+  );
+}
+
+/** Clean a SideShift preview ("You: …" prefix denotes outbound). */
+function cleanPreview(text: string | undefined): string {
+  if (!text) return "";
+  return text.replace(/^You:\s*/i, "").replace(/\s+/g, " ").trim();
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// Top-level mapper — canonical row → BrandConversation
+// ───────────────────────────────────────────────────────────────────────────
+
+function rowToConversation(row: CanonicalRow): BrandConversation {
+  const ss = sideshiftFor(row);
+  const contactName = row.key_contact.name ?? "Brand team";
+  const lastInbound = row.last_msg_direction === "brand";
+
+  // Real message body: prefer SideShift message_text, else the canonical
+  // awaiting action / notes. Honest — no invented dialogue.
+  const ssBody = cleanPreview(ss?.message_text ?? ss?.last_message_preview);
+  const lastMessage =
+    ssBody ||
+    row.awaiting_julz_action ||
+    (row.notes ? row.notes.split(".")[0] : "") ||
+    "Conversation in progress";
+
+  // Thread: reconstruct from the single real last message we have. We do NOT
+  // fabricate multi-turn dialogue (HR-10) — one real entry beats five fake ones.
+  const thread: BrandConversation["thread"] = [];
+  if (ssBody) {
+    thread.push({
+      from: ss?.direction === "outbound" ? "julianne" : "brand",
+      at: relLabel(ss?.ts ?? row.last_msg_at),
+      body: ssBody,
+    });
+  } else if (lastMessage) {
+    thread.push({
+      from: lastInbound ? "brand" : "julianne",
+      at: relLabel(row.last_msg_at),
+      body: lastMessage,
+    });
+  }
+
+  const callRequested = /call|discovery|meet|zoom|schedule/i.test(
+    row.awaiting_julz_action ?? "",
+  );
+
+  return {
+    id: row.brand_id,
+    brand: row.brand_name_canonical,
+    contactName,
+    contactRole: row.key_contact.role ?? "Brand contact",
+    contactEmail: row.key_contact.email ?? "",
+    logoSeed: row.brand_name_canonical.charAt(0).toLowerCase(),
+    lastMessage,
+    lastMessageAt: relLabel(row.last_msg_at),
+    receivedAt: toIso(row.last_msg_at),
+    responseDeadline: deadlineLabel(row),
+    deadlineHoursLeft: deadlineHours(row),
+    status: mapStatus(row),
+    brandFit: mapBrandFit(row),
+    // Unread = brand sent the last message and Julz still owes a reply.
+    unread: lastInbound && row.awaiting_julz,
+    callRequested,
+    // No real call-slot source — honest-empty, not fabricated times.
+    callSlots: callRequested ? [] : undefined,
+    notes: row.notes || undefined,
+    nextAction: row.awaiting_julz_action ?? "Awaiting brand reply",
+    thread,
+  };
+}
+
+/**
+ * REAL brand conversations, derived from canonical at build time.
+ * dashboard_visible rows only — sorted most-recent first.
+ */
+export const BRAND_CONVERSATIONS: BrandConversation[] = loadCanonical()
+  .filter((r) => r.dashboard_visible === true)
+  .sort((a, b) => (b.last_msg_at ?? "").localeCompare(a.last_msg_at ?? ""))
+  .map(rowToConversation);
+
+// Spec tabs (mockup #2): counts now derive from REAL conversations.
 export type TabKey =
   | "all"
   | "unread"
@@ -938,16 +298,6 @@ export type TabKey =
   | "awaiting-reply"
   | "call-requested"
   | "archived";
-
-export const STATUS_TABS: { key: TabKey; label: string; count: number }[] = [
-  { key: "all", label: "All", count: 36 },
-  { key: "unread", label: "Unread", count: 8 },
-  { key: "response-needed", label: "Response Needed", count: 12 },
-  { key: "drafts", label: "Drafts", count: 6 },
-  { key: "awaiting-reply", label: "Awaiting Reply", count: 7 },
-  { key: "call-requested", label: "Call Requested", count: 3 },
-  { key: "archived", label: "Archived", count: 3 },
-];
 
 // Filter predicate per tab — keeps table behavior consistent w/ tab counts
 export function filterByTab(conv: BrandConversation, tab: TabKey): boolean {
@@ -973,19 +323,34 @@ export function filterByTab(conv: BrandConversation, tab: TabKey): boolean {
   }
 }
 
+/** Count helper — keeps STATUS_TABS + STAT_CARDS honest against real rows. */
+function _countTab(tab: TabKey): number {
+  return BRAND_CONVERSATIONS.filter((c) => filterByTab(c, tab)).length;
+}
+
+export const STATUS_TABS: { key: TabKey; label: string; count: number }[] = [
+  { key: "all", label: "All", count: _countTab("all") },
+  { key: "unread", label: "Unread", count: _countTab("unread") },
+  { key: "response-needed", label: "Response Needed", count: _countTab("response-needed") },
+  { key: "drafts", label: "Drafts", count: _countTab("drafts") },
+  { key: "awaiting-reply", label: "Awaiting Reply", count: _countTab("awaiting-reply") },
+  { key: "call-requested", label: "Call Requested", count: _countTab("call-requested") },
+  { key: "archived", label: "Archived", count: _countTab("archived") },
+];
+
 export const STAT_CARDS: {
   label: string;
   value: number;
-  delta: number; // vs yesterday
+  delta: number; // vs yesterday — no historical snapshot source, honest 0
   accent: "cloud" | "iris" | "peach" | "ink";
   tabKey: TabKey;
 }[] = [
-  { label: "NEW MESSAGES", value: 8, delta: +3, accent: "cloud", tabKey: "unread" },
-  { label: "RESPONSE NEEDED", value: 12, delta: +2, accent: "peach", tabKey: "response-needed" },
-  { label: "DRAFTS IN PROGRESS", value: 6, delta: -1, accent: "iris", tabKey: "drafts" },
-  { label: "AWAITING REPLY", value: 7, delta: +1, accent: "cloud", tabKey: "awaiting-reply" },
-  { label: "CALL REQUESTED", value: 3, delta: +1, accent: "peach", tabKey: "call-requested" },
-  { label: "PARTNERSHIPS", value: 19, delta: +4, accent: "iris", tabKey: "all" },
+  { label: "NEW MESSAGES", value: _countTab("unread"), delta: 0, accent: "cloud", tabKey: "unread" },
+  { label: "RESPONSE NEEDED", value: _countTab("response-needed"), delta: 0, accent: "peach", tabKey: "response-needed" },
+  { label: "DRAFTS IN PROGRESS", value: _countTab("drafts"), delta: 0, accent: "iris", tabKey: "drafts" },
+  { label: "AWAITING REPLY", value: _countTab("awaiting-reply"), delta: 0, accent: "cloud", tabKey: "awaiting-reply" },
+  { label: "CALL REQUESTED", value: _countTab("call-requested"), delta: 0, accent: "peach", tabKey: "call-requested" },
+  { label: "PARTNERSHIPS", value: _countTab("all"), delta: 0, accent: "iris", tabKey: "all" },
 ];
 
 // Variables auto-substituted in reply composer

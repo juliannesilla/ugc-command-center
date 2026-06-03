@@ -1,0 +1,502 @@
+[
+  {
+    "schema": "brand-fit-scores",
+    "version": 1
+  },
+  {
+    "thread_id": "74dd82077454c17e",
+    "brand": "Tsenta",
+    "score": 5,
+    "reasoning": "Unknown brand with no campaign details or product context yet — needs more intake before fit can be assessed.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:20.926Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 932,
+      "output_tokens": 82,
+      "usd": 0.02013
+    }
+  },
+  {
+    "thread_id": "1dbb8ea944fbd421",
+    "brand": "KarmaTech OU",
+    "score": 5,
+    "reasoning": "KarmaTech sounds like it could be tech-adjacent (strong niche potential), but with no campaign details and only Julz's reply visible, more intake is needed to assess fit and paid status.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:23.958Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 933,
+      "output_tokens": 112,
+      "usd": 0.022394999999999998
+    }
+  },
+  {
+    "thread_id": "023a6f540cc8b20e",
+    "brand": "Aniwell",
+    "score": 5,
+    "reasoning": "Insufficient info — brand and campaign details unclear, needs more intake to assess niche fit and paid status.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:26.367Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 929,
+      "output_tokens": 76,
+      "usd": 0.019635
+    }
+  },
+  {
+    "thread_id": "91b14b9c66783c19",
+    "brand": "The Impressions Corporation",
+    "score": 5,
+    "reasoning": "Insufficient brand/campaign detail to assess niche fit, but tone of reply suggests a legitimate inbound worth a quick intake.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:29.048Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 931,
+      "output_tokens": 96,
+      "usd": 0.021165
+    }
+  },
+  {
+    "thread_id": "cc85e15bdd28590f",
+    "brand": "MWM.ai",
+    "score": 8,
+    "reasoning": "AI brand is a strong niche match for Julz and she's already in active dialogue post-selection, suggesting a legitimate paid opportunity.",
+    "niche_match": "strong",
+    "brand_safety": "safe",
+    "scored_at": "2026-05-27T19:22:31.591Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 929,
+      "output_tokens": 96,
+      "usd": 0.021135
+    }
+  },
+  {
+    "thread_id": "4c5ae785432f805d",
+    "brand": "Heyoka LLC",
+    "score": 4,
+    "reasoning": "Unknown brand with no campaign details or product context, and the excerpt is Julz's outbound reply rather than brand outreach — needs intake before assessment.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:34.256Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 933,
+      "output_tokens": 100,
+      "usd": 0.021495
+    }
+  },
+  {
+    "thread_id": "71027fa067f57beb",
+    "brand": "Phobaxx",
+    "score": 4,
+    "reasoning": "No campaign details or brand context provided, and the excerpt suggests Julz is still in due-diligence mode awaiting clarification before signing.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:36.990Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 934,
+      "output_tokens": 95,
+      "usd": 0.021135
+    }
+  },
+  {
+    "thread_id": "fa882e49a29a62cd",
+    "brand": "Minee Wipes",
+    "score": 4,
+    "reasoning": "Wipes brand sits in moderate/consumer-product territory with no campaign details or paid brief visible yet — needs more intake before prioritizing.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:39.651Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 927,
+      "output_tokens": 98,
+      "usd": 0.021255
+    }
+  },
+  {
+    "thread_id": "9cf8d553eca6b211",
+    "brand": "Hunch",
+    "score": 4,
+    "reasoning": "Hunch is a consumer/social app with unclear brief details and no specified deliverables or compensation — needs more intake before prioritizing.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:42.577Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 926,
+      "output_tokens": 94,
+      "usd": 0.02094
+    }
+  },
+  {
+    "thread_id": "21671f434a16fa2f",
+    "brand": "Natural Write",
+    "score": 3,
+    "reasoning": "Unpaid spec test video request before any contract is a classic exposure/free-work red flag regardless of niche.",
+    "niche_match": "moderate",
+    "brand_safety": "avoid",
+    "scored_at": "2026-05-27T19:22:44.762Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 920,
+      "output_tokens": 78,
+      "usd": 0.01965
+    }
+  },
+  {
+    "thread_id": "7d1a0e3dff7a23eb",
+    "brand": "Chance AI",
+    "score": 7,
+    "reasoning": "AI brand is a strong niche match, but no campaign details or brief yet — needs intake to confirm paid scope.",
+    "niche_match": "strong",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:47.182Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 902,
+      "output_tokens": 77,
+      "usd": 0.019305
+    }
+  },
+  {
+    "thread_id": "8b6452796c0e67d8",
+    "brand": "Megprime Pay",
+    "score": 2,
+    "reasoning": "Unknown payments brand with vague handoff message, no campaign details, and 'Megprime Pay' carries fintech/scam-pattern red flags requiring heavy vetting.",
+    "niche_match": "weak",
+    "brand_safety": "avoid",
+    "scored_at": "2026-05-27T19:22:50.218Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 914,
+      "output_tokens": 109,
+      "usd": 0.021885
+    }
+  },
+  {
+    "thread_id": "90cf0f7233925864",
+    "brand": "Triips.com",
+    "score": 2,
+    "reasoning": "Travel niche is case-by-case but multiple red flags: gmail.com founder address, 'selected for creator program' template language, mandatory onboarding call before any paid brief, and 'account creation/warmup' language suggests affiliate/MLM-style funnel rather than a real UGC paid deliverable.",
+    "niche_match": "weak",
+    "brand_safety": "avoid",
+    "scored_at": "2026-05-27T19:22:53.833Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 1218,
+      "output_tokens": 150,
+      "usd": 0.029519999999999998
+    }
+  },
+  {
+    "thread_id": "0d7c02e2e7eba30e",
+    "brand": "Wand",
+    "score": 3,
+    "reasoning": "No brand brief, product, or paid deliverable mentioned — appears to be an internal job-posting referral conversation, not a UGC opportunity.",
+    "niche_match": "weak",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:56.320Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 917,
+      "output_tokens": 96,
+      "usd": 0.020955
+    }
+  },
+  {
+    "thread_id": "83c4067d0b4cfa09",
+    "brand": "Astor",
+    "score": 3,
+    "reasoning": "Pay structure ($5/video + $1/1k views) is exposure-tier compensation that undervalues a polished UGC creator, and the brand/product context is unclear.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:22:58.911Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 928,
+      "output_tokens": 104,
+      "usd": 0.02172
+    }
+  },
+  {
+    "thread_id": "4b67ecef16f0f20f",
+    "brand": "madduck",
+    "score": 4,
+    "reasoning": "Unknown brand with no campaign details and outbound follow-up from Julz suggests unclear fit and incomplete intake.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:01.533Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 924,
+      "output_tokens": 90,
+      "usd": 0.020610000000000003
+    }
+  },
+  {
+    "thread_id": "df7cb03e5aef203e",
+    "brand": "HiveScales",
+    "score": 5,
+    "reasoning": "Insufficient context on product/niche from this excerpt — appears to be a creator network/platform pitch needing more intake before assessing fit.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:04.282Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 924,
+      "output_tokens": 94,
+      "usd": 0.02091
+    }
+  },
+  {
+    "thread_id": "5b0431fd81d9e663",
+    "brand": "Lollapaloozalab",
+    "score": 4,
+    "reasoning": "Desktop pet product is consumer app/lifestyle adjacent and case-by-case; outreach is already in progress but brand and brief specifics are unclear from excerpt, warranting more intake before prioritizing.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:07.304Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 935,
+      "output_tokens": 119,
+      "usd": 0.022949999999999998
+    }
+  },
+  {
+    "thread_id": "55f42acfe5f46267",
+    "brand": "Project Bullhorn",
+    "score": 4,
+    "reasoning": "Unknown brand with no campaign details and only Julz's reply visible — needs more intake before fit can be assessed.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:09.784Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 935,
+      "output_tokens": 87,
+      "usd": 0.02055
+    }
+  },
+  {
+    "thread_id": "da719c52c3aff5fa",
+    "brand": "EnterMaurs",
+    "score": 5,
+    "reasoning": "Active conversation already in intake phase but brand/campaign details are unclear, so fit can't be fully assessed yet.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:12.202Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 934,
+      "output_tokens": 88,
+      "usd": 0.02061
+    }
+  },
+  {
+    "thread_id": "428e1bb451a5932e",
+    "brand": "Loopsy",
+    "score": 7,
+    "reasoning": "Active, professional dialogue already in motion with clear next steps suggests a real paid engagement, though niche specifics for Loopsy aren't confirmed here.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:15.204Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 934,
+      "output_tokens": 101,
+      "usd": 0.021585
+    }
+  },
+  {
+    "thread_id": "58113abb46dd5267",
+    "brand": "Lotus Shop",
+    "score": 4,
+    "reasoning": "Generic consumer shop with no campaign details or product context provided; needs intake before assessment.",
+    "niche_match": "weak",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:17.364Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 933,
+      "output_tokens": 78,
+      "usd": 0.019845
+    }
+  },
+  {
+    "thread_id": "c59a03761857f1e9",
+    "brand": "MyCal: AI Calorie Tracker",
+    "score": 8,
+    "reasoning": "AI consumer app in productivity/wellness crossover is a strong niche fit and Julz already engaged requesting the brief — score pending paid terms confirmation.",
+    "niche_match": "strong",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:19.972Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 912,
+      "output_tokens": 101,
+      "usd": 0.021255000000000003
+    }
+  },
+  {
+    "thread_id": "6c2d03599b95680c",
+    "brand": "VEED",
+    "score": 9,
+    "reasoning": "VEED is an established AI-powered video/SaaS tool — strong niche match, brand-safe, and the thread is already active with Julz engaging professionally.",
+    "niche_match": "strong",
+    "brand_safety": "safe",
+    "scored_at": "2026-05-27T19:23:22.632Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 927,
+      "output_tokens": 100,
+      "usd": 0.021405
+    }
+  },
+  {
+    "thread_id": "58581c705247a7d6",
+    "brand": "PromptArmor",
+    "score": 8,
+    "reasoning": "AI/security SaaS is a strong niche match and conversation appears active with deliverables shared, though campaign/paid terms aren't specified here.",
+    "niche_match": "strong",
+    "brand_safety": "safe",
+    "scored_at": "2026-05-27T19:23:25.255Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 947,
+      "output_tokens": 84,
+      "usd": 0.020505000000000002
+    }
+  },
+  {
+    "thread_id": "8ab0d826975fee6a",
+    "brand": "Sherlock",
+    "score": 5,
+    "reasoning": "Brand name suggests possible SaaS/tech fit but no campaign details or brief provided yet — needs intake before real assessment.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:27.893Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 916,
+      "output_tokens": 92,
+      "usd": 0.02064
+    }
+  },
+  {
+    "thread_id": "3ce311ad45d8240a",
+    "brand": "Goodie AI",
+    "score": 6,
+    "reasoning": "AI brand (strong niche) with clear paid structured brief, but daily posting cadence and 'goof around/little dance' format conflicts with Julz's polished, dry-funny professional punk voice — needs intake to confirm format flexibility.",
+    "niche_match": "strong",
+    "brand_safety": "safe",
+    "scored_at": "2026-05-27T19:23:31.290Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 1195,
+      "output_tokens": 128,
+      "usd": 0.027525
+    }
+  },
+  {
+    "thread_id": "7d1949ddb2809604",
+    "brand": "CA Campaign",
+    "score": 4,
+    "reasoning": "Vague brand identity and unclear product/category from outreach excerpt — needs more intake before assessing niche fit and paid terms.",
+    "niche_match": "moderate",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:33.806Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 920,
+      "output_tokens": 92,
+      "usd": 0.0207
+    }
+  },
+  {
+    "thread_id": "acff6be9fe53ac51",
+    "brand": "Lovable",
+    "score": 9,
+    "reasoning": "Lovable is a strong-fit AI/dev tool brand and Julz has already engaged positively, indicating a warm, professional thread worth prioritizing.",
+    "niche_match": "strong",
+    "brand_safety": "safe",
+    "scored_at": "2026-05-27T19:23:36.019Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 930,
+      "output_tokens": 92,
+      "usd": 0.02085
+    }
+  },
+  {
+    "thread_id": "6620f4c729d46bb1",
+    "brand": "ParakeetAI",
+    "score": 9,
+    "reasoning": "AI/SaaS product is a strong niche match, outreach appears professional, and Julz is already actively engaged in negotiation.",
+    "niche_match": "strong",
+    "brand_safety": "safe",
+    "scored_at": "2026-05-27T19:23:38.407Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 934,
+      "output_tokens": 91,
+      "usd": 0.020835
+    }
+  },
+  {
+    "thread_id": "4b36007d1158203f",
+    "brand": "MWM.ai",
+    "score": 6,
+    "reasoning": "MWM.ai signals AI/SaaS niche (strong fit) but the message is just a bare campaign invite link with no brief, budget, or context to assess.",
+    "niche_match": "strong",
+    "brand_safety": "review",
+    "scored_at": "2026-05-27T19:23:40.942Z",
+    "model": "claude-opus-4-7",
+    "run_id": "2026-05-27T19-22-18-025Z-234e537d",
+    "token_usage": {
+      "input_tokens": 976,
+      "output_tokens": 100,
+      "usd": 0.02214
+    }
+  }
+]

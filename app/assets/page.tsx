@@ -10,6 +10,9 @@ import {
   HardDrive,
   FolderOpen,
   PlusCircle,
+  Film,
+  Image as ImageIcon,
+  Layers,
 } from 'lucide-react';
 import { StatusChip } from '@/components/ui/status-chip';
 import { Header } from '@/components/ui/header';
@@ -37,35 +40,35 @@ const STAT_CARDS = [
   {
     label: 'Total Assets',
     value: AGGREGATE.total.toLocaleString(),
-    sub: 'In the vault',
+    sub: `${AGGREGATE.manifestRows.toLocaleString()} files indexed`,
     tone: 'cloud',
     Icon: FolderOpen,
   },
   {
-    label: 'Brand Folders',
-    value: AGGREGATE.brandFolders,
-    sub: 'Active campaigns',
+    label: 'Videos',
+    value: AGGREGATE.videos.toLocaleString(),
+    sub: 'Clips in the vault',
     tone: 'iris',
-    Icon: FolderOpen,
+    Icon: Film,
   },
   {
-    label: 'Priority — Needs Attention',
-    value: AGGREGATE.missing,
-    sub: 'Require attention',
-    tone: 'orange',
-    Icon: AlertTriangle,
-  },
-  {
-    label: 'Ready to Send',
-    value: AGGREGATE.readyToSend,
-    sub: 'Cleared for brands',
+    label: 'Photos',
+    value: AGGREGATE.photos.toLocaleString(),
+    sub: 'Stills in the vault',
     tone: 'green',
-    Icon: CheckCircle2,
+    Icon: ImageIcon,
+  },
+  {
+    label: 'Content Types',
+    value: AGGREGATE.contentTypes,
+    sub: `across ${AGGREGATE.months} months`,
+    tone: 'orange',
+    Icon: Layers,
   },
   {
     label: 'Storage Used',
     value: `${AGGREGATE.storageUsedGB} GB`,
-    sub: `of ${AGGREGATE.storageCapGB} GB · ${AGGREGATE.storagePct}%`,
+    sub: 'Real library size',
     tone: 'pink',
     Icon: HardDrive,
   },
@@ -128,7 +131,8 @@ export default function AssetsPage() {
             ))}
           </section>
 
-          {/* Your Next Move */}
+          {/* Your Next Move — hidden when there are no real next-move tasks (HR-10 honest-empty) */}
+          {MOCK_ASSET_NEXT_MOVES.length > 0 && (
           <section className="rounded-3xl bg-gradient-to-br from-white via-cloud-50 to-iris-50 p-6 ring-1 ring-cloud-200 shadow-card rise rise-2">
             <div className="flex items-baseline justify-between">
               <div>
@@ -181,6 +185,7 @@ export default function AssetsPage() {
               })}
             </div>
           </section>
+          )}
 
           {/* Filter tabs */}
           <section className="rise rise-3">

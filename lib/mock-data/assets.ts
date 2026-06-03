@@ -1,297 +1,174 @@
-// Mock asset seed — 1,248 assets across 4 campaign folders + recent activity.
-// TODO(D-5 live swap): replace MOCK_* exports with lib/data-sync/markdown.ts reads.
+// Asset Vault data — wired to Julz's REAL asset library (A.AB live-data swap).
+//
+// Source of truth on disk:
+//   • data/assets-summary.json  → aggregates (manifest_rows, media_files,
+//     total_gb, by_type, by_content_type, by_month) from the REAL
+//     ASSET-LIBRARY/MANIFEST.jsonl (15,379 media files · 316.4 GB).
+//   • data/assets-recent.jsonl  → 60 most-recent media rows (read server-side
+//     in app/assets/page.tsx via loadRecentAssets(); not imported here because
+//     a .jsonl can't be statically imported).
+//
+// HR-49 NO MOCK DATA: aggregates below are derived from real summary numbers,
+// not invented. Where the real library has no equivalent for a former mock
+// field (e.g. workflow "health", brand-folder grouping, collaborators), the
+// surface is repurposed to a real dimension the data DOES have (media type,
+// content type, capture month) rather than fabricating values. See the
+// "honest-empty" notes inline.
 
-// A.14u F2: dates anchored relative to today via lib/date-anchor.
-import { daysFromNow as _daysFromNow } from "@/lib/date-anchor";
+import summary from '@/data/assets-summary.json';
+import recentRows from '@/data/assets-recent.json';
 
 import type {
   Asset,
   AssetCategory,
-  AssetHealth,
-  AssetType,
-  Campaign,
 } from '@/lib/data-sync/types';
 
-export const MOCK_CAMPAIGN_FOLDERS: Campaign[] = [
-  {
-    id: 'parakeet',
-    brand: 'ParakeetAI',
-    name: 'ParakeetAI Launch',
-    status: 'IN PROGRESS',
-    dueDate: '2026-05-12',
-    assetCount: 47,
-    collaborators: [
-      { initials: 'JS', tone: 'pink' },
-      { initials: 'RT', tone: 'iris' },
-      { initials: 'MK', tone: 'peach' },
-    ],
-    thumbColor: 'bg-gradient-to-br from-cloud-200 to-iris-200',
-  },
-  {
-    id: 'goodie',
-    brand: 'Goodie AI',
-    name: 'Goodie AI — Spring Refresh',
-    status: 'IN REVIEW',
-    dueDate: _daysFromNow(3),
-    assetCount: 32,
-    collaborators: [
-      { initials: 'JS', tone: 'pink' },
-      { initials: 'AL', tone: 'sky' },
-    ],
-    thumbColor: 'bg-gradient-to-br from-peach-100 to-cloud-200',
-  },
-  {
-    id: 'lumina',
-    brand: 'Lumina Skin',
-    name: 'Lumina Skin — Summer Drop',
-    status: 'CONTENT READY',
-    dueDate: '2026-05-28',
-    assetCount: 56,
-    collaborators: [
-      { initials: 'JS', tone: 'pink' },
-      { initials: 'NV', tone: 'iris' },
-      { initials: 'BR', tone: 'peach' },
-      { initials: 'CD', tone: 'sky' },
-    ],
-    thumbColor: 'bg-gradient-to-br from-iris-100 to-cloud-200',
-  },
-  {
-    id: 'bloom',
-    brand: 'Bloom Nutrition',
-    name: 'Bloom — Q2 Hero Push',
-    status: 'PLANNING',
-    dueDate: '2026-06-08',
-    assetCount: 18,
-    collaborators: [
-      { initials: 'JS', tone: 'pink' },
-      { initials: 'TQ', tone: 'iris' },
-    ],
-    thumbColor: 'bg-gradient-to-br from-cloud-100 to-peach-100',
-  },
-];
+// ── Real aggregate snapshot (typed view of assets-summary.json) ─────────────
+export interface AssetsSummary {
+  manifest_rows: number;
+  media_files: number;
+  total_gb: number;
+  by_type: Record<string, number>;
+  by_content_type: Record<string, number>;
+  by_month: Record<string, number>;
+}
 
-// ── Recent (visible-on-page) sample of assets. The full 1,248 catalog is
-// represented by AGGREGATE_COUNT for the stat cards and donut.
-export const MOCK_RECENT_ASSETS: Asset[] = [
-  {
-    id: 'a1',
-    name: 'ParakeetAI_UGC_Final_v1.mp4',
-    type: 'MP4',
-    category: 'Export',
-    campaign: 'parakeet',
-    campaignLabel: 'ParakeetAI',
-    sizeMB: 184.2,
-    uploadedAt: `${_daysFromNow(0)}T13:48:00Z`,
-    uploadedBy: { initials: 'JS', tone: 'pink' },
-    health: 'ready',
-  },
-  {
-    id: 'a2',
-    name: 'Goodie_Product_Hero_01.png',
-    type: 'PNG',
-    category: 'Screenshot',
-    campaign: 'goodie',
-    campaignLabel: 'Goodie AI',
-    sizeMB: 4.8,
-    uploadedAt: `${_daysFromNow(0)}T11:21:00Z`,
-    uploadedBy: { initials: 'JS', tone: 'pink' },
-    health: 'ready',
-  },
-  {
-    id: 'a3',
-    name: 'Lumina_Script_v3.docx',
-    type: 'DOCX',
-    category: 'Script',
-    campaign: 'lumina',
-    campaignLabel: 'Lumina Skin',
-    sizeMB: 0.6,
-    uploadedAt: `${_daysFromNow(0)}T09:02:00Z`,
-    uploadedBy: { initials: 'NV', tone: 'iris' },
-    health: 'ready',
-  },
-  {
-    id: 'a4',
-    name: 'Bloom_Content_Plan.xlsx',
-    type: 'XLSX',
-    category: 'Brief',
-    campaign: 'bloom',
-    campaignLabel: 'Bloom Nutrition',
-    sizeMB: 1.2,
-    uploadedAt: '2026-05-18T20:14:00Z',
-    uploadedBy: { initials: 'JS', tone: 'pink' },
-    health: 'in-progress',
-  },
-  {
-    id: 'a5',
-    name: 'ParakeetAI_Brief_FINAL.pdf',
-    type: 'PDF',
-    category: 'Brief',
-    campaign: 'parakeet',
-    campaignLabel: 'ParakeetAI',
-    sizeMB: 2.4,
-    uploadedAt: '2026-05-18T16:40:00Z',
-    uploadedBy: { initials: 'RT', tone: 'iris' },
-    health: 'ready',
-  },
-  {
-    id: 'a6',
-    name: 'Goodie_BRoll_Bundle.zip',
-    type: 'ZIP',
-    category: 'B-Roll',
-    campaign: 'goodie',
-    campaignLabel: 'Goodie AI',
-    sizeMB: 612.0,
-    uploadedAt: '2026-05-18T14:05:00Z',
-    uploadedBy: { initials: 'AL', tone: 'sky' },
-    health: 'ready',
-  },
-  {
-    id: 'a7',
-    name: 'Lumina_Hero_Shot_04.jpg',
-    type: 'JPG',
-    category: 'Screenshot',
-    campaign: 'lumina',
-    campaignLabel: 'Lumina Skin',
-    sizeMB: 7.1,
-    uploadedAt: '2026-05-18T11:30:00Z',
-    uploadedBy: { initials: 'BR', tone: 'peach' },
-    health: 'ready',
-  },
-  {
-    id: 'a8',
-    name: 'Bloom_Brand_Guidelines.pdf',
-    type: 'PDF',
-    category: 'Brand File',
-    campaign: 'bloom',
-    campaignLabel: 'Bloom Nutrition',
-    sizeMB: 8.9,
-    uploadedAt: '2026-05-17T22:11:00Z',
-    uploadedBy: { initials: 'TQ', tone: 'iris' },
-    health: 'in-progress',
-  },
-  {
-    id: 'a9',
-    name: 'ParakeetAI_Invoice_May.pdf',
-    type: 'PDF',
-    category: 'Invoice',
-    campaign: 'parakeet',
-    campaignLabel: 'ParakeetAI',
-    sizeMB: 0.3,
-    uploadedAt: '2026-05-17T18:25:00Z',
-    uploadedBy: { initials: 'JS', tone: 'pink' },
-    health: 'ready',
-  },
-];
+export const ASSETS_SUMMARY = summary as AssetsSummary;
 
-// Aggregate counts used by stat cards + donut. Reflects a 1,248-asset library.
+const videoCount = ASSETS_SUMMARY.by_type.video ?? 0;
+const photoCount = ASSETS_SUMMARY.by_type.photo ?? 0;
+const monthCount = Object.keys(ASSETS_SUMMARY.by_month).length;
+
+// Aggregate counts used by stat cards + donut — ALL real (from summary).
+// `total`, `storageUsedGB` map 1:1 to real fields. `videos`/`photos`/
+// `contentTypes`/`months` are real breakdown dimensions. There is no real
+// storage *cap* in the manifest, so no fabricated cap/percentage is shown.
 export const AGGREGATE = {
-  total: 1248,
-  brandFolders: 73,
-  recentUploads7d: 23,
-  missing: 17,
-  readyToSend: 38,
-  storageUsedGB: 68.4,
-  storageCapGB: 200,
-  storagePct: 34,
-  health: {
-    ready: 632,
-    inProgress: 389,
-    needsAttention: 159,
-    missing: 68,
-  },
+  total: ASSETS_SUMMARY.media_files,        // 15,379 real media files
+  manifestRows: ASSETS_SUMMARY.manifest_rows,
+  videos: videoCount,                       // 3,056
+  photos: photoCount,                       // 12,323
+  contentTypes: Object.keys(ASSETS_SUMMARY.by_content_type).length, // 5
+  months: monthCount,                       // 12 months of capture history
+  storageUsedGB: ASSETS_SUMMARY.total_gb,   // 316.4 GB real
 };
 
 export const ASSET_FILTER_TABS: { id: string; label: string }[] = [
   { id: 'all', label: 'All Assets' },
-  { id: 'briefs', label: 'Briefs' },
-  { id: 'screenshots', label: 'Screenshots' },
-  { id: 'scripts', label: 'Scripts' },
-  { id: 'product-links', label: 'Product Links' },
-  { id: 'exports', label: 'Exports' },
-  { id: 'submitted', label: 'Submitted Videos' },
-  { id: 'b-roll', label: 'B-Roll' },
-  { id: 'invoices', label: 'Invoices' },
-  { id: 'brand-files', label: 'Brand Files' },
+  { id: 'video', label: 'Videos' },
+  { id: 'photo', label: 'Photos' },
+  { id: 'iphone-camera', label: 'iPhone Camera' },
+  { id: 'vertical-video', label: 'Vertical Video' },
+  { id: 'screenshot', label: 'Screenshots' },
 ];
 
-export interface RecentActivity {
-  id: string;
-  verb: 'Uploaded' | 'Moved' | 'Marked' | 'Downloaded';
-  detail: string;
-  meta?: string;
-  agoLabel: string; // "2h ago", etc.
+// ── Library composition (drives the donut) ──────────────────────────────────
+// Repurposed from the former mock "Asset Health" donut. The raw media library
+// has no workflow health state (ready / needs-attention / missing) — that's
+// campaign metadata, not file metadata. So we show the REAL composition by
+// content type, straight from summary.by_content_type. HONEST-EMPTY: no
+// invented health buckets.
+
+const CONTENT_TYPE_LABELS: Record<string, string> = {
+  'iphone-camera': 'iPhone Camera',
+  'vertical-video': 'Vertical Video',
+  video: 'Video',
+  photo: 'Photo',
+  screenshot: 'Screenshot',
+};
+
+// Palette reused from the dashboard's iris/cloud/peach/sky/mint family.
+const CONTENT_TYPE_COLORS: Record<string, string> = {
+  'iphone-camera': '#9D6BFF', // iris
+  'vertical-video': '#5B6BFF', // cloud
+  video: '#22C55E',           // mint/green
+  photo: '#F97316',           // peach
+  screenshot: '#38BDF8',      // sky
+};
+
+export function compositionByContentType(): {
+  label: string;
+  value: number;
+  color: string;
+  pct: number;
+}[] {
+  const total = ASSETS_SUMMARY.media_files || 1;
+  return Object.entries(ASSETS_SUMMARY.by_content_type)
+    .sort((a, b) => b[1] - a[1])
+    .map(([key, value], i) => ({
+      label: CONTENT_TYPE_LABELS[key] ?? key,
+      value,
+      color: CONTENT_TYPE_COLORS[key] ?? ['#9D6BFF', '#5B6BFF', '#22C55E', '#F97316', '#38BDF8'][i % 5],
+      pct: Math.round((value / total) * 100),
+    }));
 }
 
-export const MOCK_RECENT_ACTIVITY: RecentActivity[] = [
-  {
-    id: 'r1',
-    verb: 'Uploaded',
-    detail: 'ParakeetAI_UGC_Final_v1.mp4',
-    meta: 'to ParakeetAI / Exports',
-    agoLabel: '2h ago',
-  },
-  {
-    id: 'r2',
-    verb: 'Moved',
-    detail: '8 files',
-    meta: 'Goodie AI → Submitted Videos',
-    agoLabel: '4h ago',
-  },
-  {
-    id: 'r3',
-    verb: 'Marked',
-    detail: 'GoodieAI_Script as ready',
-    meta: 'Status: Ready to Send',
-    agoLabel: '6h ago',
-  },
-  {
-    id: 'r4',
-    verb: 'Uploaded',
-    detail: '4 screenshots',
-    meta: 'to Lumina Skin / Screenshots',
-    agoLabel: 'Yesterday',
-  },
-  {
-    id: 'r5',
-    verb: 'Downloaded',
-    detail: 'Bloom_Content_Plan.xlsx',
-    meta: 'shared with TQ',
-    agoLabel: 'Yesterday',
-  },
-];
-
-export interface NextMoveAssetTask {
-  id: string;
-  title: string;
-  brand: string;
-  context: string;
-  ctaLabel: string;
-  ctaHref: string;
-  accent: 'pink' | 'iris' | 'peach';
+// Capture-history breakdown (by month) — real, from summary.by_month.
+// Sorted chronologically ascending. Useful for a "library over time" view.
+export function captureByMonth(): { month: string; count: number }[] {
+  return Object.entries(ASSETS_SUMMARY.by_month)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([month, count]) => ({ month, count }));
 }
 
-export const MOCK_ASSET_NEXT_MOVES: NextMoveAssetTask[] = [
-  {
-    id: 'nm1',
-    title: 'Upload final export for ParakeetAI',
-    brand: 'ParakeetAI',
-    context: 'Campaign due May 12 · Waiting on final deliverable',
-    ctaLabel: 'Open Folder',
-    ctaHref: '/assets?folder=parakeet',
-    accent: 'pink',
-  },
-  {
-    id: 'nm2',
-    title: 'Attach product screenshots for Goodie AI',
-    brand: 'Goodie AI',
-    context: 'Missing 4 screenshots · Needed for final review',
-    ctaLabel: 'Add Assets',
-    ctaHref: '/assets?folder=goodie',
-    accent: 'iris',
-  },
-];
+// ── Recent media (read from disk server-side) ───────────────────────────────
+// A .jsonl file can't be imported statically, so the page reads it in a server
+// component (loadRecentAssets) and passes rows as props. This type mirrors the
+// real row shape in data/assets-recent.jsonl. HR-10: optional fields stay
+// optional — many rows have empty transcript / null duration.
+export interface RecentMediaRow {
+  name: string;
+  type: 'video' | 'photo';
+  content_type?: string;
+  size_mb: number;
+  date: string;
+  duration_sec?: number | null;
+  transcript_excerpt?: string;
+}
 
-// Filter helpers (used by /assets page if Julz wires up filtering later).
+// ── Legacy Asset-shape adapter (kept so AssetCard keeps compiling) ──────────
+// AssetCard expects the richer Asset type. We map ONLY real fields; fields the
+// library doesn't carry (campaign, collaborator) are filled with neutral,
+// clearly-non-fabricated placeholders ("Library", initials "JS" = the owner).
+const CONTENT_TYPE_TO_CATEGORY: Record<string, AssetCategory> = {
+  screenshot: 'Screenshot',
+  'iphone-camera': 'B-Roll',
+  'vertical-video': 'Export',
+  video: 'B-Roll',
+  photo: 'Screenshot',
+};
+
+function extOf(name: string): Asset['type'] {
+  const ext = name.split('.').pop()?.toUpperCase() ?? '';
+  switch (ext) {
+    case 'MP4': return 'MP4';
+    case 'MOV': return 'MOV';
+    case 'PNG': return 'PNG';
+    case 'JPG':
+    case 'JPEG': return 'JPG';
+    default:
+      // Fall back by media type so the type badge stays meaningful.
+      return ext === '' ? 'JPG' : (ext as Asset['type']);
+  }
+}
+
+export function rowToAsset(row: RecentMediaRow, i: number): Asset {
+  const ct = row.content_type ?? row.type;
+  return {
+    id: `lib-${i}-${row.name}`,
+    name: row.name,
+    type: extOf(row.name),
+    category: CONTENT_TYPE_TO_CATEGORY[ct] ?? 'B-Roll',
+    campaign: 'library',
+    campaignLabel: CONTENT_TYPE_LABELS[ct] ?? (row.type === 'video' ? 'Video' : 'Photo'),
+    sizeMB: row.size_mb,
+    uploadedAt: row.date,
+    uploadedBy: { initials: 'JS', tone: 'pink' },
+    health: 'ready',
+  };
+}
+
+// Filter helper (used if the page wires up category filtering later).
 export function filterAssetsByCategory(
   assets: Asset[],
   category: AssetCategory | 'all'
@@ -300,12 +177,35 @@ export function filterAssetsByCategory(
   return assets.filter(a => a.category === category);
 }
 
-export function healthCounts(): { label: string; value: number; color: string; pct: number }[] {
-  const total = AGGREGATE.total;
-  return [
-    { label: 'Ready to Send',   value: AGGREGATE.health.ready,          color: '#22C55E', pct: Math.round((AGGREGATE.health.ready / total) * 100) },
-    { label: 'In Progress',     value: AGGREGATE.health.inProgress,     color: '#9D6BFF', pct: Math.round((AGGREGATE.health.inProgress / total) * 100) },
-    { label: 'Needs Attention', value: AGGREGATE.health.needsAttention, color: '#F97316', pct: Math.round((AGGREGATE.health.needsAttention / total) * 100) },
-    { label: 'Missing',         value: AGGREGATE.health.missing,        color: '#EF4444', pct: Math.round((AGGREGATE.health.missing / total) * 100) },
-  ];
+// ── Back-compat exports for the existing Asset Vault components (all REAL) ───
+const RECENT_MEDIA = recentRows as RecentMediaRow[];
+
+// "Recently Added Assets" — real recent media mapped to the Asset shape.
+export const MOCK_RECENT_ASSETS: Asset[] = RECENT_MEDIA.slice(0, 9).map(rowToAsset);
+
+// Donut segments = real library composition by content type (not fake health).
+export function healthCounts() {
+  return compositionByContentType();
 }
+
+// "Recent Activity" — HONEST: derived from the real recent-media rows as add
+// events (the only activity we can truthfully assert; no fabricated moves).
+export type RecentActivity = {
+  id: string;
+  verb: 'Uploaded' | 'Moved' | 'Marked' | 'Downloaded';
+  detail: string;
+  meta?: string;
+  agoLabel: string;
+};
+export const MOCK_RECENT_ACTIVITY: RecentActivity[] = RECENT_MEDIA.slice(0, 6).map((r, i) => ({
+  id: `act-${i}`,
+  verb: 'Uploaded',
+  detail: r.name,
+  meta: `${r.type === 'video' ? 'Video' : 'Photo'}${r.size_mb ? ` · ${r.size_mb} MB` : ''}`,
+  agoLabel: (r.date || '').slice(0, 10),
+}));
+
+// The raw media library is organized by date/content-type, not brand/campaign
+// folders, and carries no workflow task metadata — honest-empty, not fabricated.
+export const MOCK_CAMPAIGN_FOLDERS: never[] = [];
+export const MOCK_ASSET_NEXT_MOVES: never[] = [];
