@@ -25,6 +25,8 @@
 // PRIMARY DASHBOARD DATA — mockup #20
 // ─────────────────────────────────────────────────────────────────────
 
+import sideshiftThreads from '@/data/sideshift-messages.json';
+
 /** Overall snapshot — feeds StatStrip + hero donut. */
 export const SIDESHIFT_SNAPSHOT = {
   profileCompleteness: 92,           // donut center value
@@ -125,13 +127,32 @@ export type ActivityEvent = {
   timeAgo: string;                   // '2h ago'
 };
 
-export const RECENT_ACTIVITY: ActivityEvent[] = [
-  { id: 'a1', kind: 'invite',   brand: 'Summer Fridays',  message: 'invited you to a paid campaign',  timeAgo: '2h ago' },
-  { id: 'a2', kind: 'payout',   brand: 'Tula',            message: '$420 payout cleared',             timeAgo: '5h ago' },
-  { id: 'a3', kind: 'accepted', brand: 'Glossier',        message: 'accepted your proposal',          timeAgo: '1d ago' },
-  { id: 'a4', kind: 'verified', brand: 'Drunk Elephant',  message: 'verified your post · 14K views',  timeAgo: '2d ago' },
-  { id: 'a5', kind: 'review',   brand: 'Rare Beauty',     message: 'left a 5★ creator review',        timeAgo: '3d ago' },
-];
+// A.AB (HR-49 / HR-10): real brands from data/sideshift-messages.json. The
+// prior rows (Summer Fridays / Tula / Glossier / Drunk Elephant / Rare Beauty)
+// were fabricated. Event copy is kept honest — only what we can assert from a
+// thread (who reached out / who you replied to), not invented payouts/reviews.
+function _agoFromIso(iso: string): string {
+  if (!iso) return '';
+  const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86_400_000);
+  if (days <= 0) return 'today';
+  if (days === 1) return '1d ago';
+  if (days < 7) return `${days}d ago`;
+  return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+export const RECENT_ACTIVITY: ActivityEvent[] = (
+  sideshiftThreads as Array<{ brand?: string; direction?: string; ts?: string }>
+)
+  .filter((t) => t.brand)
+  .sort((a, b) => (b.ts ?? '').localeCompare(a.ts ?? ''))
+  .slice(0, 5)
+  .map((t, i) => ({
+    id: `a${i + 1}`,
+    kind: t.direction === 'inbound' ? 'invite' : 'accepted',
+    brand: t.brand as string,
+    message: t.direction === 'inbound' ? 'reached out on SideShift' : 'you replied on SideShift',
+    timeAgo: _agoFromIso(t.ts ?? ''),
+  }));
 
 // ─────────────────────────────────────────────────────────────────────
 // LEGACY PROFILE-COMPLETION DATA (kept for RightRail secondary widget)

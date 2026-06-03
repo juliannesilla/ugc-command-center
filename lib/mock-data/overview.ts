@@ -303,7 +303,7 @@ export function getFocusGroups(
   }));
   while (top3Production.length < 3) {
     top3Production.push({
-      label: top3Production.length === 0 ? "Film Ouai hair-care 3-pack" : "Edit Rare Beauty hooks",
+      label: top3Production.length === 0 ? "Film your next campaign video" : "Edit a draft for review",
       meta: "this week",
     });
   }
